@@ -3,18 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/global/store_controller.dart';
 
-
-import 'package:wiki_places/widgets/languages_drop_down.dart';
-import 'package:wiki_places/widgets/theme_switcher.dart';
-import 'package:wiki_places/global/client_requests.dart';
-
 class HomePage extends StatelessWidget {
-  final storeController = Get.put(StoreController());
+  HomePage({Key? key}) : super(key: key);
 
-  void func() async {
-    Response x = await ClientRequests.instance.getPlacesData("1km", "32.7775", "35.02166667");
-    print(x.body);
-  }
+  final storeController = Get.put(StoreController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +26,11 @@ class HomePage extends StatelessWidget {
                 '${storeController.counter.value}',
                 style: Theme.of(context).textTheme.headline4,
               ),
-              LanguageDropDown(),
-              ThemeSwitcher(),
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: func,
+          onPressed: storeController.increase,
           tooltip: 'Increment',
           child: const Icon(Icons.add),
         ),
