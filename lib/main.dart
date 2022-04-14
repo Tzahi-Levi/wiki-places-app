@@ -35,7 +35,7 @@ class WikiPlacesApp extends StatelessWidget {
   final FirebasePerformance performance = FirebasePerformance.instance;
 
   void _disableCrashlyticsInDebug() async {
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kDebugMode);  // TODO- change kDebugMode to !kDebugMode before production
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
   }
 
   @override

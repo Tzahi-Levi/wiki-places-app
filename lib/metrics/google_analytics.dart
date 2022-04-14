@@ -38,8 +38,4 @@ class GoogleAnalytics {
   void logChangeTheme() {
     _logEvent("ThemeChangedTo${Get.isDarkMode ? "Dark" : "Light"}");
   }
-
-  void logErrorExample() {  // TODO- remove
-    _logError("ExampleError");
-  }
 }
