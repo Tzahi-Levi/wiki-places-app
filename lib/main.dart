@@ -55,7 +55,7 @@ class WikiPlacesApp extends StatelessWidget {
       ],
       home: ConnectivityBuilder(
         builder: (context, isConnected, status) {
-          return (isConnected != null && !!isConnected) ? HomePage() : const ConnectionLostPage();
+          return (isConnected != null && !!isConnected) ? const HomePage() : const ConnectionLostPage();
         }
       )
     );
