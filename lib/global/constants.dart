@@ -12,6 +12,9 @@ class GlobalConstants {
   static const IconData placesPageOutLinedIcon = Icons.home_outlined;
   static const IconData placesPageSelectedIcon= Icons.home;
 
+  // Separators
+  static const String iconTextSeparator = '@';
+
   // Images
   static const String connectionLostImage = "images/connection_lost.png";
 }

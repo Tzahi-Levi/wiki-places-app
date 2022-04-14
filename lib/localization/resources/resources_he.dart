@@ -8,5 +8,8 @@ final Map<String, String> resourcesHe = {
 
   // Navigation
   'strMapPageName': 'מפה',
-  'strPlacesPageName': 'המקומות'
+  'strPlacesPageName': 'המקומות',
+
+  // Places
+  'strSetRadius': 'על מנת לראות מידע על המקומות סביבך, יש לקבוע רדיוס בלחיצה על @ בראש העמוד'
 };

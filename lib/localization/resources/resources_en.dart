@@ -8,5 +8,8 @@ final Map<String, String> resourcesEn = {
 
   // Navigation
   'strMapPageName': 'Map',
-  'strPlacesPageName': 'Places'
+  'strPlacesPageName': 'Places',
+
+  // Places
+  'strSetRadius': 'To see information about the places in your area, please set the radius by clicking on @ at the top of this page'
 };
