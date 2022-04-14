@@ -5,7 +5,6 @@ import 'package:wiki_places/global/store_controller.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
-
   final storeController = Get.put(StoreController());
 
   @override

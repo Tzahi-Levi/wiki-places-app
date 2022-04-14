@@ -36,7 +36,7 @@ class LanguageDropDown extends StatelessWidget {
         'strLanguageName'.tr,
         style: TextStyle(
           color: Theme.of(context).splashColor,
-          fontSize: 15.0,  // TODO- GC
+          fontSize: 15.0,
           fontWeight: FontWeight.bold,
         ),
       ),

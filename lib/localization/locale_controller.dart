@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/localization/resources/resources.dart';
+import 'package:wiki_places/metrics/google_analytics.dart';
 
 class LocaleController {
   static final LocaleController _instance = LocaleController._();
@@ -24,21 +25,16 @@ class LocaleController {
   }
 
   static List<Locale> getSupportedLocales() {
-    Locale currentLocale = getCurrentLocale;
-    List<Locale> supportedLocales = [currentLocale];
-
+    List<Locale> supportedLocales = [];
     for (String language in _supportedLocales) {
       Locale locale = _buildLocale(language);
-
-      if (currentLocale != locale) {
-        supportedLocales.add(locale);
-      }
+      supportedLocales.add(locale);
     }
     return supportedLocales;
   }
 
   static void changeLanguage(String languageCode) {
     Get.updateLocale(_buildLocale(languageCode));
-    // GoogleAnalytics.instance.logChangeLanguage(languageCode);  // TODO
+    GoogleAnalytics.instance.logChangeLanguage(languageCode);
   }
 }
