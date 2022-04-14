@@ -12,7 +12,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wiki_places/localization/locale_controller.dart';
 import 'package:wiki_places/localization/resources/resources.dart';
 import 'package:wiki_places/global/config.dart';
-import 'package:wiki_places/pages/home.dart';
+import 'package:cross_connectivity/cross_connectivity.dart';
+import 'package:wiki_places/pages/connection_lost/connection_lost.dart';
+import 'package:wiki_places/pages/home/home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,7 +53,11 @@ class WikiPlacesApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      home: HomePage(),
+      home: ConnectivityBuilder(
+        builder: (context, isConnected, status) {
+          return (isConnected != null && !!isConnected) ? HomePage() : const ConnectionLostPage();
+        }
+      )
     );
   }
 }
