@@ -1,6 +1,7 @@
 // ================= Google Analytics Wrapper =================
 import 'package:get/get.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 class GoogleAnalytics {
   static final GoogleAnalytics _instance = GoogleAnalytics._();
@@ -14,6 +15,10 @@ class GoogleAnalytics {
     // if (!kDebugMode) {  // TODO- remove before production
       _analytics.logEvent(name: name, parameters: parameters);
     // }
+  }
+
+  void _logError(String error) {
+    FirebaseCrashlytics.instance.log(error);
   }
 
   // ================== Logs ==================
@@ -32,5 +37,9 @@ class GoogleAnalytics {
 
   void logChangeTheme() {
     _logEvent("ThemeChangedTo${Get.isDarkMode ? "Dark" : "Light"}");
+  }
+
+  void logErrorExample() {  // TODO- remove
+    _logError("ExampleError");
   }
 }

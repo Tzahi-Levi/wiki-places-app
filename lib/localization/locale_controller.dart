@@ -25,15 +25,10 @@ class LocaleController {
   }
 
   static List<Locale> getSupportedLocales() {
-    Locale currentLocale = getCurrentLocale;
-    List<Locale> supportedLocales = [currentLocale];
-
+    List<Locale> supportedLocales = [];
     for (String language in _supportedLocales) {
       Locale locale = _buildLocale(language);
-
-      if (currentLocale != locale) {
-        supportedLocales.add(locale);
-      }
+      supportedLocales.add(locale);
     }
     return supportedLocales;
   }

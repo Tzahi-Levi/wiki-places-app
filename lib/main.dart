@@ -1,47 +1,57 @@
 // ================= Main =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
+import 'package:firebase_performance/firebase_performance.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:wiki_places/metrics/sentryController.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wiki_places/localization/locale_controller.dart';
 import 'package:wiki_places/localization/resources/resources.dart';
+import 'package:wiki_places/global/config.dart';
 import 'package:wiki_places/pages/home.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   GoogleAnalytics.instance.logAppOpen();
-  runApp(WikiPlacesApp());
+
+  await SentryFlutter.init((options) {
+      options.dsn = SentryController.sentryDNS;
+      options.tracesSampleRate = SentryController.sentryTracesSampleRate;
+      options.release = ProjectConfig.projectVersion;
+    },
+    appRunner: () => runApp(WikiPlacesApp()),
+  );
 }
 
 class WikiPlacesApp extends StatelessWidget {
   WikiPlacesApp({Key? key}) : super(key: key);
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  final FirebasePerformance performance = FirebasePerformance.instance;
+
+  void _disableCrashlyticsInDebug() async {
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kDebugMode);  // TODO- change kDebugMode to !kDebugMode before production
+  }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: _initialization,
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Scaffold(body: Center(child: Text(snapshot.error.toString())));
-          }
-
-          return (snapshot.connectionState != ConnectionState.done) ? const Center(child: CircularProgressIndicator()) : GetMaterialApp(
-                title: 'strAppName'.tr,
-                translations: Resources.instance,
-                locale: LocaleController.getCurrentLocale,
-                supportedLocales: LocaleController.getSupportedLocales(),
-                localeResolutionCallback: (deviceLocale, supportedLocale) => LocaleController.localeResolutionCallback(deviceLocale, supportedLocale),
-                fallbackLocale: LocaleController.getDefaultLocale,
-                localizationsDelegates: const [
-                  GlobalCupertinoLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                ],
-                home: HomePage(),
-              );
-        }
-      );
-    }
+    _disableCrashlyticsInDebug();
+    return GetMaterialApp(
+      title: 'strAppName'.tr,
+      translations: Resources.instance,
+      locale: LocaleController.getCurrentLocale,
+      supportedLocales: LocaleController.getSupportedLocales(),
+      localeResolutionCallback: (deviceLocale, supportedLocale) => LocaleController.localeResolutionCallback(deviceLocale, supportedLocale),
+      fallbackLocale: LocaleController.getDefaultLocale,
+      localizationsDelegates: const [
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      home: HomePage(),
+    );
+  }
 }
