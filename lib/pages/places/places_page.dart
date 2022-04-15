@@ -9,14 +9,8 @@ import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
 
-class PlacesPage extends StatefulWidget {
-  const PlacesPage({Key? key}) : super(key: key);
-
-  @override
-  State<PlacesPage> createState() => _PlacesPageState();
-}
-
-class _PlacesPageState extends State<PlacesPage> {
+class PlacesPage extends StatelessWidget {
+  PlacesPage({Key? key}) : super(key: key);
   final _storeController = Get.put(StoreController());
   late double _currentSliderValue = double.parse(_storeController.radius.value);
 
@@ -81,7 +75,7 @@ class _PlacesPageState extends State<PlacesPage> {
     return GetX<StoreController>(
       builder: (store) => _storeController.placesCollection.value.isEmpty ?
       PlaceholderPage(
-        content: "abc@", // 'strSetRadius'.tr,  // TODO
+        content: 'strSetRadius'.tr,
         icon: GlobalConstants.searchIcon,
       ) : Scaffold(
             appBar: WikiPlacesAppBar(

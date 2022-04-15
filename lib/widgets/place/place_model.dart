@@ -12,7 +12,7 @@ class PlaceModel {
 
   PlaceModel.fromJson(Json placeJson) {
     label = placeJson["label"];
-    abstract = (placeJson["abstract"] == "{{") ? null : placeJson["abstract"];
+    abstract = placeJson["abstract"];  // TODO- filter unwanted characters
     url = placeJson["url"];
     distance = placeJson["pin"]["distance[km]"].toDouble();
     lat = placeJson["pin"]["location"]["lat"].toDouble();
