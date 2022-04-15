@@ -24,7 +24,7 @@ class Place extends StatelessWidget {
           Text(model.label),
           Row(
             children: [
-              // Image.network(model.url),
+              // Image.network(model.url),  // TODO- figure out how to present the image
               Visibility(
                   visible: model.abstract != null,
                   child: Text(model.abstract!),
