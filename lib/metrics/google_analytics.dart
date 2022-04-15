@@ -38,4 +38,16 @@ class GoogleAnalytics {
   void logChangeTheme() {
     _logEvent("ThemeChangedTo${Get.isDarkMode ? "Dark" : "Light"}");
   }
+
+  void logReadMoreClicked() {
+    _logEvent("ReadMoreClicked");
+  }
+
+  void logSearchPlaces() {
+    _logEvent("SearchPlaces");
+  }
+
+  void logRadiusChanged() {
+    _logEvent("RadiusChanged");
+  }
 }

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/global/constants.dart';
-import 'package:wiki_places/global/store_controller.dart';
+import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/types.dart';
 
 class BottomNavigation extends StatelessWidget {

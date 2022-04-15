@@ -5,6 +5,7 @@ final Map<String, String> resourcesEn = {
   // General
   'strLanguageName': 'English',
   'strAppName': ProjectConfig.projectName,
+  'strKm': 'Km',
 
   // Navigation
   'strMapPageName': 'Map',
