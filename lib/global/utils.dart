@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/global/constants.dart';
-import 'package:wiki_places/global/types.dart';
 
 // Navigation
 void navigateToPage(Widget page) {
@@ -17,6 +16,10 @@ void navigateBack() {
 }
 
 // Messages
+void displaySnackbar({String title = "", String content = ""}) {
+  Get.snackbar(title, content, snackPosition: SnackPosition.BOTTOM);
+}
+
 void openModalBottomSheet({List<Widget>? children}) {
   if (children == null) {
     return;

@@ -6,6 +6,7 @@ final Map<String, String> resourcesHe = {
   'strLanguageName': 'עברית',
   'strAppName': ProjectConfig.projectName,
   'strKm': 'ק״מ',
+  'strError': 'שגיאה',
 
   // Navigation
   'strMapPageName': 'מפה',
@@ -16,4 +17,5 @@ final Map<String, String> resourcesHe = {
   'strSetRadius': 'על מנת לראות מידע על המקומות סביבך, יש לקבוע רדיוס בלחיצה על @ בראש העמוד',
   'strReadMore': 'קרא עוד',
   'strChangeRadius': 'שנה רדיוס',
+  'strRadiusMustBePositive': 'הרדיוס חייב להיות מספר חיובי',
 };

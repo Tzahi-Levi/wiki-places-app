@@ -10,6 +10,8 @@ class GlobalConstants {
   // Default Values
   static String defaultScale = "strKm".tr;
   static const int defaultPrecision = 1;
+  static const double minRadius = 0;
+  static const double maxRadius = 5;
 
   // Icons
   static const IconData mapPageOutLinedIcon = Icons.map_outlined;
@@ -24,4 +26,7 @@ class GlobalConstants {
 
   // Images
   static const String connectionLostImage = "images/connection_lost.png";
+
+  // Slider
+  static int radiusSliderDivisions = 10;
 }

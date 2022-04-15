@@ -9,34 +9,62 @@ import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
 
-class PlacesPage extends StatelessWidget {
-  PlacesPage({Key? key}) : super(key: key);
+class PlacesPage extends StatefulWidget {
+  const PlacesPage({Key? key}) : super(key: key);
+
+  @override
+  State<PlacesPage> createState() => _PlacesPageState();
+}
+
+class _PlacesPageState extends State<PlacesPage> {
   final _storeController = Get.put(StoreController());
-  late final TextEditingController _updateRadiusController = TextEditingController(text: _storeController.radius.value);
+  late double _currentSliderValue = double.parse(_storeController.radius.value);
 
   void _changeRadius() {
-    _storeController.changeRadius(_updateRadiusController.text);
     navigateBack();
+    if (_currentSliderValue == 0) {
+      displaySnackbar(title: 'strError'.tr, content:'strRadiusMustBePositive'.tr);
+    } else {
+      _storeController.changeRadius(_currentSliderValue.toString());
+    }
+  }
+
+  void _updateSlider(double value, Function setStateFunction) {
+    setStateFunction(() {
+      _currentSliderValue = value;
+    });
   }
 
   void _openChangeRadiusDialog() {
     openModalBottomSheet(
       children: [
-        Row(
-          children: [
-            Expanded(
-              child: TextField(  // TODO- change to slider with 5km max
-                controller: _updateRadiusController,
-              ),
-            ),
-            Text(GlobalConstants.defaultScale),
-          ],
+        StatefulBuilder(
+          builder: (context, setStateFunction) {
+            return Column(
+              children: [
+                Row(
+                  children: [
+                    Slider(
+                        value: _currentSliderValue,
+                        min: GlobalConstants.minRadius,
+                        max: GlobalConstants.maxRadius,
+                        divisions: GlobalConstants.radiusSliderDivisions,
+                        label: _currentSliderValue.toPrecisionString() + " " + GlobalConstants.defaultScale,
+                        onChanged: (value) {
+                          _updateSlider(value, setStateFunction);
+                        }
+                    ),
+                  ],
+                ),
+                ElevatedButton(
+                  onPressed: _changeRadius,
+                  child: Text('strChangeRadius'.tr),
+                ),
+              ],
+            );
+          },
         ),
-        ElevatedButton(
-          onPressed: _changeRadius,
-          child: Text('strChangeRadius'.tr),
-        ),
-      ]
+      ],
     );
   }
 
