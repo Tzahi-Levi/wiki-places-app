@@ -34,10 +34,7 @@ class PlacesPage extends StatelessWidget {
             body: ListView(
               children: _getPlaces(),
             ),
-            floatingActionButton: Padding(
-              padding: const EdgeInsets.only(bottom: 10.0),
-              child: SearchPlacesFAB(),
-            ),
+            floatingActionButton: SearchPlacesFAB(),
           ),
     );
   }

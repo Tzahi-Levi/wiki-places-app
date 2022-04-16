@@ -20,10 +20,14 @@ class SearchPlacesFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton.extended(
-      label: Text('strSearchPlace'.tr),
-      icon: const Icon(GlobalConstants.searchIcon),
-      onPressed: _searchPlaces,
-    );
+    return
+      Padding(
+        padding: const EdgeInsets.only(bottom: 10.0),
+        child: FloatingActionButton.extended(
+          label: Text('strSearchPlace'.tr),
+          icon: const Icon(GlobalConstants.searchIcon),
+          onPressed: _searchPlaces,
+        ),
+      );
   }
 }

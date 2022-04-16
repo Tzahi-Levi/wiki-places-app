@@ -1,34 +1,16 @@
 // ================= Bottom Navigation Widget =================
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/types.dart';
-import 'package:wiki_places/global/utils.dart';
-import 'package:wiki_places/pages/home/home.dart';
-import 'package:wiki_places/pages/map/map.dart';
-import 'package:wiki_places/pages/places/places_page.dart';
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const CustomBottomNavigationBar(); /*BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(_storeController.currentMainAppPage.value == AppPages.places ? GlobalConstants.placesPageSelectedIcon : GlobalConstants.placesPageOutLinedIcon),
-            label: 'strPlacesPageName'.tr,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(_storeController.currentMainAppPage.value == AppPages.map ? GlobalConstants.mapPageSelectedIcon : GlobalConstants.mapPageOutLinedIcon),
-            label: 'strMapPageName'.tr,
-          ),
-        ],
-        currentIndex: _storeController.currentMainAppPage.value.index,
-        onTap: _storeController.changeMainAppPage,
-      )*/
+    return const CustomBottomNavigationBar();
   }
 }
 
@@ -69,8 +51,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                             children: [
                               IconButton(
                                 onPressed: () {
-                                  _storeController.currentMainAppPage.value =
-                                      AppPages.places;
+                                  _storeController.changeMainAppPage(AppPages.places);
                                 },
                                 icon: Icon(
                                   _storeController.currentMainAppPage.value ==
@@ -92,8 +73,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                             children: [
                               IconButton(
                                 onPressed: () {
-                                  _storeController.currentMainAppPage.value =
-                                      AppPages.map;
+                                  _storeController.changeMainAppPage(AppPages.map);
                                 },
                                 icon: Icon(
                                     _storeController.currentMainAppPage.value ==

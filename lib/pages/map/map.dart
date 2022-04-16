@@ -60,10 +60,7 @@ class MapPage extends StatelessWidget {
             myLocationEnabled: true,
             markers: _getMarkers(),
           ),
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.only(bottom: 10.0),
-            child: SearchPlacesFAB(),
-          ),
+          floatingActionButton: SearchPlacesFAB(),
         ),
     );
   }
