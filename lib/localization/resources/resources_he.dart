@@ -13,6 +13,8 @@ final Map<String, String> resourcesHe = {
   'strPlacesPageName': 'המקומות',
 
   // Places
+  'strSearchPlace': 'חפש מקומות',
+  'strSearchSuccessfully': 'חיפוש מקומות ברדיוס @radius @scale בוצע בהצלחה',
   'strWikipediaValuesInRadius': 'ערכי ויקיפדיה @radius @scale',
   'strSetRadius': 'על מנת לראות מידע על המקומות סביבך, יש ללחוץ על לחצן החיפוש @ או לקבוע רדיוס בלחיצה על # בראש העמוד',
   'strReadMore': 'קרא עוד',
