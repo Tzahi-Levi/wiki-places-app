@@ -15,8 +15,8 @@ class StoreController extends GetxController {
   late Rx<PlacesPageCollection> placesCollection = PlacesPageCollection().obs;
 
   // Actions
-  void changeMainAppPage(int newPageIndex) {
-    currentMainAppPage.value = indexToEnum(AppPages.values, newPageIndex);
+  void changeMainAppPage(AppPages page ) {
+    currentMainAppPage.value = page;
     update();
   }
 

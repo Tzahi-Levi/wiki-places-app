@@ -26,8 +26,19 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetX<StoreController>(
         builder: (store) => Scaffold(
-          body: _openCurrentPage(),
-          bottomNavigationBar: BottomNavigation(),
+          body: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 50.0),
+                child: _openCurrentPage(),
+              ),
+              const Positioned(
+                  bottom: 0,
+                  left: 0,
+                  child: BottomNavigation()
+              ),
+            ],
+          )
         )
     );
   }
