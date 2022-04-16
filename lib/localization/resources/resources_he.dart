@@ -5,11 +5,19 @@ final Map<String, String> resourcesHe = {
   // General
   'strLanguageName': 'עברית',
   'strAppName': ProjectConfig.projectName,
+  'strKm': 'ק״מ',
+  'strError': 'שגיאה',
 
   // Navigation
   'strMapPageName': 'מפה',
   'strPlacesPageName': 'המקומות',
 
   // Places
-  'strSetRadius': 'על מנת לראות מידע על המקומות סביבך, יש לקבוע רדיוס בלחיצה על @ בראש העמוד'
+  'strSearchPlace': 'חפש מקומות',
+  'strSearchSuccessfully': 'חיפוש מקומות ברדיוס @radius @scale בוצע בהצלחה',
+  'strWikipediaValuesInRadius': 'ערכי ויקיפדיה @radius @scale',
+  'strSetRadius': 'על מנת לראות מידע על המקומות סביבך, יש ללחוץ על לחצן החיפוש @ או לקבוע רדיוס בלחיצה על # בראש העמוד',
+  'strReadMore': 'קרא עוד',
+  'strChangeRadius': 'שנה רדיוס',
+  'strRadiusMustBePositive': 'הרדיוס חייב להיות מספר חיובי',
 };

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/global/constants.dart';
-import 'package:wiki_places/global/store_controller.dart';
+import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/pages/home/home.dart';

@@ -1,9 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.technion.android.wikiplaces.wiki_places">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
    <application
         android:label="wiki_places"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyAlaFJRY96bUw3c1a6xa5unnG1PwyaFhQE"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
