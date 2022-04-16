@@ -33,7 +33,7 @@ class Place extends StatelessWidget {
                   Text(" " + 'strKm'.tr),
                 ],
             ),
-          )
+          ),
         ],
       ),
     );
