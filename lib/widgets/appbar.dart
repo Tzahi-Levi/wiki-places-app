@@ -24,7 +24,10 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
           });
 
         case AppPages.map:
-          return '';
+          return 'strWikipediaValuesInRadius'.trParams({
+            'radius': "",
+            'scale': "",
+          });
       }
     }
     return 'strAppName'.tr;

@@ -1,7 +1,9 @@
 // ================= Utils For Project =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wiki_places/pages/webview/webview.dart';
 import 'package:wiki_places/global/constants.dart';
+import 'package:wiki_places/metrics/google_analytics.dart';
 
 // Navigation
 void navigateToPage(Widget page) {
@@ -13,6 +15,11 @@ void navigateBack() {
   if (Get.context != null) {
     FocusScope.of(Get.context!).unfocus(); // Remove the keyboard
   }
+}
+
+void openWikipedia(String url) {
+  navigateToPage(WebViewPage(url: url));
+  GoogleAnalytics.instance.logReadMoreClicked();
 }
 
 // Messages

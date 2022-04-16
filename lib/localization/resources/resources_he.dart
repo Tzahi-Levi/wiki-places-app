@@ -14,7 +14,7 @@ final Map<String, String> resourcesHe = {
 
   // Places
   'strWikipediaValuesInRadius': 'ערכי ויקיפדיה @radius @scale',
-  'strSetRadius': 'על מנת לראות מידע על המקומות סביבך, יש לקבוע רדיוס בלחיצה על @ בראש העמוד',
+  'strSetRadius': 'על מנת לראות מידע על המקומות סביבך, יש ללחוץ על לחצן החיפוש @ או לקבוע רדיוס בלחיצה על # בראש העמוד',
   'strReadMore': 'קרא עוד',
   'strChangeRadius': 'שנה רדיוס',
   'strRadiusMustBePositive': 'הרדיוס חייב להיות מספר חיובי',

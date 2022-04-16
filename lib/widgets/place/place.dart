@@ -4,16 +4,10 @@ import 'package:get/get.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/utils.dart';
-import 'package:wiki_places/pages/webview/webview.dart';
 
 class Place extends StatelessWidget {
   const Place(this.model, {Key? key}) : super(key: key);
   final PlaceModel model;
-
-  void _openWikipedia() {
-    navigateToPage(WebViewPage(url: model.url));
-    GoogleAnalytics.instance.logReadMoreClicked();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +26,7 @@ class Place extends StatelessWidget {
             ],
           ),
           TextButton(
-              onPressed: _openWikipedia,
+              onPressed: () {openWikipedia(model.url);},
               child: Text('strReadMore'.tr),
           ),
           Container(

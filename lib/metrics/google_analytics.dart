@@ -50,4 +50,8 @@ class GoogleAnalytics {
   void logRadiusChanged() {
     _logEvent("RadiusChanged");
   }
+
+  void logMapTapped() {
+    _logEvent("MapTapped");
+  }
 }

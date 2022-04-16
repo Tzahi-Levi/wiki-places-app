@@ -23,6 +23,7 @@ dependencies:
   sorted_list: ^1.0.0
   geolocator: ^8.2.0
   webview_flutter: ^3.0.2
+  google_maps_flutter: ^2.0.1
 
 dev_dependencies:
   flutter_test:

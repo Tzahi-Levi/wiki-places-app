@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   Widget _openCurrentPage() {
     switch (_storeController.currentMainAppPage.value) {
       case AppPages.map:
-        return const MapPage();
+        return MapPage();
 
       case AppPages.places:
       default:
