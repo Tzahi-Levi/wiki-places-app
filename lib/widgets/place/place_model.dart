@@ -4,15 +4,22 @@ import 'package:wiki_places/global/utils.dart';
 
 class PlaceModel {
   late String label;
-  late String? abstract;
+  late String abstract;
   late String url;
   late double distance;
   late double lat;
   late double lon;
 
+  String _filterAbstract(String? abstract) {
+    if (abstract == null) {
+      return "";
+    }
+    return abstract.replaceAll("_", " ").replaceAll("{", "").replaceAll("}", "").replaceAll("=", " ").replaceAll("|", "").replaceAll(RegExp(r'[0-9]+[p][x]'), " ").replaceAll("  ", " ");
+  }
+
   PlaceModel.fromJson(Json placeJson) {
     label = placeJson["label"];
-    abstract = placeJson["abstract"];  // TODO- filter unwanted characters
+    abstract = _filterAbstract(placeJson["abstract"]);
     url = placeJson["url"];
     distance = placeJson["pin"]["distance[km]"].toDouble();
     lat = placeJson["pin"]["location"]["lat"].toDouble();

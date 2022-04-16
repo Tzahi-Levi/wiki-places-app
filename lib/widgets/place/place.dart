@@ -1,7 +1,6 @@
 // ================= Place View =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/utils.dart';
 
@@ -19,10 +18,7 @@ class Place extends StatelessWidget {
           Row(
             children: [
               // Image.network(model.url),  // TODO- figure out how to present the image
-              Visibility(
-                  visible: model.abstract != null,
-                  child: Text(model.abstract!),
-              ),
+              Text(model.abstract),
             ],
           ),
           TextButton(
@@ -31,7 +27,12 @@ class Place extends StatelessWidget {
           ),
           Container(
             color: Colors.white,  // TODO- change in design
-            child: Text(model.distance.toPrecisionString()),
+            child: Row(
+                children: [
+                  Text(model.distance.toPrecisionString()),
+                  Text(" " + 'strKm'.tr),
+                ],
+            ),
           )
         ],
       ),
