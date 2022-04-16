@@ -5,9 +5,7 @@ import 'package:wiki_places/localization/resources/resources_en.dart';
 
 class ClientRequests extends GetConnect {
   static final ClientRequests _instance = ClientRequests._();
-
   static ClientRequests get instance => _instance;
-
   ClientRequests._();
 
   Future<Response> getPlacesData({String radius = '', double lat = 0, double lon = 0}) =>
