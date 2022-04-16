@@ -1,5 +1,6 @@
 // ================= Google Analytics Wrapper =================
 import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
@@ -12,9 +13,9 @@ class GoogleAnalytics {
 
   // ================== Private ==================
   void _logEvent(String name, {Map<String, Object?>? parameters = const {}}) {
-    // if (!kDebugMode) {  // TODO- remove before production
+    if (!kDebugMode) {
       _analytics.logEvent(name: name, parameters: parameters);
-    // }
+    }
   }
 
   void _logError(String error) {
@@ -25,9 +26,9 @@ class GoogleAnalytics {
 
   // Pages
   void logAppOpen() {
-    // if (!kDebugMode) {  // TODO- remove before production
+    if (!kDebugMode) {
        _analytics.logAppOpen();
-    // }
+    }
   }
 
   // Operations
