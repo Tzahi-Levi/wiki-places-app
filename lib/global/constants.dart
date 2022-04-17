@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:wiki_places/global/types.dart';
 
 class GlobalConstants {
   static final GlobalConstants _instance = GlobalConstants._();
@@ -23,7 +24,7 @@ class GlobalConstants {
   static const IconData updateRadiusIcon = Icons.radar_outlined;
 
   // Map
-  static const LatLng defaultInitialMapLocation = LatLng(32.7775, 35.02166667);  // Technion Location
+  static const Json defaultInitialMapLocation = {"lat": 32.7775, "lon": 35.02166667}; // Technion Location
   static const double defaultZoomMap = 16;
 
   // Separators

@@ -15,7 +15,7 @@ class MapPage extends StatelessWidget {
   MapPage({Key? key}) : super(key: key);
   final _storeController = Get.put(StoreController());
   late final GoogleMapController _controller;
-  late Json currentLocation = {"lat": GlobalConstants.defaultInitialMapLocation.latitude, "lon": GlobalConstants.defaultInitialMapLocation.latitude};
+  late Json currentLocation = GlobalConstants.defaultInitialMapLocation;
 
   void _onMapCreated(GoogleMapController controller) async {
     _controller = controller;
@@ -63,8 +63,8 @@ class MapPage extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.only(top: 108),
           child: GoogleMap(
-            initialCameraPosition: const CameraPosition(
-                target: GlobalConstants.defaultInitialMapLocation,
+            initialCameraPosition: CameraPosition(
+                target: LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]),
                 zoom: GlobalConstants.defaultZoomMap),
             onMapCreated: _onMapCreated,
             myLocationEnabled: true,
