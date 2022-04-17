@@ -20,7 +20,7 @@ class GlobalConstants {
   static const IconData placesPageOutLinedIcon = Icons.home_outlined;
   static const IconData placesPageSelectedIcon = Icons.home;
   static const IconData searchIcon = Icons.search;
-  static const IconData updateRadiusIcon = Icons.radar_outlined; // TODO- should be changed
+  static const IconData updateRadiusIcon = Icons.radar_outlined;
 
   // Map
   static const LatLng defaultInitialMapLocation = LatLng(32.7775, 35.02166667);  // Technion Location

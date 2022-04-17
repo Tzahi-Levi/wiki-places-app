@@ -15,7 +15,7 @@ class MapPage extends StatelessWidget {
   MapPage({Key? key}) : super(key: key);
   final _storeController = Get.put(StoreController());
   late final GoogleMapController _controller;
-  late Json currentLocation = {"lat": 0.0, "lon": 0.0};
+  late Json currentLocation = {"lat": GlobalConstants.defaultInitialMapLocation.latitude, "lon": GlobalConstants.defaultInitialMapLocation.latitude};
 
   void _onMapCreated(GoogleMapController controller) async {
     _controller = controller;
@@ -71,7 +71,7 @@ class MapPage extends StatelessWidget {
             markers: _getMarkers(),
             circles: {Circle( circleId: CircleId('currentCircle'),
               center: LatLng(currentLocation["lat"], currentLocation["lon"]),
-              radius: double.parse(_storeController.radius.value)*1000,
+              radius: double.parse(_storeController.radius.value) * 1000, // Convert Km to m
               fillColor: Colors.blue.shade100.withOpacity(0.5),
               strokeWidth: 2,
               strokeColor:  Colors.blue.shade100,
