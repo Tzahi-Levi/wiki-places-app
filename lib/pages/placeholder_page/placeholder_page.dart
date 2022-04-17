@@ -1,5 +1,6 @@
 // ================= Placeholder Page =================
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/widgets/appbar.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
@@ -21,7 +22,7 @@ class PlaceholderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> textToken = _getTextToken();
-    Size size = MediaQuery.of(context).size;
+    Size size = Size(Get.width, Get.height);
     return Scaffold(
       appBar: appBar != null ? appBar! : WikiPlacesAppBar(
         appTitle: true,

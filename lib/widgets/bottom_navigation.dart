@@ -19,7 +19,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = Size(Get.width, Get.height);
     final _storeController = Get.put(StoreController());
     return GetX<StoreController>(
         builder: (store) => Container(
