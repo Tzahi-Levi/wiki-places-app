@@ -23,19 +23,21 @@ class PlacesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetX<StoreController>(
-      builder: (store) => _storeController.placesCollection.value.isEmpty ?
-      PlaceholderPage(
-        content: 'strSetRadius'.tr,
-        firstIcon: GlobalConstants.searchIcon,
-        secondIcon: GlobalConstants.updateRadiusIcon,
-        appBar: ChangeRadiusAppbar(appTitle: true),
-      ) : Scaffold(
-            appBar: ChangeRadiusAppbar(),
-            body: ListView(
-              children: _getPlaces(),
+      builder: (store) => _storeController.placesCollection.value.isEmpty
+          ? PlaceholderPage(
+              content: 'strSetRadius'.tr,
+              firstIcon: GlobalConstants.searchIcon,
+              secondIcon: GlobalConstants.updateRadiusIcon,
+              appBar: ChangeRadiusAppbar(appTitle: true),
+            )
+          : Scaffold(
+              extendBodyBehindAppBar: true,
+              appBar: ChangeRadiusAppbar(),
+              body: ListView(
+                children: _getPlaces(),
+              ),
+              floatingActionButton: SearchPlacesFAB(),
             ),
-            floatingActionButton: SearchPlacesFAB(),
-          ),
     );
   }
 }
