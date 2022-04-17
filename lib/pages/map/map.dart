@@ -15,13 +15,16 @@ class MapPage extends StatelessWidget {
   MapPage({Key? key}) : super(key: key);
   final _storeController = Get.put(StoreController());
   late final GoogleMapController _controller;
+  late Json currentLocation = GlobalConstants.defaultInitialMapLocation;
 
   void _onMapCreated(GoogleMapController controller) async {
     _controller = controller;
-    Json currentLocation = await LocationController.getLocation();
+    currentLocation = await LocationController.getLocation();
     _controller.animateCamera(
       CameraUpdate.newCameraPosition(
-        CameraPosition(target: LatLng(currentLocation["lat"], currentLocation["lon"]), zoom: GlobalConstants.defaultZoomMap),
+        CameraPosition(
+            target: LatLng(currentLocation["lat"], currentLocation["lon"]),
+            zoom: GlobalConstants.defaultZoomMap),
       ),
     );
   }
@@ -41,7 +44,9 @@ class MapPage extends StatelessWidget {
         infoWindow: InfoWindow(
           title: place.label,
           snippet: 'strReadMore'.tr,
-          onTap: () {_onInfoTapped(place.url);},
+          onTap: () {
+            _onInfoTapped(place.url);
+          },
         ),
       ));
     }
@@ -52,16 +57,29 @@ class MapPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetX<StoreController>(
-        builder: (store) => Scaffold(
-          appBar: ChangeRadiusAppbar(),
-          body: GoogleMap(
-            initialCameraPosition: const CameraPosition(target: GlobalConstants.defaultInitialMapLocation, zoom: GlobalConstants.defaultZoomMap),
+      builder: (store) => Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: ChangeRadiusAppbar(),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 108),
+          child: GoogleMap(
+            initialCameraPosition: CameraPosition(
+                target: LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]),
+                zoom: GlobalConstants.defaultZoomMap),
             onMapCreated: _onMapCreated,
             myLocationEnabled: true,
             markers: _getMarkers(),
+            circles: {Circle( circleId: CircleId('currentCircle'),
+              center: LatLng(currentLocation["lat"], currentLocation["lon"]),
+              radius: double.parse(_storeController.radius.value) * 1000, // Convert Km to m
+              fillColor: Colors.blue.shade100.withOpacity(0.5),
+              strokeWidth: 2,
+              strokeColor:  Colors.blue.shade100,
+            ),},
           ),
-          floatingActionButton: SearchPlacesFAB(),
         ),
+        floatingActionButton: SearchPlacesFAB(),
+      ),
     );
   }
 }

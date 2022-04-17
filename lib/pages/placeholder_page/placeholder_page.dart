@@ -24,6 +24,7 @@ class PlaceholderPage extends StatelessWidget {
     List<String> textToken = _getTextToken();
     Size size = Size(Get.width, Get.height);
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: appBar != null ? appBar! : WikiPlacesAppBar(
         appTitle: true,
       ),
