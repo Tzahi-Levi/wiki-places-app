@@ -21,20 +21,46 @@ class PlaceholderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> textToken = _getTextToken();
-
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: appBar != null ? appBar! : WikiPlacesAppBar(
         appTitle: true,
       ),
       body: firstIcon == null ? Text(content) :
-      Row(
-        children: [
-          Text(textToken[0]),
-          Icon(firstIcon),
-          Text(textToken[1]),
-          Icon(secondIcon),
-          Text(textToken[2]),
-        ],
+      Center(
+        child: Container(
+          width: size.width * 0.7,
+          height: size.width * 0.7,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(size.width * 0.35),
+            color: Colors.blue,
+            boxShadow: const [BoxShadow(color: Colors.black38, blurRadius: 5, offset: Offset(5, 5))]
+          ),
+          child: Center(
+            child: RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: textToken[0] + " ",
+                  ),
+                  WidgetSpan(
+                    child: Icon(firstIcon),
+                  ),
+                  TextSpan(
+                    text: textToken[1],
+                  ),
+                  WidgetSpan(
+                    child: Icon(secondIcon),
+                  ),
+                  TextSpan(
+                    text: textToken[2],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
       floatingActionButton: SearchPlacesFAB(),
     );
