@@ -6,7 +6,8 @@ import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/types.dart';
 
 class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
-  WikiPlacesAppBar({this.appTitle = false, this.actions = const [], Key? key}) : super(key: key);
+  WikiPlacesAppBar({this.appTitle = false, this.actions = const [], Key? key})
+      : super(key: key);
   final _storeController = Get.put(StoreController());
   final bool appTitle;
   final List<Widget> actions;
@@ -36,10 +37,19 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-          title: Text(_getAppBarTitle()),
-          centerTitle: true,
-          automaticallyImplyLeading: false,
-          actions: actions,
+      title: Text(_getAppBarTitle()),
+      centerTitle: true,
+      automaticallyImplyLeading: false,
+      actions: actions,
+      backgroundColor: Colors.transparent,
+      flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20)),
+        ),
+      ),
     );
   }
 }
