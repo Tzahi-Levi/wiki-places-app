@@ -9,6 +9,7 @@ class PlaceModel {
   late double distance;
   late double lat;
   late double lon;
+  late String? imageUrl;
 
   String _filterAbstract(String? abstract) {
     if (abstract == null) {
@@ -24,6 +25,7 @@ class PlaceModel {
     distance = placeJson["pin"]["distance[km]"].toDouble();
     lat = placeJson["pin"]["location"]["lat"].toDouble();
     lon = placeJson["pin"]["location"]["lon"].toDouble();
+    imageUrl = null; // TODO - replace with real imageURL
   }
 
   int _comparePerDistance(PlaceModel other) {

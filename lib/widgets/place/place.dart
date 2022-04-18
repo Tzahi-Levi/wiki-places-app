@@ -5,16 +5,16 @@ import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/utils.dart';
 
 class Place extends StatelessWidget {
-  Place(this.model, this.last, {Key? key}) : super(key: key);
+  Place(this.model, {this.padding = 5, Key? key}) : super(key: key);
   final PlaceModel model;
-  bool last = false;
+  double padding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: last ? const EdgeInsets.only(bottom: 80.0) : const EdgeInsets.only(bottom: 5.0),
+      padding: EdgeInsets.only(bottom: padding),
       child: Card(
-        color: Colors.blueGrey,  // TODO- change in design
+        color: Colors.blueGrey,
         elevation: 6,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15)
@@ -32,7 +32,17 @@ class Place extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(width: 50, height: 50, color: Colors.black38,), // TODO - replace with image
+                    model.imageUrl == null ? Container(width: 80, height: 50, color: Colors.black38,
+                      child: const Padding(
+                        padding: EdgeInsets.fromLTRB(20.0, 5, 20, 5),
+                        child: CircularProgressIndicator(backgroundColor: Colors.black38,),
+                      ),) : Container(
+                        width: 80,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          boxShadow: [BoxShadow(color: Colors.black38, offset: Offset(5,5), blurRadius: 10)]
+                        ),
+                        child: Image.network(model.imageUrl!, width: 80, height: 50,)),
                     SizedBox(
                       width: Get.width * 0.7,
                       child: Padding(
