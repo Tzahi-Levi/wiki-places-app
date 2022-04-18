@@ -1,6 +1,7 @@
 // ================= Place Model =================
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/utils.dart';
+import 'package:wiki_places/global/client_requests.dart';
 
 class PlaceModel {
   late String label;
@@ -9,7 +10,8 @@ class PlaceModel {
   late double distance;
   late double lat;
   late double lon;
-  late String? imageUrl;
+  String? imageUrl;
+  bool loadedImages = false;
 
   String _filterAbstract(String? abstract) {
     if (abstract == null) {
@@ -25,7 +27,11 @@ class PlaceModel {
     distance = placeJson["pin"]["distance[km]"].toDouble();
     lat = placeJson["pin"]["location"]["lat"].toDouble();
     lon = placeJson["pin"]["location"]["lon"].toDouble();
-    imageUrl = null; // TODO - replace with real imageURL
+  }
+
+  Future<void> loadImage() async {
+    imageUrl = await ClientRequests.instance.getPlaceImageUrl(placeTitle: label);
+    loadedImages = true;
   }
 
   int _comparePerDistance(PlaceModel other) {

@@ -32,6 +32,8 @@ class StoreController extends GetxController {
     Response response = await ClientRequests.instance.getPlacesData(radius: radius.value, lat: 32.7775, lon: 35.02166667);  // lat: location["lat"], lon: location["lon"]  // TODO- change param after design
     placesCollection.value = PlacesPageCollection.fromJson(json.decode(response.body));
     update();
+    await placesCollection.value.loadPlacesImages();
+    placesCollection.refresh();
     GoogleAnalytics.instance.logSearchPlaces();
   }
 }

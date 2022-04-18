@@ -11,4 +11,5 @@ class ProjectConfig {
 
   // Backend Config
   static const String serverAddress = "132.69.8.15:80";
+  static const String serverLanguage = "he";
 }
