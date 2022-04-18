@@ -7,6 +7,8 @@ final Map<String, String> resourcesEn = {
   'strAppName': ProjectConfig.projectName,
   'strKm': 'Km',
   'strError': 'Error',
+  'strClose': 'Close',
+  'strLocationPermissionDenied': 'This feature has to use location permission, please allow it in the device settings.',
 
   // Navigation
   'strMapPageName': 'Map',
