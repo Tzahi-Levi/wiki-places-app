@@ -20,6 +20,12 @@ class PlacesPageCollection {
     }
   }
 
+  Future<void> loadPlacesImages() async {
+    for (var place in places) {
+      await place.loadImage();
+    }
+  }
+
   bool get isEmpty => places.isEmpty;
   int get length => places.length;
 }
