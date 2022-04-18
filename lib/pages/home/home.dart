@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
             body: Stack(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 50.0),
+                  padding: const EdgeInsets.only(bottom: 45.0),
                   child: _openCurrentPage(),
                 ),
                 const Positioned(bottom: 0, left: 0, child: BottomNavigation()),
