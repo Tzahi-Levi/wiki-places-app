@@ -13,10 +13,12 @@ class PlacesPage extends StatelessWidget {
   final _storeController = Get.put(StoreController());
 
   List<Place> _getPlaces() {
+    final _places = _storeController.placesCollection.value.places;
     List<Place> placesList = [];
-    for (var placeData in _storeController.placesCollection.value.places) {
-      placesList.add(Place(placeData));
+    for (var placeData in _places.getRange(0, _places.length - 1)) {
+      placesList.add(Place(placeData, false));
     }
+    placesList.add(Place(_places.last, true)); // Different behaviour for the last item
     return placesList;
   }
 

@@ -22,80 +22,73 @@ class CustomBottomNavigationBar extends StatelessWidget {
     final Size size = Size(Get.width, Get.height);
     final _storeController = Get.put(StoreController());
     return GetX<StoreController>(
-        builder: (store) => Container(
-              color: Colors.transparent,
+        builder: (store) => Stack(
+          children: [
+            Positioned(
+                bottom: 0,
+                left: 0,
+                child: CustomPaint(
+                  size: Size(size.width, 60),
+                  painter: WPCustomPainter(),
+                )),
+            SizedBox(
               width: size.width,
-              height: 90,
-              child: Stack(
-                children: [
-                  Positioned(
-                      bottom: 0,
-                      left: 0,
-                      child: CustomPaint(
-                        size: Size(size.width, 90),
-                        painter: WPCustomPainter(),
-                      )),
-                  Column(
-                    children: [
-                      Container(
-                        color: Colors.transparent,
-                        height: 35,
-                        width: size.width,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  _storeController.changeMainAppPage(AppPages.places);
-                                },
-                                icon: Icon(
-                                  _storeController.currentMainAppPage.value ==
-                                          AppPages.places
-                                      ? GlobalConstants.placesPageSelectedIcon
-                                      : GlobalConstants.placesPageOutLinedIcon,
-                                  size: 35,
-                                ),
-                                padding: EdgeInsets.zero,
-                                constraints: const BoxConstraints(
-                                    minWidth: 30, minHeight: 30),
-                                splashRadius: 25,
-                              ),
-                              Text('strPlacesPageName'.tr)
-                            ],
+              height: 60,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            _storeController.changeMainAppPage(AppPages.places);
+                          },
+                          icon: Icon(
+                            _storeController.currentMainAppPage.value ==
+                                    AppPages.places
+                                ? GlobalConstants.placesPageSelectedIcon
+                                : GlobalConstants.placesPageOutLinedIcon,
+                            size: 25,
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  _storeController.changeMainAppPage(AppPages.map);
-                                },
-                                icon: Icon(
-                                    _storeController.currentMainAppPage.value ==
-                                            AppPages.map
-                                        ? GlobalConstants.mapPageSelectedIcon
-                                        : GlobalConstants.mapPageOutLinedIcon,
-                                    size: 35),
-                                padding: EdgeInsets.zero,
-                                constraints: const BoxConstraints(
-                                    minWidth: 30, minHeight: 30),
-                                splashRadius: 25,
-                              ),
-                              Text('strMapPageName'.tr)
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
-                ],
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(
+                              minWidth: 30, minHeight: 30),
+                          splashRadius: 25,
+                        ),
+                        Text('strPlacesPageName'.tr)
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            _storeController.changeMainAppPage(AppPages.map);
+                          },
+                          icon: Icon(
+                              _storeController.currentMainAppPage.value ==
+                                      AppPages.map
+                                  ? GlobalConstants.mapPageSelectedIcon
+                                  : GlobalConstants.mapPageOutLinedIcon,
+                              size: 25),
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(
+                              minWidth: 30, minHeight: 30),
+                          splashRadius: 25,
+                        ),
+                        Text('strMapPageName'.tr)
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ));
+            )
+          ],
+        ));
   }
 }
 
@@ -105,10 +98,10 @@ class WPCustomPainter extends CustomPainter {
     Paint paint = Paint()
       ..color = Colors.blue
       ..style = PaintingStyle.fill;
-    Path path = Path()..moveTo(0, 40);
-    path.quadraticBezierTo(size.width * 0.5, 0, size.width, 40);
-    path.lineTo(size.width, 90);
-    path.lineTo(0, 90);
+    Path path = Path()..moveTo(0, 15);
+    path.quadraticBezierTo(size.width * 0.5, -25, size.width, 15);
+    path.lineTo(size.width, 60);
+    path.lineTo(0, 60);
     canvas.drawShadow(path.shift(const Offset(0, -10)), Colors.black, 5, true);
     canvas.drawPath(path, paint);
   }
