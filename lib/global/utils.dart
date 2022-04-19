@@ -24,7 +24,15 @@ void openWikipedia(String url) {
 
 // Messages
 void displaySnackbar({String title = "", String content = ""}) {
-  Get.snackbar(title, content, snackPosition: SnackPosition.BOTTOM);
+  Get.snackbar(title, content,
+      titleText: Text(title, style: Get.textTheme.headline5,),
+      messageText: Text(content, style: Get.textTheme.headline5,),
+      snackPosition: SnackPosition.BOTTOM,
+      barBlur: 50, 
+      snackStyle: SnackStyle.FLOATING, 
+      margin: const EdgeInsets.all(5), 
+      padding: const EdgeInsets.only(bottom: 30, left: 50, right: 50)
+  );
 }
 
 void openModalBottomSheet({List<Widget>? children}) {
@@ -33,19 +41,31 @@ void openModalBottomSheet({List<Widget>? children}) {
   }
 
   Get.bottomSheet(
-      SingleChildScrollView(
-          child: Container(
-            // padding: EdgeInsets.only(
-            //   bottom: Get.context!.mediaQueryViewInsets.bottom,
-            // ),
+    SingleChildScrollView(
+        child: /*Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20)
+            ),
             child: SafeArea(
               child: Wrap(
                 children: children,
               ),
             ),
-          ),
-      ),
+          ),*/
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15.0),
+              child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: children,
+    ),
+            )),
     isScrollControlled: true,
+    backgroundColor: Get.theme.primaryColorLight,
+    elevation: 10,
+    shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15), topRight: Radius.circular(15))),
+
   );
 }
 
@@ -66,5 +86,7 @@ extension St on String {
 }
 
 extension Ex on num {
-  String toPrecisionString() => double.parse(toStringAsFixed(GlobalConstants.defaultPrecision)).toString();
+  String toPrecisionString() =>
+      double.parse(toStringAsFixed(GlobalConstants.defaultPrecision))
+          .toString();
 }

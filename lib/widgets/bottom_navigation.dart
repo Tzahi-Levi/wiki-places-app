@@ -51,15 +51,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
                             _storeController.currentMainAppPage.value ==
                                     AppPages.places
                                 ? GlobalConstants.placesPageSelectedIcon
-                                : GlobalConstants.placesPageOutLinedIcon,
-                            size: 25,
-                          ),
+                                : GlobalConstants.placesPageOutLinedIcon),
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(
                               minWidth: 30, minHeight: 30),
                           splashRadius: 25,
                         ),
-                        Text('strPlacesPageName'.tr)
+                        Text('strPlacesPageName'.tr, style: Get.textTheme.headline4,)
                       ],
                     ),
                     Column(
@@ -73,14 +71,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
                               _storeController.currentMainAppPage.value ==
                                       AppPages.map
                                   ? GlobalConstants.mapPageSelectedIcon
-                                  : GlobalConstants.mapPageOutLinedIcon,
-                              size: 25),
+                                  : GlobalConstants.mapPageOutLinedIcon),
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(
                               minWidth: 30, minHeight: 30),
                           splashRadius: 25,
                         ),
-                        Text('strMapPageName'.tr)
+                        Text('strMapPageName'.tr, style: Get.textTheme.headline4,)
                       ],
                     ),
                   ],
@@ -96,7 +93,7 @@ class WPCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = Colors.blue
+      ..color = Get.theme.primaryColorDark
       ..style = PaintingStyle.fill;
     Path path = Path()..moveTo(0, 15);
     path.quadraticBezierTo(size.width * 0.5, -25, size.width, 15);

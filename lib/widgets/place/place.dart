@@ -1,6 +1,7 @@
 // ================= Place View =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/utils.dart';
 
@@ -14,7 +15,6 @@ class Place extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: padding),
       child: Card(
-        color: Colors.blueGrey,
         elevation: 6,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15)
@@ -27,8 +27,12 @@ class Place extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Expanded(child: Padding(
+                padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+                child: Text(model.label, style: Get.textTheme.headline2, overflow: TextOverflow.ellipsis, maxLines: 1,),
+              )),
               SizedBox(
-                height: 120,
+                height: 80,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -50,11 +54,11 @@ class Place extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(model.label),
                             Expanded(
                                 child: Text(model.abstract,
+                                  style: Get.textTheme.bodyText1,
                                   overflow: TextOverflow.ellipsis,
-                                  maxLines: 4,))
+                                  maxLines: 3,))
                           ],
                         ),
                       ),
@@ -71,13 +75,17 @@ class Place extends StatelessWidget {
                     height: 30,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                      color: Colors.blue, //TODO - remove after theme defines
+                      color: Colors.white70
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(model.distance.toPrecisionString()),
-                          Text(" " + 'strKm'.tr),
+                          Text(model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15,
+                              fontWeight: FontWeight.normal,
+                              color: const Color(0xff37536D))),
+                          Text(" " + 'strKm'.tr, style: GoogleFonts.openSans(fontSize: 15,
+                              fontWeight: FontWeight.normal,
+                              color: const Color(0xff37536D))),
                         ],
                     ),
                   ),
@@ -85,7 +93,7 @@ class Place extends StatelessWidget {
                     onPressed: () {openWikipedia(model.url);},
                     child: Padding(
                       padding: const EdgeInsets.only(top: 15.0),
-                      child: Text('strReadMore'.tr),
+                      child: Text('strReadMore'.tr, style: Get.textTheme.bodyText2),
                     ),
                   ),
                 ],
