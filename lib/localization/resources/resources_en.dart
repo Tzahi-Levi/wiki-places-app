@@ -22,4 +22,5 @@ final Map<String, String> resourcesEn = {
   'strReadMore': 'Read more',
   'strChangeRadius': 'Change radius',
   'strRadiusMustBePositive': 'The radius must be a positive number',
+  'strNoImage':'No Image To Display',
 };

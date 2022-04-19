@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wiki_places/widgets/neumorphic_rectangle.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,9 +14,9 @@ class Place extends StatelessWidget {
 
   Widget _getPlaceImage() {
     if (model.imageUrl!.contains(".svg")) {
-      return SvgPicture.network(model.imageUrl!);
+      return SvgPicture.network(model.imageUrl!, width: 100, height: 100);
     }
-    return Image.network(model.imageUrl!, width: 80, height: 50);
+    return Image.network(model.imageUrl!, width: 100, height: 100);
   }
 
   @override
@@ -44,19 +45,6 @@ class Place extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    !model.loadedImages ?
-                    Container(width: 80, height: 50, color: Colors.black38,
-                      child: const Padding(
-                        padding: EdgeInsets.fromLTRB(20.0, 5, 20, 5),
-                        child: CircularProgressIndicator(backgroundColor: Colors.black38,),
-                      ),
-                    ) : model.imageUrl == null ? Container() : Container(
-                        width: 80,
-                        height: 50,
-                        decoration: const BoxDecoration(
-                          boxShadow: [BoxShadow(color: Colors.black38, offset: Offset(5,5), blurRadius: 10)]
-                        ),
-                        child: _getPlaceImage()),
                     SizedBox(
                       width: Get.width * 0.7,
                       child: Padding(
@@ -68,11 +56,31 @@ class Place extends StatelessWidget {
                                 child: Text(model.abstract,
                                   style: Get.textTheme.bodyText1,
                                   overflow: TextOverflow.ellipsis,
-                                  maxLines: 3,))
+                                  maxLines: 3,)),
                           ],
                         ),
                       ),
                     ),
+                    !model.loadedImages ?
+                    Container(width: 100, height: 100, color: Colors.black38,
+                      child: const Padding(
+                        padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
+                        child: CircularProgressIndicator(backgroundColor: Colors.black38,),
+                      ),
+                    ) : model.imageUrl == null ? Neumorphic(
+                        width: 70,
+                        height: 70,
+                        color: Colors.grey ,
+                        child: Text('strNoImage'.tr, textAlign: TextAlign.center, style: const TextStyle(color: Colors.black,)))
+                        : Container(
+                          width: 100,
+                          height: 100,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(20))
+                        ),
+                        child: _getPlaceImage()),
                   ],
                 ),
               ),

@@ -30,8 +30,8 @@ void displaySnackbar({String title = "", String content = ""}) {
       snackPosition: SnackPosition.BOTTOM,
       barBlur: 50, 
       snackStyle: SnackStyle.FLOATING, 
-      margin: const EdgeInsets.all(5), 
-      padding: const EdgeInsets.only(bottom: 30, left: 50, right: 50)
+      margin: const EdgeInsets.only(left: 5, right: 5, bottom: 10),
+      padding: const EdgeInsets.only(bottom: 30, left: 40, right: 40)
   );
 }
 
