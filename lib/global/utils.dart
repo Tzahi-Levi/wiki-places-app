@@ -69,6 +69,21 @@ void openModalBottomSheet({List<Widget>? children}) {
   );
 }
 
+void displayAlertDialog({String title = "", Widget? content}) {
+  Get.defaultDialog(
+      title: title,
+      content: content == null ? null : Column(
+          children: [
+            content,
+            TextButton(
+              child: Text('strClose'.tr),
+              onPressed: () {navigateBack();},
+            ),
+          ],
+      ),
+  );
+}
+
 // Converters
 dynamic indexToEnum(List enumValues, int index) {
   try {

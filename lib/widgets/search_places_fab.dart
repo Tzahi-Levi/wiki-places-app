@@ -11,11 +11,6 @@ class SearchPlacesFAB extends StatelessWidget {
 
   void _searchPlaces() {
     _storeController.searchPlaces();
-    displaySnackbar(
-        content: 'strSearchSuccessfully'.trParams({
-        'radius': _storeController.radius.value,
-        'scale': GlobalConstants.defaultScale,
-    }));
   }
 
   @override

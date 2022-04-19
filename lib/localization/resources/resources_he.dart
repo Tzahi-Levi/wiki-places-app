@@ -7,6 +7,8 @@ final Map<String, String> resourcesHe = {
   'strAppName': ProjectConfig.projectName,
   'strKm': 'ק״מ',
   'strError': 'שגיאה',
+  'strClose': 'סגור',
+  'strLocationPermissionDenied': 'הפעולה עושה שימוש בהרשאות המיקום, יש לאפשר לאפליקציה לגשת למיקום דרך הגדרות המכשיר.',
 
   // Navigation
   'strMapPageName': 'מפה',

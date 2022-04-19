@@ -15,16 +15,22 @@ class MapPage extends StatelessWidget {
   MapPage({Key? key}) : super(key: key);
   final _storeController = Get.put(StoreController());
   late final GoogleMapController _controller;
-  late Json currentLocation = GlobalConstants.defaultInitialMapLocation;
+  late Json _currentLocation = GlobalConstants.defaultInitialMapLocation;
 
   void _onMapCreated(GoogleMapController controller) async {
     _controller = controller;
-    currentLocation = await LocationController.getLocation();
+    Json? currentLocation = await LocationController.getLocation();
+    if (currentLocation == null) {
+      return;
+    }
+
+    _currentLocation = currentLocation;
     _controller.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
             target: LatLng(currentLocation["lat"], currentLocation["lon"]),
-            zoom: GlobalConstants.defaultZoomMap),
+            zoom: GlobalConstants.defaultZoomMap,
+        ),
       ),
     );
   }
@@ -70,7 +76,7 @@ class MapPage extends StatelessWidget {
             myLocationEnabled: true,
             markers: _getMarkers(),
             circles: {Circle( circleId: CircleId('currentCircle'),
-              center: LatLng(currentLocation["lat"], currentLocation["lon"]),
+              center: LatLng(_currentLocation["lat"], _currentLocation["lon"]),
               radius: double.parse(_storeController.radius.value) * 1000, // Convert Km to m
               fillColor: Colors.blue.shade100.withOpacity(0.5),
               strokeWidth: 2,

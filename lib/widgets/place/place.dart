@@ -4,11 +4,19 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/utils.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Place extends StatelessWidget {
   Place(this.model, {this.padding = 5, Key? key}) : super(key: key);
   final PlaceModel model;
   double padding;
+
+  Widget _getPlaceImage() {
+    if (model.imageUrl!.contains(".svg")) {
+      return SvgPicture.network(model.imageUrl!);
+    }
+    return Image.network(model.imageUrl!, width: 80, height: 50);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +44,19 @@ class Place extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    model.imageUrl == null ? Container(width: 80, height: 50, color: Colors.black38,
+                    !model.loadedImages ?
+                    Container(width: 80, height: 50, color: Colors.black38,
                       child: const Padding(
                         padding: EdgeInsets.fromLTRB(20.0, 5, 20, 5),
                         child: CircularProgressIndicator(backgroundColor: Colors.black38,),
-                      ),) : Container(
+                      ),
+                    ) : model.imageUrl == null ? Container() : Container(
                         width: 80,
                         height: 50,
                         decoration: const BoxDecoration(
                           boxShadow: [BoxShadow(color: Colors.black38, offset: Offset(5,5), blurRadius: 10)]
                         ),
-                        child: Image.network(model.imageUrl!, width: 80, height: 50,)),
+                        child: _getPlaceImage()),
                     SizedBox(
                       width: Get.width * 0.7,
                       child: Padding(

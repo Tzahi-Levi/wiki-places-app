@@ -55,4 +55,8 @@ class GoogleAnalytics {
   void logMapTapped() {
     _logEvent("MapTapped");
   }
+
+  void logPermissionDenied() {
+    _logEvent("PermissionDenied");
+  }
 }
