@@ -35,27 +35,26 @@ class ChangeRadiusAppbar extends StatelessWidget implements PreferredSizeWidget 
       children: [
         StatefulBuilder(
           builder: (context, setStateFunction) {
-            return Column(
-              children: [
-                Row(
-                  children: [
-                    Slider(
-                        value: _currentSliderValue,
-                        min: GlobalConstants.minRadius,
-                        max: GlobalConstants.maxRadius,
-                        divisions: GlobalConstants.radiusSliderDivisions,
-                        label: _currentSliderValue.toPrecisionString() + " " + GlobalConstants.defaultScale,
-                        onChanged: (value) {
-                          _updateSlider(value, setStateFunction);
-                        }
-                    ),
-                  ],
-                ),
-                ElevatedButton(
-                  onPressed: _changeRadius,
-                  child: Text('strChangeRadius'.tr),
-                ),
-              ],
+            return Padding(
+              padding: EdgeInsets.only(top: 15),
+              child: Row(
+                children: [
+                  Slider(
+                      value: _currentSliderValue,
+                      min: GlobalConstants.minRadius,
+                      max: GlobalConstants.maxRadius,
+                      divisions: GlobalConstants.radiusSliderDivisions,
+                      label: _currentSliderValue.toPrecisionString() + " " + GlobalConstants.defaultScale,
+                      onChanged: (value) {
+                        _updateSlider(value, setStateFunction);
+                      }
+                  ),
+                  ElevatedButton(
+                    onPressed: _changeRadius,
+                    child: Text('strChangeRadius'.tr),
+                  ),
+                ],
+              ),
             );
           },
         ),
@@ -70,7 +69,7 @@ class ChangeRadiusAppbar extends StatelessWidget implements PreferredSizeWidget 
       actions: [
         IconButton(
           onPressed: _openChangeRadiusDialog,
-          icon: const Icon(GlobalConstants.updateRadiusIcon),
+          icon: const Icon(GlobalConstants.updateRadiusIcon, size: 25, color: Colors.white,),
         ),
       ],
     );

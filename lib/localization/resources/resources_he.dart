@@ -22,4 +22,5 @@ final Map<String, String> resourcesHe = {
   'strReadMore': 'קרא עוד',
   'strChangeRadius': 'שנה רדיוס',
   'strRadiusMustBePositive': 'הרדיוס חייב להיות מספר חיובי',
+  'strNoImage':'אין תמונה להציג',
 };

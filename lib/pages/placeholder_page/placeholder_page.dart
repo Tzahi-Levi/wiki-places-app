@@ -35,7 +35,7 @@ class PlaceholderPage extends StatelessWidget {
           height: size.width * 0.7,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(size.width * 0.35),
-            color: Colors.blue,
+            color: Get.theme.primaryColor,
             boxShadow: const [BoxShadow(color: Colors.black38, blurRadius: 5, offset: Offset(5, 5))]
           ),
           child: Center(
@@ -47,13 +47,13 @@ class PlaceholderPage extends StatelessWidget {
                     text: textToken[0] + " ",
                   ),
                   WidgetSpan(
-                    child: Icon(firstIcon),
+                    child: Icon(firstIcon, color: Colors.white,),
                   ),
                   TextSpan(
                     text: textToken[1],
                   ),
                   WidgetSpan(
-                    child: Icon(secondIcon),
+                    child: Icon(secondIcon, color: Colors.white),
                   ),
                   TextSpan(
                     text: textToken[2],
