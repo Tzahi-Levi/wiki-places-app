@@ -20,6 +20,7 @@ class ChangeRadiusAppbar extends StatelessWidget implements PreferredSizeWidget 
     if (_currentSliderValue == 0) {
       displaySnackbar(title: 'strError'.tr, content:'strRadiusMustBePositive'.tr);
     } else {
+      _storeController.updateIsLoading(true);
       _storeController.changeRadius(_currentSliderValue.toString());
     }
   }
@@ -36,15 +37,16 @@ class ChangeRadiusAppbar extends StatelessWidget implements PreferredSizeWidget 
         StatefulBuilder(
           builder: (context, setStateFunction) {
             return Padding(
-              padding: EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.only(top: 15),
               child: Row(
                 children: [
+                  Text('${_currentSliderValue.toPrecisionString()} ${GlobalConstants.defaultScale}'),
                   Slider(
                       value: _currentSliderValue,
                       min: GlobalConstants.minRadius,
                       max: GlobalConstants.maxRadius,
                       divisions: GlobalConstants.radiusSliderDivisions,
-                      label: _currentSliderValue.toPrecisionString() + " " + GlobalConstants.defaultScale,
+                      label: '${_currentSliderValue.toPrecisionString()} ${GlobalConstants.defaultScale}',
                       onChanged: (value) {
                         _updateSlider(value, setStateFunction);
                       }

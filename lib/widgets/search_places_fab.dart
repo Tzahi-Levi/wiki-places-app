@@ -9,8 +9,9 @@ class SearchPlacesFAB extends StatelessWidget {
   SearchPlacesFAB({Key? key}) : super(key: key);
   final _storeController = Get.put(StoreController());
 
-  void _searchPlaces() {
-    _storeController.searchPlaces();
+  void _searchPlaces() async {
+    _storeController.updateIsLoading(true);
+    await _storeController.searchPlaces();
   }
 
   @override

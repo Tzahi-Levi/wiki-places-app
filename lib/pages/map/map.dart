@@ -75,13 +75,16 @@ class MapPage extends StatelessWidget {
             onMapCreated: _onMapCreated,
             myLocationEnabled: true,
             markers: _getMarkers(),
-            circles: {Circle( circleId: CircleId('currentCircle'),
-              center: LatLng(_currentLocation["lat"], _currentLocation["lon"]),
-              radius: double.parse(_storeController.radius.value) * 1000, // Convert Km to m
-              fillColor: Colors.blue.shade100.withOpacity(0.5),
-              strokeWidth: 2,
-              strokeColor:  Colors.blue.shade100,
-            ),},
+            circles: {
+              Circle(
+                circleId: const CircleId('currentCircle'),
+                center: LatLng(_currentLocation["lat"], _currentLocation["lon"]),
+                radius: double.parse(_storeController.radius.value) * 1000, // Convert Km to m
+                fillColor: Colors.blue.shade100.withOpacity(0.5),
+                strokeWidth: 2,
+                strokeColor:  Colors.blue.shade100,
+              ),
+            },
           ),
         ),
         floatingActionButton: SearchPlacesFAB(),
