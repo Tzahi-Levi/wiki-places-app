@@ -37,6 +37,7 @@ class StoreController extends GetxController {
   Future<void> searchPlaces() async {
     Json? location = await LocationController.getLocation();
     if (location == null) {  // no permission
+      updateIsLoading(false);
       return;
     }
 
