@@ -37,13 +37,8 @@ class WikiPlacesApp extends StatelessWidget {
   WikiPlacesApp({Key? key}) : super(key: key);
   final FirebasePerformance performance = FirebasePerformance.instance;
 
-  void _disableCrashlyticsInDebug() async {
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
-  }
-
   @override
   Widget build(BuildContext context) {
-    _disableCrashlyticsInDebug();
     return GetMaterialApp(
       title: 'strAppName'.tr,
       translations: Resources.instance,

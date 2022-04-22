@@ -39,6 +39,8 @@ class HomePage extends StatelessWidget {
                   const Positioned(bottom: 0, left: 0, child: BottomNavigation()),
                 ],
               ),
-            )));
+            ),
+        ),
+    );
   }
 }
