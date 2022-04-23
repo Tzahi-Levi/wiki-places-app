@@ -44,6 +44,7 @@ class StoreController extends GetxController {
     Response response = await ClientRequests.instance.getPlacesData(radius: radius.value, lat: location["lat"], lon: location["lon"]);
     placesCollection.value = PlacesPageCollection.fromJson(json.decode(response.body));
     update();
+    updateIsLoading(false);
 
     displaySnackbar(
         content: 'strSearchSuccessfully'.trParams({
@@ -51,7 +52,6 @@ class StoreController extends GetxController {
           'scale': GlobalConstants.defaultScale,
         }));
 
-    updateIsLoading(false);
     await placesCollection.value.loadPlacesImages();
     placesCollection.refresh();
     GoogleAnalytics.instance.logSearchPlaces();
