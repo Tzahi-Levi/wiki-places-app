@@ -78,6 +78,7 @@ class _MapPageState extends State<MapPage> {
         body: Padding(
           padding: const EdgeInsets.only(top: 108),
           child: GoogleMap(
+            mapToolbarEnabled: false,  // TODO- remove when we want to allow arrival instructions
             initialCameraPosition: CameraPosition(
                 target: LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]),
                 zoom: GlobalConstants.defaultZoomMap),
