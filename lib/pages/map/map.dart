@@ -11,8 +11,14 @@ import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/widgets/change_radius_appbar.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
 
-class MapPage extends StatelessWidget {
+class MapPage extends StatefulWidget {
   MapPage({Key? key}) : super(key: key);
+
+  @override
+  State<MapPage> createState() => _MapPageState();
+}
+
+class _MapPageState extends State<MapPage> {
   final _storeController = Get.put(StoreController());
   late final GoogleMapController _controller;
   late Json _currentLocation = GlobalConstants.defaultInitialMapLocation;
@@ -24,7 +30,10 @@ class MapPage extends StatelessWidget {
       return;
     }
 
-    _currentLocation = currentLocation;
+    setState(() {
+      _currentLocation = currentLocation;
+    });
+
     _controller.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
