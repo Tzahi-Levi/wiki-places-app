@@ -5,6 +5,7 @@ import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/widgets/appbar.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
+import 'package:wiki_places/widgets/about_the_app.dart';
 
 class ChangeRadiusAppbar extends StatelessWidget implements PreferredSizeWidget {
   ChangeRadiusAppbar({this.appTitle = false, Key? key}) : super(key: key);
@@ -69,9 +70,10 @@ class ChangeRadiusAppbar extends StatelessWidget implements PreferredSizeWidget 
     return WikiPlacesAppBar(
       appTitle: appTitle,
       actions: [
+        const AboutTheApp(),
         IconButton(
           onPressed: _openChangeRadiusDialog,
-          icon: const Icon(GlobalConstants.updateRadiusIcon, size: 25, color: Colors.white,),
+          icon: const Icon(GlobalConstants.updateRadiusIcon, size: 25, color: Colors.white),
         ),
       ],
     );

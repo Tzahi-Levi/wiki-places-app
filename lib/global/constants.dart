@@ -22,6 +22,7 @@ class GlobalConstants {
   static const IconData placesPageSelectedIcon = Icons.home;
   static const IconData searchIcon = Icons.search;
   static const IconData updateRadiusIcon = Icons.radar_outlined;
+  static const IconData aboutTheAppIcon = Icons.info;
 
   // Map
   static const Json defaultInitialMapLocation = {"lat": 32.7775, "lon": 35.02166667}; // Technion Location
@@ -33,6 +34,7 @@ class GlobalConstants {
 
   // Images
   static const String connectionLostImage = "images/connection_lost.png";
+  static const String appIconImage = "images/app_icon.png";
 
   // Slider
   static int radiusSliderDivisions = 10;

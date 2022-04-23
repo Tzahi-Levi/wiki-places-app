@@ -23,4 +23,8 @@ final Map<String, String> resourcesEn = {
   'strChangeRadius': 'Change radius',
   'strRadiusMustBePositive': 'The radius must be a positive number',
   'strNoImage':'No Image To Display',
+
+  // About The App
+  'strLegalese': "All packages and icons used are properties of their respective owners",
+  'strLostConnectionImage': "Lost Connection Image",
 };

@@ -23,4 +23,8 @@ final Map<String, String> resourcesHe = {
   'strChangeRadius': 'שנה רדיוס',
   'strRadiusMustBePositive': 'הרדיוס חייב להיות מספר חיובי',
   'strNoImage':'אין תמונה להציג',
+
+  // About The App
+  'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",
+  'strLostConnectionImage': "תמונה בעיה ברשת",
 };
