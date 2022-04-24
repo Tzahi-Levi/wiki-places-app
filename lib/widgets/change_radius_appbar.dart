@@ -70,7 +70,6 @@ class ChangeRadiusAppbar extends StatelessWidget implements PreferredSizeWidget 
     return WikiPlacesAppBar(
       appTitle: appTitle,
       actions: [
-        const AboutTheApp(),
         IconButton(
           onPressed: _openChangeRadiusDialog,
           icon: const Icon(GlobalConstants.updateRadiusIcon, size: 25, color: Colors.white),

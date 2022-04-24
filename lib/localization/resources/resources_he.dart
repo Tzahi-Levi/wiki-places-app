@@ -27,4 +27,5 @@ final Map<String, String> resourcesHe = {
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",
   'strLostConnectionImage': "תמונה בעיה ברשת",
+  'strAboutTheApp' : "אודות האפליקציה",
 };

@@ -32,9 +32,6 @@ class AboutTheApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: const Icon(GlobalConstants.aboutTheAppIcon, size: 25),
-      onPressed: _showAboutTheApp,
-    );
+    return TextButton(onPressed: _showAboutTheApp, child: Text('strAboutTheApp'.tr));
   }
 }
