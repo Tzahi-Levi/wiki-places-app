@@ -5,19 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wiki_places/widgets/neumorphic_rectangle.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/utils.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Place extends StatelessWidget {
   Place(this.model, {this.padding = 5, Key? key}) : super(key: key);
   final PlaceModel model;
   double padding;
-
-  Widget _getPlaceImage() {
-    if (model.imageUrl!.contains(".svg")) {
-      return SvgPicture.network(model.imageUrl!, width: 100, height: 100);
-    }
-    return Image.network(model.imageUrl!, width: 100, height: 100);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +45,13 @@ class Place extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Expanded(
-                                child: Text(model.abstract,
+                                child: Text(
+                                  model.abstract,
                                   style: Get.textTheme.bodyText1,
                                   overflow: TextOverflow.ellipsis,
-                                  maxLines: 3,)),
+                                  maxLines: 3,
+                                ),
+                            ),
                           ],
                         ),
                       ),
@@ -67,20 +62,23 @@ class Place extends StatelessWidget {
                         padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
                         child: CircularProgressIndicator(backgroundColor: Colors.black38,),
                       ),
-                    ) : model.imageUrl == null ? Neumorphic(
+                    ) : model.imageUrl == null || model.imageUrl!.contains(".svg") ? Neumorphic(
                         width: 70,
                         height: 70,
                         color: Colors.grey ,
-                        child: Text('strNoImage'.tr, textAlign: TextAlign.center, style: const TextStyle(color: Colors.black,)))
-                        : Container(
-                          width: 100,
-                          height: 100,
-                          decoration: const BoxDecoration(
+                        child: Text('strNoImage'.tr, textAlign: TextAlign.center, style: const TextStyle(color: Colors.black)
+                        ),
+                    ) : Container(
+                        width: 100,
+                        height: 100,
+                        decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(20),
-                                bottomRight: Radius.circular(20))
+                                bottomRight: Radius.circular(20),
+                            ),
                         ),
-                        child: _getPlaceImage()),
+                        child: Image.network(model.imageUrl!, width: 100, height: 100),
+                    ),
                   ],
                 ),
               ),

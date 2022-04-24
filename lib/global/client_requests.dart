@@ -1,5 +1,6 @@
 // ================= Client Requests =================
 import 'package:get/get.dart';
+import 'package:firebase_performance/firebase_performance.dart';
 import 'package:wiki_places/global/config.dart';
 import 'package:wiki_places/localization/resources/resources_en.dart';
 import 'package:wiki_places/global/types.dart';
@@ -9,14 +10,21 @@ class ClientRequests extends GetConnect {
   static ClientRequests get instance => _instance;
   ClientRequests._();
 
+  final FirebasePerformance _performance = FirebasePerformance.instance;
+
   bool isResponseSuccess(Response response) {
     return response.statusCode == 200;
   }
 
-  Future<Response> getPlacesData({String radius = '', double lat = 0, double lon = 0}) =>
-      get('http://${ProjectConfig.serverAddress}''/wiki_by_place?radius=$radius${resourcesEn['strKm']!.toLowerCase()}&lat,lon=${lat.toString()},${lon.toString()}');
+  Future<Response> getPlacesData({String radius = '', double lat = 0, double lon = 0}) async {
+    Trace performanceTrace = _performance.newTrace("GetPlacesData");
+    Future<Response> response = get('http://${ProjectConfig.serverAddress}''/wiki_by_place?radius=$radius${resourcesEn['strKm']!.toLowerCase()}&lat,lon=${lat.toString()},${lon.toString()}');
+    await performanceTrace.stop();
+    return response;
+  }
 
   Future<String?> getPlaceImageUrl({String placeTitle = ""}) async {
+    Trace performanceTrace = _performance.newTrace("GetPlaceImageUrl");
     Response response = await get('http://${ProjectConfig.serverLanguage}.wikipedia.org/w/api.php?action=query&titles=${placeTitle.replaceAll(" ", "_")}&prop=images&format=json');
 
     if (isResponseSuccess(response)) {
@@ -27,11 +35,13 @@ class ClientRequests extends GetConnect {
 
         response = await get('http://${ProjectConfig.serverLanguage}.wikipedia.org/w/api.php?action=query&titles=File:${image.substring(image.indexOf("|") + 1)}&prop=imageinfo&iiprop=url&format=json');
         if (isResponseSuccess(response)) {
+          await performanceTrace.stop();
           return Json.from(response.body)["query"]?["pages"]?["-1"]?["imageinfo"]?[0]?["url"];
         }
       }
     }
 
+    await performanceTrace.stop();
     return null;
   }
 }
