@@ -31,7 +31,7 @@ class PlaceholderPage extends StatelessWidget {
       ),
       body: firstIcon == null ? Text(content) :
       Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Center(
             child: Padding(
