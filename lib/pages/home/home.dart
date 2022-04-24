@@ -1,6 +1,7 @@
 // ================= Home Page =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_overlay/loading_overlay.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/widgets/bottom_navigation.dart';
 import 'package:wiki_places/pages/places/places_page.dart';
@@ -27,14 +28,19 @@ class HomePage extends StatelessWidget {
     return GetX<StoreController>(
         builder: (store) => Scaffold(
             extendBodyBehindAppBar: true,
-            body: Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 45.0),
-                  child: _openCurrentPage(),
-                ),
-                const Positioned(bottom: 0, left: 0, child: BottomNavigation()),
-              ],
-            )));
+            body: LoadingOverlay(
+              isLoading: _storeController.isLoading.value,
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 45.0),
+                    child: _openCurrentPage(),
+                  ),
+                  const Positioned(bottom: 0, left: 0, child: BottomNavigation()),
+                ],
+              ),
+            ),
+        ),
+    );
   }
 }

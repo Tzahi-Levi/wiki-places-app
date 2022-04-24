@@ -2,13 +2,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter/foundation.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:wiki_places/controllers/theme_controller.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:firebase_performance/firebase_performance.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:wiki_places/metrics/sentryController.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -37,13 +34,8 @@ class WikiPlacesApp extends StatelessWidget {
   WikiPlacesApp({Key? key}) : super(key: key);
   final FirebasePerformance performance = FirebasePerformance.instance;
 
-  void _disableCrashlyticsInDebug() async {
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
-  }
-
   @override
   Widget build(BuildContext context) {
-    _disableCrashlyticsInDebug();
     return GetMaterialApp(
       title: 'strAppName'.tr,
       translations: Resources.instance,

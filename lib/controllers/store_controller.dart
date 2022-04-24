@@ -14,6 +14,7 @@ class StoreController extends GetxController {
   final Rx<AppPages> currentMainAppPage = AppPages.places.obs;
   final RxString radius = '1'.obs;
   late Rx<PlacesPageCollection> placesCollection = PlacesPageCollection().obs;
+  RxBool isLoading = false.obs;
 
   // Actions
   void changeMainAppPage(AppPages page ) {
@@ -28,15 +29,22 @@ class StoreController extends GetxController {
     GoogleAnalytics.instance.logRadiusChanged();
   }
 
-  void searchPlaces() async {
+  void updateIsLoading(bool value) {
+    isLoading.value = value;
+    update();
+  }
+
+  Future<void> searchPlaces() async {
     Json? location = await LocationController.getLocation();
     if (location == null) {  // no permission
+      updateIsLoading(false);
       return;
     }
 
-    Response response = await ClientRequests.instance.getPlacesData(radius: radius.value, lat: 32.7775, lon: 35.02166667);  // lat: location["lat"], lon: location["lon"]  // TODO- change param after design
+    Response response = await ClientRequests.instance.getPlacesData(radius: radius.value, lat: location["lat"], lon: location["lon"]);
     placesCollection.value = PlacesPageCollection.fromJson(json.decode(response.body));
     update();
+    updateIsLoading(false);
 
     displaySnackbar(
         content: 'strSearchSuccessfully'.trParams({

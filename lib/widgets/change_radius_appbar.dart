@@ -5,6 +5,7 @@ import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/widgets/appbar.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
+import 'package:wiki_places/widgets/about_the_app.dart';
 
 class ChangeRadiusAppbar extends StatelessWidget implements PreferredSizeWidget {
   ChangeRadiusAppbar({this.appTitle = false, Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class ChangeRadiusAppbar extends StatelessWidget implements PreferredSizeWidget 
     if (_currentSliderValue == 0) {
       displaySnackbar(title: 'strError'.tr, content:'strRadiusMustBePositive'.tr);
     } else {
+      _storeController.updateIsLoading(true);
       _storeController.changeRadius(_currentSliderValue.toString());
     }
   }
@@ -36,15 +38,16 @@ class ChangeRadiusAppbar extends StatelessWidget implements PreferredSizeWidget 
         StatefulBuilder(
           builder: (context, setStateFunction) {
             return Padding(
-              padding: EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.only(top: 15),
               child: Row(
                 children: [
+                  Text('${_currentSliderValue.toPrecisionString()} ${GlobalConstants.defaultScale}'),
                   Slider(
                       value: _currentSliderValue,
                       min: GlobalConstants.minRadius,
                       max: GlobalConstants.maxRadius,
                       divisions: GlobalConstants.radiusSliderDivisions,
-                      label: _currentSliderValue.toPrecisionString() + " " + GlobalConstants.defaultScale,
+                      label: '${_currentSliderValue.toPrecisionString()} ${GlobalConstants.defaultScale}',
                       onChanged: (value) {
                         _updateSlider(value, setStateFunction);
                       }
@@ -67,9 +70,10 @@ class ChangeRadiusAppbar extends StatelessWidget implements PreferredSizeWidget 
     return WikiPlacesAppBar(
       appTitle: appTitle,
       actions: [
+        const AboutTheApp(),
         IconButton(
           onPressed: _openChangeRadiusDialog,
-          icon: const Icon(GlobalConstants.updateRadiusIcon, size: 25, color: Colors.white,),
+          icon: const Icon(GlobalConstants.updateRadiusIcon, size: 25, color: Colors.white),
         ),
       ],
     );

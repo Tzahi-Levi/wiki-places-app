@@ -17,7 +17,7 @@ class PlaceModel {
     if (abstract == null) {
       return "";
     }
-    return abstract.replaceAll("_", " ").replaceAll("{", "").replaceAll("}", "").replaceAll("=", " ").replaceAll("|", "").replaceAll(RegExp(r'[0-9]+[p][x]'), " ").replaceAll("  ", " ");
+    return abstract.replaceAll("_", " ").replaceAll("{", "").replaceAll("}", "").replaceAll("=", " ").replaceAll("|", "").replaceAll(RegExp(r'[0-9]+[p][x]'), " ").replaceAll("  ", " ").replaceAll("<BR>", "");
   }
 
   PlaceModel.fromJson(Json placeJson) {

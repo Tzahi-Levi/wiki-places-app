@@ -11,8 +11,14 @@ import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/widgets/change_radius_appbar.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
 
-class MapPage extends StatelessWidget {
+class MapPage extends StatefulWidget {
   MapPage({Key? key}) : super(key: key);
+
+  @override
+  State<MapPage> createState() => _MapPageState();
+}
+
+class _MapPageState extends State<MapPage> {
   final _storeController = Get.put(StoreController());
   late final GoogleMapController _controller;
   late Json _currentLocation = GlobalConstants.defaultInitialMapLocation;
@@ -24,7 +30,10 @@ class MapPage extends StatelessWidget {
       return;
     }
 
-    _currentLocation = currentLocation;
+    setState(() {
+      _currentLocation = currentLocation;
+    });
+
     _controller.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
@@ -69,19 +78,23 @@ class MapPage extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.only(top: 108),
           child: GoogleMap(
+            mapToolbarEnabled: false,  // TODO- remove when we want to allow arrival instructions
             initialCameraPosition: CameraPosition(
                 target: LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]),
                 zoom: GlobalConstants.defaultZoomMap),
             onMapCreated: _onMapCreated,
             myLocationEnabled: true,
             markers: _getMarkers(),
-            circles: {Circle( circleId: CircleId('currentCircle'),
-              center: LatLng(_currentLocation["lat"], _currentLocation["lon"]),
-              radius: double.parse(_storeController.radius.value) * 1000, // Convert Km to m
-              fillColor: Colors.blue.shade100.withOpacity(0.5),
-              strokeWidth: 2,
-              strokeColor:  Colors.blue.shade100,
-            ),},
+            circles: {
+              Circle(
+                circleId: const CircleId('currentCircle'),
+                center: LatLng(_currentLocation["lat"], _currentLocation["lon"]),
+                radius: double.parse(_storeController.radius.value) * 1000, // Convert Km to m
+                fillColor: Colors.blue.shade100.withOpacity(0.5),
+                strokeWidth: 2,
+                strokeColor:  Colors.blue.shade100,
+              ),
+            },
           ),
         ),
         floatingActionButton: SearchPlacesFAB(),
