@@ -17,7 +17,7 @@ class PlacesPage extends StatelessWidget {
     for (var placeData in _places.getRange(0, _places.length - 1)) {
       placesList.add(Place(placeData));
     }
-    placesList.add(Place(_places.last, padding: 80)); // Different behaviour for the last item
+    placesList.add(Place(_places.last, padding: 20)); // Different behaviour for the last item
     return placesList;
   }
 
@@ -28,7 +28,10 @@ class PlacesPage extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: ChangeRadiusAppbar(),
         body: _storeController.placesCollection.value.isEmpty ? Container() : ListView(
-          children: _getPlaces() + [const AboutTheApp()],
+          children: _getPlaces() + [Padding(
+            padding: const EdgeInsets.only(bottom: 65.0),
+            child: const AboutTheApp(),
+          )],
         ),
         floatingActionButton: SearchPlacesFAB(),
       ),

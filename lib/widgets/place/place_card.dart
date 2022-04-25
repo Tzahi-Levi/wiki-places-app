@@ -24,53 +24,44 @@ class Place extends StatelessWidget {
           ),
           child: SizedBox(
             width: Get.width * 0.9,
-            height: 170,
+            height: (model.imageUrl == null || model.imageUrl!.contains(".svg")) && model.abstract == "" ? 120 : 170,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(child: Padding(
                   padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                   child: Text(model.label, style: Get.textTheme.headline2, overflow: TextOverflow.ellipsis, maxLines: 1,),
                 )),
                 SizedBox(
-                  height: 80,
+                  height: (model.imageUrl == null || model.imageUrl!.contains(".svg")) && model.abstract == "" ? 50 : 80,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       SizedBox(
                         width: Get.width * 0.7,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 15.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                  child: Text(
-                                    model.abstract,
-                                    style: Get.textTheme.bodyText1,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 3,
-                                  ),
-                              ),
-                            ],
-                          ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                                child: Text(
+                                  model.abstract,
+                                  style: Get.textTheme.bodyText1,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 3,
+                                ),
+                            ),
+                          ],
                         ),
                       ),
                       !model.loadedImages ?
                       Container(width: 100, height: 100, color: Colors.black38,
                         child: const Padding(
-                          padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
+                          padding: EdgeInsets.all(50),
                           child: CircularProgressIndicator(backgroundColor: Colors.black38,),
                         ),
-                      ) : model.imageUrl == null || model.imageUrl!.contains(".svg") ? Neumorphic(
-                          width: 70,
-                          height: 70,
-                          color: Colors.grey ,
-                          child: Text('strNoImage'.tr, textAlign: TextAlign.center, style: const TextStyle(color: Colors.black)
-                          ),
-                      ) : Container(
+                      ) : model.imageUrl == null || model.imageUrl!.contains(".svg") ? Container() : Container(
                           width: 100,
                           height: 100,
                           decoration: const BoxDecoration(
@@ -108,7 +99,7 @@ class Place extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                        padding: const EdgeInsets.only(top: 15.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Text('strReadMore'.tr, style: Get.textTheme.bodyText2),
                       ),
                   ],

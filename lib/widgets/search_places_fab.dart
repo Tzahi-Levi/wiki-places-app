@@ -10,7 +10,7 @@ class SearchPlacesFAB extends StatelessWidget {
 
   void _searchPlaces() async {
     _storeController.updateIsLoading(true);
-    await _storeController.searchPlaces();
+    await _storeController.searchPlaces(showToast: true);
   }
 
   @override

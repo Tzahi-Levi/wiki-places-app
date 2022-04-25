@@ -59,4 +59,8 @@ class GoogleAnalytics {
   void logPermissionDenied() {
     _logEvent("PermissionDenied");
   }
+
+  void logResponseError() {
+    _logEvent("NoResponseError");
+  }
 }
