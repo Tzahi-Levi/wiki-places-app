@@ -33,7 +33,7 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(_getAppBarTitle(), style: Get.textTheme.headline1,),
+      title: Text(_getAppBarTitle(), style: Get.textTheme.headline1),
       centerTitle: true,
       automaticallyImplyLeading: false,
       actions: actions,
@@ -42,7 +42,8 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
           color: Get.theme.primaryColor,
           borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20)),
+              bottomRight: Radius.circular(20),
+          ),
         ),
       ),
     );

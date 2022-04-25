@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
-import 'package:wiki_places/global/utils.dart';
 
 class SearchPlacesFAB extends StatelessWidget {
   SearchPlacesFAB({Key? key}) : super(key: key);
@@ -20,8 +19,8 @@ class SearchPlacesFAB extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(bottom: 10.0),
         child: FloatingActionButton.extended(
-          label: Text('strSearchPlace'.tr, style: Get.textTheme.headline3,),
-          icon: const Icon(GlobalConstants.searchIcon, ),
+          label: Text('strSearchPlace'.tr, style: Get.textTheme.headline3),
+          icon: const Icon(GlobalConstants.searchIcon),
           onPressed: _searchPlaces,
         ),
       );
