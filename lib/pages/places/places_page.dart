@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/widgets/change_radius_appbar.dart';
-import 'package:wiki_places/widgets/place/place.dart';
+import 'package:wiki_places/widgets/place/place_card.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
 
 class PlacesPage extends StatelessWidget {
