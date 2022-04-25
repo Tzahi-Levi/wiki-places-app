@@ -17,7 +17,7 @@ final Map<String, String> resourcesHe = {
   // Places
   'strSearchPlace': 'חפש מקומות',
   'strSearchSuccessfully': 'חיפוש מקומות ברדיוס @radius @scale בוצע בהצלחה',
-  'strWikipediaValuesInRadius': 'ערכי ויקיפדיה @radius @scale',
+  'strWikipediaValuesInRadius': '@number מקומות (@radius @scale)',
   'strSetRadius': 'על מנת לראות מידע על המקומות סביבך, יש ללחוץ על לחצן החיפוש @ או לקבוע רדיוס בלחיצה על # בראש העמוד',
   'strReadMore': 'קרא עוד',
   'strChangeRadius': 'שנה רדיוס',
@@ -26,6 +26,7 @@ final Map<String, String> resourcesHe = {
 
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",
-  'strLostConnectionImage': "תמונה בעיה ברשת",
-  'strAboutTheApp' : "אודות האפליקציה",
+  'strLostConnectionImage': "תמונת בעיה ברשת",
+  'strErrorPageConnection': "תמונת שגיאה",
+  'strAboutTheApp': "אודות האפליקציה",
 };

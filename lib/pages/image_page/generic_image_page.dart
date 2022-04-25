@@ -1,8 +1,9 @@
+// ================= Generic Image Page =================
 import 'package:flutter/material.dart';
-import 'package:wiki_places/global/constants.dart';
 
-class ConnectionLostPage extends StatelessWidget {
-  const ConnectionLostPage({Key? key}) : super(key: key);
+class GenericImagePage extends StatelessWidget {
+  GenericImagePage({this.image = "", Key? key}) : super(key: key);
+  String image;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class ConnectionLostPage extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            GlobalConstants.connectionLostImage,
+            image,
             fit: BoxFit.cover,
           ),
           Positioned(

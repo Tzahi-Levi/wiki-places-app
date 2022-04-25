@@ -8,9 +8,26 @@ import 'package:wiki_places/pages/places/places_page.dart';
 import 'package:wiki_places/pages/map/map.dart';
 import 'package:wiki_places/global/types.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final _storeController = Get.put(StoreController());
+
+  @override
+  void initState() {
+    super.initState();
+    _initPlaces();
+  }
+
+  void _initPlaces() async {
+    _storeController.updateIsLoading(true);
+    await _storeController.searchPlaces();
+  }
 
   Widget _openCurrentPage() {
     switch (_storeController.currentMainAppPage.value) {
