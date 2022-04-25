@@ -19,7 +19,7 @@ void navigateBack() {
 
 void openWikipedia(String url) {
   navigateToPage(WebViewPage(url: url));
-  GoogleAnalytics.instance.logReadMoreClicked();
+  GoogleAnalytics.instance.logWikipediaOpened();
 }
 
 // Messages

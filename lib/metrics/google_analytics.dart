@@ -40,8 +40,8 @@ class GoogleAnalytics {
     _logEvent("ThemeChangedTo${Get.isDarkMode ? "Dark" : "Light"}");
   }
 
-  void logReadMoreClicked() {
-    _logEvent("ReadMoreClicked");
+  void logWikipediaOpened() {
+    _logEvent("WikipediaOpened");
   }
 
   void logSearchPlaces() {
