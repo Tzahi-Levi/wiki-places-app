@@ -29,7 +29,7 @@ class StoreController extends GetxController {
   void changeRadius(String newRadius) {
     radius.value = newRadius;
     update();
-    searchPlaces();
+    searchPlaces(showToast: true);
     GoogleAnalytics.instance.logRadiusChanged();
   }
 
@@ -38,7 +38,7 @@ class StoreController extends GetxController {
     update();
   }
 
-  Future<void> searchPlaces() async {
+  Future<void> searchPlaces({bool showToast = false}) async {
     Trace performanceTrace = _performance.newTrace("GetPlacesData");
 
     Json? location = await LocationController.getLocation();
@@ -58,11 +58,13 @@ class StoreController extends GetxController {
     await performanceTrace.stop();
     updateIsLoading(false);
 
-    displaySnackbar(
-        content: 'strSearchSuccessfully'.trParams({
-          'radius': radius.value,
-          'scale': GlobalConstants.defaultScale,
-        }));
+    if (showToast) {
+      displaySnackbar(
+          content: 'strSearchSuccessfully'.trParams({
+            'radius': radius.value,
+            'scale': GlobalConstants.defaultScale,
+          }));
+    }
 
     await placesCollection.value.loadPlacesImages();
     placesCollection.refresh();
