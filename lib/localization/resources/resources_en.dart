@@ -17,7 +17,7 @@ final Map<String, String> resourcesEn = {
   // Places
   'strSearchPlace': 'Search Places',
   'strSearchSuccessfully': 'Searching for places in radius @radius @scale was done successfully',
-  'strWikipediaValuesInRadius': 'Wikipedia values in @radius @scale',
+  'strWikipediaValuesInRadius': '@number places (@radius @scale)',
   'strSetRadius': 'To see information about the places in your area, please click on the search button @ or set the radius by clicking on # at the top of this page',
   'strReadMore': 'Read more',
   'strChangeRadius': 'Change radius',

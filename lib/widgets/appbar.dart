@@ -19,15 +19,11 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
     if (!appTitle) {
       switch (_storeController.currentMainAppPage.value) {
         case AppPages.places:
-          return 'strWikipediaValuesInRadius'.trParams({
-            'radius': _storeController.radius.value,
-            'scale': GlobalConstants.defaultScale,
-          });
-
         case AppPages.map:
           return 'strWikipediaValuesInRadius'.trParams({
-            'radius': "",
-            'scale': "",
+            'number': _storeController.placesCollection.value.length.toString(),
+            'radius': _storeController.radius.value,
+            'scale': GlobalConstants.defaultScale,
           });
       }
     }
