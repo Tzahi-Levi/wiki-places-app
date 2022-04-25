@@ -1,7 +1,6 @@
 // ================= Global Constants =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:wiki_places/global/types.dart';
 
 class GlobalConstants {
@@ -14,6 +13,7 @@ class GlobalConstants {
   static const int defaultPrecision = 1;
   static const double minRadius = 0;
   static const double maxRadius = 5;
+  static const int defaultMinAbstractWords = 4;
 
   // Icons
   static const IconData mapPageOutLinedIcon = Icons.map_outlined;

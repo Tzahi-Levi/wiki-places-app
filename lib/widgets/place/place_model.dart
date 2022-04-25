@@ -1,4 +1,5 @@
 // ================= Place Model =================
+import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/global/client_requests.dart';
@@ -17,7 +18,25 @@ class PlaceModel {
     if (abstract == null) {
       return "";
     }
-    return abstract.replaceAll("_", " ").replaceAll("{", "").replaceAll("}", "").replaceAll("=", " ").replaceAll("|", "").replaceAll(RegExp(r'[0-9]+[p][x]'), " ").replaceAll("  ", " ").replaceAll("<BR>", "");
+
+    String filteredAbstract = abstract.replaceAll("_", " ")
+        .replaceAll("{", "")
+        .replaceAll("}", "")
+        .replaceAll("=", " ")
+        .replaceAll("|", "")
+        .replaceAll(RegExp(r'[0-9]+[p][x]'), " ")
+        .replaceAll("  ", " ")
+        .replaceAll("<BR>", "");
+
+    if (filteredAbstract.indexOf(" ") == 0) {
+      filteredAbstract = filteredAbstract.replaceFirst(" ", "");
+    }
+
+    if (filteredAbstract.isNotEmpty && filteredAbstract.lastIndexOf(" ") == filteredAbstract.length - 1) {
+      filteredAbstract = filteredAbstract.replaceRange(filteredAbstract.length - 1, filteredAbstract.length , "");
+    }
+
+    return filteredAbstract.split(" ").length < GlobalConstants.defaultMinAbstractWords ? "" : filteredAbstract;
   }
 
   PlaceModel.fromJson(Json placeJson) {
