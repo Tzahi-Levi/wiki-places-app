@@ -42,30 +42,22 @@ void openModalBottomSheet({List<Widget>? children}) {
 
   Get.bottomSheet(
     SingleChildScrollView(
-        child: /*Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20)
-            ),
-            child: SafeArea(
-              child: Wrap(
-                children: children,
-              ),
-            ),
-          ),*/
-            Padding(
-              padding: const EdgeInsets.only(bottom: 15.0),
-              child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: children,
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: children,
+          ),
+        ),
     ),
-            )),
     isScrollControlled: true,
     backgroundColor: Get.theme.primaryColorLight,
     elevation: 10,
     shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15), topRight: Radius.circular(15))),
-
+            topLeft: Radius.circular(15), topRight: Radius.circular(15)
+        ),
+    ),
   );
 }
 
@@ -101,7 +93,5 @@ extension St on String {
 }
 
 extension Ex on num {
-  String toPrecisionString() =>
-      double.parse(toStringAsFixed(GlobalConstants.defaultPrecision))
-          .toString();
+  String toPrecisionString() => double.parse(toStringAsFixed(GlobalConstants.defaultPrecision)).toString();
 }
