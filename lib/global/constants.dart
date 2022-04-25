@@ -34,6 +34,7 @@ class GlobalConstants {
 
   // Images
   static const String connectionLostImage = "images/connection_lost.png";
+  static const String errorPageImage = "images/error_page.png";
   static const String appIconImage = "images/app_icon.png";
 
   // Slider

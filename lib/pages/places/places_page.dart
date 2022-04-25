@@ -5,14 +5,15 @@ import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/widgets/change_radius_appbar.dart';
 import 'package:wiki_places/widgets/place/place_card.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
+import 'package:wiki_places/widgets/about_the_app.dart';
 
 class PlacesPage extends StatelessWidget {
   PlacesPage({Key? key}) : super(key: key);
   final _storeController = Get.put(StoreController());
 
-  List<Place> _getPlaces() {
+  List<Widget> _getPlaces() {
     final _places = _storeController.placesCollection.value.places;
-    List<Place> placesList = [];
+    List<Widget> placesList = [];
     for (var placeData in _places.getRange(0, _places.length - 1)) {
       placesList.add(Place(placeData));
     }
@@ -27,7 +28,7 @@ class PlacesPage extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: ChangeRadiusAppbar(),
         body: _storeController.placesCollection.value.isEmpty ? Container() : ListView(
-          children: _getPlaces(),
+          children: _getPlaces() + [const AboutTheApp()],
         ),
         floatingActionButton: SearchPlacesFAB(),
       ),

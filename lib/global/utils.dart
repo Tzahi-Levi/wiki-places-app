@@ -10,6 +10,10 @@ void navigateToPage(Widget page) {
   Get.to(page);
 }
 
+void navigateWithNoBack(Widget page) {
+  Get.off(page);
+}
+
 void navigateBack() {
   Get.back();
   if (Get.context != null) {

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/widgets/appbar.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
-import 'package:wiki_places/widgets/about_the_app.dart';
 
 class PlaceholderPage extends StatelessWidget {
   const PlaceholderPage({this.content = "", this.firstIcon, this.secondIcon, this.appBar, Key? key}) : super(key: key);
@@ -71,7 +70,6 @@ class PlaceholderPage extends StatelessWidget {
               ),
             ),
           ),
-          const AboutTheApp(),
         ],
       ),
       floatingActionButton: SearchPlacesFAB(),
