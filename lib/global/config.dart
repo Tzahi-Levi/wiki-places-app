@@ -6,7 +6,7 @@ class ProjectConfig {
   ProjectConfig._();
 
   // Project Config
-  static const String projectName = "WikiPlaces";
+  static const String projectName = "WikiPo";
   static const String projectVersion = "v1.0.0";
 
   // Backend Config
