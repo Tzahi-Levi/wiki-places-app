@@ -1,7 +1,7 @@
 # WikiPo
 
 
-> WikiPo is an application which provides to the user the ability to search information on close places that located around to him. The user can search places around him easily, and can get the information from wikipedia.
+> WikiPo is an application which provides to the user the ability to search information on places that are located around to him. The user can search places around him easily, and can get the information directly from wikipedia.
 
 
 <a href=''><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="250" height="100"/></a>
@@ -27,8 +27,8 @@
 * [ ] Search for places around you easily.
 * [ ] Watch the title, abstract, and image of the places around you (from wikipedia).
 * [ ] Open the full wikipedia page in the app as web view.
-* [ ] See all the places around you from a map.
-* [ ] Change the radius you want to search.
+* [ ] See all the places around you on a map.
+* [ ] Change the radius you want to search around.
 
 
 ## Disclaimer
