@@ -7,7 +7,7 @@
 <a href=''><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="250" height="100"/></a>
 
 
-<img src="/images/places_page.png" alt="drawing" width="200"/> <img src="/images/map_page.png" alt="drawing" width="200"/>
+<img src="/images/screenshots/places_page.png" alt="drawing" width="200"/> <img src="/images/screenshots/map_page.png" alt="drawing" width="200"/>
 
 
 ## Introduction:
