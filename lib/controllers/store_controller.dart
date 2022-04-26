@@ -51,6 +51,8 @@ class StoreController extends GetxController {
 
     if (!ClientRequests.instance.isResponseSuccess(response)) {
       navigateWithNoBack(const ErrorPage());
+      GoogleAnalytics.instance.logResponseError();
+      return;
     }
 
     placesCollection.value = PlacesPageCollection.fromJson(json.decode(response.body));

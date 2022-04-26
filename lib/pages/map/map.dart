@@ -29,6 +29,8 @@ class _MapPageState extends State<MapPage> {
     if (currentLocation == null) {
       return;
     }
+    Get.isDarkMode ? await _controller.setMapStyle(GlobalConstants.lightModeMapStyle)
+        : await _controller.setMapStyle(GlobalConstants.darkModeMapStyle);
 
     setState(() {
       _currentLocation = currentLocation;
@@ -69,33 +71,33 @@ class _MapPageState extends State<MapPage> {
     return places;
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return GetX<StoreController>(
       builder: (store) => Scaffold(
         extendBodyBehindAppBar: true,
         appBar: ChangeRadiusAppbar(),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 108),
-          child: GoogleMap(
-            mapToolbarEnabled: false,  // TODO- remove when we want to allow arrival instructions
-            initialCameraPosition: CameraPosition(
-                target: LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]),
-                zoom: GlobalConstants.defaultZoomMap),
-            onMapCreated: _onMapCreated,
-            myLocationEnabled: true,
-            markers: _getMarkers(),
-            circles: {
-              Circle(
-                circleId: const CircleId('currentCircle'),
-                center: LatLng(_currentLocation["lat"], _currentLocation["lon"]),
-                radius: double.parse(_storeController.radius.value) * 1000, // Convert Km to m
-                fillColor: Colors.blue.shade100.withOpacity(0.5),
-                strokeWidth: 2,
-                strokeColor:  Colors.blue.shade100,
-              ),
-            },
-          ),
+        body: GoogleMap(
+          padding: EdgeInsets.only(top: 120, bottom: 50),
+          mapToolbarEnabled: false,  // TODO- remove when we want to allow arrival instructions
+          initialCameraPosition: CameraPosition(
+              target: LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]),
+              zoom: GlobalConstants.defaultZoomMap),
+          onMapCreated: _onMapCreated,
+          myLocationEnabled: true,
+          markers: _getMarkers(),
+          circles: {
+            Circle(
+              circleId: const CircleId('currentCircle'),
+              center: LatLng(_currentLocation["lat"], _currentLocation["lon"]),
+              radius: double.parse(_storeController.radius.value) * 1000, // Convert Km to m
+              fillColor: Colors.blue.shade100.withOpacity(0.5),
+              strokeWidth: 2,
+              strokeColor:  Colors.blue.shade100,
+            ),
+          },
         ),
         floatingActionButton: SearchPlacesFAB(),
       ),
