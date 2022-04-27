@@ -4,10 +4,14 @@
 > WikiPo is an application which provides to the user the ability to search information on places that are located around to him. The user can search places around him easily, and can get the information directly from wikipedia.
 
 
-<a href=''><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="250" height="100"/></a>
+<p align="center">
+  <a href=''><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="250" height="100"/></a>
+</p>
 
 
-<img src="/images/screenshots/places_page.png" alt="drawing" width="200"/> <img src="/images/screenshots/map_page.png" alt="drawing" width="200"/>
+<p align="center">
+    <img src="/images/screenshots/places_page.png" alt="drawing" width="200"/> <img src="/images/screenshots/map_page.png" alt="drawing" width="200"/>
+</p>
 
 
 ## Introduction:
