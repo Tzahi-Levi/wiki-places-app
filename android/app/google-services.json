@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "203802247925",
+    "project_id": "wikiplaces-d7271",
+    "storage_bucket": "wikiplaces-d7271.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:203802247925:android:183365a0aab5aa29bffbbc",
+        "android_client_info": {
+          "package_name": "com.technion.android.wikiplaces.wiki_places"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "203802247925-j2aem77d5kkes0r70mjfct2o1rs1cvmi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL4fdT-jqGIDQrEt4KCfJaedE8b8sEos0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "203802247925-j2aem77d5kkes0r70mjfct2o1rs1cvmi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
