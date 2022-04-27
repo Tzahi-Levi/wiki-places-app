@@ -10,6 +10,8 @@ import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/widgets/change_radius_appbar.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
+import 'package:wiki_places/global/map_style/map_style_dark.dart';
+import 'package:wiki_places/global/map_style/map_style_light.dart';
 
 class MapPage extends StatefulWidget {
   MapPage({Key? key}) : super(key: key);
@@ -29,8 +31,7 @@ class _MapPageState extends State<MapPage> {
     if (currentLocation == null) {
       return;
     }
-    Get.isDarkMode ? await _controller.setMapStyle(GlobalConstants.lightModeMapStyle)
-        : await _controller.setMapStyle(GlobalConstants.darkModeMapStyle);
+    await _controller.setMapStyle(Get.isDarkMode ? mapStyleDark : mapStyleLight);
 
     setState(() {
       _currentLocation = currentLocation;
