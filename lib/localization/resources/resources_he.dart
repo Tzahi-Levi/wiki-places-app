@@ -9,6 +9,7 @@ final Map<String, String> resourcesHe = {
   'strError': 'שגיאה',
   'strClose': 'סגור',
   'strLocationPermissionDenied': 'הפעולה עושה שימוש בהרשאות המיקום, יש לאפשר לאפליקציה לגשת למיקום דרך הגדרות המכשיר.',
+  'strTryAgain': 'שגיאה התרחשה בעת הפעולה, יש לנסות שנית מאוחר יותר',
 
   // Navigation
   'strMapPageName': 'מפה',
