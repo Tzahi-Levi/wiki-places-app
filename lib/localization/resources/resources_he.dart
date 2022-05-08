@@ -8,6 +8,8 @@ final Map<String, String> resourcesHe = {
   'strKm': 'ק״מ',
   'strError': 'שגיאה',
   'strClose': 'סגור',
+  'strRefresh': 'רענן',
+  'strSearch': 'חיפוש',
   'strLocationPermissionDenied': 'הפעולה עושה שימוש בהרשאות המיקום, יש לאפשר לאפליקציה לגשת למיקום דרך הגדרות המכשיר.',
   'strTryAgain': 'שגיאה התרחשה בעת הפעולה, יש לנסות שנית מאוחר יותר',
 
