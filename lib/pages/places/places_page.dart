@@ -6,6 +6,7 @@ import 'package:wiki_places/widgets/change_radius_appbar.dart';
 import 'package:wiki_places/widgets/place/place_card.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
 import 'package:wiki_places/widgets/about_the_app.dart';
+import 'package:wiki_places/global/constants.dart';
 
 class PlacesPage extends StatelessWidget {
   PlacesPage({Key? key}) : super(key: key);
@@ -27,10 +28,17 @@ class PlacesPage extends StatelessWidget {
       builder: (store) => Scaffold(
         extendBodyBehindAppBar: true,
         appBar: ChangeRadiusAppbar(),
-        body: _storeController.placesCollection.value.isEmpty ? Container() : ListView(
-          children: _getPlaces() + [Padding(
-            padding: const EdgeInsets.only(bottom: 65.0),
-            child: const AboutTheApp(),
+        body: _storeController.placesCollection.value.isEmpty ? Container() : Stack(
+          children: [Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage(GlobalConstants.appBackgroundImage), fit: BoxFit.cover)
+            ),
+          ),
+          ListView(
+            children: _getPlaces() + [const Padding(
+              padding: EdgeInsets.only(bottom: 65.0),
+              child: AboutTheApp(),
+            )],
           )],
         ),
         floatingActionButton: SearchPlacesFAB(),

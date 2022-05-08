@@ -29,8 +29,8 @@ void openWikipedia(String url) {
 // Messages
 void displaySnackbar({String title = "", String content = ""}) {
   Get.snackbar(title, content,
-      titleText: Text(title, style: Get.textTheme.headline5,),
-      messageText: Text(content, style: Get.textTheme.headline5,),
+      titleText: Text(title, style: Get.textTheme.headline6,),
+      messageText: Text(content, style: Get.textTheme.headline6,),
       snackPosition: SnackPosition.BOTTOM,
       barBlur: 50, 
       snackStyle: SnackStyle.FLOATING, 
