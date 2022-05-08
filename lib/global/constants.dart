@@ -36,6 +36,8 @@ class GlobalConstants {
   static const String connectionLostImage = "images/connection_lost.png";
   static const String errorPageImage = "images/error_page.png";
   static const String appIconImage = "images/app_icon.png";
+  static const String appBackgroundImage = "images/Background.png";
+  static const String appBackgroundDarkImage = "images/DarkBackground.png";
 
   // Slider
   static int radiusSliderDivisions = 10;
