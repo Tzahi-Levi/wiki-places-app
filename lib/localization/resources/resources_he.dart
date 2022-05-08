@@ -12,10 +12,14 @@ final Map<String, String> resourcesHe = {
   'strSearch': 'חיפוש',
   'strLocationPermissionDenied': 'הפעולה עושה שימוש בהרשאות המיקום, יש לאפשר לאפליקציה לגשת למיקום דרך הגדרות המכשיר.',
   'strTryAgain': 'שגיאה התרחשה בעת הפעולה, יש לנסות שנית מאוחר יותר',
+  'strLoadMore': 'טען עוד',
 
   // Navigation
   'strMapPageName': 'מפה',
   'strPlacesPageName': 'המקומות',
+
+  // Map
+  'strYourChosenPlace': 'מיקומך הנוכחי',
 
   // Places
   'strSearchPlace': 'חפש מקומות',
@@ -23,9 +27,13 @@ final Map<String, String> resourcesHe = {
   'strWikipediaValuesInRadius': '@number מקומות (@radius @scale)',
   'strSetRadius': 'על מנת לראות מידע על המקומות סביבך, יש ללחוץ על לחצן החיפוש @ או לקבוע רדיוס בלחיצה על # בראש העמוד',
   'strReadMore': 'קרא עוד',
-  'strChangeRadius': 'שנה רדיוס',
   'strRadiusMustBePositive': 'הרדיוס חייב להיות מספר חיובי',
   'strNoImage':'אין תמונה להציג',
+
+  // Search Place Page
+  'strChangeRadius': 'הרדיוס הנוכחי',
+  'strSearchPlaceAround': 'חיפוש בסביבת מקום',
+  'strPlaceNotExist': 'לא היה ניתן למצוא את המיקום המבוקש, יש לנסות שנית.',
 
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",

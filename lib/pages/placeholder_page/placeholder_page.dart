@@ -26,7 +26,7 @@ class PlaceholderPage extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: appBar != null ? appBar! : WikiPlacesAppBar(
-        appTitle: true,
+        showAppTitle: true,
       ),
       body: firstIcon == null ? Text(content) :
       Column(
