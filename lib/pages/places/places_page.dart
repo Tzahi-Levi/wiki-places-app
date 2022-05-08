@@ -31,7 +31,7 @@ class PlacesPage extends StatelessWidget {
         body: _storeController.placesCollection.value.isEmpty ? Container() : Stack(
           children: [Container(
             decoration: BoxDecoration(
-                image: DecorationImage(image: Get.isDarkMode ? const AssetImage(GlobalConstants.appBackgroundDarkImage) : const AssetImage(GlobalConstants.appBackgroundImage), fit: BoxFit.cover)
+                image: DecorationImage(image: AssetImage(GlobalConstants.appBackgroundImage), fit: BoxFit.cover)
             ),
           ),
           ListView(

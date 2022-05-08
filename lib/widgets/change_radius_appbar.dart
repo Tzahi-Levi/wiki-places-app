@@ -71,7 +71,7 @@ class ChangeRadiusAppbar extends StatelessWidget implements PreferredSizeWidget 
       actions: [
         IconButton(
           onPressed: _openChangeRadiusDialog,
-          icon:  Icon(GlobalConstants.updateRadiusIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
+          icon:  Icon(GlobalConstants.searchIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
         ),
       ],
     );
