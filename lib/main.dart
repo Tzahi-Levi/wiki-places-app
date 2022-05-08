@@ -50,6 +50,7 @@ class WikiPlacesApp extends StatelessWidget {
       ],
       theme: ThemeController.lightMode,
       darkTheme: ThemeController.darkMode,
+      debugShowCheckedModeBanner: false,
       home: ConnectivityBuilder(
         builder: (context, isConnected, status) {
           return (isConnected != null && !!isConnected) ? HomePage() : const ConnectionLostPage();
