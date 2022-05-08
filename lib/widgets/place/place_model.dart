@@ -1,8 +1,6 @@
 // ================= Place Model =================
-import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/utils.dart';
-import 'package:wiki_places/global/client_requests.dart';
 
 class PlaceModel {
   late String label;
@@ -11,46 +9,16 @@ class PlaceModel {
   late double distance;
   late double lat;
   late double lon;
-  String? imageUrl;
-  bool loadedImages = false;
-
-  String _filterAbstract(String? abstract) {
-    if (abstract == null) {
-      return "";
-    }
-
-    String filteredAbstract = abstract.replaceAll("_", " ")
-        .replaceAll("{", "")
-        .replaceAll("}", "")
-        .replaceAll("=", " ")
-        .replaceAll("|", "")
-        .replaceAll(RegExp(r'[0-9]+[p][x]'), " ")
-        .replaceAll("  ", " ")
-        .replaceAll("<BR>", "");
-
-    if (filteredAbstract.indexOf(" ") == 0) {
-      filteredAbstract = filteredAbstract.replaceFirst(" ", "");
-    }
-
-    if (filteredAbstract.isNotEmpty && filteredAbstract.lastIndexOf(" ") == filteredAbstract.length - 1) {
-      filteredAbstract = filteredAbstract.replaceRange(filteredAbstract.length - 1, filteredAbstract.length , "");
-    }
-
-    return filteredAbstract.split(" ").length < GlobalConstants.defaultMinAbstractWords ? "" : filteredAbstract;
-  }
+  late String imageUrl;
 
   PlaceModel.fromJson(Json placeJson) {
     label = placeJson["label"];
-    abstract = _filterAbstract(placeJson["abstract"]);
+    abstract = placeJson["abstract"];
     url = placeJson["url"];
     distance = placeJson["pin"]["distance[km]"].toDouble();
     lat = placeJson["pin"]["location"]["lat"].toDouble();
     lon = placeJson["pin"]["location"]["lon"].toDouble();
-  }
-
-  Future<void> loadImage() async {
-    imageUrl = await ClientRequests.instance.getPlaceImageUrl(placeTitle: label);
-    loadedImages = true;
+    imageUrl = placeJson["imageUrl"];
   }
 
   int _comparePerDistance(PlaceModel other) {

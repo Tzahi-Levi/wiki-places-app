@@ -38,9 +38,8 @@ class StoreController extends GetxController {
     update();
   }
 
-  Future<void> searchPlaces({bool showToast = false}) async {
+  Future<void> searchPlaces({bool showToast = false, bool moveToError = false, bool reportToGA = true}) async {
     Trace performanceTrace = _performance.newTrace("GetPlacesData");
-
     Json? location = await LocationController.getLocation();
     if (location == null) {  // no permission
       updateIsLoading(false);
@@ -50,7 +49,7 @@ class StoreController extends GetxController {
     Response response = await ClientRequests.instance.getPlacesData(radius: radius.value, lat: location["lat"], lon: location["lon"]);
 
     if (!ClientRequests.instance.isResponseSuccess(response)) {
-      navigateWithNoBack(const ErrorPage());
+      moveToError ? navigateWithNoBack(const ErrorPage()) : displaySnackbar(content: 'strTryAgain'.tr);
       GoogleAnalytics.instance.logResponseError();
       return;
     }
@@ -68,8 +67,8 @@ class StoreController extends GetxController {
           }));
     }
 
-    await placesCollection.value.loadPlacesImages();
-    placesCollection.refresh();
-    GoogleAnalytics.instance.logSearchPlaces();
+    if (reportToGA) {
+      GoogleAnalytics.instance.logSearchPlaces();
+    }
   }
 }
