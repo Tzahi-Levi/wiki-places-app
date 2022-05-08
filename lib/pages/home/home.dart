@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
 
   void _initPlaces() async {
     _storeController.updateIsLoading(true);
-    await _storeController.searchPlaces();
+    await _storeController.searchPlaces(moveToError: true, reportToGA: false);
   }
 
   Widget _openCurrentPage() {
