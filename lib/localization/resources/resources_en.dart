@@ -8,7 +8,10 @@ final Map<String, String> resourcesEn = {
   'strKm': 'Km',
   'strError': 'Error',
   'strClose': 'Close',
+  'strRefresh': 'Refresh',
+  'strSearch': 'Search',
   'strLocationPermissionDenied': 'This feature has to use location permission, please allow it in the device settings.',
+  'strTryAgain': 'Error has been occurred, please try again later',
 
   // Navigation
   'strMapPageName': 'Map',
