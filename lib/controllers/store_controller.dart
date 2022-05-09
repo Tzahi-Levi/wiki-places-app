@@ -16,6 +16,7 @@ class StoreController extends GetxController {
   final RxString radius = '1'.obs;
   late Rx<PlacesPageCollection> placesCollection = PlacesPageCollection().obs;
   RxBool isLoading = false.obs;
+  RxString placeName = ''.obs;
   Rx<LatLng> currentPlace = LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]).obs;
   RxBool isCurrentPlace = true.obs;
   Rx<SortedList<String>> placeFilters = SortedList<String>().obs;
@@ -49,7 +50,11 @@ class StoreController extends GetxController {
     searchPlaces(reportToGA: false);
   }
 
-  void updateCurrentPlace([LatLng? newCurrentPlace]) async {
+  void updateCurrentPlace([LatLng? newCurrentPlace, String? newPlaceName]) async {
+    if (newCurrentPlace == null && newPlaceName != null) {
+      return;
+    }
+
     if (newCurrentPlace == null) {
       Json? currentLocation = await LocationController.getLocation();
       if (currentLocation == null) {  // no permission
@@ -57,15 +62,18 @@ class StoreController extends GetxController {
         return;
       }
 
+      placeName.value = 'strCurrentPlace'.tr;
       newCurrentPlace = LatLng(currentLocation["lat"], currentLocation["lon"]);
       isCurrentPlace.value = true;
 
     } else {
-      isCurrentPlace.value = false;
+      isCurrentPlace.value = false;  // TODO- maybe we can use placeName instead
     }
 
     currentPlace.value = newCurrentPlace;
-    update();
+    currentPlace.refresh();
+    placeName.value = newPlaceName!;
+    placeName.refresh();
     GoogleAnalytics.instance.logCurrentPlaceUpdated();
   }
 

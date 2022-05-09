@@ -38,13 +38,14 @@ void searchPlace({double? radius, String placeName = '', LatLng? placeCoordinate
   final _storeController = Get.put(StoreController());
   _storeController.updateIsLoading(true);
   radius ??= double.parse(_storeController.radius.value);
-  placeCoordinates ??= await ClientRequests.instance.getPlaceCoordinates(place: placeName);
+  Map<String, Object?> placeInfo = await ClientRequests.instance.getPlaceCoordinates(place: placeName);
+  placeCoordinates ??= placeInfo["placeLatLng"] as LatLng?;
 
   if (placeCoordinates == null || radius == 0) {
     displaySnackbar(title: 'strError'.tr, content: placeCoordinates == null ? 'strPlaceNotExist'.tr : 'strRadiusMustBePositive'.tr);
 
   } else {
-    _storeController.updateCurrentPlace(placeCoordinates);
+    _storeController.updateCurrentPlace(placeCoordinates, placeInfo["placeName"] as String?);
     _storeController.changeRadius(radius.toString());
     _storeController.searchPlaces(showToast: true);
     navigateBack();
@@ -56,8 +57,8 @@ void searchPlace({double? radius, String placeName = '', LatLng? placeCoordinate
 // Messages
 void displaySnackbar({String title = "", String content = ""}) {
   Get.snackbar(title, content,
-      titleText: Text(title, style: Get.textTheme.headline6,),
-      messageText: Text(content, style: Get.textTheme.headline6,),
+      titleText: Text(title, style: Get.textTheme.headline6),
+      messageText: Text(content, style: Get.textTheme.headline6),
       snackPosition: SnackPosition.BOTTOM,
       barBlur: 50, 
       snackStyle: SnackStyle.FLOATING, 

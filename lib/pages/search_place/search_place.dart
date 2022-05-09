@@ -18,8 +18,8 @@ class SearchPlacePage extends StatefulWidget {
 
 class _SearchPlacePageState extends State<SearchPlacePage> {
   final _storeController = Get.put(StoreController());
-  late final TextEditingController _textController = TextEditingController();  // TODO- add the name
-  late final PrimitiveWrapper _placeController = PrimitiveWrapper('strCurrentPlace'.tr);
+  late final TextEditingController _textController = TextEditingController(text: _storeController.placeName.value);
+  late final PrimitiveWrapper _placeController = PrimitiveWrapper(_storeController.placeName.value == 'strCurrentPlace'.tr ? 'strCurrentPlace'.tr : 'strOtherPlace'.tr);
   late final PrimitiveWrapper _radius = PrimitiveWrapper(double.parse(_storeController.radius.value));
 
   @override
