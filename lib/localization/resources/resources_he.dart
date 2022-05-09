@@ -29,6 +29,7 @@ final Map<String, String> resourcesHe = {
   'strReadMore': 'קרא עוד',
   'strRadiusMustBePositive': 'הרדיוס חייב להיות מספר חיובי',
   'strNoImage':'אין תמונה להציג',
+  'strCantIncreaseRadius':'לא ניתן להגדיל את הרדיוס מעבר ל-@maxRadius ק״מ',
 
   // Search Place Page
   'strChangeRadius': 'הרדיוס הנוכחי',

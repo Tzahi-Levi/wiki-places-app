@@ -29,6 +29,7 @@ final Map<String, String> resourcesEn = {
   'strReadMore': 'Read more',
   'strRadiusMustBePositive': 'The radius must be a positive number',
   'strNoImage':'No Image To Display',
+  'strCantIncreaseRadius': "The radius can't be increased above @maxRadius km",
 
   // Search Place Page
   'strChangeRadius': 'Current radius',

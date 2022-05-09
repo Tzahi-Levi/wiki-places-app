@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'dart:math';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
+import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/widgets/appbar.dart';
 import 'package:wiki_places/widgets/place/place_card.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
 import 'package:wiki_places/widgets/about_the_app.dart';
-import 'package:wiki_places/global/constants.dart';
 
 class PlacesPage extends StatelessWidget {
   PlacesPage({Key? key}) : super(key: key);
@@ -25,8 +25,18 @@ class PlacesPage extends StatelessWidget {
   }
 
   void _loadMore() {
-    _storeController.changeRadius(min<double>(GlobalConstants.maxRadius, double.parse(_storeController.radius.value) + GlobalConstants.defaultLoadMoreStep).toString());
+    double currentRadius = double.parse(_storeController.radius.value);
+    if (currentRadius >= GlobalConstants.maxRadius) {
+      displaySnackbar(title: 'strError'.tr, content: 'strCantIncreaseRadius'.trParams({
+        'maxRadius': GlobalConstants.maxRadius.toString(),
+      }));
+      return;
+    }
+
+    _storeController.updateIsLoading(true);
+    _storeController.changeRadius(min<double>(GlobalConstants.maxRadius, currentRadius + GlobalConstants.defaultLoadMoreStep).toString());
     _storeController.searchPlaces();
+    _storeController.updateIsLoading(false);
   }
 
   @override
@@ -43,10 +53,7 @@ class PlacesPage extends StatelessWidget {
           ),
           ListView(
             children: _getPlaces() + [
-              Visibility(
-                visible: double.parse(_storeController.radius.value) <= GlobalConstants.maxRadius - 1,
-                child: ElevatedButton(onPressed: _loadMore, child: Text('strLoadMore'.tr)),
-              ),
+              ElevatedButton(onPressed: _loadMore, child: Text('strLoadMore'.tr)),
               const Padding(
                 padding: EdgeInsets.only(bottom: 65.0),
                 child: AboutTheApp(),
