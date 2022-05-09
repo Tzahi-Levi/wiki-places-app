@@ -38,6 +38,7 @@ class GlobalConstants {
   static const String connectionLostImage = "images/connection_lost.png";
   static const String errorPageImage = "images/error_page.png";
   static const String appIconImage = "images/app_icon.png";
+  static String get appBackgroundImage => "images/background_${Get.isDarkMode ? "dark":"light"}.png";
 
   // Slider
   static int radiusSliderDivisions = 10;
