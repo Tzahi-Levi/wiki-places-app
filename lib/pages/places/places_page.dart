@@ -42,7 +42,7 @@ class PlacesPage extends StatelessWidget {
             ),
           ),
           ListView(
-            _getPlaces() + [
+            children: _getPlaces() + [
               Visibility(
                 visible: double.parse(_storeController.radius.value) <= GlobalConstants.maxRadius - 1,
                 child: ElevatedButton(onPressed: _loadMore, child: Text('strLoadMore'.tr)),
@@ -50,7 +50,7 @@ class PlacesPage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(bottom: 65.0),
                 child: AboutTheApp(),
-              )
+              ),
             ],
           )],
         ),

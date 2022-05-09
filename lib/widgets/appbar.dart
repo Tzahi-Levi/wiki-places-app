@@ -27,7 +27,7 @@ class SearchPlaceAppbar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           onPressed: _openChangeRadiusDialog,
-          icon: const Icon(GlobalConstants.searchIcon, size: 25, color: Colors.white),
+          icon: Icon(GlobalConstants.searchIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
         ),
       ],
     );
