@@ -1,9 +1,12 @@
 // ================= Utils For Project =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:wiki_places/pages/webview/webview.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
+import 'package:wiki_places/global/client_requests.dart';
+import 'package:wiki_places/controllers/store_controller.dart';
 
 // Navigation
 void navigateToPage(Widget page) {
@@ -24,6 +27,30 @@ void navigateBack() {
 void openWikipedia(String url) {
   navigateToPage(WebViewPage(url: url));
   GoogleAnalytics.instance.logWikipediaOpened();
+}
+
+// Common Functions
+void searchPlace({double? radius, String placeName = '', LatLng? placeCoordinates}) async {
+  if (placeName != '' && placeCoordinates != null) {
+    throw "Place Name And Coordinates Are Given";
+  }
+
+  final _storeController = Get.put(StoreController());
+  _storeController.updateIsLoading(true);
+  radius ??= double.parse(_storeController.radius.value);
+  placeCoordinates ??= await ClientRequests.instance.getPlaceCoordinates(place: placeName);
+
+  if (placeCoordinates == null || radius == 0) {
+    displaySnackbar(title: 'strError'.tr, content: placeCoordinates == null ? 'strPlaceNotExist'.tr : 'strRadiusMustBePositive'.tr);
+
+  } else {
+    _storeController.updateCurrentPlace(placeCoordinates);
+    _storeController.changeRadius(radius.toString());
+    _storeController.searchPlaces(showToast: true);
+    navigateBack();
+  }
+
+  _storeController.updateIsLoading(false);
 }
 
 // Messages
@@ -93,6 +120,15 @@ dynamic indexToEnum(List enumValues, int index) {
 extension St on String {
   int compareStrings(String other) {
     return toLowerCase().compareTo(other.toLowerCase());
+  }
+
+  bool containsAll(List items) {
+    for (var item in items) {
+      if (!contains(item.toString())) {
+        return false;
+      }
+    }
+    return true;
   }
 }
 

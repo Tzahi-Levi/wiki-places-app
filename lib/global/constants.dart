@@ -1,6 +1,7 @@
 // ================= Global Constants =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:wiki_places/global/types.dart';
 
 class GlobalConstants {
@@ -14,6 +15,8 @@ class GlobalConstants {
   static const double minRadius = 0;
   static const double maxRadius = 5;
   static const int defaultMinAbstractWords = 4;
+  static const double currentPlaceMarkerColor = BitmapDescriptor.hueBlue;
+  static const double defaultLoadMoreStep = 1;
 
   // Icons
   static const IconData mapPageOutLinedIcon = Icons.map_outlined;
@@ -22,10 +25,11 @@ class GlobalConstants {
   static const IconData placesPageSelectedIcon = Icons.home;
   static const IconData searchIcon = Icons.search;
   static const IconData refreshIcon = Icons.refresh;
+  static const IconData addIcon = Icons.add;
 
   // Map
   static const Json defaultInitialMapLocation = {"lat": 32.7775, "lon": 35.02166667}; // Technion Location
-  static const double defaultZoomMap = 16;
+  static const double defaultZoomMap = 15;
 
   // Separators
   static const String firstIconTextSeparator = '@';

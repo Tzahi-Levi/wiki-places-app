@@ -26,6 +26,7 @@ dependencies:
   google_maps_flutter: ^2.0.1
   google_fonts: ^2.3.1
   loading_overlay: ^0.3.0
+  simple_tags: ^0.0.4
 
 dev_dependencies:
   flutter_test:

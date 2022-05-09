@@ -48,6 +48,10 @@ class GoogleAnalytics {
     _logEvent("SearchPlaces");
   }
 
+  void logCurrentPlaceUpdated() {
+    _logEvent("CurrentPlaceUpdated");
+  }
+
   void logRadiusChanged() {
     _logEvent("RadiusChanged");
   }
