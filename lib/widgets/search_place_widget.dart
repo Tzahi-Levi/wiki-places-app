@@ -1,6 +1,7 @@
 // ================= Search Place Widget =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/widgets/radio_buttons.dart';
 
@@ -14,14 +15,24 @@ class SearchPlaceWidget extends StatefulWidget {
 }
 
 class _SearchPlaceWidgetState extends State<SearchPlaceWidget> {
+  final _storeController = Get.put(StoreController());
+
+  String get _getOtherPlaceText => (_storeController.placeName.value == 'strCurrentPlace'.tr) ? "" : _storeController.placeName.value;
+
   void _switchPlace(String newPlace) {
+    if (widget.textController == null) {
+      return;
+    }
+
     setState(() {
-      if (newPlace == 'strCurrentPlace'.tr) {
-
-      } else {
-
-      }
+      widget.textController!.text = (newPlace == 'strCurrentPlace'.tr) ? 'strCurrentPlace'.tr : _getOtherPlaceText;
     });
+  }
+
+  void _resetText() {
+    if (widget.textController != null) {
+      widget.textController!.text = "";
+    }
   }
 
   @override
@@ -40,6 +51,7 @@ class _SearchPlaceWidgetState extends State<SearchPlaceWidget> {
         ),
         TextField(
           controller: widget.textController,
+          onTap: _resetText,
           enabled: widget.placeController != null && widget.placeController!.value == 'strOtherPlace'.tr,
           decoration: InputDecoration(
             hintText: 'strPlaceName'.tr,

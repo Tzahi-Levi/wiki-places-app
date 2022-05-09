@@ -22,7 +22,7 @@ class _FiltersState extends State<Filters> {
     super.dispose();
   }
 
-  void _addFilter() {
+  void _addFilter() {  // TODO- add logs to GA
     if (_filterController.text.isNotEmpty) {
       setState(() {
         _storeController.addPlaceFilter(_filterController.text);

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:firebase_performance/firebase_performance.dart';
+import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/pages/image_page/error_page.dart';
 import 'package:wiki_places/global/config.dart';
@@ -36,16 +37,20 @@ class ClientRequests extends GetConnect {
     return placeJson;
   }
 
-  Future<LatLng?> getPlaceCoordinates({String place = ''}) async {
+  Future<Map<String, Object?>> getPlaceCoordinates({String place = ''}) async {
     Trace performanceTrace = _performance.newTrace("GetPlaceCoordinates");
     Response response = await get('https://nominatim.openstreetmap.org/search?q=${place.replaceAll(" ", "+")}&format=json&polygon=1&addressdetails=1');
     LatLng? placeLatLng;
+    String? placeName;
 
-    if (_isResponseSuccess(response) && response.body.length != 0 && response.body[0].keys.contains("lat") && response.body[0].keys.contains("lon")) {
+    if (_isResponseSuccess(response) && response.body.length != 0 && response.body[0].keys.contains("lat") && response.body[0].keys.contains("lon") &&  response.body[0].keys.contains("display_name")) {
+      List placeNameToken = response.body[0]["display_name"].toString().split(",");
+      placeNameToken.removeRange(GlobalConstants.defaultWordsInPlaceName, placeNameToken.length);
+      placeName = placeNameToken.join(",");
       placeLatLng = LatLng(double.parse(response.body[0]["lat"]), double.parse(response.body[0]["lon"]));
     }
 
     await performanceTrace.stop();
-    return placeLatLng;
+    return {"placeLatLng": placeLatLng, "placeName": placeName};
   }
 }

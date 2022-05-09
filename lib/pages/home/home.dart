@@ -15,19 +15,41 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   final _storeController = Get.put(StoreController());
 
   @override
   void initState() {
     super.initState();
-    _initPlaces();
+    _searchPlaces();
+
+    if (WidgetsBinding.instance != null) {
+      WidgetsBinding.instance!.addObserver(this);
+    }
   }
 
-  void _initPlaces() async {
+  @override
+  void dispose() {
+    if (WidgetsBinding.instance != null) {
+      WidgetsBinding.instance!.removeObserver(this);
+    }
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _searchPlaces(resetCurrentPlace: false, moveToError: false);
+    }
+  }
+
+  void _searchPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
     _storeController.updateIsLoading(true);
-    _storeController.updateCurrentPlace();
-    _storeController.searchPlaces(moveToError: true, reportToGA: false);
+    if (resetCurrentPlace) {
+      _storeController.updateCurrentPlace();
+    }
+    _storeController.searchPlaces(moveToError: moveToError, reportToGA: false);
+    _storeController.updateIsLoading(false);
   }
 
   Widget _openCurrentPage() {

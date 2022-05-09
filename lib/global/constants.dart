@@ -17,6 +17,7 @@ class GlobalConstants {
   static const int defaultMinAbstractWords = 4;
   static const double currentPlaceMarkerColor = BitmapDescriptor.hueBlue;
   static const double defaultLoadMoreStep = 1;
+  static const int defaultWordsInPlaceName = 3;
 
   // Icons
   static const IconData mapPageOutLinedIcon = Icons.map_outlined;
