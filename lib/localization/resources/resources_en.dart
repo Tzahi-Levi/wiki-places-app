@@ -35,6 +35,10 @@ final Map<String, String> resourcesEn = {
   'strChangeRadius': 'Current radius',
   'strSearchPlaceAround': 'Search Around Place',
   'strPlaceNotExist': 'The selected place is not found, please try again.',
+  'strAddFilter': 'Add filter',
+  'strCurrentPlace': 'Current Place:',
+  'strFilters': 'Filters:',
+  'strPlaceName': 'Place Name',
 
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",

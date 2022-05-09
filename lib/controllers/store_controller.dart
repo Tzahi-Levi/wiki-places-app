@@ -1,6 +1,7 @@
 // ================= Store Controller =================
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/pages/places/places_page_collection.dart';
 import 'package:wiki_places/global/types.dart';
@@ -17,6 +18,7 @@ class StoreController extends GetxController {
   RxBool isLoading = false.obs;
   Rx<LatLng> currentPlace = LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]).obs;
   RxBool isCurrentPlace = true.obs;
+  Rx<SortedList<String>> placeFilters = SortedList<String>().obs;
 
   // Actions
   void changeMainAppPage(AppPages page ) {
@@ -33,6 +35,18 @@ class StoreController extends GetxController {
   void updateIsLoading(bool value) {
     isLoading.value = value;
     update();
+  }
+
+  void addPlaceFilter(String filter) {  // TODO- add log to GA
+    placeFilters.value.add(filter);
+    placeFilters.refresh();
+    searchPlaces(reportToGA: false);
+  }
+
+  void removePlaceFilter(String filter) {
+    placeFilters.value.remove(filter);
+    placeFilters.refresh();
+    searchPlaces(reportToGA: false);
   }
 
   void updateCurrentPlace([LatLng? newCurrentPlace]) async {
@@ -61,7 +75,7 @@ class StoreController extends GetxController {
       return;
     }
 
-    placesCollection.value = PlacesPageCollection.fromJson(placeJson);
+    placesCollection.value = PlacesPageCollection.fromJson(placeJson, placeFilters.value);
     update();
     updateIsLoading(false);
 

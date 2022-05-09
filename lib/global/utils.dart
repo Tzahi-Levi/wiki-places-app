@@ -121,6 +121,15 @@ extension St on String {
   int compareStrings(String other) {
     return toLowerCase().compareTo(other.toLowerCase());
   }
+
+  bool containsAll(List items) {
+    for (var item in items) {
+      if (!contains(item.toString())) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 extension Ex on num {

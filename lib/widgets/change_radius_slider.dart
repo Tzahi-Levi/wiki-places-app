@@ -6,8 +6,8 @@ import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/types.dart';
 
 class ChangeRadiusSlider extends StatefulWidget {
-  ChangeRadiusSlider({this.radius, Key? key}) : super(key: key);
-  PrimitiveWrapper? radius;
+  ChangeRadiusSlider({this.controller, Key? key}) : super(key: key);
+  PrimitiveWrapper? controller;
 
   @override
   State<ChangeRadiusSlider> createState() => _ChangeRadiusSliderState();
@@ -19,12 +19,12 @@ class _ChangeRadiusSliderState extends State<ChangeRadiusSlider> {
   @override
   void initState() {
     super.initState();
-    widget.radius ??= PrimitiveWrapper(double.parse(_storeController.radius.value));
+    widget.controller ??= PrimitiveWrapper(double.parse(_storeController.radius.value));
   }
 
   void _updateSlider(double value) {
     setState(() {
-      widget.radius!.value = value;
+      widget.controller!.value = value;
     });
   }
 
@@ -36,16 +36,16 @@ class _ChangeRadiusSliderState extends State<ChangeRadiusSlider> {
         children: [
           Text('strChangeRadius'.tr),
           Slider(
-              value: widget.radius!.value,
+              value: widget.controller!.value,
               min: GlobalConstants.minRadius,
               max: GlobalConstants.maxRadius,
               divisions: GlobalConstants.radiusSliderDivisions,
-              label: '${widget.radius!.value} ${GlobalConstants.defaultScale}',
+              label: '${widget.controller!.value} ${GlobalConstants.defaultScale}',
               onChanged: (value) {
                 _updateSlider(value);
               }
           ),
-          Text('${widget.radius!.value} ${GlobalConstants.defaultScale}'),
+          Text('${widget.controller!.value} ${GlobalConstants.defaultScale}'),
         ],
       ),
     );

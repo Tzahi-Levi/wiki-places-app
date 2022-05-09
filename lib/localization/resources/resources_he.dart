@@ -30,11 +30,15 @@ final Map<String, String> resourcesHe = {
   'strRadiusMustBePositive': 'הרדיוס חייב להיות מספר חיובי',
   'strNoImage':'אין תמונה להציג',
   'strCantIncreaseRadius':'לא ניתן להגדיל את הרדיוס מעבר ל-@maxRadius ק״מ',
+  'strAddFilter': 'הוסף מסנן',
 
   // Search Place Page
   'strChangeRadius': 'הרדיוס הנוכחי',
   'strSearchPlaceAround': 'חיפוש בסביבת מקום',
   'strPlaceNotExist': 'לא היה ניתן למצוא את המיקום המבוקש, יש לנסות שנית.',
+  'strCurrentPlace': 'המיקום הנוכחי:',
+  'strFilters': 'מסננים:',
+  'strPlaceName': 'שם המקום',
 
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",
