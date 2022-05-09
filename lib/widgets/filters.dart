@@ -31,7 +31,7 @@ class _FiltersState extends State<Filters> {
     }
   }
 
-  void _removeFilter(String filter) {
+  void _removeFilter(String filter) {  // TODO- add snackbar with UNDO
     setState(() {
       _storeController.removePlaceFilter(filter);
     });

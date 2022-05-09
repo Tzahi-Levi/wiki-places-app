@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
+import 'package:wiki_places/pages/placeholder_page/placeholder_page.dart';
 import 'package:wiki_places/widgets/appbar.dart';
 import 'package:wiki_places/widgets/place/place_card.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
@@ -42,24 +43,34 @@ class PlacesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetX<StoreController>(
-      builder: (store) => Scaffold(
+      builder: (store) =>
+      _storeController.placesCollection.value.isEmpty ?
+      PlaceholderPage(
+          content: 'strNoPlacesAvailable'.tr,
+          appBar: SearchPlaceAppbar(showAppTitle: true),
+      ) : Scaffold(
         extendBodyBehindAppBar: true,
         appBar: SearchPlaceAppbar(),
-        body: _storeController.placesCollection.value.isEmpty ? Container() : Stack(
-          children: [Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage(GlobalConstants.appBackgroundImage), fit: BoxFit.cover)
-            ),
-          ),
-          ListView(
-            children: _getPlaces() + [
-              ElevatedButton(onPressed: _loadMore, child: Text('strLoadMore'.tr)),
-              const Padding(
-                padding: EdgeInsets.only(bottom: 65.0),
-                child: AboutTheApp(),
+        body: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(GlobalConstants.appBackgroundImage),
+                    fit: BoxFit.cover,
+                ),
               ),
-            ],
-          )],
+            ),
+            ListView(
+              children: _getPlaces() + [
+                ElevatedButton(onPressed: _loadMore, child: Text('strLoadMore'.tr)),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 65.0),
+                  child: AboutTheApp(),
+                ),
+              ],
+            ),
+          ],
         ),
         floatingActionButton: SearchPlacesFAB(),
       ),

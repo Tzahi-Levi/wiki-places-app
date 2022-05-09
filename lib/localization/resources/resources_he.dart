@@ -31,12 +31,15 @@ final Map<String, String> resourcesHe = {
   'strNoImage':'אין תמונה להציג',
   'strCantIncreaseRadius':'לא ניתן להגדיל את הרדיוס מעבר ל-@maxRadius ק״מ',
   'strAddFilter': 'הוסף מסנן',
+  'strNoPlacesAvailable': "אין מיקומים זמינים",
 
   // Search Place Page
   'strChangeRadius': 'הרדיוס הנוכחי',
   'strSearchPlaceAround': 'חיפוש בסביבת מקום',
   'strPlaceNotExist': 'לא היה ניתן למצוא את המיקום המבוקש, יש לנסות שנית.',
-  'strCurrentPlace': 'המיקום הנוכחי:',
+  'strPlace': 'המיקום:',
+  'strCurrentPlace': 'המיקום הנוכחי',
+  'strOtherPlace': 'מיקום אחר',
   'strFilters': 'מסננים:',
   'strPlaceName': 'שם המקום',
 

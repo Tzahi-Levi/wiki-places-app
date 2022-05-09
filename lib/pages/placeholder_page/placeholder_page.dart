@@ -12,7 +12,11 @@ class PlaceholderPage extends StatelessWidget {
   final IconData? secondIcon;
   final PreferredSizeWidget? appBar;
 
-  List<String> _getTextToken() {
+  List<String> get _textToken {
+    if (firstIcon == null) {
+      return [content];
+    }
+
     List<String> textToken = [];
     List<String> firstTokens = content.split(GlobalConstants.firstIconTextSeparator);
     textToken.addAll([firstTokens[0], ...firstTokens[1].split(GlobalConstants.secondIconTextSeparator)]);
@@ -21,15 +25,13 @@ class PlaceholderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> textToken = _getTextToken();
     Size size = Size(Get.width, Get.height);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: appBar != null ? appBar! : WikiPlacesAppBar(
         showAppTitle: true,
       ),
-      body: firstIcon == null ? Text(content) :
-      Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Center(
@@ -49,19 +51,19 @@ class PlaceholderPage extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: textToken[0] + " ",
+                          text: _textToken[0],
                         ),
                         WidgetSpan(
-                          child: Icon(firstIcon, color: Colors.white,),
+                          child: firstIcon == null ? Container() : Icon(firstIcon, color: Colors.white),
                         ),
                         TextSpan(
-                          text: textToken[1],
+                          text: _textToken.length > 1 ? _textToken[1] : "",
                         ),
                         WidgetSpan(
-                          child: Icon(secondIcon, color: Colors.white),
+                          child: secondIcon == null ? Container() : Icon(secondIcon, color: Colors.white),
                         ),
                         TextSpan(
-                          text: textToken[2],
+                          text: _textToken.length > 2 ?_textToken[2] : "",
                         ),
                       ],
                     ),

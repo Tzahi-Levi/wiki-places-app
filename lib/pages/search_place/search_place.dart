@@ -18,17 +18,18 @@ class SearchPlacePage extends StatefulWidget {
 
 class _SearchPlacePageState extends State<SearchPlacePage> {
   final _storeController = Get.put(StoreController());
-  late final TextEditingController _placeController = TextEditingController();  // TODO- add the name
+  late final TextEditingController _textController = TextEditingController();  // TODO- add the name
+  late final PrimitiveWrapper _placeController = PrimitiveWrapper('strCurrentPlace'.tr);
   late final PrimitiveWrapper _radius = PrimitiveWrapper(double.parse(_storeController.radius.value));
 
   @override
   void dispose() {
-    _placeController.dispose();
+    _textController.dispose();
     super.dispose();
   }
 
   void _searchPlace() {
-    searchPlace(radius: _radius.value, placeName: _placeController.text);
+    searchPlace(radius: _radius.value, placeName: _placeController.value == 'strCurrentPlace'.tr ? '' : _textController.text);  // TODO
   }
 
   @override
@@ -37,7 +38,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
       appBar: WikiPlacesAppBar(title: 'strSearchPlaceAround'.tr),
       body: Column(
         children: [
-          SearchPlaceWidget(controller: _placeController),
+          SearchPlaceWidget(textController: _textController, placeController: _placeController),
           const Divider(),
           const Filters(),
           const Divider(),

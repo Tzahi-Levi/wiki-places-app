@@ -30,13 +30,16 @@ final Map<String, String> resourcesEn = {
   'strRadiusMustBePositive': 'The radius must be a positive number',
   'strNoImage':'No Image To Display',
   'strCantIncreaseRadius': "The radius can't be increased above @maxRadius km",
+  'strNoPlacesAvailable': "There are not places available",
 
   // Search Place Page
   'strChangeRadius': 'Current radius',
   'strSearchPlaceAround': 'Search Around Place',
   'strPlaceNotExist': 'The selected place is not found, please try again.',
   'strAddFilter': 'Add filter',
-  'strCurrentPlace': 'Current Place:',
+  'strPlace': 'Place:',
+  'strCurrentPlace': 'Current Place',
+  'strOtherPlace': 'Other Place',
   'strFilters': 'Filters:',
   'strPlaceName': 'Place Name',
 
