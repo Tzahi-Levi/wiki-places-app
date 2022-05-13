@@ -45,11 +45,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () {
-                            _storeController.changeMainAppPage(AppPages.places);
+                            _storeController.updateMainAppPage(EAppPages.places);
                           },
                           icon: Icon(
                             _storeController.currentMainAppPage.value ==
-                                    AppPages.places
+                                    EAppPages.places
                                 ? GlobalConstants.placesPageSelectedIcon
                                 : GlobalConstants.placesPageOutLinedIcon),
                           padding: EdgeInsets.zero,
@@ -65,11 +65,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () {
-                            _storeController.changeMainAppPage(AppPages.map);
+                            _storeController.updateMainAppPage(EAppPages.map);
                           },
                           icon: Icon(
                               _storeController.currentMainAppPage.value ==
-                                      AppPages.map
+                                      EAppPages.map
                                   ? GlobalConstants.mapPageSelectedIcon
                                   : GlobalConstants.mapPageOutLinedIcon),
                           padding: EdgeInsets.zero,

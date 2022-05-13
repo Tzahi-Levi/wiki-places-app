@@ -7,6 +7,7 @@ import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/pages/image_page/error_page.dart';
 import 'package:wiki_places/global/config.dart';
+import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/localization/resources/resources_en.dart';
 
@@ -29,28 +30,48 @@ class ClientRequests extends GetConnect {
     if (_isResponseSuccess(response)) {
       placeJson = json.decode(response.body);
     } else {
+      print("@@@@@@@@@@@@@@@@@@@@");  // TODO
+      print(response.body);
+      print("@@@@@@@@@@@@@@@@@@@@");
+
       moveToError ? navigateWithNoBack(const ErrorPage()) : displaySnackbar(content: 'strTryAgain'.tr);
-      GoogleAnalytics.instance.logResponseError();
+      GoogleAnalytics.instance.logError("getPlacesData did not succeeded");
     }
 
     await performanceTrace.stop();
     return placeJson;
   }
 
-  Future<Map<String, Object?>> getPlaceCoordinates({String place = ''}) async {
-    Trace performanceTrace = _performance.newTrace("GetPlaceCoordinates");
+  Future<PlaceDetails> getPlaceDetailsByPartiallyName({String place = ''}) async {
+    Trace performanceTrace = _performance.newTrace("getPlaceDetailsByPartiallyName");
     Response response = await get('https://nominatim.openstreetmap.org/search?q=${place.replaceAll(" ", "+")}&format=json&polygon=1&addressdetails=1');
-    LatLng? placeLatLng;
+    LatLng? coordinates;
     String? placeName;
 
-    if (_isResponseSuccess(response) && response.body.length != 0 && response.body[0].keys.contains("lat") && response.body[0].keys.contains("lon") &&  response.body[0].keys.contains("display_name")) {
-      List placeNameToken = response.body[0]["display_name"].toString().split(",");
-      placeNameToken.removeRange(GlobalConstants.defaultWordsInPlaceName, placeNameToken.length);
-      placeName = placeNameToken.join(",");
-      placeLatLng = LatLng(double.parse(response.body[0]["lat"]), double.parse(response.body[0]["lon"]));
+    if (_isResponseSuccess(response) && response.body.length != 0 && response.body[0].keys.contains("lat") && response.body[0].keys.contains("lon") && response.body[0].keys.contains("display_name")) {
+      placeName = fullAddressToDisplayedAddress(response.body[0]["display_name"]);
+      coordinates = LatLng(double.parse(response.body[0]["lat"]), double.parse(response.body[0]["lon"]));
     }
 
     await performanceTrace.stop();
-    return {"placeLatLng": placeLatLng, "placeName": placeName};
+    return PlaceDetails(name: placeName, coordinates: coordinates);
+  }
+
+  Future<PlaceDetails?> getPlaceDetailsByCoordinates({LatLng? coordinates}) async {
+    if (coordinates == null) {
+      GoogleAnalytics.instance.logError("Given Location In getPlaceDetailsByCoordinates Function is null");
+      return null;
+    }
+
+    Trace performanceTrace = _performance.newTrace("getPlaceDetailsByCoordinates");
+    Response response = await get('http://nominatim.openstreetmap.org/reverse?format=json&lat=${coordinates.latitude}&lon=${coordinates.longitude}&zoom=18&addressdetails=1');
+    String? placeName;
+
+    if (_isResponseSuccess(response) && response.body["display_name"] != null) {
+      placeName = fullAddressToDisplayedAddress(response.body["display_name"]);
+    }
+
+    await performanceTrace.stop();
+    return PlaceDetails(name: placeName, coordinates: coordinates);
   }
 }

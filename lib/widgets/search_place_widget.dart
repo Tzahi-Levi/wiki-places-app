@@ -6,9 +6,9 @@ import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/widgets/radio_buttons.dart';
 
 class SearchPlaceWidget extends StatefulWidget {
-  SearchPlaceWidget({this.textController, this.placeController, Key? key}) : super(key: key);
-  TextEditingController? textController;
-  PrimitiveWrapper? placeController;
+  SearchPlaceWidget({required this.placeNameController, required this.placeModeController, Key? key}) : super(key: key);
+  final TextEditingController placeNameController;
+  final PrimitiveWrapper placeModeController;
 
   @override
   State<SearchPlaceWidget> createState() => _SearchPlaceWidgetState();
@@ -17,22 +17,20 @@ class SearchPlaceWidget extends StatefulWidget {
 class _SearchPlaceWidgetState extends State<SearchPlaceWidget> {
   final _storeController = Get.put(StoreController());
 
-  String get _getOtherPlaceText => (_storeController.placeName.value == 'strCurrentPlace'.tr) ? "" : _storeController.placeName.value;
+  @override
+  void initState() {
+    super.initState();
+    _updatePlaceName(widget.placeModeController.value);
+  }
 
-  void _switchPlace(String newPlace) {
-    if (widget.textController == null) {
-      return;
-    }
-
+  void _updatePlaceName(EPlaceMode newPlace) {
     setState(() {
-      widget.textController!.text = (newPlace == 'strCurrentPlace'.tr) ? 'strCurrentPlace'.tr : _getOtherPlaceText;
+      widget.placeNameController.text = (newPlace == EPlaceMode.current) ? 'strCurrentPlace'.tr : _storeController.placeName.value;
     });
   }
 
   void _resetText() {
-    if (widget.textController != null) {
-      widget.textController!.text = "";
-    }
+    widget.placeNameController.text = "";
   }
 
   @override
@@ -43,18 +41,18 @@ class _SearchPlaceWidgetState extends State<SearchPlaceWidget> {
           children: [
             Text('strPlace'.tr),
             RadioButtons(
-              options: ['strCurrentPlace'.tr, 'strOtherPlace'.tr],
-              controller: widget.placeController,
-              onChangeCallback: _switchPlace,
+              options: [{'value': EPlaceMode.current, 'name': 'strCurrentPlace'.tr}, {'value': EPlaceMode.other, 'name': 'strOtherPlace'.tr}],
+              controller: widget.placeModeController,
+              onChangeCallback: _updatePlaceName,
             )
           ],
         ),
         TextField(
-          controller: widget.textController,
+          controller: widget.placeNameController,
           onTap: _resetText,
-          enabled: widget.placeController != null && widget.placeController!.value == 'strOtherPlace'.tr,
+          enabled: widget.placeModeController.value == EPlaceMode.other,
           decoration: InputDecoration(
-            hintText: 'strPlaceName'.tr,
+            hintText: 'strChooseOtherPlace'.tr,
           ),
         ),
       ],

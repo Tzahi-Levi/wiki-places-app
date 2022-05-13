@@ -44,20 +44,20 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   void _searchPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
-    _storeController.updateIsLoading(true);
+    _storeController.updateGlobalIsLoading(true);
     if (resetCurrentPlace) {
-      _storeController.updateCurrentPlace();
+      _storeController.updatePlaceToCurrentMode();
     }
-    _storeController.searchPlaces(moveToError: moveToError, reportToGA: false);
-    _storeController.updateIsLoading(false);
+    await _storeController.updatePlacesCollection(moveToError: moveToError, reportToGA: false);
+    _storeController.updateGlobalIsLoading(false);
   }
 
   Widget _openCurrentPage() {
     switch (_storeController.currentMainAppPage.value) {
-      case AppPages.map:
+      case EAppPages.map:
         return MapPage();
 
-      case AppPages.places:
+      case EAppPages.places:
       default:
         return PlacesPage();
     }
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         builder: (store) => Scaffold(
             extendBodyBehindAppBar: true,
             body: LoadingOverlay(
-              isLoading: _storeController.isLoading.value,
+              isLoading: _storeController.globalIsLoading.value,
               child: Stack(
                 children: [
                   Padding(

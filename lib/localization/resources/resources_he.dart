@@ -23,12 +23,10 @@ final Map<String, String> resourcesHe = {
 
   // Places
   'strSearchPlace': 'חפש מקומות',
-  'strSearchSuccessfully': 'חיפוש מקומות ברדיוס @radius @scale בוצע בהצלחה',
+  'strSearchSuccessfully': 'חיפוש מקומות ברדיוס @radius @scale מ@place בוצע בהצלחה!',
   'strWikipediaValuesInRadius': '@number מקומות (@radius @scale)',
-  'strSetRadius': 'על מנת לראות מידע על המקומות סביבך, יש ללחוץ על לחצן החיפוש @ או לקבוע רדיוס בלחיצה על # בראש העמוד',
   'strReadMore': 'קרא עוד',
   'strRadiusMustBePositive': 'הרדיוס חייב להיות מספר חיובי',
-  'strNoImage':'אין תמונה להציג',
   'strCantIncreaseRadius':'לא ניתן להגדיל את הרדיוס מעבר ל-@maxRadius ק״מ',
   'strAddFilter': 'הוסף מסנן',
   'strNoPlacesAvailable': "אין מיקומים זמינים",
@@ -36,12 +34,11 @@ final Map<String, String> resourcesHe = {
   // Search Place Page
   'strChangeRadius': 'הרדיוס הנוכחי',
   'strSearchPlaceAround': 'חיפוש בסביבת מקום',
-  'strPlaceNotExist': 'לא היה ניתן למצוא את המיקום המבוקש, יש לנסות שנית.',
   'strPlace': 'המיקום:',
   'strCurrentPlace': 'המיקום הנוכחי',
   'strOtherPlace': 'מיקום אחר',
   'strFilters': 'מסננים:',
-  'strPlaceName': 'שם המקום',
+  'strChooseOtherPlace': 'בחירת מיקום אחר',
 
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",
