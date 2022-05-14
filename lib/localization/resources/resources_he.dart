@@ -31,6 +31,8 @@ final Map<String, String> resourcesHe = {
   'strCantIncreaseRadius':'לא ניתן להגדיל את הרדיוס מעבר ל-@maxRadius ק״מ',
   'strAddFilter': 'הוסף מסנן',
   'strNoPlacesAvailable': "אין מיקומים זמינים",
+  'strEmptyPlaceName': "על מנת לבצע חיפוש, יש לבחור מיקום",
+  'strPlaceNotExist': "המיקום המבוקש לא נמצא, יש לנסות לחפש מיקום אחר",
 
   // Search Place Page
   'strChangeRadius': 'הרדיוס הנוכחי',

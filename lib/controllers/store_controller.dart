@@ -75,7 +75,7 @@ class StoreController extends GetxController {
     GoogleAnalytics.instance.logCurrentPlaceMode();
   }
 
-  Future<void> updatePlaceToOtherMode({required String otherPlace}) async {
+  Future<bool> updatePlaceToOtherMode({required String otherPlace}) async {
     PlaceDetails placeDetails = await ClientRequests.instance.getPlaceDetailsByPartiallyName(place: otherPlace);
     if (placeDetails.coordinates != null && placeDetails.name != null) {
       placeCoordinates.value = placeDetails.coordinates!;
@@ -83,7 +83,9 @@ class StoreController extends GetxController {
       placeMode.value = EPlaceMode.other;
       update();
       GoogleAnalytics.instance.logOtherPlaceMode();
+      return true;
     }
+    return false;
   }
 
   Future<bool> updatePlaceToSpecificLocation({required LatLng newPlaceCoordinates}) async {

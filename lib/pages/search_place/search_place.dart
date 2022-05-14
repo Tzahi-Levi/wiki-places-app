@@ -60,11 +60,33 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
       return;
     }
 
+    if (_placeNameController.text == "") {
+      displaySnackbar(
+          title: 'strError'.tr,
+          content: 'strEmptyPlaceName'.tr
+      );
+      return;
+    }
+
     updateIsLoading(true);
     _savePreviousStore();
-    _storeController.updateRadius(_radiusController.value.toString());
-    (_placeModeController.value == EPlaceMode.current) ? await _storeController.updatePlaceToCurrentMode() : await _storeController.updatePlaceToOtherMode(otherPlace: _placeNameController.text);
 
+    if (_placeModeController.value == EPlaceMode.current) {
+      await _storeController.updatePlaceToCurrentMode();
+
+    } else {
+      bool isPlaceExist = await _storeController.updatePlaceToOtherMode(otherPlace: _placeNameController.text);
+      if (!isPlaceExist) {
+        displaySnackbar(
+            title: 'strError'.tr,
+            content: 'strPlaceNotExist'.tr
+        );
+        updateIsLoading(false);
+        return;
+      }
+    }
+
+    _storeController.updateRadius(_radiusController.value.toString());
     if (await _storeController.updatePlacesCollection()) {
       navigateBack();
       displaySearchSuccessfully();
