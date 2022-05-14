@@ -8,15 +8,16 @@ import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/utils.dart';
 
 class SearchPlaceAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const SearchPlaceAppbar({this.showAppTitle = false, this.title, Key? key}) : super(key: key);
+  const SearchPlaceAppbar({this.showAppTitle = false, this.title, this.afterSearchCallback, Key? key}) : super(key: key);
   final bool showAppTitle;
   final String? title;
+  final Function? afterSearchCallback;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   void _openChangeRadiusDialog() {
-    navigateToPage(const SearchPlacePage());
+    navigateToPage(SearchPlacePage(afterSearchCallback: afterSearchCallback));
   }
 
   @override

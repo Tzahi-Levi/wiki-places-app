@@ -11,7 +11,8 @@ import 'package:wiki_places/widgets/filters.dart';
 import 'package:wiki_places/widgets/search_place_widget.dart';
 
 class SearchPlacePage extends StatefulWidget {
-  const SearchPlacePage({Key? key}) : super(key: key);
+  SearchPlacePage({Key? key, this.afterSearchCallback}) : super(key: key);
+  final Function? afterSearchCallback;
 
   @override
   State<SearchPlacePage> createState() => _SearchPlacePageState();
@@ -67,6 +68,9 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
     if (await _storeController.updatePlacesCollection()) {
       navigateBack();
       displaySearchSuccessfully();
+      if (widget.afterSearchCallback != null) {
+        widget.afterSearchCallback!();
+      }
 
     } else {
       _restorePreviousStore();

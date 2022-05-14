@@ -114,7 +114,7 @@ class _MapPageState extends State<MapPage> {
     return GetX<StoreController>(
       builder: (store) => Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: const SearchPlaceAppbar(),
+        appBar: SearchPlaceAppbar(afterSearchCallback: _updateMap),
         body: GoogleMap(
           padding: const EdgeInsets.only(top: 120, bottom: 50),
           onTap: _changePlace,
