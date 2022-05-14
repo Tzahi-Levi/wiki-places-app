@@ -1,6 +1,7 @@
 // ================= Home Page =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/widgets/bottom_navigation.dart';
@@ -50,6 +51,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
     await _storeController.updatePlacesCollection(moveToError: moveToError, reportToGA: false);
     _storeController.updateGlobalIsLoading(false);
+    FlutterNativeSplash.remove();
   }
 
   Widget _openCurrentPage() {
