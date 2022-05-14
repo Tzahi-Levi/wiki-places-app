@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
-import 'package:wiki_places/global/client_requests.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
 
@@ -11,11 +10,6 @@ class SearchPlacesFAB extends StatelessWidget {
   final _storeController = Get.put(StoreController());
 
   void _searchPlaces() async {
-    print("azAZ".runes);
-    print(await ClientRequests.instance.getSuggestions(pattern: "מגד"));
-    return;
-
-
     _storeController.updateGlobalIsLoading(true);
     await _storeController.updatePlacesCollection();
     displaySearchSuccessfully();
