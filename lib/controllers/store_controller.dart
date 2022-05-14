@@ -69,7 +69,7 @@ class StoreController extends GetxController {
     PlaceDetails? placeDetails = await ClientRequests.instance.getPlaceDetailsByCoordinates(coordinates: currentPlace);
 
     placeCoordinates.value = currentPlace;
-    placeName.value = (placeDetails != null && placeDetails.name != null) ? "" : placeDetails!.name!;
+    placeName.value = (placeDetails != null) ? "" : placeDetails!.name;
     placeMode.value = EPlaceMode.current;
     update();
     GoogleAnalytics.instance.logCurrentPlaceMode();
@@ -79,7 +79,7 @@ class StoreController extends GetxController {
     PlaceDetails placeDetails = await ClientRequests.instance.getPlaceDetailsByPartiallyName(place: otherPlace);
     if (placeDetails.coordinates != null && placeDetails.name != null) {
       placeCoordinates.value = placeDetails.coordinates!;
-      placeName.value = placeDetails.name!;
+      placeName.value = placeDetails.name;
       placeMode.value = EPlaceMode.other;
       update();
       GoogleAnalytics.instance.logOtherPlaceMode();
@@ -96,7 +96,7 @@ class StoreController extends GetxController {
     }
 
     placeCoordinates.value = newPlaceCoordinates;
-    placeName.value = (placeDetails.name == null) ? "" : placeDetails.name!;
+    placeName.value = placeDetails.name;
     placeMode.value = EPlaceMode.other;
     update();
     GoogleAnalytics.instance.logOtherPlaceMode();

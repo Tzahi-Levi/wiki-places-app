@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:firebase_performance/firebase_performance.dart';
+import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/pages/image_page/error_page.dart';
 import 'package:wiki_places/global/config.dart';
@@ -41,7 +42,7 @@ class ClientRequests extends GetConnect {
     Trace performanceTrace = _performance.newTrace("getPlaceDetailsByPartiallyName");
     Response response = await get('https://nominatim.openstreetmap.org/search?q=${place.replaceAll(" ", "+")}&format=json&polygon=1&addressdetails=1');
     LatLng? coordinates;
-    String? placeName;
+    String placeName = "";
 
     if (_isResponseSuccess(response) && response.body.length != 0 && response.body[0].keys.contains("lat") && response.body[0].keys.contains("lon") && response.body[0].keys.contains("display_name")) {
       placeName = fullAddressToDisplayedAddress(response.body[0]["display_name"]);
@@ -55,7 +56,7 @@ class ClientRequests extends GetConnect {
   Future<PlaceDetails?> getPlaceDetailsByCoordinates({required LatLng coordinates}) async {
     Trace performanceTrace = _performance.newTrace("getPlaceDetailsByCoordinates");
     Response response = await get('http://nominatim.openstreetmap.org/reverse?format=json&lat=${coordinates.latitude}&lon=${coordinates.longitude}&zoom=18&addressdetails=1');
-    String? placeName;
+    String placeName = "";
 
     if (_isResponseSuccess(response) && response.body["display_name"] != null) {
       placeName = fullAddressToDisplayedAddress(response.body["display_name"]);
@@ -63,5 +64,29 @@ class ClientRequests extends GetConnect {
 
     await performanceTrace.stop();
     return PlaceDetails(name: placeName, coordinates: coordinates);
+  }
+
+  Future<SortedList<Suggestion>> getSuggestions({required String pattern}) async {
+    Trace performanceTrace = _performance.newTrace("getSuggestions");
+    Response response = await get('https://nominatim.openstreetmap.org/search?q=${pattern.replaceAll(" ", "+")}&format=json&polygon=1&addressdetails=1');
+    SortedList<Suggestion> suggestions = getSuggestionsList;
+
+    if (_isResponseSuccess(response)) {
+      for (int placeIndex = 0; placeIndex < response.body.length; placeIndex++) {
+        Suggestion newSuggestion = Suggestion(
+            name: fullAddressToDisplayedAddress(response.body[placeIndex]["display_name"]),
+            coordinates: LatLng(double.parse(response.body[placeIndex]["lat"]), double.parse(response.body[placeIndex]["lon"])),
+            icon: response.body[placeIndex]["icon"]
+        );
+
+        bool isAlreadyExist = suggestions.where((Suggestion suggestion) => suggestion.name == newSuggestion.name).toList().isNotEmpty;
+        if (!isAlreadyExist && newSuggestion.name.contains(pattern)) {
+          suggestions.add(newSuggestion);
+        }
+      }
+    }
+
+    await performanceTrace.stop();
+    return suggestions;
   }
 }

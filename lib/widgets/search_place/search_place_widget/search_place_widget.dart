@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/widgets/radio_buttons.dart';
+import 'package:wiki_places/widgets/search_place/search_place_widget/search_textfield.dart';
 
 class SearchPlaceWidget extends StatefulWidget {
-  SearchPlaceWidget({required this.placeNameController, required this.placeModeController, Key? key}) : super(key: key);
+  const SearchPlaceWidget({required this.placeNameController, required this.placeModeController, Key? key}) : super(key: key);
   final TextEditingController placeNameController;
   final PrimitiveWrapper placeModeController;
 
@@ -29,10 +30,6 @@ class _SearchPlaceWidgetState extends State<SearchPlaceWidget> {
     });
   }
 
-  void _resetText() {
-    widget.placeNameController.text = "";
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,14 +44,7 @@ class _SearchPlaceWidgetState extends State<SearchPlaceWidget> {
             )
           ],
         ),
-        TextField(
-          controller: widget.placeNameController,
-          onTap: _resetText,
-          enabled: widget.placeModeController.value == EPlaceMode.other,
-          decoration: InputDecoration(
-            hintText: 'strChooseOtherPlace'.tr,
-          ),
-        ),
+        SearchTextField(placeNameController: widget.placeNameController, isEnabled: widget.placeModeController.value == EPlaceMode.other),
       ],
     );
   }

@@ -5,6 +5,8 @@ final Map<String, String> resourcesHe = {
   // General
   'strLanguageName': 'עברית',
   'strAppName': ProjectConfig.projectName,
+  'strFirstLetterAscii': "1488",
+  'strLastLetterAscii': "1514",
   'strKm': 'ק״מ',
   'strError': 'שגיאה',
   'strClose': 'סגור',

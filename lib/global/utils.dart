@@ -1,6 +1,8 @@
 // ================= Utils For Project =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:convert';
+import 'dart:math';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/pages/webview/webview.dart';
 import 'package:wiki_places/global/constants.dart';
@@ -105,7 +107,7 @@ void displayAlertDialog({String title = "", Widget? content}) {
 // Converters
 String fullAddressToDisplayedAddress(String address) {
   List addressToken = address.toString().split(",");
-  addressToken.removeRange(GlobalConstants.defaultWordsInPlaceName, addressToken.length);
+  addressToken.removeRange(min<int>(addressToken.length, GlobalConstants.defaultWordsInPlaceName), addressToken.length);
   return addressToken.join(",");
 }
 
@@ -122,6 +124,15 @@ extension St on String {
       }
     }
     return true;
+  }
+
+  bool get isLocale {
+    for (var char in runes) {
+      if (char >= int.parse('strFirstLetterAscii'.tr) && char <= int.parse('strLastLetterAscii'.tr)) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 

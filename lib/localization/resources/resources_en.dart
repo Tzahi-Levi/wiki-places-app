@@ -5,6 +5,8 @@ final Map<String, String> resourcesEn = {
   // General
   'strLanguageName': 'English',
   'strAppName': ProjectConfig.projectName,
+  'strFirstLetterAscii': "65",
+  'strLastLetterAscii': "122",
   'strKm': 'Km',
   'strError': 'Error',
   'strClose': 'Close',
