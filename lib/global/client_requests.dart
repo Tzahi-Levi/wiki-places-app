@@ -44,7 +44,7 @@ class ClientRequests extends GetConnect {
     LatLng? coordinates;
     String placeName = "";
 
-    if (_isResponseSuccess(response) && response.body.length != 0 && response.body[0].keys.contains("lat") && response.body[0].keys.contains("lon") && response.body[0].keys.contains("display_name")) {
+    if (_isResponseSuccess(response) && response.body.length != 0 && response.body[0].keys.contains("lat") && response.body[0].keys.contains("lon") && response.body[0].keys.contains("display_name") && response.body[0]["display_name"].contains(place)) {
       placeName = fullAddressToDisplayedAddress(response.body[0]["display_name"]);
       coordinates = LatLng(double.parse(response.body[0]["lat"]), double.parse(response.body[0]["lon"]));
     }

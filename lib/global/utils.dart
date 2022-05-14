@@ -1,7 +1,6 @@
 // ================= Utils For Project =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:convert';
 import 'dart:math';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/pages/webview/webview.dart';
