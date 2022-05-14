@@ -24,6 +24,7 @@ final Map<String, String> resourcesEn = {
   // Places
   'strSearchPlace': 'Search Places',
   'strSearchSuccessfully': 'Searching for places in radius @radius @scale from @place was done successfully!',
+  'strCurrentPlaceDetails': 'Places in radius @radius @scale from @place',
   'strWikipediaValuesInRadius': '@number places (@radius @scale)',
   'strReadMore': 'Read more',
   'strRadiusMustBePositive': 'The radius must be a positive number',

@@ -39,6 +39,16 @@ void displaySearchSuccessfully() {
       }));
 }
 
+void displayCurrentPlaceDetails() {
+  final StoreController _storeController = Get.put(StoreController());
+  displaySnackbar(
+      content: 'strCurrentPlaceDetails'.trParams({
+        'radius': _storeController.radius.value,
+        'scale': GlobalConstants.defaultScale,
+        'place': _storeController.placeMode.value == EPlaceMode.current ? 'strCurrentPlace'.tr : _storeController.placeName.value,
+      }));
+}
+
 void displaySnackbar({String title = "", String content = ""}) {
   Get.snackbar(title, content,
       titleText: Text(title, style: Get.textTheme.headline6),

@@ -24,6 +24,7 @@ final Map<String, String> resourcesHe = {
   // Places
   'strSearchPlace': 'חפש מקומות',
   'strSearchSuccessfully': 'חיפוש מקומות ברדיוס @radius @scale מ@place בוצע בהצלחה!',
+  'strCurrentPlaceDetails': 'מקומות ברדיוס @radius @scale מ@place',
   'strWikipediaValuesInRadius': '@number מקומות (@radius @scale)',
   'strReadMore': 'קרא עוד',
   'strRadiusMustBePositive': 'הרדיוס חייב להיות מספר חיובי',
