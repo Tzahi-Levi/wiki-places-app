@@ -5,7 +5,6 @@ import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/pages/places/places_page_collection.dart';
 import 'package:wiki_places/global/types.dart';
-import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/global/client_requests.dart';
 import 'package:wiki_places/controllers/location_controller.dart';
 import 'package:wiki_places/global/constants.dart';
@@ -76,7 +75,7 @@ class StoreController extends GetxController {
     GoogleAnalytics.instance.logCurrentPlaceMode();
   }
 
-  Future<void> updatePlaceToOtherMode({String otherPlace = ""}) async {
+  Future<void> updatePlaceToOtherMode({required String otherPlace}) async {
     PlaceDetails placeDetails = await ClientRequests.instance.getPlaceDetailsByPartiallyName(place: otherPlace);
     if (placeDetails.coordinates != null && placeDetails.name != null) {
       placeCoordinates.value = placeDetails.coordinates!;
@@ -87,12 +86,7 @@ class StoreController extends GetxController {
     }
   }
 
-  Future<bool> updatePlaceToSpecificLocation({LatLng? newPlaceCoordinates}) async {
-    if (newPlaceCoordinates == null) {
-      GoogleAnalytics.instance.logError("Given Location In updatePlaceToSpecificLocation Function is null");
-      return false;
-    }
-
+  Future<bool> updatePlaceToSpecificLocation({required LatLng newPlaceCoordinates}) async {
     PlaceDetails? placeDetails = await ClientRequests.instance.getPlaceDetailsByCoordinates(coordinates: newPlaceCoordinates);
     if (placeDetails == null) {
       GoogleAnalytics.instance.logError("getPlaceDetailsByCoordinates failed");
@@ -100,7 +94,7 @@ class StoreController extends GetxController {
     }
 
     placeCoordinates.value = newPlaceCoordinates;
-    placeName.value = (placeDetails.name != null) ? "" : placeDetails.name!;
+    placeName.value = (placeDetails.name == null) ? "" : placeDetails.name!;
     placeMode.value = EPlaceMode.other;
     update();
     GoogleAnalytics.instance.logOtherPlaceMode();

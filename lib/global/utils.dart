@@ -30,7 +30,7 @@ void openWikipedia(String url) {
 
 // Messages
 void displaySearchSuccessfully() {
-  final _storeController = Get.put(StoreController());
+  final StoreController _storeController = Get.put(StoreController());
   displaySnackbar(
       content: 'strSearchSuccessfully'.trParams({
         'radius': _storeController.radius.value,

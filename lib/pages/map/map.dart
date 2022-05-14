@@ -13,7 +13,7 @@ import 'package:wiki_places/global/map_style/map_style_dark.dart';
 import 'package:wiki_places/global/map_style/map_style_light.dart';
 
 class MapPage extends StatefulWidget {
-  MapPage({Key? key}) : super(key: key);
+  const MapPage({Key? key}) : super(key: key);
 
   @override
   State<MapPage> createState() => _MapPageState();
@@ -99,18 +99,22 @@ class _MapPageState extends State<MapPage> {
   void _changePlace(LatLng newPlace) async {
     _storeController.updateGlobalIsLoading(true);
     _savePreviousStore();
-    await _storeController.updatePlaceToSpecificLocation(newPlaceCoordinates: newPlace) && await _storeController.updatePlacesCollection() ? displaySearchSuccessfully() : _restorePreviousStore();
+    if (await _storeController.updatePlaceToSpecificLocation(newPlaceCoordinates: newPlace) && await _storeController.updatePlacesCollection()) {
+      displaySearchSuccessfully();
+      _updateMap();
+
+    } else {
+      _restorePreviousStore();
+    }
     _storeController.updateGlobalIsLoading(false);
   }
 
   @override
   Widget build(BuildContext context) {
-    _updateMap();
-
     return GetX<StoreController>(
       builder: (store) => Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: SearchPlaceAppbar(),
+        appBar: const SearchPlaceAppbar(),
         body: GoogleMap(
           padding: const EdgeInsets.only(top: 120, bottom: 50),
           onTap: _changePlace,
