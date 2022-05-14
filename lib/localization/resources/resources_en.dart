@@ -15,6 +15,7 @@ final Map<String, String> resourcesEn = {
   'strLocationPermissionDenied': 'This feature has to use location permission, please allow it in the device settings.',
   'strTryAgain': 'Error has been occurred, please try again later',
   'strLoadMore': 'Load More',
+  'strUndo': 'Undo',
 
   // Navigation
   'strMapPageName': 'Map',
@@ -44,6 +45,8 @@ final Map<String, String> resourcesEn = {
   'strOtherPlace': 'Other Place',
   'strFilters': 'Filters:',
   'strChooseOtherPlace': 'Choose Other Place',
+  'strEmptyFilter': 'Choose filter name for adding a filter',
+  'strFilterRemoved': 'The filter has been removed successfully!',
 
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",

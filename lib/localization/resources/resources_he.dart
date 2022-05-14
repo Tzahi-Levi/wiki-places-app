@@ -15,6 +15,7 @@ final Map<String, String> resourcesHe = {
   'strLocationPermissionDenied': 'הפעולה עושה שימוש בהרשאות המיקום, יש לאפשר לאפליקציה לגשת למיקום דרך הגדרות המכשיר.',
   'strTryAgain': 'שגיאה התרחשה בעת הפעולה, יש לנסות שנית מאוחר יותר',
   'strLoadMore': 'טען עוד',
+  'strUndo': 'בטל',
 
   // Navigation
   'strMapPageName': 'מפה',
@@ -44,6 +45,8 @@ final Map<String, String> resourcesHe = {
   'strOtherPlace': 'מיקום אחר',
   'strFilters': 'מסננים:',
   'strChooseOtherPlace': 'בחירת מיקום אחר',
+  'strEmptyFilter': 'על מנת להוסיף מסנן, יש לציין את שמו',
+  'strFilterRemoved': 'המסנן הוסר בהצלחה!',
 
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",

@@ -50,15 +50,27 @@ void displayCurrentPlaceDetails() {
       }));
 }
 
-void displaySnackbar({String title = "", String content = ""}) {
-  Get.snackbar(title, content,
-      titleText: Text(title, style: Get.textTheme.headline6),
-      messageText: Text(content, style: Get.textTheme.headline6),
-      snackPosition: SnackPosition.BOTTOM,
-      barBlur: 50, 
-      snackStyle: SnackStyle.FLOATING, 
-      margin: const EdgeInsets.only(left: 5, right: 5, bottom: 10),
-      padding: const EdgeInsets.only(bottom: 30, left: 40, right: 40)
+void displayUndoSnackbar({required String content, required VoidCallback callback, String title = ""}) {
+  displaySnackbar(
+      content: content,
+      title: title,
+      mainButton: TextButton(onPressed: callback, child: Text("strUndo".tr))
+  );
+}
+
+void displaySnackbar({required String content, String title = "", TextButton? mainButton}) {
+  Get.snackbar(
+    title,
+    content,
+    mainButton: mainButton,
+    titleText: Text(title, style: Get.textTheme.headline6),
+    messageText: Text(content, style: Get.textTheme.headline6),
+    snackPosition: SnackPosition.BOTTOM,
+    barBlur: 50,
+    snackStyle: SnackStyle.FLOATING,
+    margin: const EdgeInsets.only(left: 5, right: 5, bottom: 10),
+    padding: const EdgeInsets.only(bottom: 30, left: 40, right: 40),
+    reverseAnimationCurve: Curves.easeOut,
   );
 }
 
