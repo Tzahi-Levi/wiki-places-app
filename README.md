@@ -1,6 +1,4 @@
-<p align="center">
 # WikiPo
-</p>
 
 
 > WikiPo is an application which provides to the user the ability to search information on places that are located around to him. The user can search places around him easily, and can get the information directly from wikipedia.
