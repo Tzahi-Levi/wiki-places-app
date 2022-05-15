@@ -34,6 +34,9 @@ class SearchTextField extends StatelessWidget {
           hintText: 'strChooseOtherPlace'.tr,
         ),
       ),
+      minCharsForSuggestions: 1,
+      hideOnEmpty: true,
+      noItemsFoundBuilder: (context) => const Text(""),
       suggestionsCallback: _getSuggestions,
       onSuggestionSelected: _onSuggestionSelected,
       itemBuilder: (BuildContext context, Suggestion suggestion) {
