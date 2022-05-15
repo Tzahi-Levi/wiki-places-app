@@ -54,7 +54,7 @@ void displayUndoSnackbar({required String content, required VoidCallback callbac
   displaySnackbar(
       content: content,
       title: title,
-      mainButton: TextButton(onPressed: callback, child: Text("strUndo".tr))
+      mainButton: TextButton(onPressed: callback, child: Text("strUndo".tr, style: Get.textTheme.bodyText2))
   );
 }
 

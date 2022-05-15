@@ -31,48 +31,59 @@ class PlaceholderPage extends StatelessWidget {
       appBar: appBar != null ? appBar! : WikiPlacesAppBar(
         showAppTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Stack(
         children: [
-          Center(
-            child: Padding(
-              padding: EdgeInsets.only(top: size.height * 0.2),
-              child: Container(
-                width: size.width * 0.7,
-                height: size.width * 0.7,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(size.width * 0.35),
-                  color: Get.theme.primaryColor,
-                  boxShadow: const [BoxShadow(color: Colors.black38, blurRadius: 5, offset: Offset(5, 5))]
-                ),
-                child: Center(
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: _textToken[0],
-                        ),
-                        WidgetSpan(
-                          child: firstIcon == null ? Container() : Icon(firstIcon, color: Colors.white),
-                        ),
-                        TextSpan(
-                          text: _textToken.length > 1 ? _textToken[1] : "",
-                        ),
-                        WidgetSpan(
-                          child: secondIcon == null ? Container() : Icon(secondIcon, color: Colors.white),
-                        ),
-                        TextSpan(
-                          text: _textToken.length > 2 ?_textToken[2] : "",
-                        ),
-                      ],
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(GlobalConstants.appBackgroundImage),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Center(
+              child: Padding(
+                padding: EdgeInsets.only(top: size.height * 0.2),
+                child: Container(
+                  width: size.width * 0.7,
+                  height: size.width * 0.7,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(size.width * 0.35),
+                    color: Get.theme.primaryColor,
+                    boxShadow: const [BoxShadow(color: Colors.black38, blurRadius: 5, offset: Offset(5, 5))]
+                  ),
+                  child: Center(
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: _textToken[0],
+                          ),
+                          WidgetSpan(
+                            child: firstIcon == null ? Container() : Icon(firstIcon, color: Colors.white),
+                          ),
+                          TextSpan(
+                            text: _textToken.length > 1 ? _textToken[1] : "",
+                          ),
+                          WidgetSpan(
+                            child: secondIcon == null ? Container() : Icon(secondIcon, color: Colors.white),
+                          ),
+                          TextSpan(
+                            text: _textToken.length > 2 ?_textToken[2] : "",
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        )],
       ),
       floatingActionButton: SearchPlacesFAB(),
     );

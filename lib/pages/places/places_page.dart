@@ -64,7 +64,10 @@ class PlacesPage extends StatelessWidget {
             ),
             ListView(
               children: _getPlaces() + [
-                ElevatedButton(onPressed: _loadMore, child: Text('strLoadMore'.tr)),
+                Padding(
+                  padding: EdgeInsets.only(left: Get.width * 0.33, right: Get.width * 0.33),
+                  child: ElevatedButton(onPressed: _loadMore, child: Text('strLoadMore'.tr)),
+                ),
                 const Padding(
                   padding: EdgeInsets.only(bottom: 65.0),
                   child: AboutTheApp(),

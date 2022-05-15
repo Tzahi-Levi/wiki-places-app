@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
+import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/widgets/appbar.dart';
 import 'package:wiki_places/widgets/search_place/change_radius_slider.dart';
@@ -11,7 +12,7 @@ import 'package:wiki_places/widgets/search_place/filters.dart';
 import 'package:wiki_places/widgets/search_place/search_place_widget/search_place_widget.dart';
 
 class SearchPlacePage extends StatefulWidget {
-  SearchPlacePage({Key? key, this.afterSearchCallback}) : super(key: key);
+  const SearchPlacePage({Key? key, this.afterSearchCallback}) : super(key: key);
   final Function? afterSearchCallback;
 
   @override
@@ -107,15 +108,31 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
       isLoading: _isLoading,
       child: Scaffold(
         appBar: WikiPlacesAppBar(title: 'strSearchPlaceAround'.tr),
-        body: Column(
+        body: Stack(
           children: [
-            SearchPlaceWidget(placeNameController: _placeNameController, placeModeController: _placeModeController),
-            const Divider(),
-            const Filters(),
-            const Divider(),
-            ChangeRadiusSlider(controller: _radiusController),
-            ElevatedButton(onPressed: _searchPlace, child: Text('strSearch'.tr)),
-          ],
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(GlobalConstants.appBackgroundImage),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  SearchPlaceWidget(placeNameController: _placeNameController, placeModeController: _placeModeController),
+                  const Divider(),
+                  const Filters(),
+                  const Divider(),
+                  ChangeRadiusSlider(controller: _radiusController),
+                  ElevatedButton(onPressed: _searchPlace, child: Text('strSearch'.tr)),
+                ],
+              ),
+            ),
+          )],
         ),
       ),
     );

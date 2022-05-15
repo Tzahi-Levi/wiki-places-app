@@ -33,6 +33,7 @@ class _ChangeRadiusSliderState extends State<ChangeRadiusSlider> {
     return Padding(
       padding: const EdgeInsets.only(top: 15),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('strChangeRadius'.tr),
           Slider(
