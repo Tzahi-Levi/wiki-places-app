@@ -24,16 +24,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     super.initState();
     _searchPlaces();
 
-    if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.addObserver(this);
-    }
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
-    if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.removeObserver(this);
-    }
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
