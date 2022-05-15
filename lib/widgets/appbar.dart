@@ -8,15 +8,16 @@ import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/utils.dart';
 
 class SearchPlaceAppbar extends StatelessWidget implements PreferredSizeWidget {
-  SearchPlaceAppbar({this.showAppTitle = false, this.title, Key? key}) : super(key: key);
+  const SearchPlaceAppbar({this.showAppTitle = false, this.title, this.afterSearchCallback, Key? key}) : super(key: key);
   final bool showAppTitle;
   final String? title;
+  final Function? afterSearchCallback;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   void _openChangeRadiusDialog() {
-    navigateToPage(SearchPlacePage());
+    navigateToPage(SearchPlacePage(afterSearchCallback: afterSearchCallback));
   }
 
   @override
@@ -25,6 +26,10 @@ class SearchPlaceAppbar extends StatelessWidget implements PreferredSizeWidget {
       showAppTitle: showAppTitle,
       title: title,
       actions: [
+        IconButton(
+          onPressed: displayCurrentPlaceDetails,
+          icon: Icon(GlobalConstants.infoIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
+        ),
         IconButton(
           onPressed: _openChangeRadiusDialog,
           icon: Icon(GlobalConstants.searchIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
@@ -54,8 +59,8 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
     }
 
     switch (_storeController.currentMainAppPage.value) {
-      case AppPages.places:
-      case AppPages.map:
+      case EAppPages.places:
+      case EAppPages.map:
         return 'strWikipediaValuesInRadius'.trParams({
           'number': _storeController.placesCollection.value.length.toString(),
           'radius': _storeController.radius.value,

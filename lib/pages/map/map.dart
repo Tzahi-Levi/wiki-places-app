@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
@@ -12,7 +13,7 @@ import 'package:wiki_places/global/map_style/map_style_dark.dart';
 import 'package:wiki_places/global/map_style/map_style_light.dart';
 
 class MapPage extends StatefulWidget {
-  MapPage({Key? key}) : super(key: key);
+  const MapPage({Key? key}) : super(key: key);
 
   @override
   State<MapPage> createState() => _MapPageState();
@@ -21,6 +22,7 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   final _storeController = Get.put(StoreController());
   GoogleMapController? _controller;
+  Json _previousStore = {};
 
   void _updateMap() {
     if (_controller != null) {
@@ -28,7 +30,7 @@ class _MapPageState extends State<MapPage> {
       _controller!.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
-            target: _storeController.currentPlace.value,
+            target: _storeController.placeCoordinates.value,
             zoom: GlobalConstants.defaultZoomMap,
           ),
         ),
@@ -66,13 +68,13 @@ class _MapPageState extends State<MapPage> {
       ));
     }
 
-    if (!_storeController.isCurrentPlace.value) {
+    if (_storeController.placeMode.value == EPlaceMode.other) {
       places.add(Marker(
         markerId: const MarkerId("currentPlace"),
         icon: BitmapDescriptor.defaultMarkerWithHue(GlobalConstants.currentPlaceMarkerColor),
-        position: _storeController.currentPlace.value,
+        position: _storeController.placeCoordinates.value,
         infoWindow: InfoWindow(
-          title: 'Your chosen place',  // TODO- use name here
+          title: _storeController.placeName.value,
           snippet: 'strYourChosenPlace'.tr,
         ),
       ));
@@ -81,23 +83,43 @@ class _MapPageState extends State<MapPage> {
     return places;
   }
 
-  void _changePlace(LatLng newPlace) {
-    searchPlace(placeCoordinates: newPlace);
+  void _savePreviousStore() {
+    _previousStore = {
+      'radius': _storeController.radius.value,
+      'placeCoordinates': _storeController.placeCoordinates.value,
+      'placeName': _storeController.placeName.value,
+      'placeMode': _storeController.placeMode.value
+    };
+  }
+
+  void _restorePreviousStore() {
+    _storeController.setStore(_previousStore);
+  }
+
+  void _changePlace(LatLng newPlace) async {
+    _storeController.updateGlobalIsLoading(true);
+    _savePreviousStore();
+    if (await _storeController.updatePlaceToSpecificLocation(newPlaceCoordinates: newPlace) && await _storeController.updatePlacesCollection()) {
+      displaySearchSuccessfully();
+      _updateMap();
+
+    } else {
+      _restorePreviousStore();
+    }
+    _storeController.updateGlobalIsLoading(false);
   }
 
   @override
   Widget build(BuildContext context) {
-    _updateMap();
-
     return GetX<StoreController>(
       builder: (store) => Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: SearchPlaceAppbar(),
+        appBar: SearchPlaceAppbar(afterSearchCallback: _updateMap),
         body: GoogleMap(
           padding: const EdgeInsets.only(top: 120, bottom: 50),
           onTap: _changePlace,
           initialCameraPosition: CameraPosition(
-              target: _storeController.currentPlace.value,
+              target: _storeController.placeCoordinates.value,
               zoom: GlobalConstants.defaultZoomMap,
           ),
           onMapCreated: _onMapCreated,
@@ -106,11 +128,11 @@ class _MapPageState extends State<MapPage> {
           circles: {
             Circle(
               circleId: const CircleId('currentCircle'),
-              center: LatLng(_storeController.currentPlace.value.latitude, _storeController.currentPlace.value.longitude),
+              center: LatLng(_storeController.placeCoordinates.value.latitude, _storeController.placeCoordinates.value.longitude),
               radius: double.parse(_storeController.radius.value) * 1000, // Convert Km to m
               fillColor: Colors.blue.shade100.withOpacity(0.5),
               strokeWidth: 2,
-              strokeColor:  Colors.blue.shade100,
+              strokeColor: Colors.blue.shade100,
             ),
           },
         ),

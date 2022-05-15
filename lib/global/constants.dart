@@ -25,8 +25,10 @@ class GlobalConstants {
   static const IconData placesPageOutLinedIcon = Icons.home_outlined;
   static const IconData placesPageSelectedIcon = Icons.home;
   static const IconData searchIcon = Icons.search;
+  static const IconData infoIcon = Icons.info;
   static const IconData refreshIcon = Icons.refresh;
   static const IconData addIcon = Icons.add;
+  static const IconData placeIcon = Icons.place;
 
   // Map
   static const Json defaultInitialMapLocation = {"lat": 32.7775, "lon": 35.02166667}; // Technion Location

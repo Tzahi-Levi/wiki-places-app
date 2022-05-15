@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:simple_tags/simple_tags.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
+import 'package:wiki_places/global/utils.dart';
 
 class Filters extends StatefulWidget {
   const Filters({Key? key}) : super(key: key);
@@ -22,19 +23,24 @@ class _FiltersState extends State<Filters> {
     super.dispose();
   }
 
-  void _addFilter() {  // TODO- add logs to GA
-    if (_filterController.text.isNotEmpty) {
+  void _addFilter([String? filter]) {
+    filter ??= _filterController.text;
+    if (filter.isNotEmpty) {
       setState(() {
-        _storeController.addPlaceFilter(_filterController.text);
+        _storeController.addPlaceFilter(filter!);
         _filterController.text = "";
       });
+      FocusScope.of(Get.context!).unfocus(); // Remove the keyboard
+    } else {
+      displaySnackbar(content: 'strEmptyFilter'.tr, title: 'strError'.tr);
     }
   }
 
-  void _removeFilter(String filter) {  // TODO- add snackbar with UNDO
+  void _removeFilter(String filter) {
     setState(() {
       _storeController.removePlaceFilter(filter);
     });
+    displayUndoSnackbar(content: 'strFilterRemoved'.tr, callback: () => _addFilter(filter));
   }
 
   @override

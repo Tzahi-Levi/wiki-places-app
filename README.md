@@ -5,7 +5,7 @@
 
 
 <p align="center">
-  <a href=''><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="250" height="100"/></a>
+  <a href='https://play.google.com/store/apps/details?id=com.technion.android.wikiplaces.wiki_places'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="250" height="100"/></a>
 </p>
 
 
@@ -28,11 +28,12 @@
 ## Core Features
 
 
-* [ ] Search for places around you easily.
-* [ ] Watch the title, abstract, and image of the places around you (from wikipedia).
-* [ ] Open the full wikipedia page in the app as web view.
-* [ ] See all the places around you on a map.
+* [ ] Search for places around you and far from you easily.
+* [ ] Watch the title, abstract, and image of the places (from wikipedia).
+* [ ] Open the full wikipedia page in the app as a web view.
+* [ ] See all the places around you and far from on a map.
 * [ ] Change the radius you want to search around.
+* [ ] Get arrival instruction for each place.
 
 
 ## Disclaimer

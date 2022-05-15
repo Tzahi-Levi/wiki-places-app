@@ -25,19 +25,20 @@ class PlacesPage extends StatelessWidget {
     return placesList;
   }
 
-  void _loadMore() {
+  void _loadMore() async {
+    _storeController.updateGlobalIsLoading(true);
     double currentRadius = double.parse(_storeController.radius.value);
+
     if (currentRadius >= GlobalConstants.maxRadius) {
       displaySnackbar(title: 'strError'.tr, content: 'strCantIncreaseRadius'.trParams({
         'maxRadius': GlobalConstants.maxRadius.toString(),
       }));
-      return;
-    }
 
-    _storeController.updateIsLoading(true);
-    _storeController.changeRadius(min<double>(GlobalConstants.maxRadius, currentRadius + GlobalConstants.defaultLoadMoreStep).toString());
-    _storeController.searchPlaces();
-    _storeController.updateIsLoading(false);
+    } else {
+      _storeController.updateRadius(min<double>(GlobalConstants.maxRadius, currentRadius + GlobalConstants.defaultLoadMoreStep).toString());
+      await _storeController.updatePlacesCollection();
+    }
+    _storeController.updateGlobalIsLoading(false);
   }
 
   @override
