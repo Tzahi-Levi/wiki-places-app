@@ -34,7 +34,7 @@ class _FiltersState extends State<Filters> {
   void _addFilter([String? filter]) {
     filter ??= _filterController.text;
     if (filter.isNotEmpty) {
-      _storeController.addPlaceFilter(filter!);
+      _storeController.addPlaceFilter(filter);
       _filterController.text = "";
       FocusScope.of(Get.context!).unfocus(); // Remove the keyboard
     } else {
