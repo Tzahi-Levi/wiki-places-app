@@ -31,6 +31,9 @@ class SearchTextField extends StatelessWidget {
         onTap: _resetText,
         enabled: isEnabled,
         decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
           hintText: 'strChooseOtherPlace'.tr,
         ),
       ),

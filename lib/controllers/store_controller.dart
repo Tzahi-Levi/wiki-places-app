@@ -40,10 +40,12 @@ class StoreController extends GetxController {
   }
 
   void addPlaceFilter(String filter) {
-    placeFilters.value.add(filter);
-    placeFilters.refresh();
-    updatePlacesCollection(reportToGA: false);
-    GoogleAnalytics.instance.logFilterAdded();
+    if (!placeFilters.value.contains(filter)) {
+      placeFilters.value.add(filter);
+      placeFilters.refresh();
+      updatePlacesCollection(reportToGA: false);
+      GoogleAnalytics.instance.logFilterAdded();
+    }
   }
 
   void removePlaceFilter(String filter) {

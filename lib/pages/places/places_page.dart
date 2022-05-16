@@ -15,7 +15,7 @@ class PlacesPage extends StatelessWidget {
   PlacesPage({Key? key}) : super(key: key);
   final _storeController = Get.put(StoreController());
 
-  List<Widget> _getPlaces() {
+  List<Widget> get _getPlaces {
     final _places = _storeController.placesCollection.value.places;
     List<Widget> placesList = [];
     for (var placeData in _places.getRange(0, _places.length - 1)) {
@@ -48,10 +48,10 @@ class PlacesPage extends StatelessWidget {
       _storeController.placesCollection.value.isEmpty ?
       PlaceholderPage(
           content: 'strNoPlacesAvailable'.tr,
-          appBar: SearchPlaceAppbar(showAppTitle: true),
+          appBar: const SearchPlaceAppbar(showAppTitle: true),
       ) : Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: SearchPlaceAppbar(),
+        appBar: const SearchPlaceAppbar(),
         body: Stack(
           children: [
             Container(
@@ -63,8 +63,11 @@ class PlacesPage extends StatelessWidget {
               ),
             ),
             ListView(
-              children: _getPlaces() + [
-                ElevatedButton(onPressed: _loadMore, child: Text('strLoadMore'.tr)),
+              children: _getPlaces + [
+                Padding(
+                  padding: EdgeInsets.only(left: Get.width * 0.33, right: Get.width * 0.33),
+                  child: ElevatedButton(onPressed: _loadMore, child: Text('strLoadMore'.tr)),
+                ),
                 const Padding(
                   padding: EdgeInsets.only(bottom: 65.0),
                   child: AboutTheApp(),
