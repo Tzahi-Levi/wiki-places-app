@@ -21,7 +21,7 @@ class LocationController {
 
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
-        _storeController.changeMainAppPage(AppPages.places);
+        _storeController.updateMainAppPage(EAppPages.places);
         displayAlertDialog(title: 'strError'.tr, content: Text('strLocationPermissionDenied'.tr));
         GoogleAnalytics.instance.logPermissionDenied();
         return null;

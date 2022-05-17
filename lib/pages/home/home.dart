@@ -1,6 +1,7 @@
 // ================= Home Page =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/widgets/bottom_navigation.dart';
@@ -15,26 +16,46 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   final _storeController = Get.put(StoreController());
 
   @override
   void initState() {
     super.initState();
-    _initPlaces();
+    _searchPlaces();
+
+    WidgetsBinding.instance.addObserver(this);
   }
 
-  void _initPlaces() async {
-    _storeController.updateIsLoading(true);
-    await _storeController.searchPlaces();
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _searchPlaces(resetCurrentPlace: false, moveToError: false);
+    }
+  }
+
+  void _searchPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
+    _storeController.updateGlobalIsLoading(true);
+    if (resetCurrentPlace) {
+      _storeController.updatePlaceToCurrentMode();
+    }
+    await _storeController.updatePlacesCollection(moveToError: moveToError, reportToGA: false);
+    _storeController.updateGlobalIsLoading(false);
+    FlutterNativeSplash.remove();
   }
 
   Widget _openCurrentPage() {
     switch (_storeController.currentMainAppPage.value) {
-      case AppPages.map:
+      case EAppPages.map:
         return MapPage();
 
-      case AppPages.places:
+      case EAppPages.places:
       default:
         return PlacesPage();
     }
@@ -46,7 +67,7 @@ class _HomePageState extends State<HomePage> {
         builder: (store) => Scaffold(
             extendBodyBehindAppBar: true,
             body: LoadingOverlay(
-              isLoading: _storeController.isLoading.value,
+              isLoading: _storeController.globalIsLoading.value,
               child: Stack(
                 children: [
                   Padding(

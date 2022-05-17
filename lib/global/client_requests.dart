@@ -1,36 +1,92 @@
 // ================= Client Requests =================
 import 'package:get/get.dart';
+import 'dart:convert';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:firebase_performance/firebase_performance.dart';
+import 'package:sorted_list/sorted_list.dart';
+import 'package:wiki_places/metrics/google_analytics.dart';
+import 'package:wiki_places/pages/image_page/error_page.dart';
 import 'package:wiki_places/global/config.dart';
-import 'package:wiki_places/localization/resources/resources_en.dart';
 import 'package:wiki_places/global/types.dart';
+import 'package:wiki_places/global/utils.dart';
+import 'package:wiki_places/localization/resources/resources_en.dart';
 
 class ClientRequests extends GetConnect {
   static final ClientRequests _instance = ClientRequests._();
   static ClientRequests get instance => _instance;
   ClientRequests._();
 
-  bool isResponseSuccess(Response response) {
+  final FirebasePerformance _performance = FirebasePerformance.instance;
+
+  bool _isResponseSuccess(Response response) {
     return response.statusCode == 200;
   }
 
-  Future<Response> getPlacesData({String radius = '', double lat = 0, double lon = 0}) => get('http://${ProjectConfig.serverAddress}''/wiki_by_place?radius=$radius${resourcesEn['strKm']!.toLowerCase()}&lat,lon=${lat.toString()},${lon.toString()}');
+  Future<List<dynamic>?> getPlacesData({required String radius, required double lat, required double lon, bool moveToError = false}) async {
+    Trace performanceTrace = _performance.newTrace("GetPlacesData");
+    Response response = await get('http://${ProjectConfig.serverAddress}''/wiki_by_place?radius=$radius${resourcesEn['strKm']!.toLowerCase()}&lat,lon=${lat.toString()},${lon.toString()}');
+    List<dynamic>? placeJson;
 
-  Future<String?> getPlaceImageUrl({String placeTitle = ""}) async {
-    Response response = await get('http://${ProjectConfig.serverLanguage}.wikipedia.org/w/api.php?action=query&titles=${placeTitle.replaceAll(" ", "_")}&prop=images&format=json');
+    if (_isResponseSuccess(response)) {
+      placeJson = json.decode(response.body);
+    } else {
+      moveToError ? navigateWithNoBack(const ErrorPage()) : displaySnackbar(content: 'strTryAgain'.tr);
+      GoogleAnalytics.instance.logError("getPlacesData did not succeeded");
+    }
 
-    if (isResponseSuccess(response)) {
+    await performanceTrace.stop();
+    return placeJson;
+  }
 
-      Json imageTokens = Json.from(response.body);
-      if (imageTokens.keys.contains("continue") && imageTokens["continue"].keys.contains("imcontinue")) {
-        String image = imageTokens["continue"]["imcontinue"];
+  Future<PlaceDetails> getPlaceDetailsByPartiallyName({required String place}) async {
+    Trace performanceTrace = _performance.newTrace("getPlaceDetailsByPartiallyName");
+    Response response = await get('https://nominatim.openstreetmap.org/search?q=${place.replaceAll(" ", "+")}&format=json&polygon=1&addressdetails=1');
+    LatLng? coordinates;
+    String placeName = "";
 
-        response = await get('http://${ProjectConfig.serverLanguage}.wikipedia.org/w/api.php?action=query&titles=File:${image.substring(image.indexOf("|") + 1)}&prop=imageinfo&iiprop=url&format=json');
-        if (isResponseSuccess(response)) {
-          return Json.from(response.body)["query"]?["pages"]?["-1"]?["imageinfo"]?[0]?["url"];
+    if (_isResponseSuccess(response) && response.body.length != 0 && response.body[0].keys.contains("lat") && response.body[0].keys.contains("lon") && response.body[0].keys.contains("display_name") && response.body[0]["display_name"].contains(place)) {
+      placeName = fullAddressToDisplayedAddress(response.body[0]["display_name"]);
+      coordinates = LatLng(double.parse(response.body[0]["lat"]), double.parse(response.body[0]["lon"]));
+    }
+
+    await performanceTrace.stop();
+    return PlaceDetails(name: placeName, coordinates: coordinates);
+  }
+
+  Future<PlaceDetails?> getPlaceDetailsByCoordinates({required LatLng coordinates}) async {
+    Trace performanceTrace = _performance.newTrace("getPlaceDetailsByCoordinates");
+    Response response = await get('http://nominatim.openstreetmap.org/reverse?format=json&lat=${coordinates.latitude}&lon=${coordinates.longitude}&zoom=18&addressdetails=1');
+    String placeName = "";
+
+    if (_isResponseSuccess(response) && response.body["display_name"] != null) {
+      placeName = fullAddressToDisplayedAddress(response.body["display_name"]);
+    }
+
+    await performanceTrace.stop();
+    return PlaceDetails(name: placeName, coordinates: coordinates);
+  }
+
+  Future<SortedList<Suggestion>> getSuggestions({required String pattern}) async {
+    Trace performanceTrace = _performance.newTrace("getSuggestions");
+    Response response = await get('https://nominatim.openstreetmap.org/search?q=${pattern.replaceAll(" ", "+")}&format=json&polygon=1&addressdetails=1');
+    SortedList<Suggestion> suggestions = getSuggestionsList;
+
+    if (_isResponseSuccess(response)) {
+      for (int placeIndex = 0; placeIndex < response.body.length; placeIndex++) {
+        Suggestion newSuggestion = Suggestion(
+            name: fullAddressToDisplayedAddress(response.body[placeIndex]["display_name"]),
+            coordinates: LatLng(double.parse(response.body[placeIndex]["lat"]), double.parse(response.body[placeIndex]["lon"])),
+            icon: response.body[placeIndex]["icon"]
+        );
+
+        bool isAlreadyExist = suggestions.where((Suggestion suggestion) => suggestion.name == newSuggestion.name).toList().isNotEmpty;
+        if (!isAlreadyExist && newSuggestion.name.contains(pattern)) {
+          suggestions.add(newSuggestion);
         }
       }
     }
 
-    return null;
+    await performanceTrace.stop();
+    return suggestions;
   }
 }

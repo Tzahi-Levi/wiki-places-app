@@ -5,28 +5,53 @@ final Map<String, String> resourcesEn = {
   // General
   'strLanguageName': 'English',
   'strAppName': ProjectConfig.projectName,
+  'strFirstLetterAscii': "65",
+  'strLastLetterAscii': "122",
   'strKm': 'Km',
   'strError': 'Error',
   'strClose': 'Close',
+  'strRefresh': 'Refresh',
+  'strSearch': 'Search',
   'strLocationPermissionDenied': 'This feature has to use location permission, please allow it in the device settings.',
+  'strTryAgain': 'Error has been occurred, please try again later',
+  'strLoadMore': 'Load More',
+  'strUndo': 'Undo',
 
   // Navigation
   'strMapPageName': 'Map',
   'strPlacesPageName': 'Places',
 
+  // Map
+  'strYourChosenPlace': 'Your chosen place',
+
   // Places
   'strSearchPlace': 'Search Places',
-  'strSearchSuccessfully': 'Searching for places in radius @radius @scale was done successfully',
+  'strSearchSuccessfully': 'Searching for places in radius @radius @scale from @place was done successfully!',
+  'strCurrentPlaceDetails': 'Places in radius @radius @scale from @place',
   'strWikipediaValuesInRadius': '@number places (@radius @scale)',
-  'strSetRadius': 'To see information about the places in your area, please click on the search button @ or set the radius by clicking on # at the top of this page',
   'strReadMore': 'Read more',
-  'strChangeRadius': 'Change radius',
   'strRadiusMustBePositive': 'The radius must be a positive number',
-  'strNoImage':'No Image To Display',
+  'strCantIncreaseRadius': "The radius can't be increased above @maxRadius km",
+  'strNoPlacesAvailable': "There are not places available",
+  'strEmptyPlaceName': "For searching places, please choose a place name",
+  'strPlaceNotExist': "The chosen place is not found, please try to search another place",
+
+  // Search Place Page
+  'strChangeRadius': 'Current radius',
+  'strSearchPlaceAround': 'Search Around Place',
+  'strAddFilter': 'Add filter',
+  'strPlace': 'Place:',
+  'strCurrentPlace': 'Current Place',
+  'strOtherPlace': 'Other Place',
+  'strFilters': 'Filters:',
+  'strChooseOtherPlace': 'Choose Other Place',
+  'strEmptyFilter': 'Choose filter name for adding a filter',
+  'strFilterRemoved': 'The filter has been removed successfully!',
 
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",
   'strLostConnectionImage': "Lost Connection Image",
   'strErrorPageConnection': "Error Image",
+  'strBackgroundImage': "Background Image",
   'strAboutTheApp': "About the app",
 };

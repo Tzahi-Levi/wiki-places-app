@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wiki_places/widgets/neumorphic_rectangle.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/utils.dart';
 
@@ -24,7 +23,7 @@ class Place extends StatelessWidget {
           ),
           child: SizedBox(
             width: Get.width * 0.9,
-            height: (model.imageUrl == null || model.imageUrl!.contains(".svg")) && model.abstract == "" ? 120 : 170,
+            height: model.imageUrl == "" && model.abstract == "" ? 120 : 170,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
@@ -35,7 +34,7 @@ class Place extends StatelessWidget {
                   child: Text(model.label, style: Get.textTheme.headline2, overflow: TextOverflow.ellipsis, maxLines: 1,),
                 )),
                 SizedBox(
-                  height: (model.imageUrl == null || model.imageUrl!.contains(".svg")) && model.abstract == "" ? 50 : 80,
+                  height: model.imageUrl == "" && model.abstract == "" ? 50 : 80,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -55,22 +54,19 @@ class Place extends StatelessWidget {
                           ],
                         ),
                       ),
-                      !model.loadedImages ?
-                      Container(width: 100, height: 100, color: Colors.black38,
-                        child: const Padding(
-                          padding: EdgeInsets.all(50),
-                          child: CircularProgressIndicator(backgroundColor: Colors.black38,),
+                      Visibility(
+                        visible: model.imageUrl != "",
+                        child: Container(
+                            width: 100,
+                            height: 100,
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(20),
+                                    bottomRight: Radius.circular(20),
+                                ),
+                            ),
+                            child: Image.network(model.imageUrl, width: 100, height: 100),
                         ),
-                      ) : model.imageUrl == null || model.imageUrl!.contains(".svg") ? Container() : Container(
-                          width: 100,
-                          height: 100,
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(20),
-                                  bottomRight: Radius.circular(20),
-                              ),
-                          ),
-                          child: Image.network(model.imageUrl!, width: 100, height: 100),
                       ),
                     ],
                   ),

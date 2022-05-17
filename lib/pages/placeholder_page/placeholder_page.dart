@@ -12,7 +12,11 @@ class PlaceholderPage extends StatelessWidget {
   final IconData? secondIcon;
   final PreferredSizeWidget? appBar;
 
-  List<String> _getTextToken() {
+  List<String> get _textToken {
+    if (firstIcon == null) {
+      return [content];
+    }
+
     List<String> textToken = [];
     List<String> firstTokens = content.split(GlobalConstants.firstIconTextSeparator);
     textToken.addAll([firstTokens[0], ...firstTokens[1].split(GlobalConstants.secondIconTextSeparator)]);
@@ -21,56 +25,65 @@ class PlaceholderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> textToken = _getTextToken();
     Size size = Size(Get.width, Get.height);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: appBar != null ? appBar! : WikiPlacesAppBar(
-        appTitle: true,
+        showAppTitle: true,
       ),
-      body: firstIcon == null ? Text(content) :
-      Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Stack(
         children: [
-          Center(
-            child: Padding(
-              padding: EdgeInsets.only(top: size.height * 0.2),
-              child: Container(
-                width: size.width * 0.7,
-                height: size.width * 0.7,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(size.width * 0.35),
-                  color: Get.theme.primaryColor,
-                  boxShadow: const [BoxShadow(color: Colors.black38, blurRadius: 5, offset: Offset(5, 5))]
-                ),
-                child: Center(
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: textToken[0] + " ",
-                        ),
-                        WidgetSpan(
-                          child: Icon(firstIcon, color: Colors.white,),
-                        ),
-                        TextSpan(
-                          text: textToken[1],
-                        ),
-                        WidgetSpan(
-                          child: Icon(secondIcon, color: Colors.white),
-                        ),
-                        TextSpan(
-                          text: textToken[2],
-                        ),
-                      ],
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(GlobalConstants.appBackgroundImage),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Center(
+              child: Padding(
+                padding: EdgeInsets.only(top: size.height * 0.2),
+                child: Container(
+                  width: size.width * 0.7,
+                  height: size.width * 0.7,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(size.width * 0.35),
+                    color: Get.theme.primaryColor,
+                    boxShadow: const [BoxShadow(color: Colors.black38, blurRadius: 5, offset: Offset(5, 5))]
+                  ),
+                  child: Center(
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: _textToken[0],
+                          ),
+                          WidgetSpan(
+                            child: firstIcon == null ? Container() : Icon(firstIcon, color: Colors.white),
+                          ),
+                          TextSpan(
+                            text: _textToken.length > 1 ? _textToken[1] : "",
+                          ),
+                          WidgetSpan(
+                            child: secondIcon == null ? Container() : Icon(secondIcon, color: Colors.white),
+                          ),
+                          TextSpan(
+                            text: _textToken.length > 2 ?_textToken[2] : "",
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        )],
       ),
       floatingActionButton: SearchPlacesFAB(),
     );

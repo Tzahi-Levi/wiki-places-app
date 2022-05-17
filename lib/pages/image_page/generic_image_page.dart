@@ -22,9 +22,9 @@ class GenericImagePage extends StatelessWidget {
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    offset: Offset(0, 5),
+                    offset: const Offset(0, 5),
                     blurRadius: 25,
-                    color: Color(0xFF59618B).withOpacity(0.17),
+                    color: const Color(0xFF59618B).withOpacity(0.17),
                   ),
                 ],
               ),

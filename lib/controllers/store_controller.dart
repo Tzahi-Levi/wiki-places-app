@@ -1,75 +1,122 @@
 // ================= Store Controller =================
 import 'package:get/get.dart';
-import 'dart:convert';
-import 'package:firebase_performance/firebase_performance.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/pages/places/places_page_collection.dart';
 import 'package:wiki_places/global/types.dart';
-import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/global/client_requests.dart';
 import 'package:wiki_places/controllers/location_controller.dart';
 import 'package:wiki_places/global/constants.dart';
-import 'package:wiki_places/pages/image_page/error_page.dart';
 
 class StoreController extends GetxController {
-  final FirebasePerformance _performance = FirebasePerformance.instance;
-
   // State
-  final Rx<AppPages> currentMainAppPage = AppPages.places.obs;
+  final Rx<EAppPages> currentMainAppPage = EAppPages.places.obs;
   final RxString radius = '1'.obs;
   late Rx<PlacesPageCollection> placesCollection = PlacesPageCollection().obs;
-  RxBool isLoading = false.obs;
+  RxBool globalIsLoading = true.obs;
+  Rx<LatLng> placeCoordinates = LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]).obs;
+  Rx<String> placeName = "".obs;
+  Rx<EPlaceMode> placeMode = EPlaceMode.current.obs;
+  Rx<SortedList<String>> placeFilters = SortedList<String>().obs;
 
   // Actions
-  void changeMainAppPage(AppPages page ) {
+  void setStore(Json store) {
+    radius.value = store['radius'];
+    placeCoordinates.value = store['placeCoordinates'];
+    placeName.value = store['placeName'];
+    placeMode.value = store['placeMode'];
+    update();
+  }
+
+  void updateGlobalIsLoading(bool value) {
+    globalIsLoading.value = value;
+    update();
+  }
+
+  void updateMainAppPage(EAppPages page) {
     currentMainAppPage.value = page;
     update();
   }
 
-  void changeRadius(String newRadius) {
+  void addPlaceFilter(String filter) {
+    if (!placeFilters.value.contains(filter)) {
+      placeFilters.value.add(filter);
+      placeFilters.refresh();
+      updatePlacesCollection(reportToGA: false);
+      GoogleAnalytics.instance.logFilterAdded();
+    }
+  }
+
+  void removePlaceFilter(String filter) {
+    placeFilters.value.remove(filter);
+    placeFilters.refresh();
+    updatePlacesCollection(reportToGA: false);
+    GoogleAnalytics.instance.logFilterRemoved();
+  }
+
+  void updateRadius(String newRadius) {
     radius.value = newRadius;
     update();
-    searchPlaces(showToast: true);
     GoogleAnalytics.instance.logRadiusChanged();
   }
 
-  void updateIsLoading(bool value) {
-    isLoading.value = value;
+  Future<void> updatePlaceToCurrentMode() async {
+    Json? currentLocation = await LocationController.getLocation();
+    if (currentLocation == null) {  // no permission
+      return;
+    }
+
+    LatLng currentPlace = LatLng(currentLocation["lat"], currentLocation["lon"]);
+    PlaceDetails? placeDetails = await ClientRequests.instance.getPlaceDetailsByCoordinates(coordinates: currentPlace);
+
+    placeCoordinates.value = currentPlace;
+    placeName.value = (placeDetails != null) ? "" : placeDetails!.name;
+    placeMode.value = EPlaceMode.current;
     update();
+    GoogleAnalytics.instance.logCurrentPlaceMode();
   }
 
-  Future<void> searchPlaces({bool showToast = false}) async {
-    Trace performanceTrace = _performance.newTrace("GetPlacesData");
+  Future<bool> updatePlaceToOtherMode({required String otherPlace}) async {
+    PlaceDetails placeDetails = await ClientRequests.instance.getPlaceDetailsByPartiallyName(place: otherPlace);
+    if (placeDetails.coordinates != null && placeDetails.name != null) {
+      placeCoordinates.value = placeDetails.coordinates!;
+      placeName.value = placeDetails.name;
+      placeMode.value = EPlaceMode.other;
+      update();
+      GoogleAnalytics.instance.logOtherPlaceMode();
+      return true;
+    }
+    return false;
+  }
 
-    Json? location = await LocationController.getLocation();
-    if (location == null) {  // no permission
-      updateIsLoading(false);
-      return;
+  Future<bool> updatePlaceToSpecificLocation({required LatLng newPlaceCoordinates}) async {
+    PlaceDetails? placeDetails = await ClientRequests.instance.getPlaceDetailsByCoordinates(coordinates: newPlaceCoordinates);
+    if (placeDetails == null) {
+      GoogleAnalytics.instance.logError("getPlaceDetailsByCoordinates failed");
+      return true;
     }
 
-    Response response = await ClientRequests.instance.getPlacesData(radius: radius.value, lat: location["lat"], lon: location["lon"]);
-
-    if (!ClientRequests.instance.isResponseSuccess(response)) {
-      navigateWithNoBack(const ErrorPage());
-      GoogleAnalytics.instance.logResponseError();
-      return;
-    }
-
-    placesCollection.value = PlacesPageCollection.fromJson(json.decode(response.body));
+    placeCoordinates.value = newPlaceCoordinates;
+    placeName.value = placeDetails.name;
+    placeMode.value = EPlaceMode.other;
     update();
-    await performanceTrace.stop();
-    updateIsLoading(false);
+    GoogleAnalytics.instance.logOtherPlaceMode();
+    return true;
+  }
 
-    if (showToast) {
-      displaySnackbar(
-          content: 'strSearchSuccessfully'.trParams({
-            'radius': radius.value,
-            'scale': GlobalConstants.defaultScale,
-          }));
+  Future<bool> updatePlacesCollection({bool moveToError = false, bool reportToGA = true}) async {
+    List<dynamic>? placeJson = await ClientRequests.instance.getPlacesData(radius: radius.value, lat: placeCoordinates.value.latitude, lon: placeCoordinates.value.longitude, moveToError: moveToError);
+    if (placeJson == null) {
+      return false;
     }
 
-    await placesCollection.value.loadPlacesImages();
-    placesCollection.refresh();
-    GoogleAnalytics.instance.logSearchPlaces();
+    placesCollection.value = PlacesPageCollection.fromJson(placeJson, placeFilters.value);
+    update();
+
+    if (reportToGA) {
+      GoogleAnalytics.instance.logPlacesCollection();
+    }
+    return true;
   }
 }

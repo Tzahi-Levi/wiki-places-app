@@ -18,7 +18,7 @@ class GoogleAnalytics {
     }
   }
 
-  void _logError(String error) {
+  void logError(String error) {
     FirebaseCrashlytics.instance.log(error);
   }
 
@@ -44,8 +44,8 @@ class GoogleAnalytics {
     _logEvent("WikipediaOpened");
   }
 
-  void logSearchPlaces() {
-    _logEvent("SearchPlaces");
+  void logPlacesCollection() {
+    _logEvent("PlacesCollection");
   }
 
   void logRadiusChanged() {
@@ -60,7 +60,19 @@ class GoogleAnalytics {
     _logEvent("PermissionDenied");
   }
 
-  void logResponseError() {
-    _logEvent("NoResponseError");
+  void logFilterAdded() {
+    _logEvent("FilterAdded");
+  }
+
+  void logFilterRemoved() {
+    _logEvent("FilterRemoved");
+  }
+
+  void logCurrentPlaceMode() {
+    _logEvent("CurrentPlaceMode");
+  }
+
+  void logOtherPlaceMode() {
+    _logEvent("OtherPlaceMode");
   }
 }

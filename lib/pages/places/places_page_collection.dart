@@ -1,6 +1,7 @@
 // ================= Places Page Model =================
 import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
+import 'package:wiki_places/global/utils.dart';
 
 class PlacesPageCollection {
   late SortedList<PlaceModel> places;
@@ -13,16 +14,13 @@ class PlacesPageCollection {
     _initList();
   }
 
-  PlacesPageCollection.fromJson(List placesJson) {
+  PlacesPageCollection.fromJson(List placesJson, SortedList<String> placeFilters) {
     _initList();
     for (var json in placesJson) {
-      places.add(PlaceModel.fromJson(json));
-    }
-  }
-
-  Future<void> loadPlacesImages() async {
-    for (var place in places) {
-      await place.loadImage();
+      PlaceModel newPlace = PlaceModel.fromJson(json);
+      if (newPlace.label.containsAll(placeFilters) || newPlace.abstract.containsAll(placeFilters)) {
+        places.add(newPlace);
+      }
     }
   }
 
