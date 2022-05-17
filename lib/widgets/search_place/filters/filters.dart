@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
-import 'package:wiki_places/widgets/search_place/tag.dart';
+import 'package:wiki_places/widgets/search_place/filters/tag.dart';
 
 class Filters extends StatefulWidget {
   const Filters({Key? key}) : super(key: key);

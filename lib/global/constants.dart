@@ -42,7 +42,7 @@ class GlobalConstants {
   static const String connectionLostImage = "images/connection_lost.png";
   static const String errorPageImage = "images/error_page.png";
   static const String appIconImage = "images/app_icon.png";
-  static String get appBackgroundImage => "images/background_${Get.isDarkMode ? "dark":"light"}.png";
+  static String get appBackgroundImage => "images/background_${Get.isDarkMode ? "dark" : "light"}.png";
 
   //Links
   static const String connectionLostLink = "https://raw.githubusercontent.com/abuanwar072/20-Error-States-Flutter/master/assets/images/1_No%20Connection.png";
