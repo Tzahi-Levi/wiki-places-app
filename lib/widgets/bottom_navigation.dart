@@ -10,15 +10,6 @@ class BottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomBottomNavigationBar();
-  }
-}
-
-class CustomBottomNavigationBar extends StatelessWidget {
-  const CustomBottomNavigationBar({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
     final Size size = Size(Get.width, Get.height);
     final _storeController = Get.put(StoreController());
     return GetX<StoreController>(
@@ -30,7 +21,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 child: CustomPaint(
                   size: Size(size.width, 60),
                   painter: WPCustomPainter(),
-                )),
+                ),
+            ),
             SizedBox(
               width: size.width,
               height: 60,
@@ -47,17 +39,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
                           onPressed: () {
                             _storeController.updateMainAppPage(EAppPages.places);
                           },
-                          icon: Icon(
-                            _storeController.currentMainAppPage.value ==
-                                    EAppPages.places
-                                ? GlobalConstants.placesPageSelectedIcon
-                                : GlobalConstants.placesPageOutLinedIcon),
+                          icon: Icon(_storeController.currentMainAppPage.value == EAppPages.places ? GlobalConstants.placesPageSelectedIcon : GlobalConstants.placesPageOutLinedIcon),
                           padding: EdgeInsets.zero,
-                          constraints: const BoxConstraints(
-                              minWidth: 30, minHeight: 30),
+                          constraints: const BoxConstraints(minWidth: 30, minHeight: 30),
                           splashRadius: 25,
                         ),
-                        Text('strPlacesPageName'.tr, style: Get.textTheme.headline4,)
+                        Text('strPlacesPageName'.tr, style: Get.textTheme.headline4),
                       ],
                     ),
                     Column(
@@ -67,17 +54,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
                           onPressed: () {
                             _storeController.updateMainAppPage(EAppPages.map);
                           },
-                          icon: Icon(
-                              _storeController.currentMainAppPage.value ==
-                                      EAppPages.map
-                                  ? GlobalConstants.mapPageSelectedIcon
-                                  : GlobalConstants.mapPageOutLinedIcon),
+                          icon: Icon(_storeController.currentMainAppPage.value == EAppPages.map ? GlobalConstants.mapPageSelectedIcon : GlobalConstants.mapPageOutLinedIcon),
                           padding: EdgeInsets.zero,
-                          constraints: const BoxConstraints(
-                              minWidth: 30, minHeight: 30),
+                          constraints: const BoxConstraints(minWidth: 30, minHeight: 30),
                           splashRadius: 25,
                         ),
-                        Text('strMapPageName'.tr, style: Get.textTheme.headline4,)
+                        Text('strMapPageName'.tr, style: Get.textTheme.headline4),
                       ],
                     ),
                   ],
@@ -85,7 +67,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ),
             )
           ],
-        ));
+        ),
+    );
   }
 }
 

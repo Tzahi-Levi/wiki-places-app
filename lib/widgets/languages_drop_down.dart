@@ -13,7 +13,7 @@ class LanguageDropDown extends StatelessWidget {
     }
   }
 
-  List<DropdownMenuItem> _getItems() {
+  List<DropdownMenuItem> get _getItems {
     List<Locale> supportedLocales = LocaleController.getSupportedLocales();
     List<DropdownMenuItem> items = [];
 
@@ -40,7 +40,7 @@ class LanguageDropDown extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      items: _getItems(),
+      items: _getItems,
       onChanged: _changeLanguage,
     );
   }

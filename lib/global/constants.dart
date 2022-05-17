@@ -42,7 +42,12 @@ class GlobalConstants {
   static const String connectionLostImage = "images/connection_lost.png";
   static const String errorPageImage = "images/error_page.png";
   static const String appIconImage = "images/app_icon.png";
-  static String get appBackgroundImage => "images/background_${Get.isDarkMode ? "dark":"light"}.png";
+  static String get appBackgroundImage => "images/background_${Get.isDarkMode ? "dark" : "light"}.png";
+
+  //Links
+  static const String connectionLostLink = "https://raw.githubusercontent.com/abuanwar072/20-Error-States-Flutter/master/assets/images/1_No%20Connection.png";
+  static const String errorPageLink = "https://github.com/abuanwar072/20-Error-States-Flutter";
+  static const String appBackgroundLink = "https://cdn.pixabay.com/photo/2021/09/04/13/47/flowers-6597862_960_720.png";
 
   // Slider
   static int radiusSliderDivisions = 10;

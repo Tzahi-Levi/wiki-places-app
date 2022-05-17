@@ -29,7 +29,7 @@ class Tag extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(4),
       child: Chip(
-        backgroundColor: const Color(0x00feffc3),
+        backgroundColor: const Color(0xfffeffc3),
         label: Text(title),
         elevation: 3,
         onDeleted: _removeFilter,

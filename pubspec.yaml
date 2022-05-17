@@ -31,7 +31,7 @@ dependencies:
   flutter_typeahead: ^4.0.0
 
 flutter_native_splash:
-  background_image: "images/app_icon.png"
+  background_image: "images/start_app.png"
 
 dev_dependencies:
   flutter_test:

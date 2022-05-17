@@ -8,7 +8,7 @@ import 'package:wiki_places/widgets/appbar.dart';
 import 'package:wiki_places/widgets/search_place/change_radius_slider.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/types.dart';
-import 'package:wiki_places/widgets/search_place/filters.dart';
+import 'package:wiki_places/widgets/search_place/filters/filters.dart';
 import 'package:wiki_places/widgets/search_place/search_place_widget/search_place_widget.dart';
 
 class SearchPlacePage extends StatefulWidget {

@@ -7,11 +7,7 @@ import 'package:wiki_places/widgets/radio_buttons.dart';
 import 'package:wiki_places/widgets/search_place/search_place_widget/search_textfield.dart';
 
 class SearchPlaceWidget extends StatefulWidget {
-  const SearchPlaceWidget(
-      {required this.placeNameController,
-      required this.placeModeController,
-      Key? key})
-      : super(key: key);
+  const SearchPlaceWidget({required this.placeNameController, required this.placeModeController, Key? key}) : super(key: key);
   final TextEditingController placeNameController;
   final PrimitiveWrapper placeModeController;
 
@@ -30,9 +26,7 @@ class _SearchPlaceWidgetState extends State<SearchPlaceWidget> {
 
   void _updatePlaceName(EPlaceMode newPlace) {
     setState(() {
-      widget.placeNameController.text = (newPlace == EPlaceMode.current)
-          ? 'strCurrentPlace'.tr
-          : _storeController.placeName.value;
+      widget.placeNameController.text = (newPlace == EPlaceMode.current) ? 'strCurrentPlace'.tr : _storeController.placeName.value;
     });
   }
 
@@ -51,11 +45,10 @@ class _SearchPlaceWidgetState extends State<SearchPlaceWidget> {
         ),
         SizedBox(
           height: 50,
-          width: Get.width * 0.7,
           child: SearchTextField(
               placeNameController: widget.placeNameController,
-              isEnabled:
-                  widget.placeModeController.value == EPlaceMode.other),
+              isEnabled: widget.placeModeController.value == EPlaceMode.other,
+          ),
         ),
       ],
     );
