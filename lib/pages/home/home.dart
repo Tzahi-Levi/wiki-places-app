@@ -50,14 +50,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     FlutterNativeSplash.remove();
   }
 
-  Widget _openCurrentPage() {
+  Widget get _getCurrentPage {
     switch (_storeController.currentMainAppPage.value) {
       case EAppPages.map:
-        return MapPage();
+        return const MapPage();
 
       case EAppPages.places:
       default:
-        return PlacesPage();
+        return const PlacesPage();
     }
   }
 
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 45.0),
-                    child: _openCurrentPage(),
+                    child: _getCurrentPage,
                   ),
                   const Positioned(bottom: 0, left: 0, child: BottomNavigation()),
                 ],

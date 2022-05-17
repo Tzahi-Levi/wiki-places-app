@@ -16,7 +16,7 @@ class SearchPlaceAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
-  void _openChangeRadiusDialog() {
+  void _openSearchPlacePage() {
     navigateToPage(SearchPlacePage(afterSearchCallback: afterSearchCallback));
   }
 
@@ -31,7 +31,7 @@ class SearchPlaceAppbar extends StatelessWidget implements PreferredSizeWidget {
           icon: Icon(GlobalConstants.infoIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
         ),
         IconButton(
-          onPressed: _openChangeRadiusDialog,
+          onPressed: _openSearchPlacePage,
           icon: Icon(GlobalConstants.searchIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
         ),
       ],
