@@ -57,6 +57,7 @@ class StoreController extends GetxController {
 
   void updateRadius(String newRadius) {
     radius.value = newRadius;
+    radius.refresh();
     update();
     GoogleAnalytics.instance.logRadiusChanged();
   }
@@ -79,7 +80,7 @@ class StoreController extends GetxController {
 
   Future<bool> updatePlaceToOtherMode({required String otherPlace}) async {
     PlaceDetails placeDetails = await ClientRequests.instance.getPlaceDetailsByPartiallyName(place: otherPlace);
-    if (placeDetails.coordinates != null && placeDetails.name != null) {
+    if (placeDetails.coordinates != null) {
       placeCoordinates.value = placeDetails.coordinates!;
       placeName.value = placeDetails.name;
       placeMode.value = EPlaceMode.other;
@@ -112,6 +113,7 @@ class StoreController extends GetxController {
     }
 
     placesCollection.value = PlacesPageCollection.fromJson(placeJson, placeFilters.value);
+    placesCollection.refresh();
     update();
 
     if (reportToGA) {

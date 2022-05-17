@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
       case EAppPages.places:
       default:
-        return PlacesPage();
+        return const PlacesPage();
     }
   }
 
