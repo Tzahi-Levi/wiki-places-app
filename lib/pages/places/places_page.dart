@@ -11,8 +11,14 @@ import 'package:wiki_places/widgets/place/place_card.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
 import 'package:wiki_places/widgets/about_the_app.dart';
 
-class PlacesPage extends StatelessWidget {
-  PlacesPage({Key? key}) : super(key: key);
+class PlacesPage extends StatefulWidget {
+  const PlacesPage({Key? key}) : super(key: key);
+
+  @override
+  State<PlacesPage> createState() => _PlacesPageState();
+}
+
+class _PlacesPageState extends State<PlacesPage> {
   final _storeController = Get.put(StoreController());
 
   List<Widget> get _getPlaces {
@@ -41,17 +47,20 @@ class PlacesPage extends StatelessWidget {
     _storeController.updateGlobalIsLoading(false);
   }
 
+  void _rebuildPage() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetX<StoreController>(
-      builder: (store) =>
-      _storeController.placesCollection.value.isEmpty ?
+      builder: (store) => _storeController.placesCollection.value.isEmpty ?
       PlaceholderPage(
           content: 'strNoPlacesAvailable'.tr,
           appBar: const SearchPlaceAppbar(showAppTitle: true),
       ) : Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: const SearchPlaceAppbar(),
+        appBar: SearchPlaceAppbar(afterSearchCallback: _rebuildPage),
         body: Stack(
           children: [
             Container(

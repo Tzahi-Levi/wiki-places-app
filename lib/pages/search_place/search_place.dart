@@ -107,6 +107,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
     return LoadingOverlay(
       isLoading: _isLoading,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: WikiPlacesAppBar(title: 'strSearchPlaceAround'.tr),
         body: Stack(
           children: [

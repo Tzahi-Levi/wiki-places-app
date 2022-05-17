@@ -1,27 +1,18 @@
 // ================= Change Radius Slider =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/types.dart';
 
 class ChangeRadiusSlider extends StatefulWidget {
-  ChangeRadiusSlider({required this.controller, Key? key}) : super(key: key);
-  PrimitiveWrapper controller;
+  const ChangeRadiusSlider({required this.controller, Key? key}) : super(key: key);
+  final PrimitiveWrapper controller;
 
   @override
   State<ChangeRadiusSlider> createState() => _ChangeRadiusSliderState();
 }
 
 class _ChangeRadiusSliderState extends State<ChangeRadiusSlider> {
-  final _storeController = Get.put(StoreController());
-
-  @override
-  void initState() {
-    super.initState();
-    widget.controller = PrimitiveWrapper(double.parse(_storeController.radius.value));
-  }
-
   void _updateSlider(double value) {
     setState(() {
       widget.controller.value = value;
