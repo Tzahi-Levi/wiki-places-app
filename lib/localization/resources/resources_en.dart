@@ -52,5 +52,6 @@ final Map<String, String> resourcesEn = {
   'strLegalese': "All packages and icons used are properties of their respective owners",
   'strLostConnectionImage': "Lost Connection Image",
   'strErrorPageConnection': "Error Image",
+  'strBackgroundImage': "Background Image",
   'strAboutTheApp': "About the app",
 };

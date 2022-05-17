@@ -26,12 +26,21 @@ class AboutTheApp extends StatelessWidget {
           ),
           trailing: Text('strLostConnectionImage'.tr),
         ),
+        Text(GlobalConstants.connectionLostLink, style: Get.textTheme.headline4),
         ListTile(
           leading: Image.asset(
             GlobalConstants.errorPageImage,
           ),
           trailing: Text('strErrorPageConnection'.tr),
         ),
+        Text(GlobalConstants.errorPageLink, style: Get.textTheme.headline4),
+        ListTile(
+          leading: Image.asset(
+            GlobalConstants.appBackgroundImage,
+          ),
+          trailing: Text('strBackgroundImage'.tr),
+        ),
+        Text(GlobalConstants.appBackgroundLink, style: Get.textTheme.headline4),
       ],
     );
   }
