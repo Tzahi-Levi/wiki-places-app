@@ -47,20 +47,16 @@ class _PlacesPageState extends State<PlacesPage> {
     _storeController.updateGlobalIsLoading(false);
   }
 
-  void _rebuildPage() {
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return GetX<StoreController>(
       builder: (store) => _storeController.placesCollection.value.isEmpty ?
       PlaceholderPage(
           content: 'strNoPlacesAvailable'.tr,
-          appBar: const SearchPlaceAppbar(showAppTitle: true),
+          appBar: const ShowDetailsAppbar(showAppTitle: true),
       ) : Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: SearchPlaceAppbar(afterSearchCallback: _rebuildPage),
+        appBar: const ShowDetailsAppbar(),
         body: Stack(
           children: [
             Container(
@@ -85,7 +81,7 @@ class _PlacesPageState extends State<PlacesPage> {
             ),
           ],
         ),
-        floatingActionButton: SearchPlacesFAB(),
+        floatingActionButton: const SearchPlacesFAB(),
       ),
     );
   }
