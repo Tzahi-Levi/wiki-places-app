@@ -108,7 +108,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
       isLoading: _isLoading,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: WikiPlacesAppBar(title: 'strSearchPlaceAround'.tr),
+        appBar: MinorAppBar(title: 'strSearchPlaceAround'.tr),
         body: Stack(
           children: [
             Container(

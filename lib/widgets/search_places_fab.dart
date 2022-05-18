@@ -1,19 +1,16 @@
 // ================= Search Places FAB =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
+import 'package:wiki_places/pages/search_place/search_place.dart';
 
 class SearchPlacesFAB extends StatelessWidget {
-  SearchPlacesFAB({Key? key}) : super(key: key);
-  final _storeController = Get.put(StoreController());
+  const SearchPlacesFAB({Key? key, this.afterSearchCallback}) : super(key: key);
+  final Function? afterSearchCallback;
 
-  void _searchPlaces() async {
-    _storeController.updateGlobalIsLoading(true);
-    await _storeController.updatePlacesCollection();
-    displaySearchSuccessfully();
-    _storeController.updateGlobalIsLoading(false);
+  void _openSearchPlacePage() {
+    navigateToPage(SearchPlacePage(afterSearchCallback: afterSearchCallback));
   }
 
   @override
@@ -21,9 +18,9 @@ class SearchPlacesFAB extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: FloatingActionButton.extended(
-        label: Text('strRefresh'.tr, style: Get.textTheme.headline3),
-        icon: const Icon(GlobalConstants.refreshIcon),
-        onPressed: _searchPlaces,
+        label: Text('strSearch'.tr, style: Get.textTheme.headline3),
+        icon: const Icon(GlobalConstants.searchIcon),
+        onPressed: _openSearchPlacePage,
       ),
     );
   }

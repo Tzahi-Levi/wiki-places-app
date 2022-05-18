@@ -7,7 +7,7 @@ class ProjectConfig {
 
   // Project Config
   static const String projectName = "WikiPo";
-  static const String projectVersion = "v1.1.1";
+  static const String projectVersion = "v1.1.2";
 
   // Backend Config
   static const String serverAddress = "132.69.8.15:80";
