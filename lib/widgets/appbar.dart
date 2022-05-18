@@ -1,24 +1,18 @@
 // ================= AppBar Widgets =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wiki_places/pages/search_place/search_place.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/utils.dart';
 
-class SearchPlaceAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const SearchPlaceAppbar({this.showAppTitle = false, this.title, this.afterSearchCallback, Key? key}) : super(key: key);
+class ShowDetailsAppbar extends StatelessWidget implements PreferredSizeWidget {
+  const ShowDetailsAppbar({this.showAppTitle = false, this.title, Key? key}) : super(key: key);
   final bool showAppTitle;
   final String? title;
-  final Function? afterSearchCallback;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-
-  void _openSearchPlacePage() {
-    navigateToPage(SearchPlacePage(afterSearchCallback: afterSearchCallback));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +20,12 @@ class SearchPlaceAppbar extends StatelessWidget implements PreferredSizeWidget {
       showAppTitle: showAppTitle,
       title: title,
       actions: [
-        IconButton(
-          onPressed: displayCurrentPlaceDetails,
-          icon: Icon(GlobalConstants.infoIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
-        ),
-        IconButton(
-          onPressed: _openSearchPlacePage,
-          icon: Icon(GlobalConstants.searchIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: IconButton(
+            onPressed: displayCurrentPlaceDetails,
+            icon: Icon(GlobalConstants.infoIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
+          ),
         ),
       ],
     );
@@ -50,14 +43,6 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   String get _getAppBarTitle {
-    if (title != null) {
-      return title!;
-    }
-
-    if (showAppTitle) {
-      return 'strAppName'.tr;
-    }
-
     switch (_storeController.currentMainAppPage.value) {
       case EAppPages.places:
       case EAppPages.map:
@@ -71,7 +56,8 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+    return GetX<StoreController>(
+        builder: (store) => AppBar(
       title: Text(_getAppBarTitle, style: Get.textTheme.headline1),
       centerTitle: true,
       actions: actions,
@@ -81,6 +67,31 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
           borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20),
+          ),
+        ),
+      ),
+    ));
+  }
+}
+
+class MinorAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const MinorAppBar({Key? key, this.title}) : super(key: key);
+  final String? title;
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Text(title == null ? 'strAppName'.tr : title!, style: Get.textTheme.headline1),
+      centerTitle: true,
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+          color: Get.theme.primaryColor,
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
           ),
         ),
       ),
