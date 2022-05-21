@@ -2,20 +2,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/utils.dart';
 
 class Place extends StatelessWidget {
-  Place(this.model, {this.padding = 5, Key? key}) : super(key: key);
+  const Place(this.model, {this.padding = 5, Key? key}) : super(key: key);
   final PlaceModel model;
-  double padding;
+  final double padding;
+
+  IconData get _getFavoriteIcon => GlobalConstants.favoriteIcon;
+
+  void _toggleFavorite() {  // TODO- add log to GA
+
+  }
+
+  void _openWikipedia() {
+    openWikipedia(model.url);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(bottom: padding),
       child: GestureDetector(
-        onTap: () {openWikipedia(model.url);},
+        onTap: _openWikipedia,
         child: Card(
           elevation: 6,
           shape: RoundedRectangleBorder(
@@ -29,10 +40,17 @@ class Place extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Expanded(child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 8.0),
-                  child: Text(model.label, style: Get.textTheme.headline2, overflow: TextOverflow.ellipsis, maxLines: 1,),
-                )),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+                    child: Row(
+                        children: [
+                          Text(model.label, style: Get.textTheme.headline2, overflow: TextOverflow.ellipsis, maxLines: 1),
+                          IconButton(onPressed: _toggleFavorite, icon: Icon(_getFavoriteIcon)),
+                        ],
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: model.imageUrl == "" && model.abstract == "" ? 50 : 80,
                   child: Row(
@@ -82,16 +100,19 @@ class Place extends StatelessWidget {
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
                         color: Colors.white70
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15,
-                                fontWeight: FontWeight.normal,
-                                color: const Color(0xff37536D))),
-                            Text(" " + 'strKm'.tr, style: GoogleFonts.openSans(fontSize: 15,
-                                fontWeight: FontWeight.normal,
-                                color: const Color(0xff37536D))),
-                          ],
+                      child: Visibility(
+                        visible: model.distance != -1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15,
+                                  fontWeight: FontWeight.normal,
+                                  color: const Color(0xff37536D))),
+                              Text(" " + 'strKm'.tr, style: GoogleFonts.openSans(fontSize: 15,
+                                  fontWeight: FontWeight.normal,
+                                  color: const Color(0xff37536D))),
+                            ],
+                        ),
                       ),
                     ),
                     Padding(

@@ -31,4 +31,18 @@ class LocationController {
     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     return {"lat": position.latitude, "lon": position.longitude};
   }
+
+  static Future<double?> calculateDistance({required double startLatitude, required double startLongitude, double? endLatitude, double? endLongitude}) async {
+    if (endLatitude == null || endLongitude == null) {
+      Json? currentLocation = await getLocation();
+      if (currentLocation == null) {  // no permission
+        return null;
+      }
+
+      endLatitude ??= currentLocation["lon"];
+      endLongitude ??= currentLocation["lon"];
+    }
+
+    return Geolocator.distanceBetween(startLatitude, startLongitude, endLatitude!, endLongitude!);
+  }
 }

@@ -44,6 +44,11 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   String get _getAppBarTitle {
     switch (_storeController.currentMainAppPage.value) {
+      case EAppPages.favorites:
+        return 'strFavoritesNumber'.trParams({
+          'number': _storeController.favoritePlacesCollection.value.length.toString(),
+        });
+
       case EAppPages.places:
       case EAppPages.map:
         return 'strWikipediaValuesInRadius'.trParams({

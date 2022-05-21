@@ -19,6 +19,7 @@ final Map<String, String> resourcesHe = {
   // Navigation
   'strMapPageName': 'מפה',
   'strPlacesPageName': 'המקומות',
+  'strFavoritesPageName': 'מועדפים',
 
   // Map
   'strYourChosenPlace': 'מיקומך הנוכחי',
@@ -35,6 +36,10 @@ final Map<String, String> resourcesHe = {
   'strNoPlacesAvailable': "אין מיקומים זמינים",
   'strEmptyPlaceName': "על מנת לבצע חיפוש, יש לבחור מיקום",
   'strPlaceNotExist': "המיקום המבוקש לא נמצא, יש לנסות לחפש מיקום אחר",
+
+  // Favorites
+  'strFavoritesNumber': '@number מקומות מועדפים',
+  'strNoSelectedFavorites': 'לא נבחרו מועדפים',
 
   // Search Place Page
   'strChangeRadius': 'הרדיוס הנוכחי',

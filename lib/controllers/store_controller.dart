@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/pages/places/places_page_collection.dart';
+import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/client_requests.dart';
 import 'package:wiki_places/controllers/location_controller.dart';
@@ -13,12 +14,13 @@ class StoreController extends GetxController {
   // State
   final Rx<EAppPages> currentMainAppPage = EAppPages.places.obs;
   final RxString radius = '1'.obs;
-  late Rx<PlacesPageCollection> placesCollection = PlacesPageCollection().obs;
-  RxBool globalIsLoading = true.obs;
-  Rx<LatLng> placeCoordinates = LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]).obs;
-  Rx<String> placeName = "".obs;
-  Rx<EPlaceMode> placeMode = EPlaceMode.current.obs;
-  Rx<SortedList<String>> placeFilters = SortedList<String>().obs;
+  final Rx<PlacesPageCollection> placesCollection = PlacesPageCollection().obs;
+  final Rx<PlacesPageCollection> favoritePlacesCollection = PlacesPageCollection().obs;
+  final RxBool globalIsLoading = true.obs;
+  final Rx<LatLng> placeCoordinates = LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]).obs;
+  final Rx<String> placeName = "".obs;
+  final Rx<EPlaceMode> placeMode = EPlaceMode.current.obs;
+  final Rx<SortedList<String>> placeFilters = SortedList<String>().obs;
 
   // Actions
   void setStore(Json store) {
@@ -118,5 +120,20 @@ class StoreController extends GetxController {
       GoogleAnalytics.instance.logPlacesCollection();
     }
     return true;
+  }
+
+  void updateFavoritePlacesCollection(List<PlaceModel> favoritePlaces) {
+    favoritePlacesCollection.value = PlacesPageCollection.fromList(favoritePlaces);
+    update();
+  }
+
+  Future<void> addFavoritePlacesCollection(PlaceModel favoritePlace) async {
+    favoritePlacesCollection.value.places.add(favoritePlace);
+    update();
+  }
+
+  Future<void> removeFavoritePlacesCollection(PlaceModel favoritePlace) async {  // TODO- need to compare according to name?
+    favoritePlacesCollection.value.places.remove(favoritePlace);
+    update();
   }
 }
