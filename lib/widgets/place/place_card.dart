@@ -30,12 +30,10 @@ class _PlaceState extends State<Place> {
     if (_isFavorite) {
       FavoritesController.instance.removePlaceFromFavorites(widget.model);
       GoogleAnalytics.instance.logAddFavorite();
-      displaySnackbar(content: 'strFavoriteRemovedSuccessfully'.tr);
 
     } else {
       FavoritesController.instance.addPlaceToFavorites(widget.model);
       GoogleAnalytics.instance.logRemoveFavorite();
-      displaySnackbar(content: 'strFavoriteAddedSuccessfully'.tr);
     }
 
     setState(() {

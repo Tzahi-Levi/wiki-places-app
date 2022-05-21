@@ -40,8 +40,6 @@ final Map<String, String> resourcesHe = {
   // Favorites
   'strFavoritesNumber': '@number מקומות מועדפים',
   'strNoSelectedFavorites': 'לא נבחרו מועדפים',
-  'strFavoriteAddedSuccessfully': 'הוספת המיקום למועדפים בוצעה בהצלחה!',
-  'strFavoriteRemovedSuccessfully': 'הסרת המיקום למועדפים בוצעה בהצלחה!',
 
   // Search Place Page
   'strChangeRadius': 'הרדיוס הנוכחי',
