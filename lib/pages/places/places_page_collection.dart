@@ -14,9 +14,9 @@ class PlacesPageCollection {
     _initList();
   }
 
-  PlacesPageCollection.fromList(List<PlaceModel> places) {
+  PlacesPageCollection.fromList(List<PlaceModel> placeList) {
     _initList();
-    places.addAll(places);
+    places.addAll(placeList);
   }
 
   PlacesPageCollection.fromJson(List placesJson, SortedList<String> placeFilters) {

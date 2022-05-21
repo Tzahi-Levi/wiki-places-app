@@ -39,10 +39,10 @@ class LocationController {
         return null;
       }
 
-      endLatitude ??= currentLocation["lon"];
+      endLatitude ??= currentLocation["lat"];
       endLongitude ??= currentLocation["lon"];
     }
 
-    return Geolocator.distanceBetween(startLatitude, startLongitude, endLatitude!, endLongitude!);
+    return Geolocator.distanceBetween(startLatitude, startLongitude, endLatitude!, endLongitude!) / 1000;
   }
 }

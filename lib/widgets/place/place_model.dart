@@ -19,7 +19,13 @@ class PlaceModel {
     lat = placeJson["pin"]["location"]["lat"].toDouble();
     lon = placeJson["pin"]["location"]["lon"].toDouble();
     imageUrl = placeJson["imageUrl"];
-    distance = placeJson["pin"]["distance[km]"] == null ? _calculateDistance() : placeJson["pin"]["distance[km]"].toDouble();
+
+    if (placeJson["pin"]["distance[km]"] == null) {
+      _calculateDistance();
+
+    } else {
+      distance = placeJson["pin"]["distance[km]"].toDouble();
+    }
   }
 
   Json toJson() => {
@@ -36,9 +42,8 @@ class PlaceModel {
     }
   };
 
-  Future<double> _calculateDistance() async {
-    double? distance = await LocationController.calculateDistance(startLatitude: lat, startLongitude: lon);
-    return distance ?? -1;
+  void _calculateDistance() async {  // TODO- check what will be presented if there is not permissions for location
+    distance = await LocationController.calculateDistance(startLatitude: lat, startLongitude: lon) ?? -1;
   }
 
   int _comparePerDistance(PlaceModel other) {
