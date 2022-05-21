@@ -44,4 +44,13 @@ class FavoritesController {
     await _storeController.removeFavoritePlacesCollection(favoritePlace);
     PreferencesController.instance.setFavoritePlaces(_placesToJson);
   }
+
+  bool checkIfFavorite(PlaceModel place) {
+    for (PlaceModel favoritePlace in _storeController.favoritePlacesCollection.value.places) {
+      if (place == favoritePlace) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

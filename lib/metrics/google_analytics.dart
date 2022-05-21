@@ -75,4 +75,12 @@ class GoogleAnalytics {
   void logOtherPlaceMode() {
     _logEvent("OtherPlaceMode");
   }
+
+  void logAddFavorite() {
+    _logEvent("AddFavorite");
+  }
+
+  void logRemoveFavorite() {
+    _logEvent("RemoveFavorite");
+  }
 }

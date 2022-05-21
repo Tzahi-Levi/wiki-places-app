@@ -30,7 +30,7 @@ class BottomNavigation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                NavigationButton(page: EAppPages.favorites, pageName: 'strFavoritesPageName'.tr, selectedIcon: GlobalConstants.favoriteIcon, nonSelectedIcon: GlobalConstants.noFavoriteIcon),
+                NavigationButton(page: EAppPages.favorites, pageName: 'strFavoritesPageName'.tr, selectedIcon: GlobalConstants.favoriteIcon, nonSelectedIcon: GlobalConstants.nonFavoriteIcon),
                 NavigationButton(page: EAppPages.places, pageName: 'strPlacesPageName'.tr, selectedIcon: GlobalConstants.placesPageSelectedIcon, nonSelectedIcon: GlobalConstants.placesPageOutLinedIcon),
                 NavigationButton(page: EAppPages.map, pageName: 'strMapPageName'.tr, selectedIcon: GlobalConstants.mapPageSelectedIcon, nonSelectedIcon: GlobalConstants.mapPageOutLinedIcon),
               ],

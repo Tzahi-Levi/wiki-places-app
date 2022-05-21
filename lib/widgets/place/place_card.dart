@@ -5,26 +5,52 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/utils.dart';
+import 'package:wiki_places/controllers/favorites_controller.dart';
+import 'package:wiki_places/metrics/google_analytics.dart';
 
-class Place extends StatelessWidget {
-  const Place(this.model, {this.padding = 5, Key? key}) : super(key: key);
+class Place extends StatefulWidget {
+  Place(this.model, {this.padding = 5, Key? key}) : super(key: key);
   final PlaceModel model;
   final double padding;
 
-  IconData get _getFavoriteIcon => GlobalConstants.favoriteIcon;
+  @override
+  State<Place> createState() => _PlaceState();
+}
 
-  void _toggleFavorite() {  // TODO- add log to GA
+class _PlaceState extends State<Place> {
+  late bool _isFavorite = false;
 
+  @override
+  void initState() {
+    super.initState();
+    _isFavorite = FavoritesController.instance.checkIfFavorite(widget.model);
+  }
+
+  void _toggleFavorite() {
+    if (_isFavorite) {
+      FavoritesController.instance.removePlaceFromFavorites(widget.model);
+      GoogleAnalytics.instance.logAddFavorite();
+      displaySnackbar(content: 'strFavoriteRemovedSuccessfully'.tr);
+
+    } else {
+      FavoritesController.instance.addPlaceToFavorites(widget.model);
+      GoogleAnalytics.instance.logRemoveFavorite();
+      displaySnackbar(content: 'strFavoriteAddedSuccessfully'.tr);
+    }
+
+    setState(() {
+      _isFavorite = !_isFavorite;
+    });
   }
 
   void _openWikipedia() {
-    openWikipedia(model.url);
+    openWikipedia(widget.model.url);
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: padding),
+      padding: EdgeInsets.only(bottom: widget.padding),
       child: GestureDetector(
         onTap: _openWikipedia,
         child: Card(
@@ -34,7 +60,7 @@ class Place extends StatelessWidget {
           ),
           child: SizedBox(
             width: Get.width * 0.9,
-            height: model.imageUrl == "" && model.abstract == "" ? 120 : 170,
+            height: widget.model.imageUrl == "" && widget.model.abstract == "" ? 120 : 170,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
@@ -45,14 +71,14 @@ class Place extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                     child: Row(
                         children: [
-                          Text(model.label, style: Get.textTheme.headline2, overflow: TextOverflow.ellipsis, maxLines: 1),
-                          IconButton(onPressed: _toggleFavorite, icon: Icon(_getFavoriteIcon)),
+                          Text(widget.model.label, style: Get.textTheme.headline2, overflow: TextOverflow.ellipsis, maxLines: 1),
+                          IconButton(onPressed: _toggleFavorite, icon: Icon(_isFavorite ? GlobalConstants.favoriteIcon : GlobalConstants.nonFavoriteIcon, color: Colors.red.shade600)),
                         ],
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: model.imageUrl == "" && model.abstract == "" ? 50 : 80,
+                  height: widget.model.imageUrl == "" && widget.model.abstract == "" ? 50 : 80,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -63,7 +89,7 @@ class Place extends StatelessWidget {
                           children: [
                             Expanded(
                                 child: Text(
-                                  model.abstract,
+                                  widget.model.abstract,
                                   style: Get.textTheme.bodyText1,
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 3,
@@ -73,7 +99,7 @@ class Place extends StatelessWidget {
                         ),
                       ),
                       Visibility(
-                        visible: model.imageUrl != "",
+                        visible: widget.model.imageUrl != "",
                         child: Container(
                             width: 100,
                             height: 100,
@@ -83,7 +109,7 @@ class Place extends StatelessWidget {
                                     bottomRight: Radius.circular(20),
                                 ),
                             ),
-                            child: Image.network(model.imageUrl, width: 100, height: 100),
+                            child: Image.network(widget.model.imageUrl, width: 100, height: 100),
                         ),
                       ),
                     ],
@@ -101,11 +127,11 @@ class Place extends StatelessWidget {
                         color: Colors.white70
                       ),
                       child: Visibility(
-                        visible: model.distance != -1,
+                        visible: widget.model.distance != -1,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15,
+                              Text(widget.model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15,
                                   fontWeight: FontWeight.normal,
                                   color: const Color(0xff37536D))),
                               Text(" " + 'strKm'.tr, style: GoogleFonts.openSans(fontSize: 15,

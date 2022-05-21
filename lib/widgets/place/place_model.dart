@@ -36,6 +36,11 @@ class PlaceModel {
     }
   };
 
+  Future<double> _calculateDistance() async {
+    double? distance = await LocationController.calculateDistance(startLatitude: lat, startLongitude: lon);
+    return distance ?? -1;
+  }
+
   int _comparePerDistance(PlaceModel other) {
     if (distance == other.distance) {
       return 0;
@@ -48,8 +53,8 @@ class PlaceModel {
     return (comparePerDistance == 0) ? label.compareStrings(other.label) : comparePerDistance;
   }
 
-  Future<double> _calculateDistance() async {
-    double? distance = await LocationController.calculateDistance(startLatitude: lat, startLongitude: lon);
-    return distance ?? -1;
+  @override
+  bool operator==(other) {
+    return other is PlaceModel && label == other.label && url == other.url;
   }
 }
