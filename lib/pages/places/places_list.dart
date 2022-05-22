@@ -32,6 +32,7 @@ class PlacesList extends StatelessWidget {
         appBar: const ShowDetailsAppbar(showAppTitle: true),
         firstIcon: placeholderIcon,
       ) : Scaffold(
+      backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
         appBar: const ShowDetailsAppbar(),
         body: ListView(
