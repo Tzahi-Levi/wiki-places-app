@@ -6,8 +6,11 @@ import 'package:loading_overlay/loading_overlay.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/widgets/bottom_navigation.dart';
 import 'package:wiki_places/pages/places/places_page.dart';
+import 'package:wiki_places/pages/favorites/favorites_page.dart';
 import 'package:wiki_places/pages/map/map.dart';
 import 'package:wiki_places/global/types.dart';
+import 'package:wiki_places/controllers/favorites_controller.dart';
+import 'package:wiki_places/global/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,9 +25,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    _searchPlaces();
-
-    WidgetsBinding.instance.addObserver(this);
+    _init();
   }
 
   @override
@@ -40,6 +41,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
   }
 
+  void _init() {
+    FavoritesController.instance.getFavoritePlaces();
+    _searchPlaces();
+    FlutterNativeSplash.remove();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
   void _searchPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
     _storeController.updateGlobalIsLoading(true);
     if (resetCurrentPlace) {
@@ -47,7 +55,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
     await _storeController.updatePlacesCollection(moveToError: moveToError, reportToGA: false);
     _storeController.updateGlobalIsLoading(false);
-    FlutterNativeSplash.remove();
   }
 
   Widget get _getCurrentPage {
@@ -55,9 +62,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       case EAppPages.map:
         return const MapPage();
 
+      case EAppPages.favorites:
+        return FavoritesPage();
+
       case EAppPages.places:
       default:
-        return const PlacesPage();
+        return PlacesPage();
     }
   }
 
@@ -70,11 +80,19 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               isLoading: _storeController.globalIsLoading.value,
               child: Stack(
                 children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(GlobalConstants.appBackgroundImage),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 45.0),
                     child: _getCurrentPage,
                   ),
-                  const Positioned(bottom: 0, left: 0, child: BottomNavigation()),
+                  Positioned(bottom: 0, left: 0, child: BottomNavigation()),
                 ],
               ),
             ),

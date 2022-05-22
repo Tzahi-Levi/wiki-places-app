@@ -5,8 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:wiki_places/global/types.dart';
 
 class GlobalConstants {
-  static final GlobalConstants _instance = GlobalConstants._();
-  static GlobalConstants get instance => _instance;
+  static final GlobalConstants instance = GlobalConstants._();
   GlobalConstants._();
 
   // Default Values
@@ -22,12 +21,14 @@ class GlobalConstants {
   // Icons
   static const IconData mapPageOutLinedIcon = Icons.map_outlined;
   static const IconData mapPageSelectedIcon = Icons.map;
-  static const IconData placesPageOutLinedIcon = Icons.home_outlined;
-  static const IconData placesPageSelectedIcon = Icons.home;
+  static const IconData placesPageOutLinedIcon = Icons.place_outlined;
+  static const IconData placesPageSelectedIcon = Icons.place;
   static const IconData searchIcon = Icons.search;
   static const IconData infoIcon = Icons.info;
   static const IconData addIcon = Icons.add;
   static const IconData placeIcon = Icons.place;
+  static const IconData favoriteIcon = Icons.favorite;
+  static const IconData nonFavoriteIcon = Icons.favorite_border;
 
   // Map
   static const Json defaultInitialMapLocation = {"lat": 32.7775, "lon": 35.02166667}; // Technion Location

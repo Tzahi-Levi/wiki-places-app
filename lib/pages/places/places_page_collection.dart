@@ -14,6 +14,11 @@ class PlacesPageCollection {
     _initList();
   }
 
+  PlacesPageCollection.fromList(List<PlaceModel> placeList) {
+    _initList();
+    places.addAll(placeList);
+  }
+
   PlacesPageCollection.fromJson(List placesJson, SortedList<String> placeFilters) {
     _initList();
     for (var json in placesJson) {

@@ -3,7 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/global/utils.dart';
 
-enum EAppPages {places, map}
+enum EAppPages {places, map, favorites}
 
 enum EPlaceMode {current, other}
 

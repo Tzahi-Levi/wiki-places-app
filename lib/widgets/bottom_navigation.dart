@@ -6,66 +6,68 @@ import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/types.dart';
 
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({Key? key}) : super(key: key);
+  BottomNavigation({Key? key}) : super(key: key);
+  final Size size = Size(Get.width, Get.height);
 
   @override
   Widget build(BuildContext context) {
-    final Size size = Size(Get.width, Get.height);
-    final _storeController = Get.put(StoreController());
-    return GetX<StoreController>(
-        builder: (store) => Stack(
-          children: [
-            Positioned(
-                bottom: 0,
-                left: 0,
-                child: CustomPaint(
-                  size: Size(size.width, 60),
-                  painter: WPCustomPainter(),
-                ),
+    return Stack(
+      children: [
+        Positioned(
+          bottom: 0,
+          left: 0,
+          child: CustomPaint(
+            size: Size(size.width, 60),
+            painter: WPCustomPainter(),
+          ),
+        ),
+        SizedBox(
+          width: size.width,
+          height: 60,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                NavigationButton(page: EAppPages.favorites, pageName: 'strFavoritesPageName'.tr, selectedIcon: GlobalConstants.favoriteIcon, nonSelectedIcon: GlobalConstants.nonFavoriteIcon),
+                NavigationButton(page: EAppPages.places, pageName: 'strPlacesPageName'.tr, selectedIcon: GlobalConstants.placesPageSelectedIcon, nonSelectedIcon: GlobalConstants.placesPageOutLinedIcon),
+                NavigationButton(page: EAppPages.map, pageName: 'strMapPageName'.tr, selectedIcon: GlobalConstants.mapPageSelectedIcon, nonSelectedIcon: GlobalConstants.mapPageOutLinedIcon),
+              ],
             ),
-            SizedBox(
-              width: size.width,
-              height: 60,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            _storeController.updateMainAppPage(EAppPages.places);
-                          },
-                          icon: Icon(_storeController.currentMainAppPage.value == EAppPages.places ? GlobalConstants.placesPageSelectedIcon : GlobalConstants.placesPageOutLinedIcon),
-                          padding: EdgeInsets.zero,
-                          constraints: const BoxConstraints(minWidth: 30, minHeight: 30),
-                          splashRadius: 25,
-                        ),
-                        Text('strPlacesPageName'.tr, style: Get.textTheme.headline4),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            _storeController.updateMainAppPage(EAppPages.map);
-                          },
-                          icon: Icon(_storeController.currentMainAppPage.value == EAppPages.map ? GlobalConstants.mapPageSelectedIcon : GlobalConstants.mapPageOutLinedIcon),
-                          padding: EdgeInsets.zero,
-                          constraints: const BoxConstraints(minWidth: 30, minHeight: 30),
-                          splashRadius: 25,
-                        ),
-                        Text('strMapPageName'.tr, style: Get.textTheme.headline4),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            )
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class NavigationButton extends StatelessWidget {
+  NavigationButton({Key? key, required this.page, required this.pageName, required this.selectedIcon, required this.nonSelectedIcon}) : super(key: key);
+  final EAppPages page;
+  final String pageName;
+  final IconData selectedIcon;
+  final IconData nonSelectedIcon;
+  final _storeController = Get.put(StoreController());
+
+  void _navigateToPage() {
+    _storeController.updateMainAppPage(page);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GetX<StoreController>(
+      builder: (store) => Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            IconButton(
+              onPressed: _navigateToPage,
+              icon: Icon(_storeController.currentMainAppPage.value == page ? selectedIcon : nonSelectedIcon),
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(minWidth: 30, minHeight: 30),
+              splashRadius: 25,
+            ),
+            Text(pageName, style: Get.textTheme.headline4),
           ],
         ),
     );

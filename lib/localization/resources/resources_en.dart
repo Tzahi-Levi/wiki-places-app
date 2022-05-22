@@ -19,6 +19,7 @@ final Map<String, String> resourcesEn = {
   // Navigation
   'strMapPageName': 'Map',
   'strPlacesPageName': 'Places',
+  'strFavoritesPageName': 'Favorites',
 
   // Map
   'strYourChosenPlace': 'Your chosen place',
@@ -27,13 +28,17 @@ final Map<String, String> resourcesEn = {
   'strSearchPlace': 'Search Places',
   'strSearchSuccessfully': 'Searching for places in radius @radius @scale from @place was done successfully!',
   'strCurrentPlaceDetails': 'Places in radius @radius @scale from @place',
-  'strWikipediaValuesInRadius': '@number places (@radius @scale)',
+  'strWikipediaValuesInRadius': '@number Places (@radius @scale)',
   'strReadMore': 'Read more',
   'strRadiusMustBePositive': 'The radius must be a positive number',
   'strCantIncreaseRadius': "The radius can't be increased above @maxRadius km",
   'strNoPlacesAvailable': "There are not places available",
   'strEmptyPlaceName': "For searching places, please choose a place name",
   'strPlaceNotExist': "The chosen place is not found, please try to search another place",
+
+  // Favorites
+  'strFavoritesNumber': '@number Favorites Places',
+  'strNoSelectedFavorites': 'There are not favorite places. For adding places to the favorites, click on @ in the places page.',
 
   // Search Place Page
   'strChangeRadius': 'Current radius',

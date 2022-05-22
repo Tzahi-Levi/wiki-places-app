@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ThemeController {
-  static final ThemeController _instance = ThemeController._();
-
-  static ThemeController get instance => _instance;
-
+  static final ThemeController instance = ThemeController._();
   ThemeController._();
 
   static ThemeData get lightMode =>

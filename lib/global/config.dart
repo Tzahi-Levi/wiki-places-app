@@ -1,13 +1,12 @@
 // ================= Project Config =================
 
 class ProjectConfig {
-  static final ProjectConfig _instance = ProjectConfig._();
-  static ProjectConfig get instance => _instance;
+  static final ProjectConfig instance = ProjectConfig._();
   ProjectConfig._();
 
   // Project Config
   static const String projectName = "WikiPo";
-  static const String projectVersion = "v1.1.2";
+  static const String projectVersion = "v1.2.0";
 
   // Backend Config
   static const String serverAddress = "132.69.8.15:80";

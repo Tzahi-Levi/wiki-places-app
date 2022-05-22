@@ -12,8 +12,7 @@ import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/localization/resources/resources_en.dart';
 
 class ClientRequests extends GetConnect {
-  static final ClientRequests _instance = ClientRequests._();
-  static ClientRequests get instance => _instance;
+  static final ClientRequests instance = ClientRequests._();
   ClientRequests._();
 
   final FirebasePerformance _performance = FirebasePerformance.instance;
