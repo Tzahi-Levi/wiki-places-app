@@ -129,7 +129,20 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                   const Filters(),
                   const Divider(),
                   ChangeRadiusSlider(controller: _radiusController),
-                  ElevatedButton(onPressed: _searchPlace, child: Text('strSearch'.tr)),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: SizedBox(
+                      width: Get.width * 0.5,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: _searchPlace, 
+                        child: Text('strSearch'.tr, style: Get.textTheme.headline2,), 
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states)=> const Color(0xff03CE3D)),
+                          elevation: MaterialStateProperty.resolveWith((states) => 10)),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
