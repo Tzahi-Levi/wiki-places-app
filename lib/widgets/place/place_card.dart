@@ -44,101 +44,92 @@ class _PlaceState extends State<Place> {
       child: Card(
         elevation: 6,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15)
+            borderRadius: BorderRadius.circular(15)
         ),
-        child: SizedBox(
-          width: Get.width * 0.9,
-          height: widget.model.imageUrl == "" && widget.model.abstract == "" ? 120 : 170,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 8.0),
-                  child: Row(
-                      children: [
-                        Text(widget.model.label, style: Get.textTheme.headline2, overflow: TextOverflow.ellipsis, maxLines: 1),
-                        IconButton(onPressed: _toggleFavorite, icon: Icon(_isFavorite ? GlobalConstants.favoriteIcon : GlobalConstants.nonFavoriteIcon, color: Colors.red.shade600)),
-                      ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              mainAxisAlignment:  MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                    flex: 15,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                      child: Text(widget.model.label, style: Get.textTheme.headline2, overflow: TextOverflow.ellipsis, maxLines: 2),
+                    )),
+                IconButton(onPressed: _toggleFavorite, icon: Icon(_isFavorite ? GlobalConstants.favoriteIcon : GlobalConstants.nonFavoriteIcon, color: Colors.red.shade600)),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  flex: 3,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    child: Text(
+                      widget.model.abstract,
+                      style: Get.textTheme.bodyText1,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: widget.model.imageUrl == "" && widget.model.abstract == "" ? 50 : 80,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SizedBox(
-                      width: Get.width * 0.7,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                              child: Text(
-                                widget.model.abstract,
-                                style: Get.textTheme.bodyText1,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 3,
-                              ),
-                          ),
-                        ],
+                Visibility(
+                  visible: widget.model.imageUrl != "",
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    child: Container(
+                      width: 100,
+                      height: 100,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
                       ),
+                      child: Image.network(widget.model.imageUrl, width: 100, height: 100),
                     ),
-                    Visibility(
-                      visible: widget.model.imageUrl != "",
-                      child: Container(
-                          width: 100,
-                          height: 100,
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(20),
-                                  bottomRight: Radius.circular(20),
-                              ),
-                          ),
-                          child: Image.network(widget.model.imageUrl, width: 100, height: 100),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 80,
-                    height: 30,
-                    decoration: const BoxDecoration(
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 80,
+                  height: 30,
+                  decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
                       color: Colors.white70
-                    ),
-                    child: Visibility(
-                      visible: widget.model.distance != -1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(widget.model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15,
-                                fontWeight: FontWeight.normal,
-                                color: const Color(0xff37536D))),
-                            Text(" " + 'strKm'.tr, style: GoogleFonts.openSans(fontSize: 15,
-                                fontWeight: FontWeight.normal,
-                                color: const Color(0xff37536D))),
-                          ],
-                      ),
+                  ),
+                  child: Visibility(
+                    visible: widget.model.distance != -1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(widget.model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                            color: const Color(0xff37536D))),
+                        Text(" " + 'strKm'.tr, style: GoogleFonts.openSans(fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                            color: const Color(0xff37536D))),
+                      ],
                     ),
                   ),
-                  Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: TextButton(onPressed: _openWikipedia, child: Text('strReadMore'.tr, style: Get.textTheme.bodyText2)),
-                    ),
-                ],
-              ),
-            ],
-          ),
+                ),
+                TextButton(onPressed: _openWikipedia, child: Text('strReadMore'.tr, style: Get.textTheme.bodyText2)),
+              ],
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
+
