@@ -38,7 +38,7 @@ final Map<String, String> resourcesEn = {
 
   // Favorites
   'strFavoritesNumber': '@number Favorites Places',
-  'strNoSelectedFavorites': 'There are not favorite places',
+  'strNoSelectedFavorites': 'There are not favorite places. For adding places to the favorites, click on @ in the places page.',
 
   // Search Place Page
   'strChangeRadius': 'Current radius',

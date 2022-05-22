@@ -2,8 +2,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesController {
-  static final PreferencesController _instance = PreferencesController._();
-  static PreferencesController get instance => _instance;
+  static final PreferencesController instance = PreferencesController._();
   PreferencesController._();
 
   final String _favoritePlacesKey = "favoritePlaces";

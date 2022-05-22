@@ -7,10 +7,10 @@ class PlaceModel {
   late String label;
   late String abstract;
   late String url;
-  late double distance;
   late double lat;
   late double lon;
   late String imageUrl;
+  double distance = -1;
 
   PlaceModel.fromJson(Json placeJson) {
     label = placeJson["label"];
@@ -43,7 +43,8 @@ class PlaceModel {
   };
 
   void _calculateDistance() async {  // TODO- check what will be presented if there is not permissions for location
-    distance = await LocationController.calculateDistance(startLatitude: lat, startLongitude: lon) ?? -1;
+    double? distanceFromCurrent = await LocationController.calculateDistance(startLatitude: lat, startLongitude: lon);
+    distance = distanceFromCurrent ?? -1;
   }
 
   int _comparePerDistance(PlaceModel other) {
@@ -60,6 +61,6 @@ class PlaceModel {
 
   @override
   bool operator==(other) {
-    return other is PlaceModel && label == other.label && url == other.url;
+    return other is PlaceModel && url == other.url;
   }
 }

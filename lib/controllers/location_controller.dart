@@ -9,8 +9,7 @@ import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 
 class LocationController {
-  static final LocationController _instance = LocationController._();
-  static LocationController get instance => _instance;
+  static final LocationController instance = LocationController._();
   LocationController._();
 
   static final _storeController = Get.put(StoreController());

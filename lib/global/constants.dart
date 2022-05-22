@@ -5,8 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:wiki_places/global/types.dart';
 
 class GlobalConstants {
-  static final GlobalConstants _instance = GlobalConstants._();
-  static GlobalConstants get instance => _instance;
+  static final GlobalConstants instance = GlobalConstants._();
   GlobalConstants._();
 
   // Default Values

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
+import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/pages/places/places_list.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -14,6 +15,7 @@ class FavoritesPage extends StatelessWidget {
       builder: (store) => PlacesList(
         placesCollection: _storeController.favoritePlacesCollection.value,
         placeholderContent: 'strNoSelectedFavorites'.tr,
+        placeholderIcon: GlobalConstants.favoriteIcon,
       ),
     );
   }

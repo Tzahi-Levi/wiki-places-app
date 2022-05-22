@@ -124,16 +124,18 @@ class StoreController extends GetxController {
 
   void updateFavoritePlacesCollection(List<PlaceModel> favoritePlaces) {
     favoritePlacesCollection.value = PlacesPageCollection.fromList(favoritePlaces);
-    update();
+    favoritePlacesCollection.refresh();
   }
 
   Future<void> addFavoritePlacesCollection(PlaceModel favoritePlace) async {
     favoritePlacesCollection.value.places.add(favoritePlace);
-    update();
+    favoritePlacesCollection.refresh();
+    GoogleAnalytics.instance.logAddFavorite();
   }
 
-  Future<void> removeFavoritePlacesCollection(PlaceModel favoritePlace) async {  // TODO- need to compare according to name?
+  Future<void> removeFavoritePlacesCollection(PlaceModel favoritePlace) async {
     favoritePlacesCollection.value.places.remove(favoritePlace);
-    update();
+    favoritePlacesCollection.refresh();
+    GoogleAnalytics.instance.logRemoveFavorite();
   }
 }

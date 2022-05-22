@@ -42,8 +42,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   void _init() {
-    _searchPlaces();
     FavoritesController.instance.getFavoritePlaces();
+    _searchPlaces();
     FlutterNativeSplash.remove();
     WidgetsBinding.instance.addObserver(this);
   }

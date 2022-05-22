@@ -6,8 +6,7 @@ import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 
 class FavoritesController {
-  static final FavoritesController _instance = FavoritesController._();
-  static FavoritesController get instance => _instance;
+  static final FavoritesController instance = FavoritesController._();
   FavoritesController._();
 
   static final StoreController _storeController = Get.put(StoreController());

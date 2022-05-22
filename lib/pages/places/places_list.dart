@@ -9,9 +9,10 @@ import 'package:wiki_places/widgets/search_places_fab.dart';
 import 'package:wiki_places/pages/places/places_page_collection.dart';
 
 class PlacesList extends StatelessWidget {
-  PlacesList({Key? key, required this.placesCollection, this.placeholderContent, this.bottomWidgets}) : super(key: key);
+  PlacesList({Key? key, required this.placesCollection, this.placeholderContent, this.placeholderIcon, this.bottomWidgets}) : super(key: key);
   PlacesPageCollection placesCollection;
   String? placeholderContent;
+  IconData? placeholderIcon;
   List<Widget>? bottomWidgets;
 
   List<Widget> get _getPlaces {
@@ -29,6 +30,7 @@ class PlacesList extends StatelessWidget {
       PlaceholderPage(
         content: placeholderContent!,
         appBar: const ShowDetailsAppbar(showAppTitle: true),
+        firstIcon: placeholderIcon,
       ) : Scaffold(
         extendBodyBehindAppBar: true,
         appBar: const ShowDetailsAppbar(),
