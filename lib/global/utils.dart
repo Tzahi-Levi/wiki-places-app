@@ -42,12 +42,12 @@ void displaySearchSuccessfully() {
 
 void displayCurrentPlaceDetails() {
   final StoreController _storeController = Get.put(StoreController());
-  displaySnackbar(
-      content: 'strCurrentPlaceDetails'.trParams({
+  displayAlertDialog(
+      content: Text('strCurrentPlaceDetails'.trParams({
         'radius': _storeController.radius.value,
         'scale': GlobalConstants.defaultScale,
         'place': _storeController.placeMode.value == EPlaceMode.current ? 'strCurrentPlace'.tr : _storeController.placeName.value,
-      }));
+      })));
 }
 
 void displayUndoSnackbar({required String content, required VoidCallback callback, String title = ""}) {
@@ -108,7 +108,7 @@ void displayAlertDialog({String title = "", Widget? content}) {
             content,
             TextButton(
               child: Text('strClose'.tr),
-              onPressed: () {navigateBack();},
+              onPressed: navigateBack,
             ),
           ],
       ),
