@@ -16,6 +16,7 @@ class FavoritesPage extends StatelessWidget {
         placesCollection: _storeController.favoritePlacesCollection.value,
         placeholderContent: 'strNoSelectedFavorites'.tr,
         placeholderIcon: GlobalConstants.favoriteIcon,
+        isFavorites: true,
       ),
     );
   }

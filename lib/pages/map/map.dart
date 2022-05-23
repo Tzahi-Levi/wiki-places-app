@@ -1,5 +1,6 @@
 // ================= Map Page =================
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -31,7 +32,7 @@ class _MapPageState extends State<MapPage> {
         CameraUpdate.newCameraPosition(
           CameraPosition(
             target: _storeController.placeCoordinates.value,
-            zoom: GlobalConstants.defaultZoomMap,
+            zoom: _getZoomLevel(double.parse(_storeController.radius.value)),
           ),
         ),
       );
@@ -109,6 +110,15 @@ class _MapPageState extends State<MapPage> {
     _storeController.updateGlobalIsLoading(false);
   }
 
+  double _getZoomLevel(double radius){
+    double zoomLevel = GlobalConstants.defaultZoomMap;
+    if (radius > 1){
+      double scale = (radius * (10 + radius/3)) + 100/(radius);
+      zoomLevel = 16 - log(scale);
+    }
+    return zoomLevel;
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetX<StoreController>(
@@ -120,7 +130,7 @@ class _MapPageState extends State<MapPage> {
           onTap: _changePlace,
           initialCameraPosition: CameraPosition(
               target: _storeController.placeCoordinates.value,
-              zoom: GlobalConstants.defaultZoomMap,
+              zoom: _getZoomLevel(double.parse(_storeController.radius.value)),
           ),
           onMapCreated: _onMapCreated,
           myLocationEnabled: true,
