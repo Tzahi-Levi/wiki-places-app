@@ -42,7 +42,7 @@ final Map<String, String> resourcesEn = {
   'strNoSelectedFavorites': 'There are not favorite places. For adding places to the favorites, click on @ in the places page.',
 
   // Search Place Page
-  'strChangeRadius': 'Current radius',
+  'strChangeRadius': 'Search in distance',
   'strSearchPlaceAround': 'Search Settings',
   'strAddFilter': 'Add filter',
   'strPlace': 'Place:',
