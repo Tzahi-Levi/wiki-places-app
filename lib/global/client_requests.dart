@@ -67,7 +67,13 @@ class ClientRequests extends GetConnect {
 
   Future<SortedList<Suggestion>> getSuggestions({required String pattern}) async {
     Trace performanceTrace = _performance.newTrace("getSuggestions");
-    Response response = await get('https://nominatim.openstreetmap.org/search?q=${pattern.replaceAll(" ", "+")}&format=json&polygon=1&addressdetails=1');
+
+    pattern = pattern.replaceAll("רחוב ", "").replaceAll("שדרה ", "").replaceAll("מספר ", "").replaceAll(RegExp("\\d"), "").replaceAll(" ", "+");
+    if (pattern.isNotEmpty && pattern.lastIndexOf("+") == pattern.length -1) {
+      pattern = pattern.substring(0, pattern.length - 1);
+    }
+
+    Response response = await get('https://nominatim.openstreetmap.org/search?q=$pattern&format=json&polygon=1&addressdetails=1');
     SortedList<Suggestion> suggestions = getSuggestionsList;
 
     if (_isResponseSuccess(response)) {
