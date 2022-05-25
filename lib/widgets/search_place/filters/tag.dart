@@ -5,23 +5,12 @@ import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/utils.dart';
 
 class Tag extends StatelessWidget {
-  Tag({required this.title, this.undoCallback, Key? key}) : super(key: key);
+  Tag({required this.title, Key? key}) : super(key: key);
   final String title;
-  final Function? undoCallback;
   final StoreController _storeController = Get.put(StoreController());
 
   void _removeFilter() {
     _storeController.removePlaceFilter(title);
-    if (undoCallback != null) {
-      displayUndoSnackbar(content: 'strFilterRemoved'.tr, callback: _undoCallback);
-    }
-  }
-
-  void _undoCallback() {
-    if (Get.isSnackbarOpen) {
-      navigateBack();
-    }
-    undoCallback!(title);
   }
 
   @override

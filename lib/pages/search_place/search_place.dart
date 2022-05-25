@@ -90,7 +90,6 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
     _storeController.updateRadius(_radiusController.value.toString());
     if (await _storeController.updatePlacesCollection()) {
       navigateBack();
-      displaySearchSuccessfully();
       if (widget.afterSearchCallback != null) {
         widget.afterSearchCallback!();
       }

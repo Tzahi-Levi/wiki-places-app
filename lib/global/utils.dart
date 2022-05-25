@@ -50,14 +50,6 @@ void displayCurrentPlaceDetails() {
       })));
 }
 
-void displayUndoSnackbar({required String content, required VoidCallback callback, String title = ""}) {
-  displaySnackbar(
-      content: content,
-      title: title,
-      mainButton: TextButton(onPressed: callback, child: Text("strUndo".tr, style: Get.textTheme.bodyText2))
-  );
-}
-
 void displaySnackbar({required String content, String title = "", TextButton? mainButton}) {
   Get.snackbar(
     title,
