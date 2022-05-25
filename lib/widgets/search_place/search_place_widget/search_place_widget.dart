@@ -44,7 +44,7 @@ class _SearchPlaceWidgetState extends State<SearchPlaceWidget> {
           onChangeCallback: _updatePlaceName,
         ),
         SizedBox(
-          height: 50,
+          height: 60,
           child: SearchTextField(
               placeNameController: widget.placeNameController,
               isEnabled: widget.placeModeController.value == EPlaceMode.other,

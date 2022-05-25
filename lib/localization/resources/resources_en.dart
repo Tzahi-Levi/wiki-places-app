@@ -15,6 +15,7 @@ final Map<String, String> resourcesEn = {
   'strTryAgain': 'Error has been occurred, please try again later',
   'strLoadMore': 'Load More',
   'strUndo': 'Undo',
+  'strCurrentLocation': 'Distance from current location',
 
   // Navigation
   'strMapPageName': 'Map',

@@ -15,6 +15,7 @@ final Map<String, String> resourcesHe = {
   'strTryAgain': 'שגיאה התרחשה בעת הפעולה, יש לנסות שנית מאוחר יותר',
   'strLoadMore': 'טען עוד',
   'strUndo': 'בטל',
+  'strCurrentLocation': 'מרחק ממיקום נוכחי',
 
   // Navigation
   'strMapPageName': 'מפה',
