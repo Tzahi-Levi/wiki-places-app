@@ -22,8 +22,11 @@ class WebViewPageState extends State<WebViewPage> {
 
   @override
   Widget build(BuildContext context) {
-    return WebView(
-      initialUrl: widget.url,
+    return Scaffold(
+      appBar: AppBar(toolbarHeight: 0, backgroundColor: Colors.transparent,),
+      body: WebView(
+        initialUrl: widget.url,
+      ),
     );
   }
 }
