@@ -44,7 +44,7 @@ final Map<String, String> resourcesHe = {
 
   // Search Place Page
   'strChangeRadius': 'הרדיוס הנוכחי',
-  'strSearchPlaceAround': 'חיפוש בסביבת מקום',
+  'strSearchPlaceAround': 'הגדרות החיפוש',
   'strPlace': 'המיקום:',
   'strCurrentPlace': 'המיקום הנוכחי',
   'strOtherPlace': 'מיקום אחר',

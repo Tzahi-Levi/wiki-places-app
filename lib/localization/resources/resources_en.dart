@@ -43,7 +43,7 @@ final Map<String, String> resourcesEn = {
 
   // Search Place Page
   'strChangeRadius': 'Current radius',
-  'strSearchPlaceAround': 'Search Around Place',
+  'strSearchPlaceAround': 'Search Settings',
   'strAddFilter': 'Add filter',
   'strPlace': 'Place:',
   'strCurrentPlace': 'Current Place',
