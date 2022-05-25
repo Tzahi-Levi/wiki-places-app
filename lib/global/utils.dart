@@ -120,15 +120,6 @@ extension St on String {
     return toLowerCase().compareTo(other.toLowerCase());
   }
 
-  bool containsAll(List items) {
-    for (var item in items) {
-      if (!contains(item.toString())) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   bool get isLocale {
     for (var char in runes) {
       if (char >= int.parse('strFirstLetterAscii'.tr) && char <= int.parse('strLastLetterAscii'.tr)) {
