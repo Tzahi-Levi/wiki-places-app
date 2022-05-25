@@ -19,7 +19,7 @@ final Map<String, String> resourcesEn = {
 
   // Navigation
   'strMapPageName': 'Map',
-  'strPlacesPageName': 'Places',
+  'strPlacesPageName': 'List',
   'strFavoritesPageName': 'Favorites',
 
   // Map
