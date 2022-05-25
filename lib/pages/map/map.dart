@@ -127,7 +127,7 @@ class _MapPageState extends State<MapPage> {
         appBar: const ShowDetailsAppbar(),
         body: GoogleMap(
           padding: const EdgeInsets.only(top: 120, bottom: 50),
-          onTap: _changePlace,
+          onLongPress: _changePlace,
           initialCameraPosition: CameraPosition(
               target: _storeController.placeCoordinates.value,
               zoom: _getZoomLevel(double.parse(_storeController.radius.value)),
