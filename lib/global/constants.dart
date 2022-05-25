@@ -21,8 +21,8 @@ class GlobalConstants {
   // Icons
   static const IconData mapPageOutLinedIcon = Icons.map_outlined;
   static const IconData mapPageSelectedIcon = Icons.map;
-  static const IconData placesPageOutLinedIcon = Icons.place_outlined;
-  static const IconData placesPageSelectedIcon = Icons.place;
+  static const IconData placesPageOutLinedIcon = Icons.list_outlined;
+  static const IconData placesPageSelectedIcon = Icons.list;
   static const IconData searchIcon = Icons.search;
   static const IconData infoIcon = Icons.info;
   static const IconData addIcon = Icons.add;
