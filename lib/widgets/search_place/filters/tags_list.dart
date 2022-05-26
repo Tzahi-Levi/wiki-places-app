@@ -20,9 +20,16 @@ class TagsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetX<StoreController>(
-      builder: (store) => isWrap ? Wrap(children: _getTags) : ListView(
-        scrollDirection: Axis.horizontal,
-        children: _getTags,
+      builder: (store) => isWrap ? Wrap(children: _getTags) : Visibility(
+        visible: _storeController.placeFilters.value.isNotEmpty,
+        child: SizedBox(
+            height: 50,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              children: _getTags,
+            ),
+        ),
       ),
     );
   }

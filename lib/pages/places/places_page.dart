@@ -7,6 +7,7 @@ import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/pages/places/places_list.dart';
 import 'package:wiki_places/widgets/about_the_app.dart';
+import 'package:wiki_places/widgets/search_place/filters/tags_list.dart';
 
 class PlacesPage extends StatelessWidget {
   PlacesPage({Key? key}) : super(key: key);
@@ -34,6 +35,7 @@ class PlacesPage extends StatelessWidget {
         builder: (store) => PlacesList(
           placesCollection: _storeController.placesCollection.value,
           placeholderContent: 'strNoPlacesAvailable'.tr,
+          topWidgets: [TagsList(isWrap: false)],
           bottomWidgets: [
             Padding(
               padding: EdgeInsets.only(left: Get.width * 0.33, right: Get.width * 0.33),
