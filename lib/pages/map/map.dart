@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:get/get.dart';
+import 'package:wiki_places/controllers/favorites_controller.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:wiki_places/global/types.dart';
@@ -9,6 +10,7 @@ import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/widgets/appbar.dart';
+import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
 import 'package:wiki_places/global/map_style/map_style_dark.dart';
 import 'package:wiki_places/global/map_style/map_style_light.dart';
@@ -64,10 +66,12 @@ class _MapPageState extends State<MapPage> {
   Set<Marker> _getMarkers() {
     Set<Marker> places = {};
 
-    for (var place in _storeController.placesCollection.value.places) {
+    for (PlaceModel place in _storeController.placesCollection.value.places) {
+      bool isFavoritePlace = FavoritesController.instance.checkIfFavorite(place);
       places.add(Marker(
         markerId: MarkerId(place.label),
         position: LatLng(place.lat, place.lon),
+        icon: isFavoritePlace ? BitmapDescriptor.defaultMarkerWithHue(GlobalConstants.favoritePlaceMarkerColor) : BitmapDescriptor.defaultMarkerWithHue(GlobalConstants.regularPlaceMarkerColor),
         infoWindow: InfoWindow(
           title: place.label,
           snippet: 'strReadMore'.tr,
