@@ -30,12 +30,12 @@ class PlacesList extends StatelessWidget {
     return placesCollection.isEmpty && placeholderContent != null ?
       PlaceholderPage(
         content: placeholderContent!,
-        appBar: const ShowDetailsAppbar(showAppTitle: true),
+        appBar: const DetailsAndFiltersAppbar(showAppTitle: true),
         firstIcon: placeholderIcon,
       ) : Scaffold(
       backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
-        appBar: const ShowDetailsAppbar(),
+        appBar: const DetailsAndFiltersAppbar(),
         body: ListView(
           children: (bottomWidgets == null) ? _getPlaces : _getPlaces + bottomWidgets!,
         ),

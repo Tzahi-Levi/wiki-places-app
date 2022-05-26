@@ -66,29 +66,26 @@ void displaySnackbar({required String content, String title = "", TextButton? ma
   );
 }
 
-void openModalBottomSheet({List<Widget>? children}) {  // TODO- not in use right now, can be removed
-  if (children == null) {
-    return;
-  }
-
+void openModalBottomSheet({required Widget widget}) {
   Get.bottomSheet(
-    SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 15.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: children,
-          ),
-        ),
-    ),
-    isScrollControlled: true,
+    widget,
+    // SingleChildScrollView(
+    //     child: Padding(
+    //       padding: const EdgeInsets.only(bottom: 15.0),
+    //       child: Row(
+    //         mainAxisAlignment: MainAxisAlignment.center,
+    //         children: children,
+    //       ),
+    //     ),
+    // ),
+    // isScrollControlled: true,
     backgroundColor: Get.theme.primaryColorLight,
-    elevation: 10,
-    shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15), topRight: Radius.circular(15)
-        ),
-    ),
+    // elevation: 10,
+    // shape: const RoundedRectangleBorder(
+    //     borderRadius: BorderRadius.only(
+    //         topLeft: Radius.circular(15), topRight: Radius.circular(15)
+    //     ),
+    // ),
   );
 }
 

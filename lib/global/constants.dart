@@ -25,6 +25,7 @@ class GlobalConstants {
   static const IconData placesPageSelectedIcon = Icons.list;
   static const IconData searchIcon = Icons.search;
   static const IconData infoIcon = Icons.info;
+  static const IconData filtersIcon = Icons.filter_alt;
   static const IconData addIcon = Icons.add;
   static const IconData placeIcon = Icons.place;
   static const IconData favoriteIcon = Icons.favorite;

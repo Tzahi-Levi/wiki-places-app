@@ -124,7 +124,7 @@ class _MapPageState extends State<MapPage> {
     return GetX<StoreController>(
       builder: (store) => Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: const ShowDetailsAppbar(),
+        appBar: const DetailsAndFiltersAppbar(),
         body: GoogleMap(
           padding: const EdgeInsets.only(top: 120, bottom: 50),
           onLongPress: _changePlace,

@@ -5,14 +5,19 @@ import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/utils.dart';
+import 'package:wiki_places/widgets/search_place/filters/filters.dart';
 
-class ShowDetailsAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const ShowDetailsAppbar({this.showAppTitle = false, this.title, Key? key}) : super(key: key);
+class DetailsAndFiltersAppbar extends StatelessWidget implements PreferredSizeWidget {
+  const DetailsAndFiltersAppbar({this.showAppTitle = false, this.title, Key? key}) : super(key: key);
   final bool showAppTitle;
   final String? title;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  void _openFilters() {
+    openModalBottomSheet(widget: const Filters());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +25,13 @@ class ShowDetailsAppbar extends StatelessWidget implements PreferredSizeWidget {
       showAppTitle: showAppTitle,
       title: title,
       actions: [
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: IconButton(
-            onPressed: displayCurrentPlaceDetails,
-            icon: Icon(GlobalConstants.infoIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
-          ),
+        IconButton(
+          onPressed: displayCurrentPlaceDetails,
+          icon: Icon(GlobalConstants.infoIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
+        ),
+        IconButton(
+          onPressed: _openFilters,
+          icon: Icon(GlobalConstants.filtersIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
         ),
       ],
     );
