@@ -30,6 +30,7 @@ dependencies:
   flutter_native_splash: ^2.1.6
   flutter_typeahead: ^4.0.0
   shared_preferences: ^2.0.15
+  another_flushbar: ^1.10.29
 
 flutter_native_splash:
   background_image: "images/start_app.png"

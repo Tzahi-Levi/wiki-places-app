@@ -1,6 +1,7 @@
 // ================= Utils For Project =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:another_flushbar/flushbar.dart';
 import 'dart:math';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/pages/webview/webview.dart';
@@ -66,7 +67,7 @@ void displaySnackbar({required String content, String title = "", TextButton? ma
   );
 }
 
-void openModalBottomSheet({required Widget widget}) {
+void openModalBottomSheet({required Widget widget}) {  // TODO- need to be designed
   Get.bottomSheet(
     widget,
     // SingleChildScrollView(
@@ -89,10 +90,10 @@ void openModalBottomSheet({required Widget widget}) {
   );
 }
 
-void displayAlertDialog({String title = "", Widget? content}) {
+void displayAlertDialog({String title = "", required Widget content}) {
   Get.defaultDialog(
       title: title,
-      content: content == null ? null : Column(
+      content: Column(
           children: [
             content,
             TextButton(
@@ -101,6 +102,32 @@ void displayAlertDialog({String title = "", Widget? content}) {
             ),
           ],
       ),
+  );
+}
+
+void displayBanner({required String content}) async {
+  if (Get.context == null) {
+    return;
+  }
+
+  Get.dialog(
+      await Flushbar(
+        message: content,
+        flushbarPosition: FlushbarPosition.TOP,
+        leftBarIndicatorColor: Colors.green,
+        margin: const EdgeInsets.all(8),
+        borderRadius: BorderRadius.circular(8),
+        mainButton: TextButton(
+          child: Text('strClose'.tr),
+          onPressed: navigateBack,
+        ),
+        textDirection: Directionality.of(Get.context!),
+        icon: const Icon(
+          GlobalConstants.infoIcon,
+          size: 28.0,
+          color: Colors.green,
+        ),
+      ).show(Get.context!)
   );
 }
 

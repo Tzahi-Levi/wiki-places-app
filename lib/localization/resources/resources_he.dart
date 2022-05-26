@@ -24,6 +24,7 @@ final Map<String, String> resourcesHe = {
 
   // Map
   'strYourChosenPlace': 'מיקומך הנוכחי',
+  'strSearchOnMap': 'ניתן לקבל ערכים קרובים למיקום אחר על המפה בלחיצה ארוכה על המיקום המבוקש',
 
   // Places
   'strSearchPlace': 'חפש ערכים',

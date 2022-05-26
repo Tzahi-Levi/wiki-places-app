@@ -24,6 +24,7 @@ final Map<String, String> resourcesEn = {
 
   // Map
   'strYourChosenPlace': 'Your chosen place',
+  'strSearchOnMap': 'You can get more values on another place by long press on the other place',
 
   // Places
   'strSearchPlace': 'Search Places',

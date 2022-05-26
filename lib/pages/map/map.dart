@@ -12,6 +12,7 @@ import 'package:wiki_places/widgets/appbar.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
 import 'package:wiki_places/global/map_style/map_style_dark.dart';
 import 'package:wiki_places/global/map_style/map_style_light.dart';
+import 'package:wiki_places/controllers/preferences_controller.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -24,6 +25,13 @@ class _MapPageState extends State<MapPage> {
   final _storeController = Get.put(StoreController());
   GoogleMapController? _controller;
   Json _previousStore = {};
+
+  void _showSearchPlaceMessageIfNeeded() async {
+    if (!await PreferencesController.instance.wasSearchPlaceMessageSeen) {
+      PreferencesController.instance.setSearchPlaceMessageSeen();
+      displayBanner(content: 'strSearchOnMap'.tr);
+    }
+  }
 
   void _updateMap() {
     if (_controller != null) {
@@ -41,6 +49,7 @@ class _MapPageState extends State<MapPage> {
 
   void _onMapCreated(GoogleMapController controller) async {
     _controller = controller;
+    _showSearchPlaceMessageIfNeeded();
 
     setState(() {
       _updateMap();
