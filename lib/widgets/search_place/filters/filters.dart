@@ -20,7 +20,7 @@ class _FiltersState extends State<Filters> {
   List<Widget> get _getTags {
     List<Widget> tags = [];
     for (String filter in _storeController.placeFilters.value){
-      tags.add(Tag(title: filter, undoCallback: _addFilter));
+      tags.add(Tag(title: filter));
     }
     return tags;
   }

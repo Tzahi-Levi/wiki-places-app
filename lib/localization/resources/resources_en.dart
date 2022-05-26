@@ -19,7 +19,7 @@ final Map<String, String> resourcesEn = {
 
   // Navigation
   'strMapPageName': 'Map',
-  'strPlacesPageName': 'Places',
+  'strPlacesPageName': 'List',
   'strFavoritesPageName': 'Favorites',
 
   // Map
@@ -42,8 +42,8 @@ final Map<String, String> resourcesEn = {
   'strNoSelectedFavorites': 'There are not favorite places. For adding places to the favorites, click on @ in the places page.',
 
   // Search Place Page
-  'strChangeRadius': 'Current radius',
-  'strSearchPlaceAround': 'Search Around Place',
+  'strChangeRadius': 'Search in distance',
+  'strSearchPlaceAround': 'Search Settings',
   'strAddFilter': 'Add filter',
   'strPlace': 'Place:',
   'strCurrentPlace': 'Current Place',

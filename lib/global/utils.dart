@@ -42,20 +42,12 @@ void displaySearchSuccessfully() {
 
 void displayCurrentPlaceDetails() {
   final StoreController _storeController = Get.put(StoreController());
-  displaySnackbar(
-      content: 'strCurrentPlaceDetails'.trParams({
+  displayAlertDialog(
+      content: Text('strCurrentPlaceDetails'.trParams({
         'radius': _storeController.radius.value,
         'scale': GlobalConstants.defaultScale,
         'place': _storeController.placeMode.value == EPlaceMode.current ? 'strCurrentPlace'.tr : _storeController.placeName.value,
-      }));
-}
-
-void displayUndoSnackbar({required String content, required VoidCallback callback, String title = ""}) {
-  displaySnackbar(
-      content: content,
-      title: title,
-      mainButton: TextButton(onPressed: callback, child: Text("strUndo".tr, style: Get.textTheme.bodyText2))
-  );
+      })));
 }
 
 void displaySnackbar({required String content, String title = "", TextButton? mainButton}) {
@@ -108,7 +100,7 @@ void displayAlertDialog({String title = "", Widget? content}) {
             content,
             TextButton(
               child: Text('strClose'.tr),
-              onPressed: () {navigateBack();},
+              onPressed: navigateBack,
             ),
           ],
       ),
@@ -126,15 +118,6 @@ String fullAddressToDisplayedAddress(String address) {
 extension St on String {
   int compareStrings(String other) {
     return toLowerCase().compareTo(other.toLowerCase());
-  }
-
-  bool containsAll(List items) {
-    for (var item in items) {
-      if (!contains(item.toString())) {
-        return false;
-      }
-    }
-    return true;
   }
 
   bool get isLocale {

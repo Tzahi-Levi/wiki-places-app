@@ -19,32 +19,32 @@ final Map<String, String> resourcesHe = {
 
   // Navigation
   'strMapPageName': 'מפה',
-  'strPlacesPageName': 'המקומות',
+  'strPlacesPageName': 'רשימה',
   'strFavoritesPageName': 'מועדפים',
 
   // Map
   'strYourChosenPlace': 'מיקומך הנוכחי',
 
   // Places
-  'strSearchPlace': 'חפש מקומות',
-  'strSearchSuccessfully': 'חיפוש מקומות ברדיוס @radius @scale מ@place בוצע בהצלחה!',
-  'strCurrentPlaceDetails': 'מקומות ברדיוס @radius @scale מ@place',
-  'strWikipediaValuesInRadius': '@number מקומות (@radius @scale)',
+  'strSearchPlace': 'חפש ערכים',
+  'strSearchSuccessfully': 'חיפוש ערכים במרחק @radius @scale מ@place בוצע בהצלחה!',
+  'strCurrentPlaceDetails': 'ערכים במרחק @radius @scale מ@place',
+  'strWikipediaValuesInRadius': '@number ערכים (@radius @scale)',
   'strReadMore': 'קרא עוד',
-  'strRadiusMustBePositive': 'הרדיוס חייב להיות מספר חיובי',
-  'strCantIncreaseRadius':'לא ניתן להגדיל את הרדיוס מעבר ל-@maxRadius ק״מ',
+  'strRadiusMustBePositive': 'המרחק חייב להיות מספר חיובי',
+  'strCantIncreaseRadius':'לא ניתן להגדיל את המרחק מעבר ל-@maxRadius ק״מ',
   'strAddFilter': 'הוסף מסנן',
   'strNoPlacesAvailable': "אין מיקומים זמינים",
   'strEmptyPlaceName': "על מנת לבצע חיפוש, יש לבחור מיקום",
   'strPlaceNotExist': "המיקום המבוקש לא נמצא, יש לנסות לחפש מיקום אחר",
 
   // Favorites
-  'strFavoritesNumber': '@number מקומות מועדפים',
-  'strNoSelectedFavorites': 'לא נבחרו מועדפים. על מנת להוסיף מיקום לרשימת המועדפים, יש ללחוץ על ה-@ בעמוד המקומות.',
+  'strFavoritesNumber': '@number ערכים מועדפים',
+  'strNoSelectedFavorites': 'לא נבחרו מועדפים. על מנת להוסיף מיקום לרשימת המועדפים, יש ללחוץ על ה-@ בעמוד הערכים.',
 
   // Search Place Page
-  'strChangeRadius': 'הרדיוס הנוכחי',
-  'strSearchPlaceAround': 'חיפוש בסביבת מקום',
+  'strChangeRadius': 'חפש במרחק',
+  'strSearchPlaceAround': 'הגדרות החיפוש',
   'strPlace': 'המיקום:',
   'strCurrentPlace': 'המיקום הנוכחי',
   'strOtherPlace': 'מיקום אחר',

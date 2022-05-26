@@ -22,6 +22,7 @@
 
 ## Prerequisite:
 * The app is based on [another project](https://github.com/TechnionTDK/wikipedia-places) that implements the backend of this app.
+* The app uses [Nominatim API](https://nominatim.org/release-docs/develop/api/Overview/) for searching other places.
 
 
 ## Core Features

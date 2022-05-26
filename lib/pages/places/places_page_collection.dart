@@ -23,7 +23,7 @@ class PlacesPageCollection {
     _initList();
     for (var json in placesJson) {
       PlaceModel newPlace = PlaceModel.fromJson(json);
-      if (newPlace.label.containsAll(placeFilters) || newPlace.abstract.containsAll(placeFilters)) {
+      if (placeFilters.isEmpty || _doesContainFilter(newPlace, placeFilters)) {
         places.add(newPlace);
       }
     }
@@ -31,4 +31,13 @@ class PlacesPageCollection {
 
   bool get isEmpty => places.isEmpty;
   int get length => places.length;
+
+  bool _doesContainFilter(PlaceModel place, SortedList<String> placeFilters) {
+    for (var filter in placeFilters) {
+      if (place.label.contains(filter) || place.abstract.contains(filter)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

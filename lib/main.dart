@@ -39,7 +39,7 @@ class WikiPlacesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'strAppName'.tr,
+      title: ProjectConfig.projectName,
       translations: Resources.instance,
       locale: LocaleController.getCurrentLocale,
       supportedLocales: LocaleController.getSupportedLocales(),
