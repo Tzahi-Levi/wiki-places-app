@@ -5,12 +5,12 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/widgets/bottom_navigation.dart';
+import 'package:wiki_places/widgets/app_background.dart';
 import 'package:wiki_places/pages/places/places_page.dart';
 import 'package:wiki_places/pages/favorites/favorites_page.dart';
 import 'package:wiki_places/pages/map/map.dart';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/controllers/favorites_controller.dart';
-import 'package:wiki_places/global/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -80,14 +80,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               isLoading: _storeController.globalIsLoading.value,
               child: Stack(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(GlobalConstants.appBackgroundImage),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
+                  const AppBackground(),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 45.0),
                     child: _getCurrentPage,

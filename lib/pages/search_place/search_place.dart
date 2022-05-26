@@ -2,13 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
-import 'package:wiki_places/global/constants.dart';
+import 'package:wiki_places/widgets/app_background.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/widgets/appbar.dart';
 import 'package:wiki_places/widgets/search_place/change_radius_slider.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/types.dart';
-import 'package:wiki_places/widgets/search_place/filters/filters.dart';
 import 'package:wiki_places/widgets/search_place/search_place_widget/search_place_widget.dart';
 
 class SearchPlacePage extends StatefulWidget {
@@ -110,14 +109,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
         appBar: MinorAppBar(title: 'strSearchPlaceAround'.tr),
         body: Stack(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(GlobalConstants.appBackgroundImage),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+            const AppBackground(),
             SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -133,7 +125,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: _searchPlace, 
-                        child: Text('strSearch'.tr, style: Get.textTheme.headline2,), 
+                        child: Text('strSearch'.tr, style: Get.textTheme.headline2),
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states)=> const Color(0xff03CE3D)),
                           elevation: MaterialStateProperty.resolveWith((states) => 10)),
