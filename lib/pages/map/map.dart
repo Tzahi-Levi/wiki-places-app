@@ -123,13 +123,10 @@ class _MapPageState extends State<MapPage> {
     _storeController.updateGlobalIsLoading(false);
   }
 
-  double _getZoomLevel(double radius){
-    double zoomLevel = GlobalConstants.defaultZoomMap;
-    double resize = 8 * (1.1-(1/(1+radius)));
-    double scaleFix = (log((radius + (radius/2))/1000))/log(10);
-    double scale = resize + scaleFix;//(radius * (10 + radius/3)) + 100/(radius);
-    zoomLevel = 16 - scale;
-    return zoomLevel;
+  double _getZoomLevel(double radius) {
+    double resize = 8 * (1.1 - (1 / (1 + radius)));
+    double scaleFix = (log((radius + (radius / 2)) / 1000)) / log(10);
+    return 16 - resize - scaleFix;
   }
 
   @override
