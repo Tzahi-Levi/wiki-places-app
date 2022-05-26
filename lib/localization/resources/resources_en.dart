@@ -54,6 +54,7 @@ final Map<String, String> resourcesEn = {
   'strEmptyFilter': 'Choose filter name for adding a filter',
   'strFilters': 'Filters:',
   'strAddFilter': 'Add filter',
+  'strResetFilters': 'Reset filters',
 
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",

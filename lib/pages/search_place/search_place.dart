@@ -23,6 +23,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
   late final TextEditingController _placeNameController = TextEditingController(text: _storeController.placeName.value);
   late final PrimitiveWrapper _placeModeController = PrimitiveWrapper(_storeController.placeMode.value);
   late final PrimitiveWrapper _radiusController = PrimitiveWrapper(double.parse(_storeController.radius.value));
+  bool _resetFilters = true;
   bool _isLoading = false;
   Json _previousStore = {};
 
@@ -50,6 +51,12 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
 
   void _restorePreviousStore() {
     _storeController.setStore(_previousStore);
+  }
+
+  void _toggleResetCategory(bool? value) {
+    setState(() {
+    _resetFilters = !_resetFilters;
+    });
   }
 
   bool _isValidSearch() {
@@ -101,7 +108,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
         return;
     }
 
-    if (true) {
+    if (_resetFilters) {
       await _storeController.cleanAllFilters(checkBeforeCleaning: false, reportToGA: false);
     }
 
@@ -137,6 +144,14 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                   SearchPlaceWidget(placeNameController: _placeNameController, placeModeController: _placeModeController),
                   const Divider(),
                   ChangeRadiusSlider(controller: _radiusController),
+                  const Divider(),
+                  Row(
+                      children: [
+                        Text('strResetFilters'.tr),
+                        Checkbox(value: _resetFilters, onChanged: _toggleResetCategory),
+                      ],
+                  ),
+                  const Divider(),
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0),
                     child: SizedBox(
