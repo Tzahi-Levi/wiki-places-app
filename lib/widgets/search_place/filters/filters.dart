@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
-import 'package:wiki_places/widgets/search_place/filters/tag.dart';
+import 'package:wiki_places/widgets/search_place/filters/tags_list.dart';
 
 class Filters extends StatefulWidget {
   const Filters({Key? key}) : super(key: key);
@@ -16,14 +16,8 @@ class Filters extends StatefulWidget {
 class _FiltersState extends State<Filters> {
   final _storeController = Get.put(StoreController());
   final TextEditingController _filterController = TextEditingController();
-
-  List<Widget> get _getTags {
-    List<Widget> tags = [];
-    for (String filter in _storeController.placeFilters.value){
-      tags.add(Tag(title: filter));
-    }
-    return tags;
-  }
+  bool _addIsLoading = false;
+  bool _cleanAllIsLoading = false;
 
   @override
   void dispose() {
@@ -31,21 +25,42 @@ class _FiltersState extends State<Filters> {
     super.dispose();
   }
 
-  void _addFilter([String? filter]) {
-    filter ??= _filterController.text;
-    if (filter.isNotEmpty) {
-      _storeController.addPlaceFilter(filter);
-      _filterController.text = "";
-      FocusScope.of(Get.context!).unfocus(); // Remove the keyboard
-    } else {
+  void _updateIsLoading({bool? addValue, bool? cleanAllValue}) {
+    if (addValue != null) {
+      setState(() {
+        _addIsLoading = addValue;
+      });
+    }
+
+    if (cleanAllValue != null) {
+      setState(() {
+        _cleanAllIsLoading = cleanAllValue;
+      });
+    }
+  }
+
+  void _addFilter() async {
+    if (_filterController.text.isEmpty) {
       displaySnackbar(content: 'strEmptyFilter'.tr, title: 'strError'.tr);
     }
+
+    _updateIsLoading(addValue: true);
+    if (await _storeController.addPlaceFilter(_filterController.text)) {
+      _filterController.text = "";
+      FocusScope.of(Get.context!).unfocus(); // Remove the keyboard
+    }
+    _updateIsLoading(addValue: false);
+  }
+
+  void _cleanAllFilters() async {
+    _updateIsLoading(cleanAllValue: true);
+    await _storeController.cleanAllFilters();
+    _updateIsLoading(cleanAllValue: false);
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetX<StoreController>(
-        builder: (store) => Column(
+    return Column(
           children: [
             Text('strFilters'.tr),
             Row(
@@ -58,15 +73,12 @@ class _FiltersState extends State<Filters> {
                     ),
                   ),
                 ),
-                IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon)),
+                _addIsLoading ? const CircularProgressIndicator() : IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon)),
               ],
             ),
-            TextButton(onPressed: _storeController.cleanAllFilters, child: Text('strCleanAllFilters'.tr)),
-            Wrap(
-              children: _getTags,
-            ),
+            _cleanAllIsLoading ? const CircularProgressIndicator() : TextButton(onPressed: _cleanAllFilters, child: Text('strCleanAllFilters'.tr)),
+            TagsList(isWrap: true),
           ],
-        ),
     );
   }
 }

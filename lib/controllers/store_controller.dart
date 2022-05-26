@@ -22,6 +22,8 @@ class StoreController extends GetxController {
   final Rx<EPlaceMode> placeMode = EPlaceMode.current.obs;
   final Rx<SortedList<String>> placeFilters = SortedList<String>().obs;
 
+  bool _removingFilter = false;
+
   // Actions
   void setStore(Json store) {
     radius.value = store['radius'];
@@ -41,27 +43,64 @@ class StoreController extends GetxController {
     update();
   }
 
-  void addPlaceFilter(String filter) {
+  Future<bool> addPlaceFilter(String filter) async {
     if (!placeFilters.value.contains(filter)) {
+      SortedList<String> newFiltersList = SortedList<String>();
+      newFiltersList.addAll(placeFilters.value);
+      newFiltersList.add(filter);
+      if (!await updatePlacesCollection(filtersList: newFiltersList, reportToGA: false)) {
+        return false;
+      }
+
       placeFilters.value.add(filter);
       placeFilters.refresh();
-      updatePlacesCollection(reportToGA: false);
       GoogleAnalytics.instance.logFilterAdded();
     }
+    return true;
   }
 
-  void removePlaceFilter(String filter) {
-    placeFilters.value.remove(filter);
-    placeFilters.refresh();
-    updatePlacesCollection(reportToGA: false);
-    GoogleAnalytics.instance.logFilterRemoved();
+  Future<bool> removePlaceFilter(String filter) async {
+    if (_removingFilter) {
+      return false;
+    }
+
+    _removingFilter = true;
+    if (placeFilters.value.contains(filter)) {
+      SortedList<String> newFiltersList = SortedList<String>();
+      newFiltersList.addAll(placeFilters.value);
+      newFiltersList.remove(filter);
+      if (!await updatePlacesCollection(filtersList: newFiltersList, reportToGA: false)) {
+        _removingFilter = false;
+        return false;
+      }
+
+      placeFilters.value.remove(filter);
+      placeFilters.refresh();
+      GoogleAnalytics.instance.logFilterRemoved();
+    }
+    _removingFilter = false;
+    return true;
   }
 
-  void cleanAllFilters() {
+  Future<bool> cleanAllFilters() async {
+    if (_removingFilter) {
+      return false;
+    }
+    
+    _removingFilter = true;
+    SortedList<String> newFiltersList = SortedList<String>();
+    newFiltersList.addAll(placeFilters.value);
+    newFiltersList.removeRange(0, newFiltersList.length);
+    if (!await updatePlacesCollection(filtersList: newFiltersList, reportToGA: false)) {
+      _removingFilter = false;
+      return false;
+    }
+
     placeFilters.value.removeRange(0, placeFilters.value.length);
     placeFilters.refresh();
-    updatePlacesCollection(reportToGA: false);
     GoogleAnalytics.instance.logFilterRemoved();
+    _removingFilter = false;
+    return true;
   }
 
   void updateRadius(String newRadius) {
@@ -114,13 +153,14 @@ class StoreController extends GetxController {
     return true;
   }
 
-  Future<bool> updatePlacesCollection({bool moveToError = false, bool reportToGA = true}) async {
+  Future<bool> updatePlacesCollection({SortedList<String>? filtersList, bool moveToError = false, bool reportToGA = true}) async {
+    filtersList ??= placeFilters.value;
     List<dynamic>? placeJson = await ClientRequests.instance.getPlacesData(radius: radius.value, lat: placeCoordinates.value.latitude, lon: placeCoordinates.value.longitude, moveToError: moveToError);
     if (placeJson == null) {
       return false;
     }
 
-    placesCollection.value = PlacesPageCollection.fromJson(placeJson, placeFilters.value);
+    placesCollection.value = PlacesPageCollection.fromJson(placeJson, filtersList);
     update();
 
     if (reportToGA) {
