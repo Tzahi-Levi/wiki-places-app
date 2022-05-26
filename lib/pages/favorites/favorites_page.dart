@@ -17,6 +17,8 @@ class FavoritesPage extends StatelessWidget {
         placeholderContent: 'strNoSelectedFavorites'.tr,
         placeholderIcon: GlobalConstants.favoriteIcon,
         distanceFromCurrentLocation: true,
+        showAppbarDetails: false,
+        showAppbarFilters: false,
       ),
     );
   }

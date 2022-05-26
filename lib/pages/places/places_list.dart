@@ -7,13 +7,15 @@ import 'package:wiki_places/widgets/search_places_fab.dart';
 import 'package:wiki_places/pages/places/places_page_collection.dart';
 
 class PlacesList extends StatelessWidget {
-  const PlacesList({Key? key, required this.placesCollection, this.placeholderContent, this.placeholderIcon, this.topWidgets = const [], this.bottomWidgets = const [], this.distanceFromCurrentLocation = false}) : super(key: key);
+  const PlacesList({Key? key, required this.placesCollection, this.placeholderContent, this.placeholderIcon, this.topWidgets = const [], this.bottomWidgets = const [], this.distanceFromCurrentLocation = false, this.showAppbarDetails = true, this.showAppbarFilters = true}) : super(key: key);
   final PlacesPageCollection placesCollection;
   final String? placeholderContent;
   final IconData? placeholderIcon;
   final List<Widget> topWidgets;
   final List<Widget> bottomWidgets;
   final bool distanceFromCurrentLocation;
+  final bool showAppbarDetails;
+  final bool showAppbarFilters;
 
   List<Widget> get _getPlaces {
     List<Widget> placesList = [];
@@ -29,12 +31,12 @@ class PlacesList extends StatelessWidget {
     return placesCollection.isEmpty && placeholderContent != null ?
       PlaceholderPage(
         content: placeholderContent!,
-        appBar: const DetailsAndFiltersAppbar(showAppTitle: true),
+        appBar: DetailsAndFiltersAppbar(showAppbarDetails: showAppbarDetails, showAppTitle: true, showAppbarFilters: showAppbarFilters),
         firstIcon: placeholderIcon,
       ) : Scaffold(
       backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
-        appBar: const DetailsAndFiltersAppbar(),
+        appBar: DetailsAndFiltersAppbar(showAppbarDetails: showAppbarDetails, showAppbarFilters: showAppbarFilters),
         body: ListView(
           children: [...topWidgets, ..._getPlaces, ...bottomWidgets],
         ),

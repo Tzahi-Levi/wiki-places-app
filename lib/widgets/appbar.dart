@@ -8,9 +8,11 @@ import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/widgets/search_place/filters/filters.dart';
 
 class DetailsAndFiltersAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const DetailsAndFiltersAppbar({this.showAppTitle = false, this.title, Key? key}) : super(key: key);
+  const DetailsAndFiltersAppbar({this.showAppTitle = false, this.showAppbarFilters = true, this.showAppbarDetails = true, this.title, Key? key}) : super(key: key);
   final bool showAppTitle;
   final String? title;
+  final bool showAppbarDetails;
+  final bool showAppbarFilters;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -25,13 +27,19 @@ class DetailsAndFiltersAppbar extends StatelessWidget implements PreferredSizeWi
       showAppTitle: showAppTitle,
       title: title,
       actions: [
-        IconButton(
-          onPressed: displayCurrentPlaceDetails,
-          icon: Icon(GlobalConstants.infoIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
+        Visibility(
+          visible: showAppbarDetails,
+          child: IconButton(
+            onPressed: displayCurrentPlaceDetails,
+            icon: Icon(GlobalConstants.infoIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
+          ),
         ),
-        IconButton(
-          onPressed: _openFilters,
-          icon: Icon(GlobalConstants.filtersIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
+        Visibility(
+          visible: showAppbarFilters,
+          child: IconButton(
+            onPressed: _openFilters,
+            icon: Icon(GlobalConstants.filtersIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
+          ),
         ),
       ],
     );
