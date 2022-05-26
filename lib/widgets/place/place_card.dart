@@ -6,7 +6,6 @@ import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/controllers/favorites_controller.dart';
-import 'package:wiki_places/metrics/google_analytics.dart';
 
 class Place extends StatefulWidget {
   const Place(this.model, {this.padding = 5, this.isCurrentLocation = false, Key? key}) : super(key: key);
@@ -81,7 +80,7 @@ class _PlaceState extends State<Place> {
                     ),
                   ),
                   Visibility(
-                    visible: widget.model.imageUrl != "",
+                    visible: widget.model.imageUrl.isNotEmpty,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                       child: Container(
@@ -138,5 +137,3 @@ class _PlaceState extends State<Place> {
     );
   }
 }
-
-

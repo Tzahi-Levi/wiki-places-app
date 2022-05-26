@@ -7,20 +7,20 @@ import 'package:wiki_places/widgets/search_places_fab.dart';
 import 'package:wiki_places/pages/places/places_page_collection.dart';
 
 class PlacesList extends StatelessWidget {
-  PlacesList({Key? key, required this.placesCollection, this.placeholderContent, this.placeholderIcon, this.topWidgets = const [], this.bottomWidgets = const [], this.isFavorites = false}) : super(key: key);
-  PlacesPageCollection placesCollection;
-  String? placeholderContent;
-  IconData? placeholderIcon;
-  List<Widget> topWidgets;
-  List<Widget> bottomWidgets;
-  bool isFavorites;
+  const PlacesList({Key? key, required this.placesCollection, this.placeholderContent, this.placeholderIcon, this.topWidgets = const [], this.bottomWidgets = const [], this.distanceFromCurrentLocation = false}) : super(key: key);
+  final PlacesPageCollection placesCollection;
+  final String? placeholderContent;
+  final IconData? placeholderIcon;
+  final List<Widget> topWidgets;
+  final List<Widget> bottomWidgets;
+  final bool distanceFromCurrentLocation;
 
   List<Widget> get _getPlaces {
     List<Widget> placesList = [];
     for (var placeData in placesCollection.places.getRange(0, placesCollection.places.length - 1)) {
-      placesList.add(Place(placeData, isCurrentLocation: isFavorites ? true : false));
+      placesList.add(Place(placeData, isCurrentLocation: distanceFromCurrentLocation));
     }
-    placesList.add(Place(placesCollection.places.last, padding: 20, isCurrentLocation: isFavorites ? true : false)); // Different behaviour for the last item
+    placesList.add(Place(placesCollection.places.last, padding: 20, isCurrentLocation: distanceFromCurrentLocation)); // Different behaviour for the last item
     return placesList;
   }
 
