@@ -57,6 +57,13 @@ class StoreController extends GetxController {
     GoogleAnalytics.instance.logFilterRemoved();
   }
 
+  void cleanAllFilters() {
+    placeFilters.value.removeRange(0, placeFilters.value.length);
+    placeFilters.refresh();
+    updatePlacesCollection(reportToGA: false);
+    GoogleAnalytics.instance.logFilterRemoved();
+  }
+
   void updateRadius(String newRadius) {
     radius.value = newRadius;
     update();

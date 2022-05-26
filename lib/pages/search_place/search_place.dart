@@ -125,8 +125,6 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                 children: [
                   SearchPlaceWidget(placeNameController: _placeNameController, placeModeController: _placeModeController),
                   const Divider(),
-                  const Filters(),
-                  const Divider(),
                   ChangeRadiusSlider(controller: _radiusController),
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0),

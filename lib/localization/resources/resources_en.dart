@@ -44,14 +44,16 @@ final Map<String, String> resourcesEn = {
   // Search Place Page
   'strChangeRadius': 'Search in distance',
   'strSearchPlaceAround': 'Search Settings',
-  'strAddFilter': 'Add filter',
   'strPlace': 'Place:',
   'strCurrentPlace': 'Current Place',
   'strOtherPlace': 'Other Place',
-  'strFilters': 'Filters:',
   'strChooseOtherPlace': 'Choose Other Place',
+
+  // Filters
+  'strCleanAllFilters': 'Clean All',
   'strEmptyFilter': 'Choose filter name for adding a filter',
-  'strFilterRemoved': 'The filter has been removed successfully!',
+  'strFilters': 'Filters:',
+  'strAddFilter': 'Add filter',
 
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",

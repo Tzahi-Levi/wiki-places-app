@@ -61,6 +61,7 @@ class _FiltersState extends State<Filters> {
                 IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon)),
               ],
             ),
+            TextButton(onPressed: _storeController.cleanAllFilters, child: Text('strCleanAllFilters'.tr)),
             Wrap(
               children: _getTags,
             ),
