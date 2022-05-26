@@ -43,7 +43,8 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
       'radius': _storeController.radius.value,
       'placeCoordinates': _storeController.placeCoordinates.value,
       'placeName': _storeController.placeName.value,
-      'placeMode': _storeController.placeMode.value
+      'placeMode': _storeController.placeMode.value,
+      'filters': _storeController.placeFilters.value.toList()
     };
   }
 
@@ -51,13 +52,13 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
     _storeController.setStore(_previousStore);
   }
 
-  void _searchPlace() async {
+  bool _isValidSearch() {
     if (_radiusController.value == 0) {
       displaySnackbar(
-        title: 'strError'.tr,
-        content: 'strRadiusMustBePositive'.tr
+          title: 'strError'.tr,
+          content: 'strRadiusMustBePositive'.tr
       );
-      return;
+      return false;
     }
 
     if (_placeNameController.text == "") {
@@ -65,6 +66,27 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
           title: 'strError'.tr,
           content: 'strEmptyPlaceName'.tr
       );
+      return false;
+    }
+
+    return true;
+  }
+
+  Future<bool> isOtherPlaceExist() async {
+    if (await _storeController.updatePlaceToOtherMode(otherPlace: _placeNameController.text)) {
+      return true;
+    }
+
+    displaySnackbar(
+        title: 'strError'.tr,
+        content: 'strPlaceNotExist'.tr
+    );
+
+    return false;
+  }
+
+  void _searchPlace() async {
+    if (!_isValidSearch()) {
       return;
     }
 
@@ -74,20 +96,17 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
     if (_placeModeController.value == EPlaceMode.current) {
       await _storeController.updatePlaceToCurrentMode();
 
-    } else {
-      bool isPlaceExist = await _storeController.updatePlaceToOtherMode(otherPlace: _placeNameController.text);
-      if (!isPlaceExist) {
-        displaySnackbar(
-            title: 'strError'.tr,
-            content: 'strPlaceNotExist'.tr
-        );
+    } else if (!await isOtherPlaceExist()) {
         updateIsLoading(false);
         return;
-      }
+    }
+
+    if (true) {
+      await _storeController.cleanAllFilters(checkBeforeCleaning: false, reportToGA: false);
     }
 
     _storeController.updateRadius(_radiusController.value.toString());
-    if (await _storeController.updatePlacesCollection()) {
+    if (await _storeController.updatePlacesCollection()) {  // Search Succeeded
       navigateBack();
       if (widget.afterSearchCallback != null) {
         widget.afterSearchCallback!();
@@ -127,7 +146,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                         onPressed: _searchPlace, 
                         child: Text('strSearch'.tr, style: Get.textTheme.headline2),
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states)=> const Color(0xff03CE3D)),
+                          backgroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) => const Color(0xff03CE3D)),
                           elevation: MaterialStateProperty.resolveWith((states) => 10)),
                       ),
                     ),

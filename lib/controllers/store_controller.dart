@@ -22,7 +22,7 @@ class StoreController extends GetxController {
   final Rx<EPlaceMode> placeMode = EPlaceMode.current.obs;
   final Rx<SortedList<String>> placeFilters = SortedList<String>().obs;
 
-  bool _removingFilter = false;
+  bool _editFilter = false;
 
   // Actions
   void setStore(Json store) {
@@ -30,6 +30,8 @@ class StoreController extends GetxController {
     placeCoordinates.value = store['placeCoordinates'];
     placeName.value = store['placeName'];
     placeMode.value = store['placeMode'];
+    placeFilters.value = SortedList<String>();
+    placeFilters.value.addAll(store['filters']);
     update();
   }
 
@@ -44,11 +46,17 @@ class StoreController extends GetxController {
   }
 
   Future<bool> addPlaceFilter(String filter) async {
+    if (_editFilter) {
+      return false;
+    }
+    _editFilter = true;
+
     if (!placeFilters.value.contains(filter)) {
       SortedList<String> newFiltersList = SortedList<String>();
       newFiltersList.addAll(placeFilters.value);
       newFiltersList.add(filter);
       if (!await updatePlacesCollection(filtersList: newFiltersList, reportToGA: false)) {
+        _editFilter = false;
         return false;
       }
 
@@ -56,21 +64,23 @@ class StoreController extends GetxController {
       placeFilters.refresh();
       GoogleAnalytics.instance.logFilterAdded();
     }
+
+    _editFilter = false;
     return true;
   }
 
   Future<bool> removePlaceFilter(String filter) async {
-    if (_removingFilter) {
+    if (_editFilter) {
       return false;
     }
+    _editFilter = true;
 
-    _removingFilter = true;
     if (placeFilters.value.contains(filter)) {
       SortedList<String> newFiltersList = SortedList<String>();
       newFiltersList.addAll(placeFilters.value);
       newFiltersList.remove(filter);
       if (!await updatePlacesCollection(filtersList: newFiltersList, reportToGA: false)) {
-        _removingFilter = false;
+        _editFilter = false;
         return false;
       }
 
@@ -78,28 +88,34 @@ class StoreController extends GetxController {
       placeFilters.refresh();
       GoogleAnalytics.instance.logFilterRemoved();
     }
-    _removingFilter = false;
+    _editFilter = false;
     return true;
   }
 
-  Future<bool> cleanAllFilters() async {
-    if (_removingFilter) {
+  Future<bool> cleanAllFilters({bool checkBeforeCleaning = true, bool reportToGA = true}) async {
+    if (_editFilter) {
       return false;
     }
-    
-    _removingFilter = true;
-    SortedList<String> newFiltersList = SortedList<String>();
-    newFiltersList.addAll(placeFilters.value);
-    newFiltersList.removeRange(0, newFiltersList.length);
-    if (!await updatePlacesCollection(filtersList: newFiltersList, reportToGA: false)) {
-      _removingFilter = false;
-      return false;
+    _editFilter = true;
+
+    if (checkBeforeCleaning) {
+      SortedList<String> newFiltersList = SortedList<String>();
+      newFiltersList.addAll(placeFilters.value);
+      newFiltersList.removeRange(0, newFiltersList.length);
+      if (!await updatePlacesCollection(filtersList: newFiltersList, reportToGA: false)) {
+        _editFilter = false;
+        return false;
+      }
     }
 
     placeFilters.value.removeRange(0, placeFilters.value.length);
     placeFilters.refresh();
-    GoogleAnalytics.instance.logFilterRemoved();
-    _removingFilter = false;
+
+    if (reportToGA) {
+      GoogleAnalytics.instance.logFilterRemoved();
+    }
+
+    _editFilter = false;
     return true;
   }
 
