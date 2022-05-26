@@ -7,7 +7,7 @@ import 'package:wiki_places/widgets/search_places_fab.dart';
 import 'package:wiki_places/pages/places/places_page_collection.dart';
 
 class PlacesList extends StatelessWidget {
-  const PlacesList({Key? key, required this.placesCollection, this.placeholderContent, this.placeholderIcon, this.topWidgets = const [], this.bottomWidgets = const [], this.distanceFromCurrentLocation = false, this.showAppbarDetails = true, this.showAppbarFilters = true}) : super(key: key);
+  PlacesList({Key? key, required this.placesCollection, this.placeholderContent, this.placeholderIcon, this.topWidgets = const [], this.bottomWidgets = const [], this.distanceFromCurrentLocation = false, this.showAppbarDetails = true, this.showAppbarFilters = true}) : super(key: key);
   final PlacesPageCollection placesCollection;
   final String? placeholderContent;
   final IconData? placeholderIcon;
@@ -16,6 +16,11 @@ class PlacesList extends StatelessWidget {
   final bool distanceFromCurrentLocation;
   final bool showAppbarDetails;
   final bool showAppbarFilters;
+  final ScrollController _scrollController = ScrollController();
+
+  void _scrollToTop(){
+    _scrollController.position.moveTo(0);
+  }
 
   List<Widget> get _getPlaces {
     List<Widget> placesList = [];
@@ -38,9 +43,10 @@ class PlacesList extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: DetailsAndFiltersAppbar(showAppbarDetails: showAppbarDetails, showAppbarFilters: showAppbarFilters),
         body: ListView(
+          controller: _scrollController,
           children: [...topWidgets, ..._getPlaces, ...bottomWidgets],
         ),
-        floatingActionButton: const SearchPlacesFAB(),
+        floatingActionButton: SearchPlacesFAB(afterSearchCallback: _scrollToTop),
     );
   }
 }
