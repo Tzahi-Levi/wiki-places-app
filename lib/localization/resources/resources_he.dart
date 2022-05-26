@@ -54,7 +54,7 @@ final Map<String, String> resourcesHe = {
   'strEmptyFilter': 'על מנת להוסיף מסנן, יש לציין את שמו',
   'strFilters': 'מסננים:',
   'strAddFilter': 'הוסף מסנן',
-  'strResetFilters': 'נקה מסננים',
+  'strResetFilters': 'אפס מסננים',
 
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",
