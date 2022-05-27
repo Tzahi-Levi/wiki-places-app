@@ -42,6 +42,7 @@ class _FiltersState extends State<Filters> {
   void _addFilter() async {
     if (_filterController.text.isEmpty) {
       displaySnackbar(content: 'strEmptyFilter'.tr, title: 'strError'.tr);
+      return;
     }
 
     _updateIsLoading(addValue: true);
