@@ -1,5 +1,6 @@
 // ================= Store Controller =================
 import 'package:get/get.dart';
+import 'dart:convert';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
@@ -191,7 +192,7 @@ class StoreController extends GetxController {
   }
 
   Future<void> addFavoritePlacesCollection(PlaceModel favoritePlace) async {
-    favoritePlacesCollection.value.places.add(favoritePlace);
+    favoritePlacesCollection.value.places.add(PlaceModel.fromJson(json.decode(json.encode(favoritePlace))));
     favoritePlacesCollection.refresh();
     GoogleAnalytics.instance.logAddFavorite();
   }

@@ -34,7 +34,7 @@ final Map<String, String> resourcesEn = {
   'strReadMore': 'Read more',
   'strRadiusMustBePositive': 'The radius must be a positive number',
   'strCantIncreaseRadius': "The radius can't be increased above @maxRadius km",
-  'strNoPlacesAvailable': "There are not places available",
+  'strNoPlacesAvailable': "There are not values available. For searching values, please click on the search button.",
   'strEmptyPlaceName': "For searching places, please choose a place name",
   'strPlaceNotExist': "The chosen place is not found, please try to search another place",
 

@@ -34,7 +34,7 @@ final Map<String, String> resourcesHe = {
   'strReadMore': 'קרא עוד',
   'strRadiusMustBePositive': 'המרחק חייב להיות מספר חיובי',
   'strCantIncreaseRadius':'לא ניתן להגדיל את המרחק מעבר ל-@maxRadius ק״מ',
-  'strNoPlacesAvailable': "אין ערכים זמינים",
+  'strNoPlacesAvailable': "אין ערכים זמינים. על מנת לחפש ערכים, יש ללחוץ על כפתור החיפוש.",
   'strEmptyPlaceName': "על מנת לבצע חיפוש, יש לבחור מיקום",
   'strPlaceNotExist': "המיקום המבוקש לא נמצא, יש לנסות לחפש מיקום אחר",
 
