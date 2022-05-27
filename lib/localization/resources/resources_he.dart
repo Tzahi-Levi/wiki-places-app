@@ -41,7 +41,7 @@ final Map<String, String> resourcesHe = {
   // Favorites
   'strFavorites': 'מועדפים-',
   'strFavoritesNumber': '@number ערכים מועדפים',
-  'strNoSelectedFavorites': 'לא נבחרו מועדפים. על מנת להוסיף ערך לרשימת המועדפים, יש ללחוץ על ה-@ בעמוד הערכים.',
+  'strNoSelectedFavorites': 'לא נבחרו מועדפים. על מנת להוסיף ערך לרשימת המועדפים, יש ללחוץ על ה-@ ברשימת הערכים.',
 
   // Search Place Page
   'strChangeRadius': 'חפש במרחק',

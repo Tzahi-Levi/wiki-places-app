@@ -44,6 +44,7 @@ class PlacesList extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: DetailsAndFiltersAppbar(showAppbarDetails: showAppbarDetails, showAppbarFilters: showAppbarFilters),
         body: ListView(
+          key: Key(placesCollection.length.toString()),
           controller: _scrollController,
           children: [...topWidgets, ..._getPlaces, ...bottomWidgets],
         ),
