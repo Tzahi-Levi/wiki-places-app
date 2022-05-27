@@ -39,6 +39,7 @@ final Map<String, String> resourcesEn = {
   'strPlaceNotExist': "The chosen place is not found, please try to search another place",
 
   // Favorites
+  'strFavorites': 'Favorites-',
   'strFavoritesNumber': '@number Favorites Places',
   'strNoSelectedFavorites': 'There are not favorite places. For adding places to the favorites, click on @ in the places page.',
 

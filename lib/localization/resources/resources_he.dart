@@ -39,6 +39,7 @@ final Map<String, String> resourcesHe = {
   'strPlaceNotExist': "המיקום המבוקש לא נמצא, יש לנסות לחפש מיקום אחר",
 
   // Favorites
+  'strFavorites': 'מועדפים-',
   'strFavoritesNumber': '@number ערכים מועדפים',
   'strNoSelectedFavorites': 'לא נבחרו מועדפים. על מנת להוסיף מיקום לרשימת המועדפים, יש ללחוץ על ה-@ בעמוד הערכים.',
 

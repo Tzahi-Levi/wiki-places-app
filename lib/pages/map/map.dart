@@ -63,37 +63,36 @@ class _MapPageState extends State<MapPage> {
     GoogleAnalytics.instance.logMapTapped();
   }
 
+  Marker _getMarker(String label, LatLng latLng, double color, String snippet, String? url) {
+    return Marker(
+      markerId: MarkerId(label),
+      position: latLng,
+      icon: BitmapDescriptor.defaultMarkerWithHue(color),
+      infoWindow: InfoWindow(
+        title: label,
+        snippet: snippet,
+        onTap: url == null ? null : () {
+          _onInfoTapped(url);
+        },
+      ),
+    );
+  }
+
   Set<Marker> _getMarkers() {
     Set<Marker> places = {};
-
     for (PlaceModel place in _storeController.placesCollection.value.places) {
-      bool isFavoritePlace = FavoritesController.instance.checkIfFavorite(place);
-      places.add(Marker(
-        markerId: MarkerId(place.label),
-        position: LatLng(place.lat, place.lon),
-        icon: isFavoritePlace ? BitmapDescriptor.defaultMarkerWithHue(GlobalConstants.favoritePlaceMarkerColor) : BitmapDescriptor.defaultMarkerWithHue(GlobalConstants.regularPlaceMarkerColor),
-        infoWindow: InfoWindow(
-          title: place.label,
-          snippet: 'strReadMore'.tr,
-          onTap: () {
-            _onInfoTapped(place.url);
-          },
-        ),
-      ));
+      if (!FavoritesController.instance.checkIfFavorite(place)) {
+        places.add(_getMarker(place.label, LatLng(place.lat, place.lon), GlobalConstants.regularPlaceMarkerColor, 'strReadMore'.tr, place.url));
+      }
+    }
+
+    for (PlaceModel place in _storeController.favoritePlacesCollection.value.places) {
+      places.add(_getMarker("${'strFavorites'.tr} ${place.label}", LatLng(place.lat, place.lon), GlobalConstants.favoritePlaceMarkerColor, 'strReadMore'.tr, place.url));
     }
 
     if (_storeController.placeMode.value == EPlaceMode.other) {
-      places.add(Marker(
-        markerId: const MarkerId("currentPlace"),
-        icon: BitmapDescriptor.defaultMarkerWithHue(GlobalConstants.currentPlaceMarkerColor),
-        position: _storeController.placeCoordinates.value,
-        infoWindow: InfoWindow(
-          title: _storeController.placeName.value,
-          snippet: 'strYourChosenPlace'.tr,
-        ),
-      ));
+      places.add(_getMarker(_storeController.placeName.value, _storeController.placeCoordinates.value, GlobalConstants.currentPlaceMarkerColor, 'strYourChosenPlace'.tr, null));
     }
-
     return places;
   }
 
