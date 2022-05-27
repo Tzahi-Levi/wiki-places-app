@@ -44,7 +44,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void _init() {
     FavoritesController.instance.getFavoritePlaces();
     _searchPlaces();
-    FlutterNativeSplash.remove();
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -55,6 +54,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
     await _storeController.updatePlacesCollection(moveToError: moveToError, reportToGA: false);
     _storeController.updateGlobalIsLoading(false);
+    FlutterNativeSplash.remove();
   }
 
   Widget get _getCurrentPage {
