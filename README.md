@@ -16,7 +16,6 @@
 
 ## Introduction:
 * This project was done in the TDK - Technion Data & Knowledge Lab of the CS faculty By Tzahi Levi and Raz Levi under the supervision of Dr. Oren Mishali.
-
 * This project's final product is an app for presenting information about places.
 
 
@@ -34,6 +33,7 @@
 * [ ] See all the places around you and far from on a map.
 * [ ] Change the radius you want to search around.
 * [ ] Get arrival instruction for each place.
+* [ ] Save favorites values.
 
 
 ## Disclaimer
