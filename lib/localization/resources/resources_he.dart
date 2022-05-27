@@ -15,7 +15,7 @@ final Map<String, String> resourcesHe = {
   'strTryAgain': 'שגיאה התרחשה בעת הפעולה, יש לנסות שנית מאוחר יותר',
   'strLoadMore': 'טען עוד',
   'strUndo': 'בטל',
-  'strCurrentLocation': 'מרחק ממיקום נוכחי',
+  'strCurrentLocation': 'ממיקומך הנוכחי',
 
   // Navigation
   'strMapPageName': 'מפה',
@@ -31,6 +31,8 @@ final Map<String, String> resourcesHe = {
   'strSearchSuccessfully': 'חיפוש ערכים במרחק @radius @scale מ@place בוצע בהצלחה!',
   'strCurrentPlaceDetails': 'ערכים במרחק @radius @scale מ@place',
   'strWikipediaValuesInRadius': '@number ערכים (@radius @scale)',
+  'strWikipediaValueInRadius': 'ערך יחיד (@radius @scale)',
+  'strEmptyWikipediaValueInRadius': 'אין ערכים (@radius @scale)',
   'strReadMore': 'קרא עוד',
   'strRadiusMustBePositive': 'המרחק חייב להיות מספר חיובי',
   'strCantIncreaseRadius':'לא ניתן להגדיל את המרחק מעבר ל-@maxRadius ק״מ',
@@ -41,6 +43,8 @@ final Map<String, String> resourcesHe = {
   // Favorites
   'strFavorites': 'מועדפים-',
   'strFavoritesNumber': '@number ערכים מועדפים',
+  'strFavoriteNumber': 'ערך מועדף יחיד',
+  'strEmptyFavoriteNumber': 'אין ערכים מועדפים',
   'strNoSelectedFavorites': 'לא נבחרו מועדפים. על מנת להוסיף ערך לרשימת המועדפים, יש ללחוץ על ה-@ ברשימת הערכים.',
 
   // Search Place Page

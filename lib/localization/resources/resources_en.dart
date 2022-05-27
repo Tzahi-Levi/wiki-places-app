@@ -40,7 +40,9 @@ final Map<String, String> resourcesEn = {
 
   // Favorites
   'strFavorites': 'Favorites-',
-  'strFavoritesNumber': '@number Favorites Places',
+  'strFavoritesNumber': '@number Favorite Values',
+  'strFavoriteNumber': 'One Favorite Value',
+  'strEmptyFavoriteNumber': 'No Favorite Values',
   'strNoSelectedFavorites': 'There are not favorite places. For adding places to the favorites, click on @ in the places page.',
 
   // Search Place Page
