@@ -143,15 +143,6 @@ extension St on String {
   int compareStrings(String other) {
     return toLowerCase().compareTo(other.toLowerCase());
   }
-
-  bool get isLocale {
-    for (var char in runes) {
-      if (char >= int.parse('strFirstLetterAscii'.tr) && char <= int.parse('strLastLetterAscii'.tr)) {
-        return true;
-      }
-    }
-    return false;
-  }
 }
 
 extension Ex on num {
