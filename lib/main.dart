@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:wiki_places/controllers/theme_controller.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
-import 'package:firebase_performance/firebase_performance.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:wiki_places/metrics/sentryController.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -28,13 +27,12 @@ Future<void> main() async {
       options.tracesSampleRate = SentryController.sentryTracesSampleRate;
       options.release = ProjectConfig.projectVersion;
     },
-    appRunner: () => runApp(WikiPlacesApp()),
+    appRunner: () => runApp(const WikiPlacesApp()),
   );
 }
 
 class WikiPlacesApp extends StatelessWidget {
-  WikiPlacesApp({Key? key}) : super(key: key);
-  final FirebasePerformance performance = FirebasePerformance.instance;
+  const WikiPlacesApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +53,7 @@ class WikiPlacesApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: ConnectivityBuilder(
         builder: (context, isConnected, status) {
-          return (isConnected != null && !!isConnected) ? HomePage() : const ConnectionLostPage();
+          return (isConnected != null && !!isConnected) ? const HomePage() : const ConnectionLostPage();
         }
       )
     );

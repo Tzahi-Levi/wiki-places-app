@@ -2,7 +2,6 @@
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:firebase_performance/firebase_performance.dart';
 import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/pages/image_page/error_page.dart';
@@ -15,14 +14,11 @@ class ClientRequests extends GetConnect {
   static final ClientRequests instance = ClientRequests._();
   ClientRequests._();
 
-  final FirebasePerformance _performance = FirebasePerformance.instance;
-
   bool _isResponseSuccess(Response response) {
     return response.statusCode == 200;
   }
 
   Future<List<dynamic>?> getPlacesData({required String radius, required double lat, required double lon, bool moveToError = false}) async {
-    Trace performanceTrace = _performance.newTrace("GetPlacesData");
     Response response = await get('http://${ProjectConfig.serverAddress}''/wiki_by_place?radius=$radius${resourcesEn['strKm']!.toLowerCase()}&lat,lon=${lat.toString()},${lon.toString()}');
     List<dynamic>? placeJson;
 
@@ -33,12 +29,10 @@ class ClientRequests extends GetConnect {
       GoogleAnalytics.instance.logError("getPlacesData did not succeeded");
     }
 
-    await performanceTrace.stop();
     return placeJson;
   }
 
   Future<PlaceDetails> getPlaceDetailsByPartiallyName({required String place}) async {
-    Trace performanceTrace = _performance.newTrace("getPlaceDetailsByPartiallyName");
     Response response = await get('https://nominatim.openstreetmap.org/search?q=${place.replaceAll(" ", "+")}&format=json&polygon=1&addressdetails=1');
     LatLng? coordinates;
     String placeName = "";
@@ -48,12 +42,10 @@ class ClientRequests extends GetConnect {
       coordinates = LatLng(double.parse(response.body[0]["lat"]), double.parse(response.body[0]["lon"]));
     }
 
-    await performanceTrace.stop();
     return PlaceDetails(name: placeName, coordinates: coordinates);
   }
 
   Future<PlaceDetails?> getPlaceDetailsByCoordinates({required LatLng coordinates}) async {
-    Trace performanceTrace = _performance.newTrace("getPlaceDetailsByCoordinates");
     Response response = await get('http://nominatim.openstreetmap.org/reverse?format=json&lat=${coordinates.latitude}&lon=${coordinates.longitude}&zoom=18&addressdetails=1');
     String placeName = "";
 
@@ -61,13 +53,10 @@ class ClientRequests extends GetConnect {
       placeName = fullAddressToDisplayedAddress(response.body["display_name"]);
     }
 
-    await performanceTrace.stop();
     return PlaceDetails(name: placeName, coordinates: coordinates);
   }
 
   Future<SortedList<Suggestion>> getSuggestions({required String pattern}) async {
-    Trace performanceTrace = _performance.newTrace("getSuggestions");
-
     pattern = pattern.replaceAll("רחוב ", "").replaceAll("שדרה ", "").replaceAll("מספר ", "").replaceAll(RegExp("\\d"), "").replaceAll(" ", "+");
     if (pattern.isNotEmpty && pattern.lastIndexOf("+") == pattern.length -1) {
       pattern = pattern.substring(0, pattern.length - 1);
@@ -91,7 +80,6 @@ class ClientRequests extends GetConnect {
       }
     }
 
-    await performanceTrace.stop();
     return suggestions;
   }
 }
