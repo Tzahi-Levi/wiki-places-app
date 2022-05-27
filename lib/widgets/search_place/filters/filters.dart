@@ -16,6 +16,7 @@ class Filters extends StatefulWidget {
 class _FiltersState extends State<Filters> {
   final _storeController = Get.put(StoreController());
   final TextEditingController _filterController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   bool _addIsLoading = false;
   bool _cleanAllIsLoading = false;
 
@@ -39,18 +40,19 @@ class _FiltersState extends State<Filters> {
     }
   }
 
-  void _addFilter() async {
-    if (_filterController.text.isEmpty) {
-      displaySnackbar(content: 'strEmptyFilter'.tr, title: 'strError'.tr);
-      return;
-    }
+  String? _checkEmptyFilter(String? value) {
+    return (value == null || value.isEmpty) ? 'strEmptyFilter'.tr : null;
+  }
 
-    _updateIsLoading(addValue: true);
-    if (await _storeController.addPlaceFilter(_filterController.text)) {
-      _filterController.text = "";
-      FocusScope.of(Get.context!).unfocus(); // Remove the keyboard
+  void _addFilter() async {
+    if (_formKey.currentState!.validate()) {
+      _updateIsLoading(addValue: true);
+      if (await _storeController.addPlaceFilter(_filterController.text)) {
+        _filterController.text = "";
+        FocusScope.of(Get.context!).unfocus(); // Remove the keyboard
+      }
+      _updateIsLoading(addValue: false);
     }
-    _updateIsLoading(addValue: false);
   }
 
   void _cleanAllFilters() async {
@@ -67,10 +69,14 @@ class _FiltersState extends State<Filters> {
             Row(
               children: [
                 Expanded(
-                  child: TextField(
-                    controller: _filterController,
-                    decoration: InputDecoration(
-                      hintText: 'strAddFilter'.tr,
+                  child: Form(
+                    key: _formKey,
+                    child: TextFormField(
+                      controller: _filterController,
+                      validator: _checkEmptyFilter,
+                      decoration: InputDecoration(
+                        hintText: 'strAddFilter'.tr,
+                      ),
                     ),
                   ),
                 ),

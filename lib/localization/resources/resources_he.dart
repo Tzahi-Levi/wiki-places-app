@@ -34,14 +34,14 @@ final Map<String, String> resourcesHe = {
   'strReadMore': 'קרא עוד',
   'strRadiusMustBePositive': 'המרחק חייב להיות מספר חיובי',
   'strCantIncreaseRadius':'לא ניתן להגדיל את המרחק מעבר ל-@maxRadius ק״מ',
-  'strNoPlacesAvailable': "אין מיקומים זמינים",
+  'strNoPlacesAvailable': "אין ערכים זמינים",
   'strEmptyPlaceName': "על מנת לבצע חיפוש, יש לבחור מיקום",
   'strPlaceNotExist': "המיקום המבוקש לא נמצא, יש לנסות לחפש מיקום אחר",
 
   // Favorites
   'strFavorites': 'מועדפים-',
   'strFavoritesNumber': '@number ערכים מועדפים',
-  'strNoSelectedFavorites': 'לא נבחרו מועדפים. על מנת להוסיף מיקום לרשימת המועדפים, יש ללחוץ על ה-@ בעמוד הערכים.',
+  'strNoSelectedFavorites': 'לא נבחרו מועדפים. על מנת להוסיף ערך לרשימת המועדפים, יש ללחוץ על ה-@ בעמוד הערכים.',
 
   // Search Place Page
   'strChangeRadius': 'חפש במרחק',

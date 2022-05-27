@@ -36,6 +36,7 @@ class PlacesList extends StatelessWidget {
     return placesCollection.isEmpty && placeholderContent != null ?
       PlaceholderPage(
         content: placeholderContent!,
+        topWidgets: topWidgets,
         appBar: DetailsAndFiltersAppbar(showAppbarDetails: showAppbarDetails, showAppTitle: true, showAppbarFilters: showAppbarFilters),
         firstIcon: placeholderIcon,
       ) : Scaffold(
