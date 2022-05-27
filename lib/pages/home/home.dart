@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void _searchPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
     _storeController.updateGlobalIsLoading(true);
     if (resetCurrentPlace) {
-      _storeController.updatePlaceToCurrentMode();
+      await _storeController.updatePlaceToCurrentMode();
     }
     await _storeController.updatePlacesCollection(moveToError: moveToError, reportToGA: false);
     _storeController.updateGlobalIsLoading(false);
