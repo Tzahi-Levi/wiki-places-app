@@ -51,6 +51,7 @@ class NavigationButton extends StatelessWidget {
   final _storeController = Get.put(StoreController());
 
   void _navigateToPage() {
+    Get.back(closeOverlays: true);
     _storeController.updateMainAppPage(page);
   }
 

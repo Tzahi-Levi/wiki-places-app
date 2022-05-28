@@ -24,6 +24,7 @@ final Map<String, String> resourcesEn = {
 
   // Map
   'strYourChosenPlace': 'Your chosen place',
+  'strSearchOnMap': 'You can get more values on another place by long press on the other place',
 
   // Places
   'strSearchPlace': 'Search Places',
@@ -33,25 +34,31 @@ final Map<String, String> resourcesEn = {
   'strReadMore': 'Read more',
   'strRadiusMustBePositive': 'The radius must be a positive number',
   'strCantIncreaseRadius': "The radius can't be increased above @maxRadius km",
-  'strNoPlacesAvailable': "There are not places available",
+  'strNoPlacesAvailable': "There are not values available. For searching values, please click on the search button.",
   'strEmptyPlaceName': "For searching places, please choose a place name",
   'strPlaceNotExist': "The chosen place is not found, please try to search another place",
 
   // Favorites
-  'strFavoritesNumber': '@number Favorites Places',
+  'strFavorites': 'Favorites-',
+  'strFavoritesNumber': '@number Favorite Values',
+  'strFavoriteNumber': 'One Favorite Value',
+  'strEmptyFavoriteNumber': 'No Favorite Values',
   'strNoSelectedFavorites': 'There are not favorite places. For adding places to the favorites, click on @ in the places page.',
 
   // Search Place Page
   'strChangeRadius': 'Search in distance',
   'strSearchPlaceAround': 'Search Settings',
-  'strAddFilter': 'Add filter',
   'strPlace': 'Place:',
   'strCurrentPlace': 'Current Place',
   'strOtherPlace': 'Other Place',
-  'strFilters': 'Filters:',
   'strChooseOtherPlace': 'Choose Other Place',
+
+  // Filters
+  'strCleanAllFilters': 'Clean All',
   'strEmptyFilter': 'Choose filter name for adding a filter',
-  'strFilterRemoved': 'The filter has been removed successfully!',
+  'strFilters': 'Filters:',
+  'strAddFilter': 'Add filter',
+  'strResetFilters': 'Reset filters',
 
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",

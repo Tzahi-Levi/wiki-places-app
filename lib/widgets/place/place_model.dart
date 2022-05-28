@@ -42,7 +42,7 @@ class PlaceModel {
     }
   };
 
-  void _calculateDistance() async {  // TODO- check what will be presented if there is not permissions for location
+  void _calculateDistance() async {
     double? distanceFromCurrent = await LocationController.calculateDistance(startLatitude: lat, startLongitude: lon);
     distance = distanceFromCurrent ?? -1;
   }

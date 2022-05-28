@@ -2,13 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
-import 'package:wiki_places/global/constants.dart';
+import 'package:wiki_places/widgets/app_background.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/widgets/appbar.dart';
 import 'package:wiki_places/widgets/search_place/change_radius_slider.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/types.dart';
-import 'package:wiki_places/widgets/search_place/filters/filters.dart';
 import 'package:wiki_places/widgets/search_place/search_place_widget/search_place_widget.dart';
 
 class SearchPlacePage extends StatefulWidget {
@@ -24,6 +23,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
   late final TextEditingController _placeNameController = TextEditingController(text: _storeController.placeName.value);
   late final PrimitiveWrapper _placeModeController = PrimitiveWrapper(_storeController.placeMode.value);
   late final PrimitiveWrapper _radiusController = PrimitiveWrapper(double.parse(_storeController.radius.value));
+  bool _resetFilters = true;
   bool _isLoading = false;
   Json _previousStore = {};
 
@@ -44,7 +44,8 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
       'radius': _storeController.radius.value,
       'placeCoordinates': _storeController.placeCoordinates.value,
       'placeName': _storeController.placeName.value,
-      'placeMode': _storeController.placeMode.value
+      'placeMode': _storeController.placeMode.value,
+      'filters': _storeController.placeFilters.value.toList()
     };
   }
 
@@ -52,13 +53,19 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
     _storeController.setStore(_previousStore);
   }
 
-  void _searchPlace() async {
+  void _toggleResetCategory(bool? value) {
+    setState(() {
+    _resetFilters = !_resetFilters;
+    });
+  }
+
+  bool _isValidSearch() {
     if (_radiusController.value == 0) {
       displaySnackbar(
-        title: 'strError'.tr,
-        content: 'strRadiusMustBePositive'.tr
+          title: 'strError'.tr,
+          content: 'strRadiusMustBePositive'.tr
       );
-      return;
+      return false;
     }
 
     if (_placeNameController.text == "") {
@@ -66,6 +73,27 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
           title: 'strError'.tr,
           content: 'strEmptyPlaceName'.tr
       );
+      return false;
+    }
+
+    return true;
+  }
+
+  Future<bool> isOtherPlaceExist() async {
+    if (await _storeController.updatePlaceToOtherMode(otherPlace: _placeNameController.text)) {
+      return true;
+    }
+
+    displaySnackbar(
+        title: 'strError'.tr,
+        content: 'strPlaceNotExist'.tr
+    );
+
+    return false;
+  }
+
+  void _searchPlace() async {
+    if (!_isValidSearch()) {
       return;
     }
 
@@ -75,20 +103,17 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
     if (_placeModeController.value == EPlaceMode.current) {
       await _storeController.updatePlaceToCurrentMode();
 
-    } else {
-      bool isPlaceExist = await _storeController.updatePlaceToOtherMode(otherPlace: _placeNameController.text);
-      if (!isPlaceExist) {
-        displaySnackbar(
-            title: 'strError'.tr,
-            content: 'strPlaceNotExist'.tr
-        );
+    } else if (!await isOtherPlaceExist()) {
         updateIsLoading(false);
         return;
-      }
+    }
+
+    if (_resetFilters) {
+      await _storeController.cleanAllFilters(checkBeforeCleaning: false, reportToGA: false);
     }
 
     _storeController.updateRadius(_radiusController.value.toString());
-    if (await _storeController.updatePlacesCollection()) {
+    if (await _storeController.updatePlacesCollection()) {  // Search Succeeded
       navigateBack();
       if (widget.afterSearchCallback != null) {
         widget.afterSearchCallback!();
@@ -110,14 +135,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
         appBar: MinorAppBar(title: 'strSearchPlaceAround'.tr),
         body: Stack(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(GlobalConstants.appBackgroundImage),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+            const AppBackground(),
             SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -125,9 +143,15 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                 children: [
                   SearchPlaceWidget(placeNameController: _placeNameController, placeModeController: _placeModeController),
                   const Divider(),
-                  const Filters(),
-                  const Divider(),
                   ChangeRadiusSlider(controller: _radiusController),
+                  const Divider(),
+                  Row(
+                      children: [
+                        Text('strResetFilters'.tr),
+                        Checkbox(value: _resetFilters, onChanged: _toggleResetCategory),
+                      ],
+                  ),
+                  const Divider(),
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0),
                     child: SizedBox(
@@ -135,9 +159,9 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: _searchPlace, 
-                        child: Text('strSearch'.tr, style: Get.textTheme.headline2,), 
+                        child: Text('strSearch'.tr, style: Get.textTheme.headline2),
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states)=> const Color(0xff03CE3D)),
+                          backgroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) => const Color(0xff03CE3D)),
                           elevation: MaterialStateProperty.resolveWith((states) => 10)),
                       ),
                     ),

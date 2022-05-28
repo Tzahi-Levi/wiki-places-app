@@ -2,24 +2,38 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
-import 'package:wiki_places/global/utils.dart';
 
-class Tag extends StatelessWidget {
-  Tag({required this.title, Key? key}) : super(key: key);
+class Tag extends StatefulWidget {
+  const Tag({required this.title, Key? key}) : super(key: key);
   final String title;
-  final StoreController _storeController = Get.put(StoreController());
 
-  void _removeFilter() {
-    _storeController.removePlaceFilter(title);
+  @override
+  State<Tag> createState() => _TagState();
+}
+
+class _TagState extends State<Tag> {
+  final StoreController _storeController = Get.put(StoreController());
+  bool _isLoading = false;
+
+  void _updateIsLoading(bool value) {
+    setState(() {
+      _isLoading = value;
+    });
+  }
+
+  void _removeFilter() async {
+    _updateIsLoading(true);
+    await _storeController.removePlaceFilter(widget.title);
+    _updateIsLoading(false);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return _isLoading ? const CircularProgressIndicator() : Padding(
       padding: const EdgeInsets.all(4),
       child: Chip(
         backgroundColor: const Color(0xff80DF99),
-        label: Text(title),
+        label: Text(widget.title),
         elevation: 3,
         onDeleted: _removeFilter,
       ),

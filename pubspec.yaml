@@ -15,7 +15,6 @@ dependencies:
   get: ^4.6.3
   firebase_core: ^1.8.0
   firebase_analytics: ^8.3.4
-  firebase_performance: ^0.8.0+4
   firebase_crashlytics: ^2.6.2
   sentry_flutter: ^6.5.1
   cross_connectivity: any
@@ -26,10 +25,10 @@ dependencies:
   google_maps_flutter: ^2.0.1
   google_fonts: ^2.3.1
   loading_overlay: ^0.3.0
-  simple_tags: ^0.0.4
   flutter_native_splash: ^2.1.6
   flutter_typeahead: ^4.0.0
   shared_preferences: ^2.0.15
+  another_flushbar: ^1.10.29
 
 flutter_native_splash:
   background_image: "images/start_app.png"

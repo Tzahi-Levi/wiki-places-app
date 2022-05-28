@@ -19,16 +19,7 @@ class PlaceDetails {
 class Suggestion extends PlaceDetails {
   String? icon;
 
-  static int compareSuggestion(Suggestion a, Suggestion b) {
-    if (a.name.isLocale && !b.name.isLocale) {
-      return -1;
-
-    } else if (!a.name.isLocale && b.name.isLocale) {
-      return 1;
-    }
-    return a.name.compareStrings(b.name);
-  }
-
+  static int compareSuggestion(Suggestion a, Suggestion b) => a.name.compareStrings(b.name);
   Suggestion({required String name, required LatLng coordinates, required this.icon}) : super(name: name, coordinates: coordinates);
 }
 

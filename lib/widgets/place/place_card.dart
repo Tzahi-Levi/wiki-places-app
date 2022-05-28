@@ -6,7 +6,6 @@ import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/controllers/favorites_controller.dart';
-import 'package:wiki_places/metrics/google_analytics.dart';
 
 class Place extends StatefulWidget {
   const Place(this.model, {this.padding = 5, this.isCurrentLocation = false, Key? key}) : super(key: key);
@@ -81,7 +80,7 @@ class _PlaceState extends State<Place> {
                     ),
                   ),
                   Visibility(
-                    visible: widget.model.imageUrl != "",
+                    visible: widget.model.imageUrl.isNotEmpty,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                       child: Container(
@@ -99,37 +98,34 @@ class _PlaceState extends State<Place> {
                   ),
                 ],
               ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: widget.isCurrentLocation ? 200 : 80,
-                    height: 30,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                        color: Colors.white70
-                    ),
-                    child: Visibility(
-                      visible: widget.model.distance != -1,
+              Visibility(
+                visible: widget.model.distance != -1,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: widget.isCurrentLocation ? 200 : 80,
+                      height: 30,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                          color: Colors.white70
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Visibility(visible: widget.isCurrentLocation, child: Text('strCurrentLocation'.tr + " ", style: GoogleFonts.openSans(fontSize: 15,
-                              fontWeight: FontWeight.normal,
-                              color: const Color(0xff37536D)))),
-                          Text(widget.model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15,
-                              fontWeight: FontWeight.normal,
-                              color: const Color(0xff37536D))),
-                          Text(" " + 'strKm'.tr, style: GoogleFonts.openSans(fontSize: 15,
-                              fontWeight: FontWeight.normal,
-                              color: const Color(0xff37536D))),
+                          Text(widget.model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff37536D))),
+                          Text(" " + 'strKm'.tr, style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff37536D))),
+                          Visibility(
+                            visible: widget.isCurrentLocation,
+                            child: Text(" " + 'strCurrentLocation'.tr, style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff37536D))),
+                          ),
                         ],
                       ),
                     ),
-                  ),
-                  TextButton(onPressed: _openWikipedia, child: Text('strReadMore'.tr, style: Get.textTheme.bodyText2)),
-                ],
+                    TextButton(onPressed: _openWikipedia, child: Text('strReadMore'.tr, style: Get.textTheme.bodyText2)),
+                  ],
+                ),
               ),
             ],
           ),
@@ -138,5 +134,3 @@ class _PlaceState extends State<Place> {
     );
   }
 }
-
-

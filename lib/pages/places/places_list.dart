@@ -1,7 +1,5 @@
 // ================= Places List =================
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/pages/placeholder_page/placeholder_page.dart';
 import 'package:wiki_places/widgets/appbar.dart';
 import 'package:wiki_places/widgets/place/place_card.dart';
@@ -9,19 +7,27 @@ import 'package:wiki_places/widgets/search_places_fab.dart';
 import 'package:wiki_places/pages/places/places_page_collection.dart';
 
 class PlacesList extends StatelessWidget {
-  PlacesList({Key? key, required this.placesCollection, this.placeholderContent, this.placeholderIcon, this.bottomWidgets, this.isFavorites = false}) : super(key: key);
-  PlacesPageCollection placesCollection;
-  String? placeholderContent;
-  IconData? placeholderIcon;
-  List<Widget>? bottomWidgets;
-  bool isFavorites;
+  PlacesList({Key? key, required this.placesCollection, this.placeholderContent, this.placeholderIcon, this.topWidgets = const [], this.bottomWidgets = const [], this.distanceFromCurrentLocation = false, this.showAppbarDetails = true, this.showAppbarFilters = true}) : super(key: key);
+  final PlacesPageCollection placesCollection;
+  final String? placeholderContent;
+  final IconData? placeholderIcon;
+  final List<Widget> topWidgets;
+  final List<Widget> bottomWidgets;
+  final bool distanceFromCurrentLocation;
+  final bool showAppbarDetails;
+  final bool showAppbarFilters;
+  final ScrollController _scrollController = ScrollController();
+
+  void _scrollToTop(){
+    _scrollController.position.moveTo(0);
+  }
 
   List<Widget> get _getPlaces {
     List<Widget> placesList = [];
     for (var placeData in placesCollection.places.getRange(0, placesCollection.places.length - 1)) {
-      placesList.add(Place(placeData, isCurrentLocation: isFavorites ? true : false));
+      placesList.add(Place(placeData, isCurrentLocation: distanceFromCurrentLocation));
     }
-    placesList.add(Place(placesCollection.places.last, padding: 20, isCurrentLocation: isFavorites ? true : false)); // Different behaviour for the last item
+    placesList.add(Place(placesCollection.places.last, padding: 20, isCurrentLocation: distanceFromCurrentLocation)); // Different behaviour for the last item
     return placesList;
   }
 
@@ -30,16 +36,19 @@ class PlacesList extends StatelessWidget {
     return placesCollection.isEmpty && placeholderContent != null ?
       PlaceholderPage(
         content: placeholderContent!,
-        appBar: const ShowDetailsAppbar(showAppTitle: true),
+        topWidgets: topWidgets,
+        appBar: DetailsAndFiltersAppbar(showAppbarDetails: showAppbarDetails, showAppTitle: true, showAppbarFilters: showAppbarFilters),
         firstIcon: placeholderIcon,
       ) : Scaffold(
       backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
-        appBar: const ShowDetailsAppbar(),
+        appBar: DetailsAndFiltersAppbar(showAppbarDetails: showAppbarDetails, showAppbarFilters: showAppbarFilters),
         body: ListView(
-          children: (bottomWidgets == null) ? _getPlaces : _getPlaces + bottomWidgets!,
+          key: Key(placesCollection.length.toString()),
+          controller: _scrollController,
+          children: [...topWidgets, ..._getPlaces, ...bottomWidgets],
         ),
-        floatingActionButton: const SearchPlacesFAB(),
+        floatingActionButton: SearchPlacesFAB(afterSearchCallback: _scrollToTop),
     );
   }
 }

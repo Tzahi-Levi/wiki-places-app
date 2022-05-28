@@ -10,11 +10,13 @@ class GlobalConstants {
 
   // Default Values
   static String defaultScale = "strKm".tr;
+  static const String defaultRadius = "1";
   static const int defaultPrecision = 1;
   static const double minRadius = 0;
   static const double maxRadius = 5;
-  static const int defaultMinAbstractWords = 4;
+  static const double regularPlaceMarkerColor = BitmapDescriptor.hueRed;
   static const double currentPlaceMarkerColor = BitmapDescriptor.hueBlue;
+  static const double favoritePlaceMarkerColor = BitmapDescriptor.hueYellow;
   static const double defaultLoadMoreStep = 1;
   static const int defaultWordsInPlaceName = 3;
 
@@ -25,6 +27,7 @@ class GlobalConstants {
   static const IconData placesPageSelectedIcon = Icons.list;
   static const IconData searchIcon = Icons.search;
   static const IconData infoIcon = Icons.info;
+  static const IconData filtersIcon = Icons.filter_alt;
   static const IconData addIcon = Icons.add;
   static const IconData placeIcon = Icons.place;
   static const IconData favoriteIcon = Icons.favorite;
