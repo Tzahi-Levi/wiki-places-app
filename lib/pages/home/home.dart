@@ -41,13 +41,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
   }
 
-  void _init() {
+  void _init() async {
+    await _searchPlaces();
     FavoritesController.instance.getFavoritePlaces();
-    _searchPlaces();
     WidgetsBinding.instance.addObserver(this);
   }
 
-  void _searchPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
+  Future<void> _searchPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
     _storeController.updateGlobalIsLoading(true);
     if (resetCurrentPlace) {
       await _storeController.updatePlaceToCurrentMode();

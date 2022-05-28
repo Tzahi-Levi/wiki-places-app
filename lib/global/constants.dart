@@ -10,10 +10,10 @@ class GlobalConstants {
 
   // Default Values
   static String defaultScale = "strKm".tr;
+  static const String defaultRadius = "1";
   static const int defaultPrecision = 1;
   static const double minRadius = 0;
   static const double maxRadius = 5;
-  static const int defaultMinAbstractWords = 4;
   static const double regularPlaceMarkerColor = BitmapDescriptor.hueRed;
   static const double currentPlaceMarkerColor = BitmapDescriptor.hueBlue;
   static const double favoritePlaceMarkerColor = BitmapDescriptor.hueYellow;
