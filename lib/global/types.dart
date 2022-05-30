@@ -17,7 +17,7 @@ class PlaceDetails {
 }
 
 class Suggestion extends PlaceDetails {
-  String? icon;
+  String icon;
 
   static int compareSuggestion(Suggestion a, Suggestion b) => a.name.compareStrings(b.name);
   Suggestion({required String name, required LatLng coordinates, required this.icon}) : super(name: name, coordinates: coordinates);

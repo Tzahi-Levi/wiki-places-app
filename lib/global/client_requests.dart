@@ -32,50 +32,38 @@ class ClientRequests extends GetConnect {
   }
 
   Future<PlaceDetails> getPlaceDetailsByPartiallyName({required String place}) async {
-    Response response = await get('http://${ProjectConfig.serverAddress}''/place_details_by_name?name=$place');
+    Response response = await get('http://${ProjectConfig.serverAddress}/place_details_by_name?name=$place');
     LatLng? coordinates;
     String placeName = "";
 
     if (_isResponseSuccess(response)) {
-      placeName = response.body[0]["name"];
-      coordinates = LatLng(response.body[0]["lat"], response.body[0]["lon"]);
+      Map responseBody = json.decode(response.body);
+      placeName = responseBody["name"];
+      coordinates = LatLng(responseBody["lat"], responseBody["lon"]);
     }
 
     return PlaceDetails(name: placeName, coordinates: coordinates);
   }
 
   Future<PlaceDetails?> getPlaceDetailsByCoordinates({required LatLng coordinates}) async {
-    Response response = await get('http://nominatim.openstreetmap.org/reverse?format=json&lat=${coordinates.latitude}&lon=${coordinates.longitude}&zoom=18&addressdetails=1');
-    String placeName = "";
-
-    if (_isResponseSuccess(response) && response.body["display_name"] != null) {
-      placeName = fullAddressToDisplayedAddress(response.body["display_name"]);
-    }
-
+    Response response = await get('http://${ProjectConfig.serverAddress}/place_details_by_coordinates?lat=${coordinates.latitude}&lon=${coordinates.longitude}');
+    String placeName = _isResponseSuccess(response) ? json.decode(response.body)["name"] : "";
     return PlaceDetails(name: placeName, coordinates: coordinates);
   }
 
   Future<SortedList<Suggestion>> getSuggestions({required String pattern}) async {
-    pattern = pattern.replaceAll("רחוב ", "").replaceAll("שדרה ", "").replaceAll("מספר ", "").replaceAll(RegExp("\\d"), "").replaceAll(" ", "+");
-    if (pattern.isNotEmpty && pattern.lastIndexOf("+") == pattern.length -1) {
-      pattern = pattern.substring(0, pattern.length - 1);
-    }
-
-    Response response = await get('https://nominatim.openstreetmap.org/search?q=$pattern&format=json&polygon=1&addressdetails=1');
+    Response response = await get('http://${ProjectConfig.serverAddress}/get_suggestions?name=${pattern.replaceAll(" ", "_")}');
     SortedList<Suggestion> suggestions = getSuggestionsList;
 
     if (_isResponseSuccess(response)) {
-      for (int placeIndex = 0; placeIndex < response.body.length; placeIndex++) {
-        Suggestion newSuggestion = Suggestion(
-            name: fullAddressToDisplayedAddress(response.body[placeIndex]["display_name"]),
-            coordinates: LatLng(double.parse(response.body[placeIndex]["lat"]), double.parse(response.body[placeIndex]["lon"])),
-            icon: response.body[placeIndex]["icon"]
-        );
+      print(json.decode(response.body)["suggestions"]);
 
-        bool isAlreadyExist = suggestions.where((Suggestion suggestion) => suggestion.name == newSuggestion.name).toList().isNotEmpty;
-        if (!isAlreadyExist && newSuggestion.name.contains(pattern)) {
-          suggestions.add(newSuggestion);
-        }
+      for (var suggestion in json.decode(response.body)["suggestions"]) {
+        suggestions.add(Suggestion(
+            name: suggestion["name"],
+            coordinates: LatLng(suggestion["lat"], suggestion["lon"]),
+            icon: suggestion["icon"]
+        ));
       }
     }
 
