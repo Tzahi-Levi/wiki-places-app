@@ -16,9 +16,10 @@ class PlaceModel {
     label = placeJson["label"];
     abstract = placeJson["abstract"];
     url = placeJson["url"];
-    lat = placeJson["pin"]["location"]["lat"].toDouble();
-    lon = placeJson["pin"]["location"]["lon"].toDouble();
-    imageUrl = placeJson["imageUrl"];
+    lat = placeJson["pin"]["location"]["lat"];
+    lon = placeJson["pin"]["location"]["lon"];
+    imageUrl = "";
+
 
     if (placeJson["pin"]["distance[km]"] == null) {
       _calculateDistance();
