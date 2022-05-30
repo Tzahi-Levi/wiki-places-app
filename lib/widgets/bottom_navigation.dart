@@ -63,7 +63,7 @@ class NavigationButton extends StatelessWidget {
           children: [
             IconButton(
               onPressed: _navigateToPage,
-              icon: Icon(_storeController.currentMainAppPage.value == page ? selectedIcon : nonSelectedIcon),
+              icon: Icon(_storeController.currentMainAppPage.value == page ? selectedIcon : nonSelectedIcon , color: _storeController.currentMainAppPage.value == page ? Get.theme.primaryColor : null,),
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(minWidth: 30, minHeight: 30),
               splashRadius: 25,

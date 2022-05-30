@@ -63,29 +63,35 @@ class _FiltersState extends State<Filters> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-          children: [
-            Text('strFilters'.tr),
-            Row(
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 15, 10, 10),
+      child: SizedBox(
+        height: Get.height/2.5,
+        child: Column(
               children: [
-                Expanded(
-                  child: Form(
-                    key: _formKey,
-                    child: TextFormField(
-                      controller: _filterController,
-                      validator: _checkEmptyFilter,
-                      decoration: InputDecoration(
-                        hintText: 'strAddFilter'.tr,
+                Text('strFilters'.tr),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Form(
+                        key: _formKey,
+                        child: TextFormField(
+                          controller: _filterController,
+                          validator: _checkEmptyFilter,
+                          decoration: InputDecoration(
+                            hintText: 'strAddFilter'.tr,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    _addIsLoading ? const CircularProgressIndicator() : IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon)),
+                  ],
                 ),
-                _addIsLoading ? const CircularProgressIndicator() : IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon)),
+                _cleanAllIsLoading ? const CircularProgressIndicator() : TextButton(onPressed: _cleanAllFilters, child: Text('strCleanAllFilters'.tr, style: Get.textTheme.headline6,)),
+                SizedBox(height: Get.height/4.9, child: SingleChildScrollView(child: TagsList(isWrap: true))),
               ],
-            ),
-            _cleanAllIsLoading ? const CircularProgressIndicator() : TextButton(onPressed: _cleanAllFilters, child: Text('strCleanAllFilters'.tr)),
-            TagsList(isWrap: true),
-          ],
+        ),
+      ),
     );
   }
 }
