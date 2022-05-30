@@ -8,7 +8,6 @@ import 'package:wiki_places/pages/image_page/error_page.dart';
 import 'package:wiki_places/global/config.dart';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/utils.dart';
-import 'package:wiki_places/localization/resources/resources_en.dart';
 
 class ClientRequests extends GetConnect {
   static final ClientRequests instance = ClientRequests._();
@@ -19,7 +18,7 @@ class ClientRequests extends GetConnect {
   }
 
   Future<List<dynamic>?> getPlacesData({required String radius, required double lat, required double lon, bool moveToError = false}) async {
-    Response response = await get('http://${ProjectConfig.serverAddress}''/wiki_by_place?radius=$radius${resourcesEn['strKm']!.toLowerCase()}&lat,lon=${lat.toString()},${lon.toString()}');
+    Response response = await get('http://${ProjectConfig.serverAddress}''/wiki_by_place?radius=${radius}km&lat,lon=${lat.toString()},${lon.toString()}');
     List<dynamic>? placeJson;
 
     if (_isResponseSuccess(response)) {
@@ -33,13 +32,13 @@ class ClientRequests extends GetConnect {
   }
 
   Future<PlaceDetails> getPlaceDetailsByPartiallyName({required String place}) async {
-    Response response = await get('https://nominatim.openstreetmap.org/search?q=${place.replaceAll(" ", "+")}&format=json&polygon=1&addressdetails=1');
+    Response response = await get('http://${ProjectConfig.serverAddress}''/place_details_by_name?name=$place');
     LatLng? coordinates;
     String placeName = "";
 
-    if (_isResponseSuccess(response) && response.body.length != 0 && response.body[0].keys.contains("lat") && response.body[0].keys.contains("lon") && response.body[0].keys.contains("display_name") && response.body[0]["display_name"].contains(place)) {
-      placeName = fullAddressToDisplayedAddress(response.body[0]["display_name"]);
-      coordinates = LatLng(double.parse(response.body[0]["lat"]), double.parse(response.body[0]["lon"]));
+    if (_isResponseSuccess(response)) {
+      placeName = response.body[0]["name"];
+      coordinates = LatLng(response.body[0]["lat"], response.body[0]["lon"]);
     }
 
     return PlaceDetails(name: placeName, coordinates: coordinates);
