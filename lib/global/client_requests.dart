@@ -56,8 +56,6 @@ class ClientRequests extends GetConnect {
     SortedList<Suggestion> suggestions = getSuggestionsList;
 
     if (_isResponseSuccess(response)) {
-      print(json.decode(response.body)["suggestions"]);
-
       for (var suggestion in json.decode(response.body)["suggestions"]) {
         suggestions.add(Suggestion(
             name: suggestion["name"],
