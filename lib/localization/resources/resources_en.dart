@@ -31,7 +31,7 @@ final Map<String, String> resourcesEn = {
   'strSearchSuccessfully': 'Searching for places in radius @radius @scale from @place was done successfully!',
   'strCurrentPlaceDetails': 'Places in radius @radius @scale from @place',
   'strWikipediaValuesInRadius': '@number Places (@radius @scale)',
-  'strReadMore': 'Read more',
+  'strReadMore': 'Full Article',
   'strRadiusMustBePositive': 'The radius must be a positive number',
   'strCantIncreaseRadius': "The radius can't be increased above @maxRadius km",
   'strNoPlacesAvailable': "There are not values available. For searching values, please click on the search button.",
