@@ -24,25 +24,25 @@ final Map<String, String> resourcesEn = {
 
   // Map
   'strYourChosenPlace': 'Your chosen place',
-  'strSearchOnMap': 'You can get more values on another place by long press on the other place',
+  'strSearchOnMap': 'You can get more articles on another place by long press on the other place',
 
   // Places
   'strSearchPlace': 'Search Places',
   'strSearchSuccessfully': 'Searching for places in radius @radius @scale from @place was done successfully!',
   'strCurrentPlaceDetails': 'Places in radius @radius @scale from @place',
-  'strWikipediaValuesInRadius': '@number Places (@radius @scale)',
+  'strWikipediaValuesInRadius': '@number Articles (@radius @scale)',
   'strReadMore': 'Full Article',
   'strRadiusMustBePositive': 'The radius must be a positive number',
   'strCantIncreaseRadius': "The radius can't be increased above @maxRadius km",
-  'strNoPlacesAvailable': "There are not values available. For searching values, please click on the search button.",
+  'strNoPlacesAvailable': "There are not articles available. For searching articles, please click on the search button.",
   'strEmptyPlaceName': "For searching places, please choose a place name",
   'strPlaceNotExist': "The chosen place is not found, please try to search another place",
 
   // Favorites
   'strFavorites': 'Favorites-',
-  'strFavoritesNumber': '@number Favorite Values',
-  'strFavoriteNumber': 'One Favorite Value',
-  'strEmptyFavoriteNumber': 'No Favorite Values',
+  'strFavoritesNumber': '@number Favorite Articles',
+  'strFavoriteNumber': 'One Favorite Article',
+  'strEmptyFavoriteNumber': 'No Favorite Articles',
   'strNoSelectedFavorites': 'There are not favorite places. For adding places to the favorites, click on @ in the places page.',
 
   // Search Place Page
