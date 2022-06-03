@@ -9,7 +9,6 @@ class ErrorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FlutterNativeSplash.remove();
     return GenericImagePage(image: GlobalConstants.errorPageImage);
   }
 }

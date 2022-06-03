@@ -44,6 +44,7 @@ class GlobalConstants {
   // Images
   static const String connectionLostImage = "images/connection_lost.png";
   static const String errorPageImage = "images/error_page.png";
+  static const String locationPermissionPageImage = "images/location_permission_page.png";
   static const String appIconImage = "images/app_icon.png";
   static String get appBackgroundImage => "images/background_${Get.isDarkMode ? "dark" : "light"}.png";
 

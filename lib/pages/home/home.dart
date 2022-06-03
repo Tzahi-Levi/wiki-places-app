@@ -11,6 +11,9 @@ import 'package:wiki_places/pages/favorites/favorites_page.dart';
 import 'package:wiki_places/pages/map/map.dart';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/controllers/favorites_controller.dart';
+import 'package:wiki_places/controllers/location_controller.dart';
+import 'package:wiki_places/pages/image_page/location_permission_page.dart';
+import 'package:wiki_places/global/utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -25,6 +28,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _init();
   }
 
@@ -42,9 +46,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   void _init() async {
-    await _searchPlaces();
-    FavoritesController.instance.getFavoritePlaces();
-    WidgetsBinding.instance.addObserver(this);
+    if (await LocationController.isLocationPermission()) {
+      await _searchPlaces();
+      FavoritesController.instance.getFavoritePlaces();
+      FlutterNativeSplash.remove();
+
+    } else {
+      navigateWithNoBack(const LocationPermissionPage());
+    }
   }
 
   Future<void> _searchPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
@@ -54,7 +63,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
     await _storeController.updatePlacesCollection(moveToError: moveToError, reportToGA: false);
     _storeController.updateGlobalIsLoading(false);
-    FlutterNativeSplash.remove();
   }
 
   Widget get _getCurrentPage {
