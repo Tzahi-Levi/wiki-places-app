@@ -202,4 +202,13 @@ class StoreController extends GetxController {
     favoritePlacesCollection.refresh();
     GoogleAnalytics.instance.logRemoveFavorite();
   }
+
+  Future<void> initPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
+    updateGlobalIsLoading(true);
+    if (resetCurrentPlace) {
+      await updatePlaceToCurrentMode();
+    }
+    await updatePlacesCollection(moveToError: moveToError, reportToGA: false);
+    updateGlobalIsLoading(false);
+  }
 }

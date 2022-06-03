@@ -28,22 +28,13 @@ class _SplashPageState extends State<SplashPage> {
 
   void _init() async {
     if (await LocationController.isLocationPermission()) {
-      await _searchPlaces();
+      await _storeController.initPlaces();
       FavoritesController.instance.getFavoritePlaces();
       _storeController.updateMainAppPage(GlobalConstants.defaultAppPage);
 
     } else {
       navigateWithNoBack(const LocationPermissionPage());
     }
-  }
-
-  Future<void> _searchPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
-    _storeController.updateGlobalIsLoading(true);
-    if (resetCurrentPlace) {
-      await _storeController.updatePlaceToCurrentMode();
-    }
-    await _storeController.updatePlacesCollection(moveToError: moveToError, reportToGA: false);
-    _storeController.updateGlobalIsLoading(false);
   }
 
   @override

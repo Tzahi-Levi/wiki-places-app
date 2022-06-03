@@ -36,17 +36,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      _searchPlaces(resetCurrentPlace: false, moveToError: false);
+      _storeController.initPlaces(resetCurrentPlace: false, moveToError: false);
     }
-  }
-
-  Future<void> _searchPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
-    _storeController.updateGlobalIsLoading(true);
-    if (resetCurrentPlace) {
-      await _storeController.updatePlaceToCurrentMode();
-    }
-    await _storeController.updatePlacesCollection(moveToError: moveToError, reportToGA: false);
-    _storeController.updateGlobalIsLoading(false);
   }
 
   Widget get _getCurrentPage {
