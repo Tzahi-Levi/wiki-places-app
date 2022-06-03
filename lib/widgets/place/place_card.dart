@@ -123,7 +123,7 @@ class _PlaceState extends State<Place> {
                         ],
                       ),
                     ),
-                    TextButton(onPressed: _openWikipedia, child: Text('strReadMore'.tr, style: Get.textTheme.bodyText2)),
+                    TextButton(onPressed: _openWikipedia, child: Text('strReadMore'.tr, style: Get.textTheme.headline5)),
                   ],
                 ),
               ),

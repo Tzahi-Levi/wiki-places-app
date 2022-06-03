@@ -69,8 +69,9 @@ void displaySnackbar({required String content, String title = "", TextButton? ma
 
 void openModalBottomSheet({required Widget widget}) {  // TODO- need to be designed
   Get.bottomSheet(
-    widget,
-    // SingleChildScrollView(
+    SingleChildScrollView(
+      child: widget
+    ),
     //     child: Padding(
     //       padding: const EdgeInsets.only(bottom: 15.0),
     //       child: Row(
