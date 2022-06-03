@@ -1,7 +1,6 @@
 // ================= Generic Image Page =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:async';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/controllers/favorites_controller.dart';
