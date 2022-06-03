@@ -33,7 +33,7 @@ final Map<String, String> resourcesHe = {
   'strWikipediaValuesInRadius': '@number ערכים (@radius @scale)',
   'strWikipediaValueInRadius': 'ערך יחיד (@radius @scale)',
   'strEmptyWikipediaValueInRadius': 'אין ערכים (@radius @scale)',
-  'strReadMore': 'קרא עוד',
+  'strReadMore': 'לערך המלא',
   'strRadiusMustBePositive': 'המרחק חייב להיות מספר חיובי',
   'strCantIncreaseRadius':'לא ניתן להגדיל את המרחק מעבר ל-@maxRadius ק״מ',
   'strNoPlacesAvailable': "אין ערכים זמינים. על מנת לחפש ערכים, יש ללחוץ על כפתור החיפוש.",

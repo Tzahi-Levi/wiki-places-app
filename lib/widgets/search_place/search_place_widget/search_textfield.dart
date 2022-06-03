@@ -44,7 +44,7 @@ class SearchTextField extends StatelessWidget {
       onSuggestionSelected: _onSuggestionSelected,
       itemBuilder: (BuildContext context, Suggestion suggestion) {
         return ListTile(
-          leading: suggestion.icon == null ? const Icon(GlobalConstants.placeIcon) : Image.network(suggestion.icon!),
+          leading: suggestion.icon.isEmpty ? const Icon(GlobalConstants.placeIcon) : Image.network(suggestion.icon),
           title: Text(suggestion.name),
         );
       },
