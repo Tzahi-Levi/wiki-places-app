@@ -146,6 +146,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                   ChangeRadiusSlider(controller: _radiusController),
                   const Divider(),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('strResetFilters'.tr),
                         Checkbox(value: _resetFilters, onChanged: _toggleResetCategory),
