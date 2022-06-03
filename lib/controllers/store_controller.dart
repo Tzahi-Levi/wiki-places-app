@@ -13,7 +13,7 @@ import 'package:wiki_places/global/constants.dart';
 
 class StoreController extends GetxController {
   // State
-  final Rx<EAppPages> currentMainAppPage = EAppPages.places.obs;
+  final Rx<EAppPages> currentMainAppPage = EAppPages.splash.obs;
   final RxString radius = GlobalConstants.defaultRadius.obs;
   final Rx<PlacesPageCollection> placesCollection = PlacesPageCollection().obs;
   final Rx<PlacesPageCollection> favoritePlacesCollection = PlacesPageCollection().obs;

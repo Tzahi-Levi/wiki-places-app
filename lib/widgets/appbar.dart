@@ -80,6 +80,9 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
           'radius': _storeController.radius.value,
           'scale': GlobalConstants.defaultScale,
         });
+
+      default:
+        return "";
     }
   }
 

@@ -1,19 +1,15 @@
 // ================= Home Page =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
+import 'package:wiki_places/pages/splash/splash.dart';
 import 'package:wiki_places/widgets/bottom_navigation.dart';
 import 'package:wiki_places/widgets/app_background.dart';
 import 'package:wiki_places/pages/places/places_page.dart';
 import 'package:wiki_places/pages/favorites/favorites_page.dart';
 import 'package:wiki_places/pages/map/map.dart';
 import 'package:wiki_places/global/types.dart';
-import 'package:wiki_places/controllers/favorites_controller.dart';
-import 'package:wiki_places/controllers/location_controller.dart';
-import 'package:wiki_places/pages/image_page/location_permission_page.dart';
-import 'package:wiki_places/global/utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,7 +25,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    _init();
   }
 
   @override
@@ -45,17 +40,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
   }
 
-  void _init() async {
-    if (await LocationController.isLocationPermission()) {
-      await _searchPlaces();
-      FavoritesController.instance.getFavoritePlaces();
-      FlutterNativeSplash.remove();
-
-    } else {
-      navigateWithNoBack(const LocationPermissionPage());
-    }
-  }
-
   Future<void> _searchPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
     _storeController.updateGlobalIsLoading(true);
     if (resetCurrentPlace) {
@@ -67,6 +51,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   Widget get _getCurrentPage {
     switch (_storeController.currentMainAppPage.value) {
+      case EAppPages.splash:
+        return const SplashPage();
+        
       case EAppPages.map:
         return const MapPage();
 
@@ -93,7 +80,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                     padding: const EdgeInsets.only(bottom: 45.0),
                     child: _getCurrentPage,
                   ),
-                  Positioned(bottom: 0, left: 0, child: BottomNavigation()),
+                  Visibility(
+                      visible: _storeController.currentMainAppPage.value != EAppPages.splash,
+                      child: Positioned(bottom: 0, left: 0, child: BottomNavigation()),
+                  ),
                 ],
               ),
             ),

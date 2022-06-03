@@ -1,14 +1,12 @@
 // ================= Generic Image Page =================
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 class GenericImagePage extends StatelessWidget {
-  GenericImagePage({this.image = "", Key? key}) : super(key: key);
+  GenericImagePage({required this.image, Key? key}) : super(key: key);
   String image;
 
   @override
   Widget build(BuildContext context) {
-    FlutterNativeSplash.remove();
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,

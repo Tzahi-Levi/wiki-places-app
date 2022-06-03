@@ -13,7 +13,7 @@ class LocationController {
   LocationController._();
   static final _storeController = Get.put(StoreController());
 
-  static Future<Json?> getLocation() async {
+  static Future<bool> isLocationPermission() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();

@@ -9,6 +9,7 @@ class GlobalConstants {
   GlobalConstants._();
 
   // Default Values
+  static const EAppPages defaultAppPage = EAppPages.places;
   static String defaultScale = "strKm".tr;
   static const String defaultRadius = "1";
   static const int defaultPrecision = 1;
@@ -42,6 +43,7 @@ class GlobalConstants {
   static const String secondIconTextSeparator = '#';
 
   // Images
+  static const String splashPageImage = "images/start_app.png";
   static const String connectionLostImage = "images/connection_lost.png";
   static const String errorPageImage = "images/error_page.png";
   static const String locationPermissionPageImage = "images/location_permission_page.png";
