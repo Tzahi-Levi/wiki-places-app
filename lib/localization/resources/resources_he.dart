@@ -66,6 +66,7 @@ final Map<String, String> resourcesHe = {
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",
   'strLostConnectionImage': "תמונת בעיה ברשת",
   'strErrorPageConnection': "תמונת שגיאה",
+  'strLocationPermissionPage': "תמונת אין הרשאות מיקום",
   'strBackgroundImage': "תמונת רקע",
   'strAboutTheApp': "אודות האפליקציה",
 };

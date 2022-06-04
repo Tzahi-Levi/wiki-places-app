@@ -27,7 +27,7 @@ class FavoritesController {
     return favoritePlaces;
   }
 
-  void getFavoritePlaces() async {
+  Future<void> getFavoritePlaces() async {
     List<String>? favoritePlacesJson = await PreferencesController.instance.getFavoritePlaces;
     if (favoritePlacesJson != null) {
       _storeController.updateFavoritePlacesCollection(_jsonToPlaces(favoritePlacesJson));
