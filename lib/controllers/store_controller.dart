@@ -127,14 +127,13 @@ class StoreController extends GetxController {
     return true;
   }
 
-  Future<bool> updatePlacesCollection({FiltersList? filtersList, bool moveToError = false, bool reportToGA = true}) async {
-    filtersList ??= placeFilters.value;
+  Future<bool> updatePlacesCollection({bool moveToError = false, bool reportToGA = true}) async {
     List<dynamic>? placeJson = await ClientRequests.instance.getPlacesData(radius: radius.value, lat: placeCoordinates.value.latitude, lon: placeCoordinates.value.longitude, moveToError: moveToError);
     if (placeJson == null) {
       return false;
     }
 
-    placesCollection.value = PlacesPageCollection.fromJson(placeJson, filtersList);
+    placesCollection.value = PlacesPageCollection.fromJson(placeJson);
     update();
 
     if (reportToGA) {

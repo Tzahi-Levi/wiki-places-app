@@ -19,7 +19,7 @@ class PlacesPageCollection {
     places.addAll(placeList);
   }
 
-  PlacesPageCollection.fromJson(List placesJson, FiltersList placeFilters) {
+  PlacesPageCollection.fromJson(List placesJson) {
     _initList();
     for (var json in placesJson) {
       places.add(PlaceModel.fromJson(json));

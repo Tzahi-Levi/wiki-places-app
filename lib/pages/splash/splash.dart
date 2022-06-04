@@ -27,8 +27,8 @@ class _SplashPageState extends State<SplashPage> {
 
   void _init() async {
     if (await LocationController.isLocationPermission()) {
-      await _storeController.initPlaces();
       await FavoritesController.instance.getFavoritePlaces();
+      await _storeController.initPlaces();
       _storeController.updateMainAppPage(GlobalConstants.defaultAppPage);
 
     } else {
