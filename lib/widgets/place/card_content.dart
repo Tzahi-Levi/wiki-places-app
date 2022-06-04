@@ -23,13 +23,13 @@ class CardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isExpanded ? Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Visibility(
           visible: model.imageUrl.isNotEmpty,
           child: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            padding: const EdgeInsets.all(8),
             child: Container(
               width: 200,
               height: 200,
