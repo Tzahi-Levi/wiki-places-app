@@ -55,8 +55,8 @@ class _PlaceState extends State<Place> {
               IconButton(onPressed: _toggleFavorite, icon: Icon(_isFavorite ? GlobalConstants.favoriteIcon : GlobalConstants.nonFavoriteIcon, color: Colors.red.shade600)),
             ],
           ),
-          collapsed: CardContent(isExpanded: false, model: widget.model, isCurrentLocation: widget.isCurrentLocation, toggleFavorite: _toggleFavorite, padding: widget.padding,  isFavorite: _isFavorite ),
-          expanded: CardContent(isExpanded: true, model: widget.model, isCurrentLocation: widget.isCurrentLocation, toggleFavorite: _toggleFavorite, padding: widget.padding, isFavorite: _isFavorite ),
+          collapsed: CardContent(isExpanded: false, model: widget.model, isCurrentLocation: widget.isCurrentLocation, padding: widget.padding),
+          expanded: CardContent(isExpanded: true, model: widget.model, isCurrentLocation: widget.isCurrentLocation, padding: widget.padding),
         ),
       ),
     );

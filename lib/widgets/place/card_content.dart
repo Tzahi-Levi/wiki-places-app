@@ -6,14 +6,11 @@ import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 
 class CardContent extends StatelessWidget {
-  const CardContent({required this.isExpanded, required this.model, required this.padding, required this.isCurrentLocation, required this.isFavorite, required this.toggleFavorite  ,Key? key}) : super(key: key);
+  const CardContent({required this.isExpanded, required this.model, required this.padding, required this.isCurrentLocation, Key? key}) : super(key: key);
   final bool isExpanded;
   final PlaceModel model;
   final double padding;
   final bool isCurrentLocation;
-  final bool isFavorite;
-  final Function toggleFavorite;
-
 
   void _openWikipedia() {
     openWikipedia(model.url);
