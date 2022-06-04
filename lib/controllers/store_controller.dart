@@ -21,9 +21,16 @@ class StoreController extends GetxController {
   final Rx<LatLng> placeCoordinates = LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]).obs;
   final Rx<String> placeName = "".obs;
   final Rx<EPlaceMode> placeMode = EPlaceMode.current.obs;
-  final Rx<SortedList<String>> placeFilters = SortedList<String>().obs;
+  final Rx<FiltersList> placeFilters = FiltersList().obs;
 
-  bool _editFilter = false;
+  Rx<SortedList<PlaceModel>> get filteredPlacesCollection {
+    if (placeFilters.value.isEmpty) {
+      return placesCollection.value.places.obs;
+    }
+    SortedList<PlaceModel> placesList = getPlacesList;
+    placesList.addAll(placesCollection.value.places.where((place) => place.containFilters(placeFilters.value)).toList());
+    return placesList.obs;
+  }
 
   // Actions
   void setStore(Json store) {
@@ -31,7 +38,7 @@ class StoreController extends GetxController {
     placeCoordinates.value = store['placeCoordinates'];
     placeName.value = store['placeName'];
     placeMode.value = store['placeMode'];
-    placeFilters.value = SortedList<String>();
+    placeFilters.value = FiltersList();
     placeFilters.value.addAll(store['filters']);
     update();
   }
@@ -46,78 +53,28 @@ class StoreController extends GetxController {
     update();
   }
 
-  Future<bool> addPlaceFilter(String filter) async {
-    if (_editFilter) {
-      return false;
-    }
-    _editFilter = true;
-
+  void addPlaceFilter(String filter) {
     if (!placeFilters.value.contains(filter)) {
-      SortedList<String> newFiltersList = SortedList<String>();
-      newFiltersList.addAll(placeFilters.value);
-      newFiltersList.add(filter);
-      if (!await updatePlacesCollection(filtersList: newFiltersList, reportToGA: false)) {
-        _editFilter = false;
-        return false;
-      }
-
       placeFilters.value.add(filter);
       placeFilters.refresh();
+      filteredPlacesCollection.refresh();
       GoogleAnalytics.instance.logFilterAdded();
     }
-
-    _editFilter = false;
-    return true;
   }
 
-  Future<bool> removePlaceFilter(String filter) async {
-    if (_editFilter) {
-      return false;
-    }
-    _editFilter = true;
-
-    if (placeFilters.value.contains(filter)) {
-      SortedList<String> newFiltersList = SortedList<String>();
-      newFiltersList.addAll(placeFilters.value);
-      newFiltersList.remove(filter);
-      if (!await updatePlacesCollection(filtersList: newFiltersList, reportToGA: false)) {
-        _editFilter = false;
-        return false;
-      }
-
-      placeFilters.value.remove(filter);
-      placeFilters.refresh();
-      GoogleAnalytics.instance.logFilterRemoved();
-    }
-    _editFilter = false;
-    return true;
+  void removePlaceFilter(String filter) {
+    placeFilters.value.remove(filter);
+    placeFilters.refresh();
+    GoogleAnalytics.instance.logFilterRemoved();
   }
 
-  Future<bool> cleanAllFilters({bool checkBeforeCleaning = true, bool reportToGA = true}) async {
-    if (_editFilter) {
-      return false;
-    }
-    _editFilter = true;
-
-    if (checkBeforeCleaning) {
-      SortedList<String> newFiltersList = SortedList<String>();
-      newFiltersList.addAll(placeFilters.value);
-      newFiltersList.removeRange(0, newFiltersList.length);
-      if (!await updatePlacesCollection(filtersList: newFiltersList, reportToGA: false)) {
-        _editFilter = false;
-        return false;
-      }
-    }
-
+  void cleanAllFilters({bool reportToGA = true}) {
     placeFilters.value.removeRange(0, placeFilters.value.length);
     placeFilters.refresh();
 
     if (reportToGA) {
       GoogleAnalytics.instance.logFilterRemoved();
     }
-
-    _editFilter = false;
-    return true;
   }
 
   void updateRadius(String newRadius) {
@@ -170,7 +127,7 @@ class StoreController extends GetxController {
     return true;
   }
 
-  Future<bool> updatePlacesCollection({SortedList<String>? filtersList, bool moveToError = false, bool reportToGA = true}) async {
+  Future<bool> updatePlacesCollection({FiltersList? filtersList, bool moveToError = false, bool reportToGA = true}) async {
     filtersList ??= placeFilters.value;
     List<dynamic>? placeJson = await ClientRequests.instance.getPlacesData(radius: radius.value, lat: placeCoordinates.value.latitude, lon: placeCoordinates.value.longitude, moveToError: moveToError);
     if (placeJson == null) {

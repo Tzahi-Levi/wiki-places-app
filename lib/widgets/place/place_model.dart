@@ -54,6 +54,15 @@ class PlaceModel {
     return (distance > other.distance) ? 1 : -1;
   }
 
+  bool containFilters(FiltersList placeFilters) {
+    for (var filter in placeFilters) {
+      if (label.contains(filter) || abstract.contains(filter)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   int compareTo(PlaceModel other){
     int comparePerDistance = _comparePerDistance(other);
     return (comparePerDistance == 0) ? label.compareStrings(other.label) : comparePerDistance;

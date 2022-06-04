@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
-import 'package:wiki_places/global/utils.dart';
-import 'package:wiki_places/widgets/CustumeCircularProgress.dart';
 import 'package:wiki_places/widgets/search_place/filters/tags_list.dart';
 
 class Filters extends StatefulWidget {
@@ -18,8 +16,6 @@ class _FiltersState extends State<Filters> {
   final _storeController = Get.put(StoreController());
   final TextEditingController _filterController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool _addIsLoading = false;
-  bool _cleanAllIsLoading = false;
 
   @override
   void dispose() {
@@ -27,39 +23,16 @@ class _FiltersState extends State<Filters> {
     super.dispose();
   }
 
-  void _updateIsLoading({bool? addValue, bool? cleanAllValue}) {
-    if (addValue != null) {
-      setState(() {
-        _addIsLoading = addValue;
-      });
-    }
-
-    if (cleanAllValue != null) {
-      setState(() {
-        _cleanAllIsLoading = cleanAllValue;
-      });
-    }
-  }
-
   String? _checkEmptyFilter(String? value) {
     return (value == null || value.isEmpty) ? 'strEmptyFilter'.tr : null;
   }
 
   void _addFilter() async {
-    if (_formKey.currentState!.validate()) {
-      _updateIsLoading(addValue: true);
-      if (await _storeController.addPlaceFilter(_filterController.text)) {
-        _filterController.text = "";
-        FocusScope.of(Get.context!).unfocus(); // Remove the keyboard
-      }
-      _updateIsLoading(addValue: false);
+    if (_formKey.currentState!.validate() && !_storeController.placeFilters.value.contains(_filterController.text)) {
+      _storeController.addPlaceFilter(_filterController.text);
+      _filterController.text = "";
+      FocusScope.of(Get.context!).unfocus(); // Remove the keyboard
     }
-  }
-
-  void _cleanAllFilters() async {
-    _updateIsLoading(cleanAllValue: true);
-    await _storeController.cleanAllFilters();
-    _updateIsLoading(cleanAllValue: false);
   }
 
   @override
@@ -67,30 +40,36 @@ class _FiltersState extends State<Filters> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 15, 10, 10),
       child: SizedBox(
-        height: Get.height/2.5,
+        height: Get.height / 2.5,
         child: Column(
+          children: [
+            Text('strFilters'.tr),
+            Row(
               children: [
-                Text('strFilters'.tr),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Form(
-                        key: _formKey,
-                        child: TextFormField(
-                          controller: _filterController,
-                          validator: _checkEmptyFilter,
-                          decoration: InputDecoration(
-                            hintText: 'strAddFilter'.tr,
-                          ),
-                        ),
+                Expanded(
+                  child: Form(
+                    key: _formKey,
+                    child: TextFormField(
+                      controller: _filterController,
+                      validator: _checkEmptyFilter,
+                      decoration: InputDecoration(
+                        hintText: 'strAddFilter'.tr,
                       ),
                     ),
-                    _addIsLoading ? const CustomCircularProgress(size:20, padding: 15,) : IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon)),
-                  ],
+                  ),
                 ),
-                _cleanAllIsLoading ? const CustomCircularProgress(size:20, padding: 15,) : TextButton(onPressed: _cleanAllFilters, child: Text('strCleanAllFilters'.tr, style: Get.textTheme.headline6,)),
-                SizedBox(height: Get.height/4.9, child: SingleChildScrollView(child: TagsList(isWrap: true))),
+                IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon)),
               ],
+            ),
+            TextButton(
+                onPressed: _storeController.cleanAllFilters,
+                child: Text('strCleanAllFilters'.tr, style: Get.textTheme.headline6),
+            ),
+            SizedBox(
+                height: Get.height / 4.9,
+                child: SingleChildScrollView(child: TagsList(isWrap: true)),
+            ),
+          ],
         ),
       ),
     );
