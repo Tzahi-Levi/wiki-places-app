@@ -16,7 +16,7 @@ class SearchTextField extends StatelessWidget {
   }
 
   Future<List<Suggestion>> _getSuggestions(String pattern) async {
-    return pattern == "" ? [] : await ClientRequests.instance.getSuggestions(pattern: pattern);
+    return await ClientRequests.instance.getSuggestions(pattern: pattern);
   }
 
   void _onSuggestionSelected(Suggestion suggestion) {
@@ -39,7 +39,7 @@ class SearchTextField extends StatelessWidget {
       ),
       minCharsForSuggestions: 1,
       hideOnEmpty: true,
-      noItemsFoundBuilder: (context) => const Text(""),
+      noItemsFoundBuilder: (context) => Container(),
       suggestionsCallback: _getSuggestions,
       onSuggestionSelected: _onSuggestionSelected,
       itemBuilder: (BuildContext context, Suggestion suggestion) {

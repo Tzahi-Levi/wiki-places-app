@@ -109,7 +109,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
     }
 
     if (_resetFilters) {
-      await _storeController.cleanAllFilters(checkBeforeCleaning: false, reportToGA: false);
+      _storeController.cleanAllFilters(reportToGA: false);
     }
 
     _storeController.updateRadius(_radiusController.value.toString());
