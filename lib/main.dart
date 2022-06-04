@@ -13,12 +13,10 @@ import 'package:wiki_places/localization/resources/resources.dart';
 import 'package:wiki_places/global/config.dart';
 import 'package:cross_connectivity/cross_connectivity.dart';
 import 'package:wiki_places/pages/image_page/connection_lost.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:wiki_places/pages/home/home.dart';
 
 Future<void> main() async {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   GoogleAnalytics.instance.logAppOpen();
 

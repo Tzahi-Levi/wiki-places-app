@@ -9,6 +9,7 @@ class GlobalConstants {
   GlobalConstants._();
 
   // Default Values
+  static const EAppPages defaultAppPage = EAppPages.places;
   static String defaultScale = "strKm".tr;
   static const String defaultRadius = "1";
   static const int defaultPrecision = 1;
@@ -42,14 +43,17 @@ class GlobalConstants {
   static const String secondIconTextSeparator = '#';
 
   // Images
+  static const String splashPageImage = "images/start_app.png";
   static const String connectionLostImage = "images/connection_lost.png";
   static const String errorPageImage = "images/error_page.png";
+  static const String locationPermissionPageImage = "images/location_permission_page.png";
   static const String appIconImage = "images/app_icon.png";
   static String get appBackgroundImage => "images/background_${Get.isDarkMode ? "dark" : "light"}.png";
 
   //Links
   static const String connectionLostLink = "https://raw.githubusercontent.com/abuanwar072/20-Error-States-Flutter/master/assets/images/1_No%20Connection.png";
   static const String errorPageLink = "https://github.com/abuanwar072/20-Error-States-Flutter";
+  static const String locationPermissionPageLink = "https://github.com/abuanwar072/20-Error-States-Flutter";
   static const String appBackgroundLink = "https://cdn.pixabay.com/photo/2021/09/04/13/47/flowers-6597862_960_720.png";
 
   // Slider
