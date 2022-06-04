@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
+import 'package:wiki_places/widgets/CustumeCircularProgress.dart';
 import 'package:wiki_places/widgets/search_place/filters/tags_list.dart';
 
 class Filters extends StatefulWidget {
@@ -84,10 +85,10 @@ class _FiltersState extends State<Filters> {
                         ),
                       ),
                     ),
-                    _addIsLoading ? const CircularProgressIndicator() : IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon)),
+                    _addIsLoading ? const CustomCircularProgress(size:20, padding: 15,) : IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon)),
                   ],
                 ),
-                _cleanAllIsLoading ? const CircularProgressIndicator() : TextButton(onPressed: _cleanAllFilters, child: Text('strCleanAllFilters'.tr, style: Get.textTheme.headline6,)),
+                _cleanAllIsLoading ? const CustomCircularProgress(size:20, padding: 15,) : TextButton(onPressed: _cleanAllFilters, child: Text('strCleanAllFilters'.tr, style: Get.textTheme.headline6,)),
                 SizedBox(height: Get.height/4.9, child: SingleChildScrollView(child: TagsList(isWrap: true))),
               ],
         ),

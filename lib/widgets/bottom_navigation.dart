@@ -1,6 +1,7 @@
 // ================= Bottom Navigation Widget =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/types.dart';
@@ -68,7 +69,7 @@ class NavigationButton extends StatelessWidget {
               constraints: const BoxConstraints(minWidth: 30, minHeight: 30),
               splashRadius: 25,
             ),
-            Text(pageName, style: Get.textTheme.headline4),
+            Text(pageName, style: _storeController.currentMainAppPage.value == page ? GoogleFonts.openSans(fontSize: 12, fontWeight: FontWeight.normal, color: Get.theme.primaryColor) : Get.textTheme.headline4),
           ],
         ),
     );
