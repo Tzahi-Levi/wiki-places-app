@@ -2,12 +2,9 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
-import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/controllers/favorites_controller.dart';
-
 import 'package:wiki_places/widgets/place/card_content.dart';
 
 class Place extends StatefulWidget {
@@ -36,10 +33,6 @@ class _PlaceState extends State<Place> {
     });
   }
 
-  void _openWikipedia() {
-    openWikipedia(widget.model.url);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -50,7 +43,7 @@ class _PlaceState extends State<Place> {
             borderRadius: BorderRadius.circular(15)
         ),
         child: ExpandablePanel(
-          header:         Row(
+          header: Row(
             mainAxisAlignment:  MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
@@ -62,8 +55,8 @@ class _PlaceState extends State<Place> {
               IconButton(onPressed: _toggleFavorite, icon: Icon(_isFavorite ? GlobalConstants.favoriteIcon : GlobalConstants.nonFavoriteIcon, color: Colors.red.shade600)),
             ],
           ),
-          collapsed: CardContent(isExpanded: false, model: widget.model, isCurrentLocation: widget.isCurrentLocation, toggleFavorite: _toggleFavorite, padding: widget.padding,  isFavorite: _isFavorite ),
-          expanded: CardContent(isExpanded: true, model: widget.model, isCurrentLocation: widget.isCurrentLocation, toggleFavorite: _toggleFavorite, padding: widget.padding, isFavorite: _isFavorite ),
+          collapsed: CardContent(isExpanded: false, model: widget.model, isCurrentLocation: widget.isCurrentLocation, padding: widget.padding),
+          expanded: CardContent(isExpanded: true, model: widget.model, isCurrentLocation: widget.isCurrentLocation, padding: widget.padding),
         ),
       ),
     );

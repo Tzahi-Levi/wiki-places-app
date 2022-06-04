@@ -13,7 +13,7 @@ class FavoritesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetX<StoreController>(
       builder: (store) => PlacesList(
-        placesCollection: _storeController.favoritePlacesCollection.value,
+        placesCollection: _storeController.favoritePlacesCollection.value.places,
         placeholderContent: 'strNoSelectedFavorites'.tr,
         placeholderIcon: GlobalConstants.favoriteIcon,
         distanceFromCurrentLocation: true,

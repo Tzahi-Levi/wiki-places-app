@@ -2,6 +2,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/global/utils.dart';
+import 'package:wiki_places/widgets/place/place_model.dart';
 
 enum EAppPages {splash, places, map, favorites}
 
@@ -24,6 +25,10 @@ class Suggestion extends PlaceDetails {
 }
 
 SortedList<Suggestion> get getSuggestionsList => SortedList<Suggestion>(Suggestion.compareSuggestion);
+
+SortedList<PlaceModel> get getPlacesList => SortedList<PlaceModel>((a, b) => a.compareTo(b));
+
+typedef FiltersList = SortedList<String>;
 
 class PrimitiveWrapper {
   var value;

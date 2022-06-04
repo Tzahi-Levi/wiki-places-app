@@ -33,7 +33,7 @@ class PlacesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetX<StoreController>(
         builder: (store) => PlacesList(
-          placesCollection: _storeController.placesCollection.value,
+          placesCollection: _storeController.filteredPlacesCollection.value,
           placeholderContent: 'strNoPlacesAvailable'.tr,
           topWidgets: [TagsList(isWrap: false)],
           bottomWidgets: [

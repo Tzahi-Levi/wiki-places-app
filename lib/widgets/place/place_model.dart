@@ -14,8 +14,8 @@ class PlaceModel {
 
   PlaceModel.fromJson(Json placeJson) {
     label = placeJson["label"];
-    abstract = placeJson["abstract"];
-    url = placeJson["url"];
+    abstract = placeJson["abstract"] + "...";
+    url = placeJson["url"].replaceAll("//en", "//he");
     lat = placeJson["pin"]["location"]["lat"].toDouble();
     lon = placeJson["pin"]["location"]["lon"].toDouble();
     imageUrl = placeJson["imageUrl"];
@@ -52,6 +52,15 @@ class PlaceModel {
       return 0;
     }
     return (distance > other.distance) ? 1 : -1;
+  }
+
+  bool containFilters(FiltersList placeFilters) {
+    for (var filter in placeFilters) {
+      if (label.contains(filter) || abstract.contains(filter)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   int compareTo(PlaceModel other){
