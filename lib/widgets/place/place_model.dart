@@ -14,8 +14,8 @@ class PlaceModel {
 
   PlaceModel.fromJson(Json placeJson) {
     label = placeJson["label"];
-    abstract = placeJson["abstract"];
-    url = placeJson["url"];
+    abstract = placeJson["abstract"] + "...";
+    url = placeJson["url"].replaceAll("//en", "//he");
     lat = placeJson["pin"]["location"]["lat"].toDouble();
     lon = placeJson["pin"]["location"]["lon"].toDouble();
     imageUrl = placeJson["imageUrl"];
