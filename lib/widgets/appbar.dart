@@ -5,14 +5,21 @@ import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/utils.dart';
+import 'package:wiki_places/widgets/search_place/filters/filters.dart';
 
-class ShowDetailsAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const ShowDetailsAppbar({this.showAppTitle = false, this.title, Key? key}) : super(key: key);
+class DetailsAndFiltersAppbar extends StatelessWidget implements PreferredSizeWidget {
+  const DetailsAndFiltersAppbar({this.showAppTitle = false, this.showAppbarFilters = true, this.showAppbarDetails = true, this.title, Key? key}) : super(key: key);
   final bool showAppTitle;
   final String? title;
+  final bool showAppbarDetails;
+  final bool showAppbarFilters;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  void _openFilters() {
+    openModalBottomSheet(widget: const Filters());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +27,18 @@ class ShowDetailsAppbar extends StatelessWidget implements PreferredSizeWidget {
       showAppTitle: showAppTitle,
       title: title,
       actions: [
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
+        Visibility(
+          visible: showAppbarDetails,
           child: IconButton(
             onPressed: displayCurrentPlaceDetails,
             icon: Icon(GlobalConstants.infoIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
+          ),
+        ),
+        Visibility(
+          visible: showAppbarFilters,
+          child: IconButton(
+            onPressed: _openFilters,
+            icon: Icon(GlobalConstants.filtersIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
           ),
         ),
       ],
@@ -44,13 +58,31 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   String get _getAppBarTitle {
     switch (_storeController.currentMainAppPage.value) {
+      case EAppPages.favorites:
+        if (_storeController.favoritePlacesCollection.value.length == 1) {
+          return 'strFavoriteNumber'.tr;
+        }
+        return _storeController.favoritePlacesCollection.value.isEmpty ? 'strEmptyFavoriteNumber'.tr : 'strFavoritesNumber'.trParams({
+          'number': _storeController.favoritePlacesCollection.value.length.toString(),
+        });
+
       case EAppPages.places:
       case EAppPages.map:
-        return 'strWikipediaValuesInRadius'.trParams({
-          'number': _storeController.placesCollection.value.length.toString(),
+      if (_storeController.filteredPlacesCollection.value.length == 1) {
+        return 'strWikipediaValueInRadius'.trParams({
+          'number': _storeController.filteredPlacesCollection.value.length.toString(),
           'radius': _storeController.radius.value,
           'scale': GlobalConstants.defaultScale,
         });
+      }
+        return (_storeController.filteredPlacesCollection.value.isEmpty ? 'strEmptyWikipediaValueInRadius' : 'strWikipediaValuesInRadius').trParams({
+          'number': _storeController.filteredPlacesCollection.value.length.toString(),
+          'radius': _storeController.radius.value,
+          'scale': GlobalConstants.defaultScale,
+        });
+
+      default:
+        return "";
     }
   }
 

@@ -15,42 +15,56 @@ final Map<String, String> resourcesEn = {
   'strTryAgain': 'Error has been occurred, please try again later',
   'strLoadMore': 'Load More',
   'strUndo': 'Undo',
+  'strCurrentLocation': 'Distance from current location',
 
   // Navigation
   'strMapPageName': 'Map',
-  'strPlacesPageName': 'Places',
+  'strPlacesPageName': 'List',
+  'strFavoritesPageName': 'Favorites',
 
   // Map
   'strYourChosenPlace': 'Your chosen place',
+  'strSearchOnMap': 'You can get more articles on another place by long press on the other place',
 
   // Places
   'strSearchPlace': 'Search Places',
   'strSearchSuccessfully': 'Searching for places in radius @radius @scale from @place was done successfully!',
   'strCurrentPlaceDetails': 'Places in radius @radius @scale from @place',
-  'strWikipediaValuesInRadius': '@number places (@radius @scale)',
-  'strReadMore': 'Read more',
+  'strWikipediaValuesInRadius': '@number Articles (@radius @scale)',
+  'strReadMore': 'Full Article',
   'strRadiusMustBePositive': 'The radius must be a positive number',
   'strCantIncreaseRadius': "The radius can't be increased above @maxRadius km",
-  'strNoPlacesAvailable': "There are not places available",
+  'strNoPlacesAvailable': "There are not articles available. For searching articles, please click on the search button.",
   'strEmptyPlaceName': "For searching places, please choose a place name",
   'strPlaceNotExist': "The chosen place is not found, please try to search another place",
 
+  // Favorites
+  'strFavorites': 'Favorites-',
+  'strFavoritesNumber': '@number Favorite Articles',
+  'strFavoriteNumber': 'One Favorite Article',
+  'strEmptyFavoriteNumber': 'No Favorite Articles',
+  'strNoSelectedFavorites': 'There are not favorite places. For adding places to the favorites, click on @ in the places page.',
+
   // Search Place Page
-  'strChangeRadius': 'Current radius',
-  'strSearchPlaceAround': 'Search Around Place',
-  'strAddFilter': 'Add filter',
+  'strChangeRadius': 'Search in distance',
+  'strSearchPlaceAround': 'Search Settings',
   'strPlace': 'Place:',
   'strCurrentPlace': 'Current Place',
   'strOtherPlace': 'Other Place',
-  'strFilters': 'Filters:',
   'strChooseOtherPlace': 'Choose Other Place',
+
+  // Filters
+  'strCleanAllFilters': 'Clean All',
   'strEmptyFilter': 'Choose filter name for adding a filter',
-  'strFilterRemoved': 'The filter has been removed successfully!',
+  'strFilters': 'Filters:',
+  'strAddFilter': 'Add filter',
+  'strResetFilters': 'Reset filters',
 
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",
   'strLostConnectionImage': "Lost Connection Image",
   'strErrorPageConnection': "Error Image",
+  'strLocationPermissionPage': "Location Permission Image",
   'strBackgroundImage': "Background Image",
   'strAboutTheApp': "About the app",
 };

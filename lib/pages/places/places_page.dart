@@ -5,31 +5,13 @@ import 'dart:math';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
-import 'package:wiki_places/pages/placeholder_page/placeholder_page.dart';
-import 'package:wiki_places/widgets/appbar.dart';
-import 'package:wiki_places/widgets/place/place_card.dart';
-import 'package:wiki_places/widgets/search_places_fab.dart';
+import 'package:wiki_places/pages/places/places_list.dart';
 import 'package:wiki_places/widgets/about_the_app.dart';
+import 'package:wiki_places/widgets/search_place/filters/tags_list.dart';
 
-class PlacesPage extends StatefulWidget {
-  const PlacesPage({Key? key}) : super(key: key);
-
-  @override
-  State<PlacesPage> createState() => _PlacesPageState();
-}
-
-class _PlacesPageState extends State<PlacesPage> {
-  final _storeController = Get.put(StoreController());
-
-  List<Widget> get _getPlaces {
-    final _places = _storeController.placesCollection.value.places;
-    List<Widget> placesList = [];
-    for (var placeData in _places.getRange(0, _places.length - 1)) {
-      placesList.add(Place(placeData));
-    }
-    placesList.add(Place(_places.last, padding: 20)); // Different behaviour for the last item
-    return placesList;
-  }
+class PlacesPage extends StatelessWidget {
+  PlacesPage({Key? key}) : super(key: key);
+  final StoreController _storeController = Get.put(StoreController());
 
   void _loadMore() async {
     _storeController.updateGlobalIsLoading(true);
@@ -50,39 +32,21 @@ class _PlacesPageState extends State<PlacesPage> {
   @override
   Widget build(BuildContext context) {
     return GetX<StoreController>(
-      builder: (store) => _storeController.placesCollection.value.isEmpty ?
-      PlaceholderPage(
-          content: 'strNoPlacesAvailable'.tr,
-          appBar: const ShowDetailsAppbar(showAppTitle: true),
-      ) : Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: const ShowDetailsAppbar(),
-        body: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(GlobalConstants.appBackgroundImage),
-                    fit: BoxFit.cover,
-                ),
-              ),
+        builder: (store) => PlacesList(
+          placesCollection: _storeController.filteredPlacesCollection.value,
+          placeholderContent: 'strNoPlacesAvailable'.tr,
+          topWidgets: [TagsList(isWrap: false)],
+          bottomWidgets: [
+            Padding(
+              padding: EdgeInsets.only(left: Get.width * 0.33, right: Get.width * 0.33),
+              child: ElevatedButton(onPressed: _loadMore, child: Text('strLoadMore'.tr)),
             ),
-            ListView(
-              children: _getPlaces + [
-                Padding(
-                  padding: EdgeInsets.only(left: Get.width * 0.33, right: Get.width * 0.33),
-                  child: ElevatedButton(onPressed: _loadMore, child: Text('strLoadMore'.tr)),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 65.0),
-                  child: AboutTheApp(),
-                ),
-              ],
+            const Padding(
+              padding: EdgeInsets.only(bottom: 65.0),
+              child: AboutTheApp(),
             ),
           ],
         ),
-        floatingActionButton: const SearchPlacesFAB(),
-      ),
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewPage extends StatefulWidget {
-  const WebViewPage({this.url = "", Key? key}) : super(key: key);
+  const WebViewPage({required this.url, Key? key}) : super(key: key);
   final String url;
 
   @override
@@ -22,8 +22,11 @@ class WebViewPageState extends State<WebViewPage> {
 
   @override
   Widget build(BuildContext context) {
-    return WebView(
-      initialUrl: widget.url,
+    return Scaffold(
+      appBar: AppBar(toolbarHeight: 0, backgroundColor: Colors.transparent,),
+      body: WebView(
+        initialUrl: widget.url,
+      ),
     );
   }
 }

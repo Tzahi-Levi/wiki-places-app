@@ -36,6 +36,13 @@ class AboutTheApp extends StatelessWidget {
         Text(GlobalConstants.errorPageLink, style: Get.textTheme.headline4),
         ListTile(
           leading: Image.asset(
+            GlobalConstants.locationPermissionPageImage,
+          ),
+          trailing: Text('strLocationPermissionPage'.tr),
+        ),
+        Text(GlobalConstants.locationPermissionPageLink, style: Get.textTheme.headline4),
+        ListTile(
+          leading: Image.asset(
             GlobalConstants.appBackgroundImage,
           ),
           trailing: Text('strBackgroundImage'.tr),

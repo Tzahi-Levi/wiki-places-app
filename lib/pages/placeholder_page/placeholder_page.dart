@@ -2,12 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/global/constants.dart';
+import 'package:wiki_places/widgets/app_background.dart';
 import 'package:wiki_places/widgets/appbar.dart';
+import 'package:wiki_places/widgets/search_place/filters/tags_list.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
 
 class PlaceholderPage extends StatelessWidget {
-  const PlaceholderPage({this.content = "", this.firstIcon, this.secondIcon, this.appBar, Key? key}) : super(key: key);
+  const PlaceholderPage({this.content = "", this.topWidgets = const [], this.firstIcon, this.secondIcon, this.appBar, Key? key}) : super(key: key);
   final String content;
+  final List topWidgets;
   final IconData? firstIcon;
   final IconData? secondIcon;
   final PreferredSizeWidget? appBar;
@@ -28,25 +31,17 @@ class PlaceholderPage extends StatelessWidget {
     Size size = Size(Get.width, Get.height);
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: appBar != null ? appBar! : WikiPlacesAppBar(
-        showAppTitle: true,
-      ),
+      appBar: appBar != null ? appBar! : WikiPlacesAppBar(showAppTitle: true),
       body: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(GlobalConstants.appBackgroundImage),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          const AppBackground(),
           Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            ...topWidgets,
             Center(
               child: Padding(
-                padding: EdgeInsets.only(top: size.height * 0.2),
+                padding: EdgeInsets.only(top: size.height * 0.0001),
                 child: Container(
                   width: size.width * 0.7,
                   height: size.width * 0.7,
@@ -85,7 +80,7 @@ class PlaceholderPage extends StatelessWidget {
           ],
         )],
       ),
-      floatingActionButton: SearchPlacesFAB(),
+      floatingActionButton: const SearchPlacesFAB(),
     );
   }
 }

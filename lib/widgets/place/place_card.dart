@@ -1,108 +1,62 @@
 // ================= Place View =================
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
-import 'package:wiki_places/global/utils.dart';
+import 'package:wiki_places/controllers/favorites_controller.dart';
+import 'package:wiki_places/widgets/place/card_content.dart';
 
-class Place extends StatelessWidget {
-  Place(this.model, {this.padding = 5, Key? key}) : super(key: key);
+class Place extends StatefulWidget {
+  const Place(this.model, {this.padding = 5, this.isCurrentLocation = false, Key? key}) : super(key: key);
   final PlaceModel model;
-  double padding;
+  final double padding;
+  final bool isCurrentLocation;
+
+  @override
+  State<Place> createState() => _PlaceState();
+}
+
+class _PlaceState extends State<Place> {
+  late bool _isFavorite;
+
+  @override
+  void initState() {
+    super.initState();
+    _isFavorite = FavoritesController.instance.checkIfFavorite(widget.model);
+  }
+
+  void _toggleFavorite() {
+    _isFavorite ? FavoritesController.instance.removePlaceFromFavorites(widget.model) : FavoritesController.instance.addPlaceToFavorites(widget.model);
+    setState(() {
+      _isFavorite = !_isFavorite;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: padding),
-      child: GestureDetector(
-        onTap: () {openWikipedia(model.url);},
-        child: Card(
-          elevation: 6,
-          shape: RoundedRectangleBorder(
+      padding: EdgeInsets.only(bottom: widget.padding),
+      child: Card(
+        elevation: 6,
+        shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15)
+        ),
+        child: ExpandablePanel(
+          header: Row(
+            mainAxisAlignment:  MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                  flex: 15,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    child: Text(widget.model.label, style: Get.textTheme.headline2, overflow: TextOverflow.ellipsis, maxLines: 2),
+                  )),
+              IconButton(onPressed: _toggleFavorite, icon: Icon(_isFavorite ? GlobalConstants.favoriteIcon : GlobalConstants.nonFavoriteIcon, color: Colors.red.shade600)),
+            ],
           ),
-          child: SizedBox(
-            width: Get.width * 0.9,
-            height: model.imageUrl == "" && model.abstract == "" ? 120 : 170,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Expanded(child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 8.0),
-                  child: Text(model.label, style: Get.textTheme.headline2, overflow: TextOverflow.ellipsis, maxLines: 1,),
-                )),
-                SizedBox(
-                  height: model.imageUrl == "" && model.abstract == "" ? 50 : 80,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox(
-                        width: Get.width * 0.7,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                                child: Text(
-                                  model.abstract,
-                                  style: Get.textTheme.bodyText1,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 3,
-                                ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Visibility(
-                        visible: model.imageUrl != "",
-                        child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20),
-                                    bottomRight: Radius.circular(20),
-                                ),
-                            ),
-                            child: Image.network(model.imageUrl, width: 100, height: 100),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: 80,
-                      height: 30,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                        color: Colors.white70
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15,
-                                fontWeight: FontWeight.normal,
-                                color: const Color(0xff37536D))),
-                            Text(" " + 'strKm'.tr, style: GoogleFonts.openSans(fontSize: 15,
-                                fontWeight: FontWeight.normal,
-                                color: const Color(0xff37536D))),
-                          ],
-                      ),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text('strReadMore'.tr, style: Get.textTheme.bodyText2),
-                      ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          collapsed: CardContent(isExpanded: false, model: widget.model, isCurrentLocation: widget.isCurrentLocation, padding: widget.padding),
+          expanded: CardContent(isExpanded: true, model: widget.model, isCurrentLocation: widget.isCurrentLocation, padding: widget.padding),
         ),
       ),
     );

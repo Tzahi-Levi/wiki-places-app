@@ -5,8 +5,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 class GoogleAnalytics {
-  static final GoogleAnalytics _instance = GoogleAnalytics._();
-  static GoogleAnalytics get instance => _instance;
+  static final GoogleAnalytics instance = GoogleAnalytics._();
   GoogleAnalytics._();
 
   static final FirebaseAnalytics _analytics = FirebaseAnalytics();
@@ -74,5 +73,13 @@ class GoogleAnalytics {
 
   void logOtherPlaceMode() {
     _logEvent("OtherPlaceMode");
+  }
+
+  void logAddFavorite() {
+    _logEvent("AddFavorite");
+  }
+
+  void logRemoveFavorite() {
+    _logEvent("RemoveFavorite");
   }
 }

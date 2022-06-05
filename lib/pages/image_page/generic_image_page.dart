@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class GenericImagePage extends StatelessWidget {
-  GenericImagePage({this.image = "", Key? key}) : super(key: key);
+  GenericImagePage({required this.image, Key? key}) : super(key: key);
   String image;
 
   @override

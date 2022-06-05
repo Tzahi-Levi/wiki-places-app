@@ -2,8 +2,9 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/global/utils.dart';
+import 'package:wiki_places/widgets/place/place_model.dart';
 
-enum EAppPages {places, map}
+enum EAppPages {favorites, places, map, splash}
 
 enum EPlaceMode {current, other}
 
@@ -17,22 +18,17 @@ class PlaceDetails {
 }
 
 class Suggestion extends PlaceDetails {
-  String? icon;
+  String icon;
 
-  static int compareSuggestion(Suggestion a, Suggestion b) {
-    if (a.name.isLocale && !b.name.isLocale) {
-      return -1;
-
-    } else if (!a.name.isLocale && b.name.isLocale) {
-      return 1;
-    }
-    return a.name.compareStrings(b.name);
-  }
-
+  static int compareSuggestion(Suggestion a, Suggestion b) => a.name.compareStrings(b.name);
   Suggestion({required String name, required LatLng coordinates, required this.icon}) : super(name: name, coordinates: coordinates);
 }
 
 SortedList<Suggestion> get getSuggestionsList => SortedList<Suggestion>(Suggestion.compareSuggestion);
+
+SortedList<PlaceModel> get getPlacesList => SortedList<PlaceModel>((a, b) => a.compareTo(b));
+
+typedef FiltersList = SortedList<String>;
 
 class PrimitiveWrapper {
   var value;

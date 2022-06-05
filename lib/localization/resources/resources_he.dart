@@ -15,42 +15,58 @@ final Map<String, String> resourcesHe = {
   'strTryAgain': 'שגיאה התרחשה בעת הפעולה, יש לנסות שנית מאוחר יותר',
   'strLoadMore': 'טען עוד',
   'strUndo': 'בטל',
+  'strCurrentLocation': 'ממיקומך הנוכחי',
 
   // Navigation
   'strMapPageName': 'מפה',
-  'strPlacesPageName': 'המקומות',
+  'strPlacesPageName': 'רשימה',
+  'strFavoritesPageName': 'מועדפים',
 
   // Map
   'strYourChosenPlace': 'מיקומך הנוכחי',
+  'strSearchOnMap': 'ניתן לקבל ערכים קרובים למיקום אחר על המפה בלחיצה ארוכה על המיקום המבוקש',
 
   // Places
-  'strSearchPlace': 'חפש מקומות',
-  'strSearchSuccessfully': 'חיפוש מקומות ברדיוס @radius @scale מ@place בוצע בהצלחה!',
-  'strCurrentPlaceDetails': 'מקומות ברדיוס @radius @scale מ@place',
-  'strWikipediaValuesInRadius': '@number מקומות (@radius @scale)',
-  'strReadMore': 'קרא עוד',
-  'strRadiusMustBePositive': 'הרדיוס חייב להיות מספר חיובי',
-  'strCantIncreaseRadius':'לא ניתן להגדיל את הרדיוס מעבר ל-@maxRadius ק״מ',
-  'strAddFilter': 'הוסף מסנן',
-  'strNoPlacesAvailable': "אין מיקומים זמינים",
+  'strSearchPlace': 'חפש ערכים',
+  'strSearchSuccessfully': 'חיפוש ערכים במרחק @radius @scale מ@place בוצע בהצלחה!',
+  'strCurrentPlaceDetails': 'ערכים במרחק @radius @scale מ@place',
+  'strWikipediaValuesInRadius': '@number ערכים (@radius @scale)',
+  'strWikipediaValueInRadius': 'ערך יחיד (@radius @scale)',
+  'strEmptyWikipediaValueInRadius': 'אין ערכים (@radius @scale)',
+  'strReadMore': 'לערך המלא',
+  'strRadiusMustBePositive': 'המרחק חייב להיות מספר חיובי',
+  'strCantIncreaseRadius':'לא ניתן להגדיל את המרחק מעבר ל-@maxRadius ק״מ',
+  'strNoPlacesAvailable': "אין ערכים זמינים. על מנת לחפש ערכים, יש ללחוץ על כפתור החיפוש.",
   'strEmptyPlaceName': "על מנת לבצע חיפוש, יש לבחור מיקום",
   'strPlaceNotExist': "המיקום המבוקש לא נמצא, יש לנסות לחפש מיקום אחר",
 
+  // Favorites
+  'strFavorites': 'מועדפים-',
+  'strFavoritesNumber': '@number ערכים מועדפים',
+  'strFavoriteNumber': 'ערך מועדף יחיד',
+  'strEmptyFavoriteNumber': 'אין ערכים מועדפים',
+  'strNoSelectedFavorites': 'לא נבחרו מועדפים. על מנת להוסיף ערך לרשימת המועדפים, יש ללחוץ על ה-@ ברשימת הערכים.',
+
   // Search Place Page
-  'strChangeRadius': 'הרדיוס הנוכחי',
-  'strSearchPlaceAround': 'חיפוש בסביבת מקום',
+  'strChangeRadius': 'חפש במרחק',
+  'strSearchPlaceAround': 'הגדרות החיפוש',
   'strPlace': 'המיקום:',
   'strCurrentPlace': 'המיקום הנוכחי',
   'strOtherPlace': 'מיקום אחר',
-  'strFilters': 'מסננים:',
   'strChooseOtherPlace': 'בחירת מיקום אחר',
+
+  // Filters
+  'strCleanAllFilters': 'נקה הכל',
   'strEmptyFilter': 'על מנת להוסיף מסנן, יש לציין את שמו',
-  'strFilterRemoved': 'המסנן הוסר בהצלחה!',
+  'strFilters': 'מסננים:',
+  'strAddFilter': 'הוסף מסנן',
+  'strResetFilters': 'אפס מסננים',
 
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",
   'strLostConnectionImage': "תמונת בעיה ברשת",
   'strErrorPageConnection': "תמונת שגיאה",
+  'strLocationPermissionPage': "תמונת אין הרשאות מיקום",
   'strBackgroundImage': "תמונת רקע",
   'strAboutTheApp': "אודות האפליקציה",
 };

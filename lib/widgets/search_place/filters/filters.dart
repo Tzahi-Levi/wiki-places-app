@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
-import 'package:wiki_places/global/utils.dart';
-import 'package:wiki_places/widgets/search_place/filters/tag.dart';
+import 'package:wiki_places/widgets/search_place/filters/tags_list.dart';
 
 class Filters extends StatefulWidget {
   const Filters({Key? key}) : super(key: key);
@@ -16,14 +15,7 @@ class Filters extends StatefulWidget {
 class _FiltersState extends State<Filters> {
   final _storeController = Get.put(StoreController());
   final TextEditingController _filterController = TextEditingController();
-
-  List<Widget> get _getTags {
-    List<Widget> tags = [];
-    for (String filter in _storeController.placeFilters.value){
-      tags.add(Tag(title: filter, undoCallback: _addFilter));
-    }
-    return tags;
-  }
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -31,41 +23,55 @@ class _FiltersState extends State<Filters> {
     super.dispose();
   }
 
-  void _addFilter([String? filter]) {
-    filter ??= _filterController.text;
-    if (filter.isNotEmpty) {
-      _storeController.addPlaceFilter(filter);
+  String? _checkEmptyFilter(String? value) {
+    return (value == null || value.isEmpty) ? 'strEmptyFilter'.tr : null;
+  }
+
+  void _addFilter() async {
+    if (_formKey.currentState!.validate() && !_storeController.placeFilters.value.contains(_filterController.text)) {
+      _storeController.addPlaceFilter(_filterController.text);
       _filterController.text = "";
       FocusScope.of(Get.context!).unfocus(); // Remove the keyboard
-    } else {
-      displaySnackbar(content: 'strEmptyFilter'.tr, title: 'strError'.tr);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetX<StoreController>(
-        builder: (store) => Column(
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 15, 10, 10),
+      child: SizedBox(
+        height: Get.height / 2.5,
+        child: Column(
           children: [
             Text('strFilters'.tr),
             Row(
               children: [
                 Expanded(
-                  child: TextField(
-                    controller: _filterController,
-                    decoration: InputDecoration(
-                      hintText: 'strAddFilter'.tr,
+                  child: Form(
+                    key: _formKey,
+                    child: TextFormField(
+                      controller: _filterController,
+                      validator: _checkEmptyFilter,
+                      decoration: InputDecoration(
+                        hintText: 'strAddFilter'.tr,
+                      ),
                     ),
                   ),
                 ),
                 IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon)),
               ],
             ),
-            Wrap(
-              children: _getTags,
+            TextButton(
+                onPressed: _storeController.cleanAllFilters,
+                child: Text('strCleanAllFilters'.tr, style: Get.textTheme.headline6),
+            ),
+            SizedBox(
+                height: Get.height / 4.9,
+                child: SingleChildScrollView(child: TagsList(isWrap: true)),
             ),
           ],
         ),
+      ),
     );
   }
 }

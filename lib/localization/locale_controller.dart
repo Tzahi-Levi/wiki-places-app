@@ -5,8 +5,7 @@ import 'package:wiki_places/localization/resources/resources.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 
 class LocaleController {
-  static final LocaleController _instance = LocaleController._();
-  static LocaleController get instance => _instance;
+  static final LocaleController instance = LocaleController._();
   LocaleController._();
 
   static const String _defaultLocale = 'he_IL';

@@ -1,13 +1,15 @@
 // ================= Home Page =================
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
-import 'package:wiki_places/widgets/bottom_navigation.dart';
+import 'package:wiki_places/pages/splash/splash.dart';
+import 'package:wiki_places/widgets/app_background.dart';
 import 'package:wiki_places/pages/places/places_page.dart';
+import 'package:wiki_places/pages/favorites/favorites_page.dart';
 import 'package:wiki_places/pages/map/map.dart';
 import 'package:wiki_places/global/types.dart';
+import 'package:wiki_places/widgets/bottom_navigation.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,8 +24,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    _searchPlaces();
-
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -36,28 +36,24 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      _searchPlaces(resetCurrentPlace: false, moveToError: false);
+      _storeController.initPlaces(resetCurrentPlace: false, moveToError: false);
     }
-  }
-
-  void _searchPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
-    _storeController.updateGlobalIsLoading(true);
-    if (resetCurrentPlace) {
-      _storeController.updatePlaceToCurrentMode();
-    }
-    await _storeController.updatePlacesCollection(moveToError: moveToError, reportToGA: false);
-    _storeController.updateGlobalIsLoading(false);
-    FlutterNativeSplash.remove();
   }
 
   Widget get _getCurrentPage {
     switch (_storeController.currentMainAppPage.value) {
+      case EAppPages.splash:
+        return const SplashPage();
+        
       case EAppPages.map:
         return const MapPage();
 
+      case EAppPages.favorites:
+        return FavoritesPage();
+
       case EAppPages.places:
       default:
-        return const PlacesPage();
+        return PlacesPage();
     }
   }
 
@@ -66,15 +62,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     return GetX<StoreController>(
         builder: (store) => Scaffold(
             extendBodyBehindAppBar: true,
+            bottomNavigationBar: Visibility(visible: _storeController.currentMainAppPage.value != EAppPages.splash, child: BottomNavigation()),
             body: LoadingOverlay(
               isLoading: _storeController.globalIsLoading.value,
               child: Stack(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 45.0),
-                    child: _getCurrentPage,
-                  ),
-                  const Positioned(bottom: 0, left: 0, child: BottomNavigation()),
+                  const AppBackground(),
+                  _getCurrentPage,
                 ],
               ),
             ),

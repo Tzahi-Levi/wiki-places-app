@@ -1,9 +1,11 @@
 // ================= Store Controller =================
 import 'package:get/get.dart';
+import 'dart:convert';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/pages/places/places_page_collection.dart';
+import 'package:wiki_places/widgets/place/place_model.dart';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/global/client_requests.dart';
 import 'package:wiki_places/controllers/location_controller.dart';
@@ -11,14 +13,24 @@ import 'package:wiki_places/global/constants.dart';
 
 class StoreController extends GetxController {
   // State
-  final Rx<EAppPages> currentMainAppPage = EAppPages.places.obs;
-  final RxString radius = '1'.obs;
-  late Rx<PlacesPageCollection> placesCollection = PlacesPageCollection().obs;
-  RxBool globalIsLoading = true.obs;
-  Rx<LatLng> placeCoordinates = LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]).obs;
-  Rx<String> placeName = "".obs;
-  Rx<EPlaceMode> placeMode = EPlaceMode.current.obs;
-  Rx<SortedList<String>> placeFilters = SortedList<String>().obs;
+  final Rx<EAppPages> currentMainAppPage = EAppPages.splash.obs;
+  final RxString radius = GlobalConstants.defaultRadius.obs;
+  final Rx<PlacesPageCollection> placesCollection = PlacesPageCollection().obs;
+  final Rx<PlacesPageCollection> favoritePlacesCollection = PlacesPageCollection().obs;
+  final RxBool globalIsLoading = true.obs;
+  final Rx<LatLng> placeCoordinates = LatLng(GlobalConstants.defaultInitialMapLocation["lat"], GlobalConstants.defaultInitialMapLocation["lon"]).obs;
+  final Rx<String> placeName = "".obs;
+  final Rx<EPlaceMode> placeMode = EPlaceMode.current.obs;
+  final Rx<FiltersList> placeFilters = FiltersList().obs;
+
+  Rx<SortedList<PlaceModel>> get filteredPlacesCollection {
+    if (placeFilters.value.isEmpty) {
+      return placesCollection.value.places.obs;
+    }
+    SortedList<PlaceModel> placesList = getPlacesList;
+    placesList.addAll(placesCollection.value.places.where((place) => place.containFilters(placeFilters.value)).toList());
+    return placesList.obs;
+  }
 
   // Actions
   void setStore(Json store) {
@@ -26,6 +38,8 @@ class StoreController extends GetxController {
     placeCoordinates.value = store['placeCoordinates'];
     placeName.value = store['placeName'];
     placeMode.value = store['placeMode'];
+    placeFilters.value = FiltersList();
+    placeFilters.value.addAll(store['filters']);
     update();
   }
 
@@ -43,7 +57,7 @@ class StoreController extends GetxController {
     if (!placeFilters.value.contains(filter)) {
       placeFilters.value.add(filter);
       placeFilters.refresh();
-      updatePlacesCollection(reportToGA: false);
+      filteredPlacesCollection.refresh();
       GoogleAnalytics.instance.logFilterAdded();
     }
   }
@@ -51,8 +65,16 @@ class StoreController extends GetxController {
   void removePlaceFilter(String filter) {
     placeFilters.value.remove(filter);
     placeFilters.refresh();
-    updatePlacesCollection(reportToGA: false);
     GoogleAnalytics.instance.logFilterRemoved();
+  }
+
+  void cleanAllFilters({bool reportToGA = true}) {
+    placeFilters.value.removeRange(0, placeFilters.value.length);
+    placeFilters.refresh();
+
+    if (reportToGA) {
+      GoogleAnalytics.instance.logFilterRemoved();
+    }
   }
 
   void updateRadius(String newRadius) {
@@ -111,12 +133,38 @@ class StoreController extends GetxController {
       return false;
     }
 
-    placesCollection.value = PlacesPageCollection.fromJson(placeJson, placeFilters.value);
+    placesCollection.value = PlacesPageCollection.fromJson(placeJson);
     update();
 
     if (reportToGA) {
       GoogleAnalytics.instance.logPlacesCollection();
     }
     return true;
+  }
+
+  void updateFavoritePlacesCollection(List<PlaceModel> favoritePlaces) {
+    favoritePlacesCollection.value = PlacesPageCollection.fromList(favoritePlaces);
+    favoritePlacesCollection.refresh();
+  }
+
+  Future<void> addFavoritePlacesCollection(PlaceModel favoritePlace) async {
+    favoritePlacesCollection.value.places.add(PlaceModel.fromJson(json.decode(json.encode(favoritePlace))));
+    favoritePlacesCollection.refresh();
+    GoogleAnalytics.instance.logAddFavorite();
+  }
+
+  Future<void> removeFavoritePlacesCollection(PlaceModel favoritePlace) async {
+    favoritePlacesCollection.value.places.remove(favoritePlace);
+    favoritePlacesCollection.refresh();
+    GoogleAnalytics.instance.logRemoveFavorite();
+  }
+
+  Future<void> initPlaces({bool resetCurrentPlace = true, bool moveToError = true}) async {
+    updateGlobalIsLoading(true);
+    if (resetCurrentPlace) {
+      await updatePlaceToCurrentMode();
+    }
+    await updatePlacesCollection(moveToError: moveToError, reportToGA: false);
+    updateGlobalIsLoading(false);
   }
 }
