@@ -1,15 +1,16 @@
 // ================= Home Page =================
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/pages/splash/splash.dart';
-import 'package:wiki_places/widgets/bottom_navigation.dart';
 import 'package:wiki_places/widgets/app_background.dart';
 import 'package:wiki_places/pages/places/places_page.dart';
 import 'package:wiki_places/pages/favorites/favorites_page.dart';
 import 'package:wiki_places/pages/map/map.dart';
 import 'package:wiki_places/global/types.dart';
+import 'package:wiki_places/global/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -57,24 +58,47 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
   }
 
+  void _navigateToPage(int index) {
+    Get.back(closeOverlays: true);
+    EAppPages page;
+    if(index == 1){
+      page = EAppPages.places;
+    } else if (index == 2){
+      page = EAppPages.map;
+    } else {
+      page = EAppPages.favorites;
+    }
+    _storeController.updateMainAppPage(page);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetX<StoreController>(
         builder: (store) => Scaffold(
             extendBodyBehindAppBar: true,
+            bottomNavigationBar: ConvexAppBar(
+              height: 60,
+              elevation: 10,
+              color: Get.theme.unselectedWidgetColor,
+              activeColor: Get.theme.primaryColor,
+              backgroundColor: Get.theme.primaryColorDark,
+              style: TabStyle.react,
+              items: [
+                TabItem(title: 'strFavoritesPageName'.tr, icon: GlobalConstants.favoriteIcon),
+                TabItem(title: 'strPlacesPageName'.tr, icon: GlobalConstants.placesPageSelectedIcon),
+                TabItem(title: 'strMapPageName'.tr, icon: GlobalConstants.mapPageSelectedIcon),
+              ],
+              initialActiveIndex: 1,
+              onTap: (int index) => {
+                _navigateToPage(index)
+              },
+            ),
             body: LoadingOverlay(
               isLoading: _storeController.globalIsLoading.value,
               child: Stack(
                 children: [
                   const AppBackground(),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 45.0),
-                    child: _getCurrentPage,
-                  ),
-                  Visibility(
-                      visible: _storeController.currentMainAppPage.value != EAppPages.splash,
-                      child: Positioned(bottom: 0, left: 0, child: BottomNavigation()),
-                  ),
+                  _getCurrentPage,
                 ],
               ),
             ),

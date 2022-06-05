@@ -19,21 +19,15 @@ class CardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isExpanded ? Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Visibility(
           visible: model.imageUrl.isNotEmpty,
           child: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
+            padding: const EdgeInsets.all(8),
+            child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(20),
               ),
               child: Image.network(model.imageUrl, cacheWidth: 200, cacheHeight: 200,),
             ),
@@ -114,16 +108,10 @@ class CardContent extends StatelessWidget {
               visible: model.imageUrl.isNotEmpty,
               child: Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                    ),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(10),
                   ),
-                  child: Image.network(model.imageUrl, cacheHeight: 100, cacheWidth: 100),
+                  child: Image.network(model.imageUrl, cacheWidth: 100, cacheHeight: 100,),
                 ),
               ),
             ),
