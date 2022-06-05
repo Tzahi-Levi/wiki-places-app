@@ -12,7 +12,6 @@ class BottomNavigation extends StatelessWidget {
   final _storeController = Get.put(StoreController());
 
   void _navigateToPage(int index) {
-    print(index);
     Get.back(closeOverlays: true);
     _storeController.updateMainAppPage(indexToEnum(EAppPages.values, index));
   }
