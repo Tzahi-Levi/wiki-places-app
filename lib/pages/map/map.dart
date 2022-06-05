@@ -80,7 +80,7 @@ class _MapPageState extends State<MapPage> {
 
   Set<Marker> _getMarkers() {
     Set<Marker> places = {};
-    for (PlaceModel place in _storeController.placesCollection.value.places) {
+    for (PlaceModel place in _storeController.filteredPlacesCollection.value) {
       if (!FavoritesController.instance.checkIfFavorite(place)) {
         places.add(_getMarker(place.label, LatLng(place.lat, place.lon), GlobalConstants.regularPlaceMarkerColor, 'strReadMore'.tr, place.url));
       }

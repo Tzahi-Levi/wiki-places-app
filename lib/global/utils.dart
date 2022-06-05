@@ -134,3 +134,11 @@ extension St on String {
 extension Ex on num {
   String toPrecisionString() => double.parse(toStringAsFixed(GlobalConstants.defaultPrecision)).toString();
 }
+
+dynamic indexToEnum(List values, int index) {
+  try {
+    return values[index];
+  } catch (e) {
+    return null;
+  }
+}

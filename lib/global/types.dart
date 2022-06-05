@@ -4,7 +4,7 @@ import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 
-enum EAppPages {splash, places, map, favorites}
+enum EAppPages {favorites, places, map, splash}
 
 enum EPlaceMode {current, other}
 
