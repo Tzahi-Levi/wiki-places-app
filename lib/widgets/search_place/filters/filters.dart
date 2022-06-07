@@ -44,7 +44,13 @@ class _FiltersState extends State<Filters> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text('strFilters'.tr),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('strFilters'.tr),
+                  IconButton(onPressed: Get.back, icon: const Icon(GlobalConstants.closeIcon)),
+                ],
+            ),
             Row(
               children: [
                 Expanded(
@@ -70,9 +76,6 @@ class _FiltersState extends State<Filters> {
                 height: Get.height / 4.9,
                 child: SingleChildScrollView(child: TagsList(isWrap: true)),
             ),
-            TextButton(
-              onPressed: ()=>{},
-              child: Text('strClose'.tr, style: Get.textTheme.subtitle1,),)
           ],
         ),
       ),

@@ -16,6 +16,7 @@ final Map<String, String> resourcesHe = {
   'strLoadMore': 'טען עוד',
   'strUndo': 'בטל',
   'strCurrentLocation': 'ממיקומך הנוכחי',
+  'strWhatISee': 'מה אני רואה?',
 
   // Navigation
   'strMapPageName': 'מפה',

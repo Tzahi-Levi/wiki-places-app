@@ -44,6 +44,7 @@ void displaySearchSuccessfully() {
 void displayCurrentPlaceDetails() {
   final StoreController _storeController = Get.put(StoreController());
   displayAlertDialog(
+      title: 'strWhatISee'.tr,
       content: Text('strCurrentPlaceDetails'.trParams({
         'radius': _storeController.radius.value,
         'scale': GlobalConstants.defaultScale,
@@ -92,7 +93,7 @@ void displayAlertDialog({String title = "", required Widget content}) {
 }
 
 void displayBanner({required String content}) async {
-  if (Get.context == null) {
+  if (Get.context == null || (Get.isDialogOpen != null && Get.isDialogOpen!)) {
     return;
   }
 

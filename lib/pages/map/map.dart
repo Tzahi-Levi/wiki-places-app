@@ -31,7 +31,7 @@ class _MapPageState extends State<MapPage> {
   void _showSearchPlaceMessageIfNeeded() async {
     if (!await PreferencesController.instance.wasSearchPlaceMessageSeen) {
       PreferencesController.instance.setSearchPlaceMessageSeen();
-      displayBanner(content: 'strSearchOnMap'.tr);
+      _showChangeLocationOnMapBanner();
     }
   }
 
@@ -128,12 +128,18 @@ class _MapPageState extends State<MapPage> {
     return 16 - resize - scaleFix;
   }
 
+  void _showChangeLocationOnMapBanner() {
+    displayBanner(content: 'strSearchOnMap'.tr);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetX<StoreController>(
       builder: (store) => Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: const DetailsAndFiltersAppbar(),
+        appBar: DetailsAndFiltersAppbar(
+            leadingAction: IconButton(onPressed: _showChangeLocationOnMapBanner, icon: const Icon(GlobalConstants.showMapBannerIcon)),
+        ),
         body: GoogleMap(
           padding: const EdgeInsets.only(top: 120, bottom: 50),
           onLongPress: _changePlace,

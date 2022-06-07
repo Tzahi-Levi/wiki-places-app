@@ -6,7 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:wiki_places/controllers/theme_controller.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:wiki_places/metrics/sentryController.dart';
+import 'package:wiki_places/metrics/sentry_controller.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wiki_places/localization/locale_controller.dart';
 import 'package:wiki_places/localization/resources/resources.dart';

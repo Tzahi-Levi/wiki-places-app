@@ -33,6 +33,8 @@ class GlobalConstants {
   static const IconData placeIcon = Icons.place;
   static const IconData favoriteIcon = Icons.favorite;
   static const IconData nonFavoriteIcon = Icons.favorite_border;
+  static const IconData closeIcon = Icons.close;
+  static const IconData showMapBannerIcon = Icons.message;
 
   // Map
   static const Json defaultInitialMapLocation = {"lat": 32.7775, "lon": 35.02166667}; // Technion Location

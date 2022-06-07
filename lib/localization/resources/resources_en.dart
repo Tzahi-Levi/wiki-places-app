@@ -16,6 +16,7 @@ final Map<String, String> resourcesEn = {
   'strLoadMore': 'Load More',
   'strUndo': 'Undo',
   'strCurrentLocation': 'Distance from current location',
+  'strWhatISee': 'What do I see?',
 
   // Navigation
   'strMapPageName': 'Map',
