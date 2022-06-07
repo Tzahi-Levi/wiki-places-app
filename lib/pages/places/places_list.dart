@@ -48,7 +48,7 @@ class PlacesList extends StatelessWidget {
         body: ListView(
           key: Key(placesCollection.length.toString()),
           controller: _scrollController,
-          children: [...topWidgets, ..._getPlaces, ...bottomWidgets, const SizedBox(height: 70)],
+          children: [...topWidgets, ..._getPlaces, ...bottomWidgets, const SizedBox(height: 90)],
         ),
         floatingActionButton: SearchPlacesFAB(afterSearchCallback: _scrollToTop),
     );
