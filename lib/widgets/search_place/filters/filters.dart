@@ -40,8 +40,9 @@ class _FiltersState extends State<Filters> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 15, 10, 10),
       child: SizedBox(
-        height: Get.height / 2.5,
+        height: Get.height / 2,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text('strFilters'.tr),
             Row(
@@ -69,6 +70,9 @@ class _FiltersState extends State<Filters> {
                 height: Get.height / 4.9,
                 child: SingleChildScrollView(child: TagsList(isWrap: true)),
             ),
+            TextButton(
+              onPressed: ()=>{},
+              child: Text('strClose'.tr, style: Get.textTheme.subtitle1,),)
           ],
         ),
       ),

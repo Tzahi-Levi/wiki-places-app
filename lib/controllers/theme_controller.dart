@@ -17,6 +17,7 @@ class ThemeController {
             headline6: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff393F36)),
             bodyText1: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white),
             bodyText2: GoogleFonts.openSans(fontSize: 13, fontWeight: FontWeight.bold, color: const Color(0xff393F36)),
+            subtitle1: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.bold, color: const Color(0xff393F36)),
           ),
           colorScheme: const ColorScheme(
             brightness: Brightness.light,
