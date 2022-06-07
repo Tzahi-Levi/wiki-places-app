@@ -2,12 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:another_flushbar/flushbar.dart';
+import 'package:wiki_places/global/config.dart';
 import 'dart:math';
 import 'package:wiki_places/global/types.dart';
 import 'package:wiki_places/pages/webview/webview.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
+import 'package:mailer/mailer.dart' as mail;
+import 'package:mailer/smtp_server.dart';
 
 // Navigation
 void navigateToPage(Widget page) {
@@ -117,6 +120,16 @@ void displayBanner({required String content}) async {
         onStatusChanged: (newStatus) => {isDialogOpen = (newStatus != null && newStatus != FlushbarStatus.DISMISSED)},
       ).show(Get.context!)
   );
+}
+
+void sendEmail(List<String> recipients, String subject, String text) async {
+  SmtpServer smtpServer = gmail(ProjectConfig.appEmail, ProjectConfig.appEmailPassword);
+  final message = mail.Message()
+    ..from = const mail.Address(ProjectConfig.appEmail, ProjectConfig.projectName)
+    ..recipients.addAll(recipients)
+    ..subject = subject
+    ..text = text;
+  await mail.send(message, smtpServer);
 }
 
 // Converters

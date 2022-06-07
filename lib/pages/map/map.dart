@@ -49,7 +49,7 @@ class _MapPageState extends State<MapPage> {
     }
   }
 
-  void _onMapCreated(GoogleMapController controller) async {
+  void _onMapCreated(GoogleMapController controller) {
     _controller = controller;
     _showSearchPlaceMessageIfNeeded();
 

@@ -20,6 +20,8 @@ class GlobalConstants {
   static const double favoritePlaceMarkerColor = BitmapDescriptor.hueYellow;
   static const double defaultLoadMoreStep = 1;
   static const int defaultWordsInPlaceName = 3;
+  static const double defaultInitialRating = 5;
+  static const List<String> sendReviewsRecipients = ['razle102030@gmail.com', 'tazachil@gmail.com'];
 
   // Icons
   static const IconData mapPageSelectedIcon = Icons.map;

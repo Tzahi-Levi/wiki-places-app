@@ -12,6 +12,8 @@ typedef Json = Map<String, dynamic>;
 
 bool isDialogOpen = false;
 
+bool isInviteFriendOpen = false;
+
 class PlaceDetails {
   final String name;
   final LatLng? coordinates;

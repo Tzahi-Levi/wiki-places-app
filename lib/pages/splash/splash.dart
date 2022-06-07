@@ -8,6 +8,8 @@ import 'package:wiki_places/controllers/location_controller.dart';
 import 'package:wiki_places/pages/image_page/location_permission_page.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/pages/image_page/generic_image_page.dart';
+import 'package:wiki_places/controllers/preferences_controller.dart';
+import 'package:wiki_places/pages/walkthrough/walkthrough.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -30,9 +32,17 @@ class _SplashPageState extends State<SplashPage> {
       await FavoritesController.instance.getFavoritePlaces();
       await _storeController.initPlaces();
       _storeController.updateMainAppPage(GlobalConstants.defaultAppPage);
+      _showWalkthroughIfNeeded();
 
     } else {
       navigateWithNoBack(const LocationPermissionPage());
+    }
+  }
+
+  void _showWalkthroughIfNeeded() async {
+    if (!await PreferencesController.instance.wasWalkthroughSeen) {
+      PreferencesController.instance.setWalkthroughSeen();
+      navigateToPage(const Walkthrough());
     }
   }
 

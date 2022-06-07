@@ -64,7 +64,20 @@ final Map<String, String> resourcesEn = {
 
   // Settings
   'strSettings': 'Settings',
+  'strInviteFriend': 'Invite a friend',
+  'strInviteFriendSubject': 'Try WikiPo',
+  'strInviteFriendContent': 'WikiPo app is an application for watching Wikipedia articles by location in list and map, saving favorite articles, and getting arrival instructions to articles you liked. Try us: \n@googlePlayUrl',
+  'strRateUs': 'Rate Us',
+  'strRateUsExplanation': 'Tap a star to set your rating. Add more description here if you want',
+  'strSubmit': 'Submit',
+  'strCommentHint': 'Set your comment here (optional)',
   'strVersion': 'Version',
+
+  // Walkthrough
+  'strWatchWalkthrough': 'Watch walkthrough',
+  'strSkip': 'Skip',
+  'strNext': 'Next',
+  'strFinish': 'Finish',
 
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",

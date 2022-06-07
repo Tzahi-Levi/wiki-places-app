@@ -36,6 +36,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (isInviteFriendOpen) {
+      isInviteFriendOpen = false;
+      return;
+    }
+
     if (state == AppLifecycleState.resumed) {
       _storeController.initPlaces(resetCurrentPlace: false, moveToError: false);
     }
