@@ -66,6 +66,7 @@ final Map<String, String> resourcesHe = {
 
   // Settings
   'strSettings': 'הגדרות',
+  'strDarkMode': 'מצב כהה',
   'strInviteFriend': 'הזמן חבר',
   'strInviteFriendSubject': 'נסה את אפלקציית ויקי-פה',
   'strInviteFriendContent': 'אפליקציית ויקי-פה היא אפליקצייה המאפשרת לצפות בערכי ויקיפדיה לפי מיקום ברשימה ומפה, לשמור ערכים מועדפים ולקבל הוראות הגעה למיקומים שאהבתם. נסו אותנו: \n@googlePlayUrl',

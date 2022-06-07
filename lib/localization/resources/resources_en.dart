@@ -64,6 +64,7 @@ final Map<String, String> resourcesEn = {
 
   // Settings
   'strSettings': 'Settings',
+  'strDarkMode': 'Dark Mode',
   'strInviteFriend': 'Invite a friend',
   'strInviteFriendSubject': 'Try WikiPo',
   'strInviteFriendContent': 'WikiPo app is an application for watching Wikipedia articles by location in list and map, saving favorite articles, and getting arrival instructions to articles you liked. Try us: \n@googlePlayUrl',

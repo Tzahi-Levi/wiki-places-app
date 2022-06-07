@@ -6,44 +6,43 @@ class ThemeController {
   static final ThemeController instance = ThemeController._();
   ThemeController._();
 
-  static ThemeData get lightMode =>
-      ThemeData(
-          textTheme: TextTheme(
-            headline1: GoogleFonts.openSans(fontSize: 20, color: const Color(0xff393F36), fontWeight: FontWeight.bold),
-            headline2: GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-            headline3: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff393F36)),
-            headline4: GoogleFonts.openSans(fontSize: 12, fontWeight: FontWeight.normal, color: const Color(0xff393F36)),
-            headline5: GoogleFonts.openSans(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xff393F36)),
-            headline6: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff393F36)),
-            bodyText1: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white),
-            bodyText2: GoogleFonts.openSans(fontSize: 13, fontWeight: FontWeight.bold, color: const Color(0xff393F36)),
-            subtitle1: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.bold, color: const Color(0xff393F36)),
-          ),
-          colorScheme: const ColorScheme(
-            brightness: Brightness.light,
-            onBackground: Colors.white,
-            surface: Colors.white,
-            secondary: Color(0xffaca190),
-            onSurface: Colors.black,
-            onSecondary: Color(0xff393F36),
-            onError: Colors.white,
-            error: Colors.red,
-            primary: Color(0xff8CD29A),
-            onPrimary: Colors.white,
-            background: Colors.white,
-            primaryContainer: Color(0xff8CD29A),
-          ),
-          primaryColor: const Color(0xff8CD29A),
-          primaryColorDark: Colors.white,
-          primaryColorLight: Colors.white.withOpacity(0.8),
-          unselectedWidgetColor: const Color(0xff393F36),
-          appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent, iconTheme: IconThemeData(color: Color(0xff393F36), size: 27)),
-          cardTheme: const CardTheme(color: Color(0xff95A68D), shadowColor: Colors.black),
-          iconTheme: const IconThemeData(color: Color(0xff393F36), size: 30),
-          floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: Color(0xff8CD29A)),
-      );
+  static ThemeData get lightMode => ThemeData.light().copyWith(
+        textTheme: TextTheme(
+          headline1: GoogleFonts.openSans(fontSize: 20, color: const Color(0xff393F36), fontWeight: FontWeight.bold),
+          headline2: GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+          headline3: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff393F36)),
+          headline4: GoogleFonts.openSans(fontSize: 12, fontWeight: FontWeight.normal, color: const Color(0xff393F36)),
+          headline5: GoogleFonts.openSans(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xff393F36)),
+          headline6: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff393F36)),
+          bodyText1: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white),
+          bodyText2: GoogleFonts.openSans(fontSize: 13, fontWeight: FontWeight.bold, color: const Color(0xff393F36)),
+          subtitle1: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.bold, color: const Color(0xff393F36)),
+        ),
+        colorScheme: const ColorScheme(
+          brightness: Brightness.light,
+          onBackground: Colors.white,
+          surface: Colors.white,
+          secondary: Color(0xffaca190),
+          onSurface: Colors.black,
+          onSecondary: Color(0xff393F36),
+          onError: Colors.white,
+          error: Colors.red,
+          primary: Color(0xff8CD29A),
+          onPrimary: Colors.white,
+          background: Colors.white,
+          primaryContainer: Color(0xff8CD29A),
+        ),
+        primaryColor: const Color(0xff8CD29A),
+        primaryColorDark: Colors.white,
+        primaryColorLight: Colors.white.withOpacity(0.8),
+        unselectedWidgetColor: const Color(0xff393F36),
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent, iconTheme: IconThemeData(color: Color(0xff393F36), size: 27)),
+        cardTheme: const CardTheme(color: Color(0xff95A68D), shadowColor: Colors.black),
+        iconTheme: const IconThemeData(color: Color(0xff393F36), size: 30),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: Color(0xff8CD29A)),
+    );
 
-  static ThemeData get darkMode => ThemeData(
+  static ThemeData get darkMode => ThemeData.dark().copyWith(
       textTheme: TextTheme(
         headline1: GoogleFonts.openSans(fontSize: 20, color: Colors.white),
         headline2: GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),

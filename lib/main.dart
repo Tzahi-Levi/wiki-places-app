@@ -47,7 +47,7 @@ class WikiPlacesApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
       ],
       theme: ThemeController.lightMode,
-      // darkTheme: ThemeController.darkMode,  // TODO- remove for supporting dark mode
+      darkTheme: ThemeController.darkMode,
       debugShowCheckedModeBanner: false,
       home: ConnectivityBuilder(
         builder: (context, isConnected, status) {

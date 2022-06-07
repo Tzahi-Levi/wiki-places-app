@@ -36,6 +36,7 @@ class SettingsPage extends StatelessWidget {
       body: SingleChildScrollView(
           child: GenericList(
             items: [
+              [Text('strDarkMode'.tr), const ThemeSwitcher()],
               [Text('strInviteFriend'.tr), SettingsListArrow(onPressed: _openInviteFriend)],
               [Text('strWatchWalkthrough'.tr), SettingsListArrow(onPressed: () => {navigateToPage(const Walkthrough())})],
               [Text('strRateUs'.tr), SettingsListArrow(onPressed: _openRateUs)],
