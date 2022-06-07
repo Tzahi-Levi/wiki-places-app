@@ -22,6 +22,7 @@ final Map<String, String> resourcesHe = {
   'strMapPageName': 'מפה',
   'strPlacesPageName': 'רשימה',
   'strFavoritesPageName': 'מועדפים',
+  'strSettingsName': 'הגדרות',
 
   // Map
   'strYourChosenPlace': 'מיקומך הנוכחי',
@@ -62,6 +63,10 @@ final Map<String, String> resourcesHe = {
   'strFilters': 'מסננים:',
   'strAddFilter': 'הוסף מסנן',
   'strResetFilters': 'אפס מסננים',
+
+  // Settings
+  'strSettings': 'הגדרות',
+  'strVersion': 'גרסה',
 
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",

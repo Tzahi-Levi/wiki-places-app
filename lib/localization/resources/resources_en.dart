@@ -22,6 +22,7 @@ final Map<String, String> resourcesEn = {
   'strMapPageName': 'Map',
   'strPlacesPageName': 'List',
   'strFavoritesPageName': 'Favorites',
+  'strSettingsName': 'Settings',
 
   // Map
   'strYourChosenPlace': 'Your chosen place',
@@ -60,6 +61,10 @@ final Map<String, String> resourcesEn = {
   'strFilters': 'Filters:',
   'strAddFilter': 'Add filter',
   'strResetFilters': 'Reset filters',
+
+  // Settings
+  'strSettings': 'Settings',
+  'strVersion': 'Version',
 
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",

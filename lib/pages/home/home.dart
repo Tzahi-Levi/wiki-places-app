@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
+import 'package:wiki_places/pages/settings/settings.dart';
 import 'package:wiki_places/pages/splash/splash.dart';
 import 'package:wiki_places/widgets/app_background.dart';
 import 'package:wiki_places/pages/places/places_page.dart';
@@ -50,6 +51,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
       case EAppPages.favorites:
         return FavoritesPage();
+
+      case EAppPages.settings:
+        return const SettingsPage();
 
       case EAppPages.places:
       default:

@@ -69,6 +69,9 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
           'number': _storeController.favoritePlacesCollection.value.length.toString(),
         });
 
+      case EAppPages.settings:
+        return 'strSettings'.tr;
+
       case EAppPages.places:
       case EAppPages.map:
       if (_storeController.filteredPlacesCollection.value.length == 1) {
