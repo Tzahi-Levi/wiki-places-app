@@ -10,7 +10,7 @@
 
 
 <p align="center">
-    <img src="/images/screenshots/places_page.png" alt="drawing" width="200"/> <img src="/images/screenshots/map_page.png" alt="drawing" width="200"/> <img src="/images/screenshots/change_radius.png" alt="drawing" width="200"/> <img src="/images/screenshots/splash_screen.png" alt="drawing" width="200"/>
+    <img src="/images/screenshots/places_page.png" alt="drawing" width="200"/> <img src="/images/screenshots/map_page.png" alt="drawing" width="200"/> <img src="/images/screenshots/favorites_page.png" alt="drawing" width="200"/> <img src="/images/screenshots/change_radius.png" alt="drawing" width="200"/>
 </p>
 
 
