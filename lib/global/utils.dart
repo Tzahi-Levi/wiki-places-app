@@ -93,7 +93,7 @@ void displayAlertDialog({String title = "", required Widget content}) {
 }
 
 void displayBanner({required String content}) async {
-  if (Get.context == null || (Get.isDialogOpen != null && Get.isDialogOpen!)) {
+  if (Get.context == null || isDialogOpen) {
     return;
   }
 
@@ -114,6 +114,7 @@ void displayBanner({required String content}) async {
           size: 28.0,
           color: Colors.green,
         ),
+        onStatusChanged: (newStatus) => {isDialogOpen = (newStatus != null && newStatus != FlushbarStatus.DISMISSED)},
       ).show(Get.context!)
   );
 }

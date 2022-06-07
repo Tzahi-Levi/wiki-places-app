@@ -10,6 +10,8 @@ enum EPlaceMode {current, other}
 
 typedef Json = Map<String, dynamic>;
 
+bool isDialogOpen = false;
+
 class PlaceDetails {
   final String name;
   final LatLng? coordinates;

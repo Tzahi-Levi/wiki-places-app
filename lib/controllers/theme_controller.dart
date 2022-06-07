@@ -37,7 +37,7 @@ class ThemeController {
           primaryColorDark: Colors.white,
           primaryColorLight: Colors.white.withOpacity(0.8),
           unselectedWidgetColor: const Color(0xff393F36),
-          appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent, iconTheme: IconThemeData(color: Color(0xff393F36), size: 27)),
           cardTheme: const CardTheme(color: Color(0xff95A68D), shadowColor: Colors.black),
           iconTheme: const IconThemeData(color: Color(0xff393F36), size: 30),
           floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: Color(0xff8CD29A)),
