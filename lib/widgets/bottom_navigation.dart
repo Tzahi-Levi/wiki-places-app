@@ -29,6 +29,7 @@ class BottomNavigation extends StatelessWidget {
         TabItem(title: 'strFavoritesPageName'.tr, icon: GlobalConstants.favoriteIcon),
         TabItem(title: 'strPlacesPageName'.tr, icon: GlobalConstants.placesPageSelectedIcon),
         TabItem(title: 'strMapPageName'.tr, icon: GlobalConstants.mapPageSelectedIcon),
+        TabItem(title: 'strSettingsName'.tr, icon: GlobalConstants.settingsPageSelectedIcon),
       ],
       initialActiveIndex: 1,
       onTap: _navigateToPage,

@@ -19,7 +19,6 @@ class CardContent extends StatefulWidget {
 }
 
 class _CardContentState extends State<CardContent> {
-
   late bool _isFavorite;
 
   void _openWikipedia() {
@@ -78,14 +77,18 @@ class _CardContentState extends State<CardContent> {
                     ),
                   ),
                 ),
-                Visibility(
-                  visible: widget.model.imageUrl.isNotEmpty,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                  child: Visibility(
+                    visible: widget.model.imageUrl.isNotEmpty,
+                    child: SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(Radius.circular(10),
+                        ),
+                        child: Image.network(widget.model.imageUrl, cacheWidth: 100, cacheHeight: 100,),
                       ),
-                      child: Image.network(widget.model.imageUrl, cacheWidth: 100, cacheHeight: 100,),
                     ),
                   ),
                 ),

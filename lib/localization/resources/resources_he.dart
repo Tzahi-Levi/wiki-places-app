@@ -16,11 +16,13 @@ final Map<String, String> resourcesHe = {
   'strLoadMore': 'טען עוד',
   'strUndo': 'בטל',
   'strCurrentLocation': 'ממיקומך הנוכחי',
+  'strWhatISee': 'מה אני רואה?',
 
   // Navigation
   'strMapPageName': 'מפה',
   'strPlacesPageName': 'רשימה',
   'strFavoritesPageName': 'מועדפים',
+  'strSettingsName': 'הגדרות',
 
   // Map
   'strYourChosenPlace': 'מיקומך הנוכחי',
@@ -61,6 +63,24 @@ final Map<String, String> resourcesHe = {
   'strFilters': 'מסננים:',
   'strAddFilter': 'הוסף מסנן',
   'strResetFilters': 'אפס מסננים',
+
+  // Settings
+  'strSettings': 'הגדרות',
+  'strDarkMode': 'מצב כהה',
+  'strInviteFriend': 'הזמן חבר',
+  'strInviteFriendSubject': 'נסה את אפלקציית ויקי-פה',
+  'strInviteFriendContent': 'אפליקציית ויקי-פה היא אפליקצייה המאפשרת לצפות בערכי ויקיפדיה לפי מיקום ברשימה ומפה, לשמור ערכים מועדפים ולקבל הוראות הגעה למיקומים שאהבתם. נסו אותנו: \n@googlePlayUrl',
+  'strRateUs': 'דרג אותנו',
+  'strRateUsExplanation': 'בחרו בכוכב כדי לדרג אותנו. אם תרצו, ניתן להוסיף פירוט נוסף',
+  'strSubmit': 'שלח',
+  'strCommentHint': 'כתבו את דעתכם כאן (אופציונלי)',
+  'strVersion': 'גרסה',
+
+  // Walkthrough
+  'strWatchWalkthrough': 'צפה בהדרכה',
+  'strSkip': 'דלג',
+  'strNext': 'המשך',
+  'strFinish': 'סיים',
 
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",

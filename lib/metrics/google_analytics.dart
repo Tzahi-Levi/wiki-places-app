@@ -82,4 +82,28 @@ class GoogleAnalytics {
   void logRemoveFavorite() {
     _logEvent("RemoveFavorite");
   }
+
+  void logWalkthroughFinished() {
+    _logEvent("WalkthroughFinished");
+  }
+
+  void logWalkthroughSkipped() {
+    _logEvent("WalkthroughSkipped");
+  }
+
+  void logInviteFriendOpened() {
+    _logEvent("InviteFriendOpened");
+  }
+
+  void logRateUsOpened() {
+    _logEvent("RateUsOpened");
+  }
+
+  void logRateUsCancel() {
+    _logEvent("RateUsCancel");
+  }
+
+  void logRateUsSubmit() {
+    _logEvent("RateUsSubmit");
+  }
 }

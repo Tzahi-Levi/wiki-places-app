@@ -20,12 +20,13 @@ class GlobalConstants {
   static const double favoritePlaceMarkerColor = BitmapDescriptor.hueYellow;
   static const double defaultLoadMoreStep = 1;
   static const int defaultWordsInPlaceName = 3;
+  static const double defaultInitialRating = 5;
+  static const List<String> sendReviewsRecipients = ['razle102030@gmail.com', 'tazachil@gmail.com'];
 
   // Icons
-  static const IconData mapPageOutLinedIcon = Icons.map_outlined;
   static const IconData mapPageSelectedIcon = Icons.map;
-  static const IconData placesPageOutLinedIcon = Icons.list_outlined;
   static const IconData placesPageSelectedIcon = Icons.list;
+  static const IconData settingsPageSelectedIcon = Icons.settings;
   static const IconData searchIcon = Icons.search;
   static const IconData infoIcon = Icons.info;
   static const IconData filtersIcon = Icons.filter_alt;
@@ -33,6 +34,9 @@ class GlobalConstants {
   static const IconData placeIcon = Icons.place;
   static const IconData favoriteIcon = Icons.favorite;
   static const IconData nonFavoriteIcon = Icons.favorite_border;
+  static const IconData closeIcon = Icons.close;
+  static const IconData showMapBannerIcon = Icons.message;
+  static const IconData settingsListIcon = Icons.chevron_right;
 
   // Map
   static const Json defaultInitialMapLocation = {"lat": 32.7775, "lon": 35.02166667}; // Technion Location
