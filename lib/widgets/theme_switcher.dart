@@ -15,7 +15,7 @@ class _ThemeSwitcherState extends State<ThemeSwitcher> {
   bool _isDarkMode = Get.isDarkMode;
 
   void _setTheme(bool isDarkMode) {
-    Get.changeTheme(Get.isDarkMode? ThemeController.lightMode : ThemeController.darkMode);
+    ThemeController.changeTheme();
     setState(() {
       _isDarkMode = !_isDarkMode;
     });

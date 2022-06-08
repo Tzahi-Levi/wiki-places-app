@@ -11,6 +11,7 @@ class GlobalConstants {
   // Default Values
   static const EAppPages defaultAppPage = EAppPages.places;
   static String defaultScale = "strKm".tr;
+  static const bool defaultIsDarkMode = false;
   static const String defaultRadius = "1";
   static const int defaultPrecision = 1;
   static const double minRadius = 0;
