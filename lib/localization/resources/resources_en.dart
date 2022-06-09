@@ -4,6 +4,7 @@ import 'package:wiki_places/global/config.dart';
 final Map<String, String> resourcesEn = {
   // General
   'strLanguageName': 'English',
+  'strLanguageCode': 'en',
   'strAppName': ProjectConfig.projectName,
   'strFirstLetterAscii': "65",
   'strLastLetterAscii': "122",
@@ -79,6 +80,18 @@ final Map<String, String> resourcesEn = {
   'strSkip': 'Skip',
   'strNext': 'Next',
   'strFinish': 'Finish',
+  'strWelcomeTitle': 'Welcome to WikiPo!',
+  'strWelcomeDescription': 'The app for watching Wikipedia articles about places around you and far from you on a list or a map. Get arrival instructions and filter according to your desired text.',
+  'strWalkthroughMainPageTitle': 'The Main Screen',
+  'strWalkthroughMainPageDescription': 'Here you can see the articles related to your desired location as a list. Click on the heart icon will save the article in your favorites list. Click on "Load More" button will increase the radius and expose new articles. Click on "New Search" will bring you to the search settings page. Click on the filters icon will let you filter the articles according to your text.',
+  'strWalkthroughSearchPageTitle': 'Search Settings',
+  'strWalkthroughSearchPageDescription': 'Here you can change the search settings- search Wikipedia articles around a specific location with an adjustable distance range',
+  'strWalkthroughMapPageTitle': 'The Map',
+  'strWalkthroughMapPageDescription': 'Here you can see the articles related to your desired location over a map. Long click on the a specific point on the map will change the place that we are searching over.',
+  'strWalkthroughFavoritesPageTitle': 'The Favorites',
+  'strWalkthroughFavoritesPageDescription': 'Here you can see all the favorites articles you saved.',
+  'strWalkthroughSettingsPageTitle': 'App Settings',
+  'strWalkthroughSettingsPageDescription': 'Here you can change the app settings- change the theme, invite a friend to use the app, and rate the app. You can always return and watch this walkthrough again by clicking on "Watch walkthrough" in this page.',
 
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",

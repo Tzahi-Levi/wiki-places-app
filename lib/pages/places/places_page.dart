@@ -6,7 +6,6 @@ import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/pages/places/places_list.dart';
-import 'package:wiki_places/widgets/about_the_app.dart';
 import 'package:wiki_places/widgets/search_place/filters/tags_list.dart';
 
 class PlacesPage extends StatelessWidget {
@@ -24,7 +23,9 @@ class PlacesPage extends StatelessWidget {
 
     } else {
       _storeController.updateRadius(min<double>(GlobalConstants.maxRadius, currentRadius + GlobalConstants.defaultLoadMoreStep).toString());
-      await _storeController.updatePlacesCollection();
+      if (!await _storeController.updatePlacesCollection()) {
+        _storeController.updateRadius(currentRadius.toString());
+      }
     }
     _storeController.updateGlobalIsLoading(false);
   }

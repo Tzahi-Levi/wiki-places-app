@@ -56,3 +56,4 @@ flutter:
   uses-material-design: true
   assets:
     - images/
+    - images/walkthrough/he/

@@ -9,7 +9,7 @@ class Resources extends Translations {
 
   @override
   Map<String, Map<String, String>> get keys => {
-    // 'en_US': resourcesEn,  // TODO- uncomment for supporting English
+    'en_US': resourcesEn,  // TODO- uncomment for supporting English
     'he_IL': resourcesHe,
   };
 }

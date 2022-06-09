@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
+import 'package:wiki_places/controllers/theme_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/controllers/favorites_controller.dart';
 import 'package:wiki_places/controllers/location_controller.dart';
@@ -31,6 +32,7 @@ class _SplashPageState extends State<SplashPage> {
     if (await LocationController.isLocationPermission()) {
       await FavoritesController.instance.getFavoritePlaces();
       await _storeController.initPlaces();
+      ThemeController.setTheme(isDarkMode: await PreferencesController.instance.getIsDarkMode);
       _storeController.updateMainAppPage(GlobalConstants.defaultAppPage);
       _showWalkthroughIfNeeded();
 
