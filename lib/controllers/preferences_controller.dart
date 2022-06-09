@@ -1,5 +1,7 @@
 // ================= Preferences Controller =================
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wiki_places/global/constants.dart';
+import 'package:wiki_places/global/types.dart';
 
 class PreferencesController {
   static final PreferencesController instance = PreferencesController._();
@@ -8,6 +10,7 @@ class PreferencesController {
   final String _favoritePlacesKey = "favoritePlaces";
   final String _searchPlaceMessageKey = "searchPlaceMessageSeen";
   final String _walkthroughKey = "walkthroughSeen";
+  final String _isDarkModeKey = "isDarkMode";
 
   Future<List<String>?> get getFavoritePlaces async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -37,5 +40,16 @@ class PreferencesController {
   void setWalkthroughSeen() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setBool(_walkthroughKey, true);
+  }
+
+  Future<bool> get getIsDarkMode async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    bool? isDarkMode = sharedPreferences.getBool(_isDarkModeKey);
+    return isDarkMode ?? GlobalConstants.defaultIsDarkMode;
+  }
+
+  void setIsDarkMode({required bool isDarkMode}) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setBool(_isDarkModeKey, isDarkMode);
   }
 }

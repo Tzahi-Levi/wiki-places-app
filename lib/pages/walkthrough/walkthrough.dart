@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 
@@ -13,12 +14,13 @@ class Walkthrough extends StatelessWidget {
     isLast ? GoogleAnalytics.instance.logWalkthroughFinished() : GoogleAnalytics.instance.logWalkthroughSkipped();
   }
 
-  PageViewModel _setWalkthroughScreen(String imagePath, String title, String description) {
+  PageViewModel _setWalkthroughScreen({required String imagePath, required String title, required String description}) {
     return PageViewModel(
       image: SizedBox(
           width: Get.height/3,
-          height: Get.height/2,
-          child: Image.asset(imagePath)),
+          height: Get.height/1.6,
+          child: Image.asset(imagePath),
+      ),
       title: title,
       bodyWidget: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -36,14 +38,34 @@ class Walkthrough extends StatelessWidget {
   List<PageViewModel> get _getListOfWalkthroughScreens {
     return [
       _setWalkthroughScreen(
-          'images/screenshots/places_page.png',
-          "בדיקה",
-          "בלה בלה בלה"
+          imagePath: GlobalConstants.appIconImage,
+          title: 'strWelcomeTitle'.tr,
+          description: 'strWelcomeDescription'.tr
       ),
       _setWalkthroughScreen(
-          'images/screenshots/favorites_page.png',
-          "בדיקה",
-          "בלה בלה בלה"
+          imagePath: 'images/walkthrough/${'strLanguageCode'.tr}/List.png',
+          title: 'strWalkthroughMainPageTitle'.tr,
+          description: 'strWalkthroughMainPageDescription'.tr
+      ),
+      _setWalkthroughScreen(
+          imagePath: 'images/walkthrough/${'strLanguageCode'.tr}/Search.png',
+          title: 'strWalkthroughSearchPageTitle'.tr,
+          description: 'strWalkthroughSearchPageDescription'.tr
+      ),
+      _setWalkthroughScreen(
+          imagePath: 'images/walkthrough/${'strLanguageCode'.tr}/Map.png',
+          title: 'strWalkthroughMapPageTitle'.tr,
+          description: 'strWalkthroughMapPageDescription'.tr
+      ),
+      _setWalkthroughScreen(
+          imagePath: 'images/walkthrough/${'strLanguageCode'.tr}/Favorites.png',
+          title: 'strWalkthroughFavoritesPageTitle'.tr,
+          description: 'strWalkthroughFavoritesPageDescription'.tr
+      ),
+      _setWalkthroughScreen(
+          imagePath: 'images/walkthrough/${'strLanguageCode'.tr}/Settings.png',
+          title: 'strWalkthroughSettingsPageTitle'.tr,
+          description: 'strWalkthroughSettingsPageDescription'.tr
       ),
     ];
   }

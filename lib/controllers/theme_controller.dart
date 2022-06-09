@@ -1,6 +1,8 @@
 // ================= App Themes =================
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wiki_places/controllers/preferences_controller.dart';
 
 class ThemeController {
   static final ThemeController instance = ThemeController._();
@@ -76,4 +78,14 @@ class ThemeController {
       iconTheme: const IconThemeData(color: Colors.white, size: 30),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: Color(0xff262A24),)
   );
+
+  static void setTheme({required bool isDarkMode}) {
+    Get.changeTheme(isDarkMode?  ThemeController.darkMode : ThemeController.lightMode);
+    PreferencesController.instance.setIsDarkMode(isDarkMode: isDarkMode);
+  }
+
+  static void changeTheme() {
+    Get.changeTheme(Get.isDarkMode? ThemeController.lightMode : ThemeController.darkMode);
+    PreferencesController.instance.setIsDarkMode(isDarkMode: !Get.isDarkMode);
+  }
 }
