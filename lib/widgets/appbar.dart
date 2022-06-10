@@ -102,7 +102,7 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: leadingAction,
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          color: Get.theme.primaryColor,
+          color: Theme.of(context).primaryColor,
           borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20),
@@ -127,7 +127,7 @@ class MinorAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          color: Get.theme.primaryColor,
+          color: Theme.of(context).primaryColor,
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20),
