@@ -32,6 +32,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: WikiPlacesAppBar(),
       body: SingleChildScrollView(
           child: GenericList(
