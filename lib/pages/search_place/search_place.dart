@@ -162,8 +162,14 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                         onPressed: _searchPlace, 
                         child: Text('strSearch'.tr, style: Get.textTheme.headline2),
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) => const Color(0xff03CE3D)),
-                          elevation: MaterialStateProperty.resolveWith((states) => 10)),
+                          backgroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) => Get.theme.primaryColor),
+                          elevation: MaterialStateProperty.resolveWith((states) => 10),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   )

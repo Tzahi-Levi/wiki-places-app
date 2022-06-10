@@ -4,11 +4,15 @@ import 'package:sorted_list/sorted_list.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/widgets/place/place_model.dart';
 
-enum EAppPages {favorites, places, map, splash}
+enum EAppPages {favorites, places, map, settings, splash}
 
 enum EPlaceMode {current, other}
 
 typedef Json = Map<String, dynamic>;
+
+bool isDialogOpen = false;
+
+bool isInviteFriendOpen = false;
 
 class PlaceDetails {
   final String name;

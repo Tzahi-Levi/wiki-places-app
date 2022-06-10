@@ -8,11 +8,12 @@ import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/widgets/search_place/filters/filters.dart';
 
 class DetailsAndFiltersAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const DetailsAndFiltersAppbar({this.showAppTitle = false, this.showAppbarFilters = true, this.showAppbarDetails = true, this.title, Key? key}) : super(key: key);
+  const DetailsAndFiltersAppbar({this.showAppTitle = false, this.showAppbarFilters = true, this.showAppbarDetails = true, this.title, this.leadingAction, Key? key}) : super(key: key);
   final bool showAppTitle;
   final String? title;
   final bool showAppbarDetails;
   final bool showAppbarFilters;
+  final Widget? leadingAction;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -42,16 +43,18 @@ class DetailsAndFiltersAppbar extends StatelessWidget implements PreferredSizeWi
           ),
         ),
       ],
+      leadingAction: leadingAction,
     );
   }
 }
 
 class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
-  WikiPlacesAppBar({this.showAppTitle = false, this.title, this.actions = const [], Key? key}) : super(key: key);
+  WikiPlacesAppBar({this.showAppTitle = false, this.title, this.actions = const [], this.leadingAction, Key? key}) : super(key: key);
   final _storeController = Get.put(StoreController());
   final bool showAppTitle;
   final String? title;
   final List<Widget> actions;
+  final Widget? leadingAction;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -65,6 +68,9 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
         return _storeController.favoritePlacesCollection.value.isEmpty ? 'strEmptyFavoriteNumber'.tr : 'strFavoritesNumber'.trParams({
           'number': _storeController.favoritePlacesCollection.value.length.toString(),
         });
+
+      case EAppPages.settings:
+        return 'strSettings'.tr;
 
       case EAppPages.places:
       case EAppPages.map:
@@ -93,9 +99,10 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(_getAppBarTitle, style: Get.textTheme.headline1),
       centerTitle: true,
       actions: actions,
+      leading: leadingAction,
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          color: Get.theme.primaryColor,
+          color: Theme.of(context).primaryColor,
           borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20),
@@ -120,7 +127,7 @@ class MinorAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          color: Get.theme.primaryColor,
+          color: Theme.of(context).primaryColor,
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/global/config.dart';
 import 'package:wiki_places/global/constants.dart';
+import 'package:wiki_places/widgets/settings/settings_list_arrow.dart';
 
 class AboutTheApp extends StatelessWidget {
   const AboutTheApp({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class AboutTheApp extends StatelessWidget {
         Text(GlobalConstants.locationPermissionPageLink, style: Get.textTheme.headline4),
         ListTile(
           leading: Image.asset(
-            GlobalConstants.appBackgroundImage,
+            GlobalConstants.appBackgroundImage(),
           ),
           trailing: Text('strBackgroundImage'.tr),
         ),
@@ -54,6 +55,6 @@ class AboutTheApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(onPressed: _showAboutTheApp, child: Text('strAboutTheApp'.tr));
+    return SettingsListArrow(onPressed: _showAboutTheApp);
   }
 }

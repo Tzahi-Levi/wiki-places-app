@@ -33,6 +33,10 @@
 * [ ] Change the radius you want to search around.
 * [ ] Get arrival instruction for each place.
 * [ ] Save favorites values.
+* [ ] Choose between dark and light mode.
+* [ ] Watch a Walkthrough for better using.
+* [ ] Invite a friend to use the app.
+* [ ] Rate the app.
 
 
 ## Disclaimer

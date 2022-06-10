@@ -42,13 +42,13 @@ class PlacesList extends StatelessWidget {
         appBar: DetailsAndFiltersAppbar(showAppbarDetails: showAppbarDetails, showAppTitle: true, showAppbarFilters: showAppbarFilters),
         firstIcon: placeholderIcon,
       ) : Scaffold(
-      backgroundColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
         appBar: DetailsAndFiltersAppbar(showAppbarDetails: showAppbarDetails, showAppbarFilters: showAppbarFilters),
         body: ListView(
-          key: Key(placesCollection.length.toString()),
+          key: key,
           controller: _scrollController,
-          children: [...topWidgets, ..._getPlaces, ...bottomWidgets, const SizedBox(height: 60)],
+          children: [...topWidgets, ..._getPlaces, ...bottomWidgets, const SizedBox(height: 90)],
         ),
         floatingActionButton: SearchPlacesFAB(afterSearchCallback: _scrollToTop),
     );

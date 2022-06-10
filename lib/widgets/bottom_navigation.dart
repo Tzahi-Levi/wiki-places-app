@@ -21,14 +21,15 @@ class BottomNavigation extends StatelessWidget {
     return ConvexAppBar(
       height: 60,
       elevation: 10,
-      color: Get.theme.unselectedWidgetColor,
-      activeColor: Get.theme.primaryColor,
-      backgroundColor: Get.theme.primaryColorDark,
+      color: Theme.of(context).unselectedWidgetColor,
+      activeColor: Theme.of(context).highlightColor,
+      backgroundColor: Theme.of(context).primaryColorDark,
       style: TabStyle.react,
       items: [
         TabItem(title: 'strFavoritesPageName'.tr, icon: GlobalConstants.favoriteIcon),
         TabItem(title: 'strPlacesPageName'.tr, icon: GlobalConstants.placesPageSelectedIcon),
         TabItem(title: 'strMapPageName'.tr, icon: GlobalConstants.mapPageSelectedIcon),
+        TabItem(title: 'strSettingsName'.tr, icon: GlobalConstants.settingsPageSelectedIcon),
       ],
       initialActiveIndex: 1,
       onTap: _navigateToPage,

@@ -6,12 +6,18 @@ import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/global/utils.dart';
 import 'package:wiki_places/pages/places/places_list.dart';
-import 'package:wiki_places/widgets/about_the_app.dart';
 import 'package:wiki_places/widgets/search_place/filters/tags_list.dart';
 
-class PlacesPage extends StatelessWidget {
+class PlacesPage extends StatefulWidget {
   PlacesPage({Key? key}) : super(key: key);
+
+  @override
+  State<PlacesPage> createState() => _PlacesPageState();
+}
+
+class _PlacesPageState extends State<PlacesPage> {
   final StoreController _storeController = Get.put(StoreController());
+  bool _freezePlacesList = true;
 
   void _loadMore() async {
     _storeController.updateGlobalIsLoading(true);
@@ -23,16 +29,27 @@ class PlacesPage extends StatelessWidget {
       }));
 
     } else {
+      setState(() {
+        _freezePlacesList = false;
+      });
+
       _storeController.updateRadius(min<double>(GlobalConstants.maxRadius, currentRadius + GlobalConstants.defaultLoadMoreStep).toString());
-      await _storeController.updatePlacesCollection();
+      if (!await _storeController.updatePlacesCollection()) {
+        _storeController.updateRadius(currentRadius.toString());
+      }
     }
     _storeController.updateGlobalIsLoading(false);
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      _freezePlacesList = true;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return GetX<StoreController>(
         builder: (store) => PlacesList(
+          key: _freezePlacesList ? Key(_storeController.filteredPlacesCollection.value.length.toString()) : null,
           placesCollection: _storeController.filteredPlacesCollection.value,
           placeholderContent: 'strNoPlacesAvailable'.tr,
           topWidgets: [TagsList(isWrap: false)],
@@ -40,10 +57,6 @@ class PlacesPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: Get.width * 0.33, right: Get.width * 0.33),
               child: ElevatedButton(onPressed: _loadMore, child: Text('strLoadMore'.tr)),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 65.0),
-              child: AboutTheApp(),
             ),
           ],
         ),

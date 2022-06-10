@@ -40,10 +40,17 @@ class _FiltersState extends State<Filters> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 15, 10, 10),
       child: SizedBox(
-        height: Get.height / 2.5,
+        height: Get.height / 2,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text('strFilters'.tr),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('strFilters'.tr),
+                  IconButton(onPressed: Get.back, icon: const Icon(GlobalConstants.closeIcon)),
+                ],
+            ),
             Row(
               children: [
                 Expanded(
