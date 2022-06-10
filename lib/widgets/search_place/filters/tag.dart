@@ -23,7 +23,7 @@ class _TagState extends State<Tag> {
     return  Padding(
       padding: const EdgeInsets.all(4),
       child: Chip(
-        backgroundColor: const Color(0xff80DF99),
+        backgroundColor: Theme.of(context).focusColor,
         label: Text(widget.title),
         elevation: 3,
         onDeleted: _removeFilter,
