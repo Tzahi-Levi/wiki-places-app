@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/widgets/app_background.dart';
 import 'package:wiki_places/widgets/appbar.dart';
-import 'package:wiki_places/widgets/search_place/filters/tags_list.dart';
 import 'package:wiki_places/widgets/search_places_fab.dart';
 
 class PlaceholderPage extends StatelessWidget {
