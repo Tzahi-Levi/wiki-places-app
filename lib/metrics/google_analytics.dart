@@ -1,5 +1,4 @@
 // ================= Google Analytics Wrapper =================
-import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -35,8 +34,8 @@ class GoogleAnalytics {
     _logEvent("LanguageChangedTo${selectedLanguageCode.split("_")[0].toUpperCase()}");
   }
 
-  void logChangeTheme() {
-    _logEvent("ThemeChangedTo${Get.isDarkMode ? "Dark" : "Light"}");
+  void logChangeTheme({required bool isDarkMode}) {
+    _logEvent("ThemeChangedTo${isDarkMode ? "Dark" : "Light"}");
   }
 
   void logWikipediaOpened() {
