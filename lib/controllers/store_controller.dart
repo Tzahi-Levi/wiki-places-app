@@ -148,9 +148,12 @@ class StoreController extends GetxController {
   }
 
   Future<void> addFavoritePlacesCollection(PlaceModel favoritePlace) async {
-    favoritePlacesCollection.value.places.add(PlaceModel.fromJson(json.decode(json.encode(favoritePlace))));
-    favoritePlacesCollection.refresh();
-    GoogleAnalytics.instance.logAddFavorite();
+    PlaceModel newFavoritePlace = PlaceModel.fromJson(json.decode(json.encode(favoritePlace)));
+    Future.delayed(const Duration(milliseconds: 200), () {
+      favoritePlacesCollection.value.places.add(newFavoritePlace);
+      favoritePlacesCollection.refresh();
+      GoogleAnalytics.instance.logAddFavorite();
+    });
   }
 
   Future<void> removeFavoritePlacesCollection(PlaceModel favoritePlace) async {
