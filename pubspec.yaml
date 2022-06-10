@@ -40,11 +40,6 @@ dependencies:
 flutter_native_splash:
   background_image: "images/start_app.png"
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^1.0.0
-
 flutter_icons:
   image_path: "images/app_icon.png"
   adaptive_icon_background: "#ffffff"
