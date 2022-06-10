@@ -10,7 +10,7 @@ class AppBackground extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(GlobalConstants.appBackgroundImage),
+          image: AssetImage(GlobalConstants.appBackgroundImage(isDarkMode: Theme.of(context).brightness == Brightness.dark)),
           fit: BoxFit.cover,
         ),
       ),
