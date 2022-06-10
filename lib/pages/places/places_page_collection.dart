@@ -6,21 +6,17 @@ import 'package:wiki_places/global/types.dart';
 class PlacesPageCollection {
   late SortedList<PlaceModel> places;
 
-  void _initList() {
+  PlacesPageCollection() {
     places = getPlacesList;
   }
 
-  PlacesPageCollection() {
-    _initList();
-  }
-
   PlacesPageCollection.fromList(List<PlaceModel> placeList) {
-    _initList();
+    places = getPlacesList;
     places.addAll(placeList);
   }
 
   PlacesPageCollection.fromJson(List placesJson) {
-    _initList();
+    places = getPlacesList;
     for (var json in placesJson) {
       places.add(PlaceModel.fromJson(json));
     }
