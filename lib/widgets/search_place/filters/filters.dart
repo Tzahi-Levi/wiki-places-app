@@ -47,7 +47,7 @@ class _FiltersState extends State<Filters> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                TextButton(onPressed: Get.back, child: Text('strClose'.tr)),
+                TextButton(onPressed: Get.back, child: Text('strClose'.tr, style: Get.textTheme.headline5)),
               ],
             ),
             Row(
@@ -69,7 +69,7 @@ class _FiltersState extends State<Filters> {
             ),
             TextButton(
                 onPressed: _storeController.cleanAllFilters,
-                child: Text('strCleanAllFilters'.tr, style: Get.textTheme.headline6),
+                child: Text('strCleanAllFilters'.tr, style: Get.textTheme.headline5),
             ),
             SizedBox(
                 height: Get.height / 4.9,

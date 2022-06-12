@@ -48,10 +48,11 @@ class PlaceholderPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(size.width * 0.35),
                     gradient: RadialGradient(
                       tileMode: TileMode.mirror,
-                      stops: const [0.4, 0.9],
+                      stops: const [0, 1],
                       colors: [
-                        Get.theme.primaryColor,
                         Get.theme.primaryColorDark,
+                        Get.theme.primaryColor,
+
                       ],
                     ),
                     boxShadow: const [BoxShadow(color: Colors.black38, blurRadius: 5, offset: Offset(5, 5))]

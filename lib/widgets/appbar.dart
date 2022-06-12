@@ -104,9 +104,9 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
       flexibleSpace: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.bottomRight,
-            end: Alignment.topLeft,
-            stops: const [0.1, 0.9],
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            stops: const [0, 0.7],
             colors: [
               Theme.of(context).primaryColor,
               Theme.of(context).primaryColorDark,
@@ -137,12 +137,12 @@ class MinorAppBar extends StatelessWidget implements PreferredSizeWidget {
       flexibleSpace: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.bottomRight,
-            end: Alignment.topLeft,
-            stops: const [0.1, 0.9],
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            stops: const [0, 0.7],
             colors: [
-              Get.theme.primaryColor,
-              Get.theme.primaryColorDark,
+              Theme.of(context).primaryColor,
+              Theme.of(context).primaryColorDark,
             ],
           ),
           borderRadius: const BorderRadius.only(
