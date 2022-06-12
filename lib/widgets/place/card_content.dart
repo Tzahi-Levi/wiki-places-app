@@ -181,7 +181,7 @@ class _CardContentState extends State<CardContent> {
                       children: [Container(
                         decoration: BoxDecoration(
                             borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                            color: Get.theme.primaryColor
+                            color: Theme.of(context).primaryColor
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),

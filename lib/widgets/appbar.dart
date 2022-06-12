@@ -108,8 +108,8 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
             end: Alignment.topLeft,
             stops: const [0.1, 0.9],
             colors: [
-              Get.theme.primaryColor,
-              Get.theme.primaryColorDark,
+              Theme.of(context).primaryColor,
+              Theme.of(context).primaryColorDark,
             ],
           ),
           borderRadius: const BorderRadius.only(

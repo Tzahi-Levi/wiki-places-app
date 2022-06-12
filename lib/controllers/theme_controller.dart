@@ -20,6 +20,7 @@ class ThemeController {
           bodyText1: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.black87),
           bodyText2: GoogleFonts.openSans(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.black87),
           subtitle1: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black87),
+          overline: GoogleFonts.openSans(fontSize: 13, fontWeight: FontWeight.bold, color:  Colors.white),
         ),
         colorScheme: const ColorScheme(
           brightness: Brightness.light,
@@ -39,20 +40,22 @@ class ThemeController {
         primaryColorDark: const Color(0xff8BC14C),
         primaryColorLight: const Color(0xffE1EEDA),
         bottomAppBarColor: Colors.white,
-        unselectedWidgetColor: Colors.black38,
+        unselectedWidgetColor: Colors.black87,
         highlightColor: const Color(0xff24A52E),
         focusColor: const Color(0xffE1EEDA),
+        indicatorColor: const Color(0xffE1EEDA),
         appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent, iconTheme: IconThemeData(color: Colors.white, size: 27), systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.transparent,),),
         cardTheme: CardTheme(color: Colors.white.withOpacity(0.8), shadowColor: Colors.black),
         iconTheme: const IconThemeData(color: Colors.white, size: 30),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: Color(0xff24A52E)),
         radioTheme:  RadioThemeData(fillColor:  MaterialStateProperty.all(const Color(0xff24A52E))),
-    checkboxTheme: CheckboxThemeData(fillColor: MaterialStateProperty.all(const Color(0xff24A52E)))
+    checkboxTheme: CheckboxThemeData(fillColor: MaterialStateProperty.all(const Color(0xff24A52E))),
+      canvasColor: Colors.white.withOpacity(0.95)
     );
 
   static ThemeData get darkMode => ThemeData.dark().copyWith(
       textTheme: TextTheme(
-        headline1: GoogleFonts.openSans(fontSize: 20, color: Colors.white),
+        headline1: GoogleFonts.openSans(fontSize: 20, color:  Colors.white, fontWeight: FontWeight.bold),
         headline2: GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
         headline3: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white),
         headline4: GoogleFonts.openSans(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.white),
@@ -60,6 +63,7 @@ class ThemeController {
         headline6: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white),
         bodyText1: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white),
         bodyText2: GoogleFonts.openSans(fontSize: 13, fontWeight: FontWeight.bold, color:  Colors.white),
+        overline: GoogleFonts.openSans(fontSize: 13, fontWeight: FontWeight.bold, color:  Colors.white),
       ),
       colorScheme: const ColorScheme(
         brightness: Brightness.dark,
@@ -75,16 +79,21 @@ class ThemeController {
         background: Color(0xff3D5B78),
         primaryContainer: Colors.white ,
       ),
-      primaryColor: const Color(0xff41BD3D),
-      primaryColorDark: const Color(0xff393F36),
-      primaryColorLight: const Color(0xff83C643),
-      unselectedWidgetColor: Colors.white,
-      focusColor: const Color(0xff528D59),
-      highlightColor: const Color(0xff24A52E),
+      primaryColor: const Color(0xff031334),
+      primaryColorDark: const Color(0xff164872),
+      primaryColorLight: Colors.blueGrey.withOpacity(0.95),
+      unselectedWidgetColor: const Color(0xff031334),
+      focusColor: const Color(0xff164872),
+      highlightColor: Colors.white,
+      indicatorColor: Colors.white,
       appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent, iconTheme: IconThemeData(color: Colors.white, size: 27)),
-      cardTheme: const CardTheme(color: Color(0xf0707D6A), shadowColor: Colors.black,),
+      cardTheme: CardTheme(color: Colors.blueGrey.withOpacity(0.8), shadowColor: Colors.black,),
       iconTheme: const IconThemeData(color: Colors.white, size: 30),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: Color(0xff262A24),)
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: Color(0xff164872),),
+      radioTheme:  RadioThemeData(fillColor:  MaterialStateProperty.all(const Color(0xff031334))),
+      checkboxTheme: CheckboxThemeData(fillColor: MaterialStateProperty.all(const Color(0xff031334))),
+      switchTheme: SwitchThemeData(thumbColor: MaterialStateProperty.all(Colors.white), trackColor: MaterialStateProperty.all(Colors.white70)),
+      canvasColor: Colors.blueGrey.withOpacity(0.95)
   );
 
   static void setTheme({required bool isDarkMode}) {

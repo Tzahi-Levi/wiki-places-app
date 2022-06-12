@@ -11,19 +11,10 @@ class AppBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-            stops: [0.5, 1],
-            colors: [
-              Get.theme.primaryColor,
-              Get.theme.primaryColorDark,
-            ],
-        ),
         image: DecorationImage(
-          opacity: 0.3,
           image: AssetImage(GlobalConstants.appBackgroundImage(isDarkMode: Theme.of(context).brightness == Brightness.dark)),
           fit: BoxFit.cover,
+          filterQuality: FilterQuality.high
         ),
       ),
     );

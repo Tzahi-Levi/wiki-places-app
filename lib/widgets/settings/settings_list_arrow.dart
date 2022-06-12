@@ -8,6 +8,6 @@ class SettingsListArrow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(onPressed: onPressed, icon: const Icon(GlobalConstants.settingsListIcon));
+    return IconButton(onPressed: onPressed, icon: Icon(GlobalConstants.settingsListIcon, color: Theme.of(context).indicatorColor,));
   }
 }

@@ -76,7 +76,7 @@ void openModalBottomSheet({required Widget widget}) {
     SingleChildScrollView(
       child: widget
     ),
-    backgroundColor: Get.theme.primaryColorLight,
+    backgroundColor: Get.theme.canvasColor,
   );
 }
 
