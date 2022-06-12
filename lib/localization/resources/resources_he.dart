@@ -11,7 +11,8 @@ final Map<String, String> resourcesHe = {
   'strKm': 'ק״מ',
   'strError': 'שגיאה',
   'strClose': 'סגור',
-  'strSearch': 'חיפוש חדש',
+  'strSearch': 'חפש',
+  'strNewSearch': 'חיפוש חדש',
   'strLocationPermissionDenied': 'הפעולה עושה שימוש בהרשאות המיקום, יש לאפשר לאפליקציה לגשת למיקום דרך הגדרות המכשיר.',
   'strTryAgain': 'שגיאה התרחשה בעת הפעולה, יש לנסות שנית מאוחר יותר',
   'strLoadMore': 'טען עוד',
@@ -53,7 +54,6 @@ final Map<String, String> resourcesHe = {
   // Search Place Page
   'strChangeRadius': 'חפש במרחק',
   'strSearchPlaceAround': 'הגדרות החיפוש',
-  'strPlace': 'המיקום:',
   'strCurrentPlace': 'המיקום הנוכחי',
   'strOtherPlace': 'מיקום אחר',
   'strChooseOtherPlace': 'בחירת מיקום אחר',
@@ -61,7 +61,6 @@ final Map<String, String> resourcesHe = {
   // Filters
   'strCleanAllFilters': 'נקה הכל',
   'strEmptyFilter': 'על מנת להוסיף מסנן, יש לציין את שמו',
-  'strFilters': 'מסננים:',
   'strAddFilter': 'הוסף מסנן',
   'strResetFilters': 'אפס מסננים',
 

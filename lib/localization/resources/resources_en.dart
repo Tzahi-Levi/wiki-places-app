@@ -11,7 +11,8 @@ final Map<String, String> resourcesEn = {
   'strKm': 'Km',
   'strError': 'Error',
   'strClose': 'Close',
-  'strSearch': 'New Search',
+  'strSearch': 'Search',
+  'strNewSearch': 'New Search',
   'strLocationPermissionDenied': 'This feature has to use location permission, please allow it in the device settings.',
   'strTryAgain': 'Error has been occurred, please try again later',
   'strLoadMore': 'Load More',
@@ -51,7 +52,6 @@ final Map<String, String> resourcesEn = {
   // Search Place Page
   'strChangeRadius': 'Search in distance',
   'strSearchPlaceAround': 'Search Settings',
-  'strPlace': 'Place:',
   'strCurrentPlace': 'Current Place',
   'strOtherPlace': 'Other Place',
   'strChooseOtherPlace': 'Choose Other Place',
@@ -59,7 +59,6 @@ final Map<String, String> resourcesEn = {
   // Filters
   'strCleanAllFilters': 'Clean All',
   'strEmptyFilter': 'Choose filter name for adding a filter',
-  'strFilters': 'Filters:',
   'strAddFilter': 'Add filter',
   'strResetFilters': 'Reset filters',
 
