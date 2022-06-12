@@ -35,8 +35,6 @@ class GlobalConstants {
   static const IconData placeIcon = Icons.place;
   static const IconData favoriteIcon = Icons.favorite;
   static const IconData nonFavoriteIcon = Icons.favorite_border;
-  static const IconData closeIcon = Icons.close;
-  static const IconData showMapBannerIcon = Icons.message;
   static const IconData settingsListIcon = Icons.chevron_right;
 
   // Map
