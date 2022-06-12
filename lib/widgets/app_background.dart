@@ -22,7 +22,7 @@ class AppBackground extends StatelessWidget {
         ),
         image: DecorationImage(
           opacity: 0.3,
-          image: AssetImage(GlobalConstants.appBackgroundImage),
+          image: AssetImage(GlobalConstants.appBackgroundImage(isDarkMode: Theme.of(context).brightness == Brightness.dark)),
           fit: BoxFit.cover,
         ),
       ),

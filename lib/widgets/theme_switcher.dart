@@ -19,7 +19,7 @@ class _ThemeSwitcherState extends State<ThemeSwitcher> {
     setState(() {
       _isDarkMode = !_isDarkMode;
     });
-    GoogleAnalytics.instance.logChangeTheme();
+    GoogleAnalytics.instance.logChangeTheme(isDarkMode: isDarkMode);
   }
 
   @override

@@ -35,8 +35,6 @@ class GlobalConstants {
   static const IconData placeIcon = Icons.place;
   static const IconData favoriteIcon = Icons.favorite;
   static const IconData nonFavoriteIcon = Icons.favorite_border;
-  static const IconData closeIcon = Icons.close;
-  static const IconData showMapBannerIcon = Icons.message;
   static const IconData settingsListIcon = Icons.chevron_right;
 
   // Map
@@ -53,7 +51,7 @@ class GlobalConstants {
   static const String errorPageImage = "images/error_page.png";
   static const String locationPermissionPageImage = "images/location_permission_page.png";
   static const String appIconImage = "images/app_icon.png";
-  static String get appBackgroundImage => "images/background_${Get.isDarkMode ? "dark" : "light"}.png";
+  static String appBackgroundImage({bool isDarkMode = false}) => "images/background_${isDarkMode ? "dark" : "light"}.png";
 
   //Links
   static const String connectionLostLink = "https://raw.githubusercontent.com/abuanwar072/20-Error-States-Flutter/master/assets/images/1_No%20Connection.png";

@@ -6,16 +6,14 @@ final Map<String, String> resourcesEn = {
   'strLanguageName': 'English',
   'strLanguageCode': 'en',
   'strAppName': ProjectConfig.projectName,
-  'strFirstLetterAscii': "65",
-  'strLastLetterAscii': "122",
   'strKm': 'Km',
   'strError': 'Error',
   'strClose': 'Close',
-  'strSearch': 'New Search',
+  'strSearch': 'Search',
+  'strNewSearch': 'New Search',
   'strLocationPermissionDenied': 'This feature has to use location permission, please allow it in the device settings.',
   'strTryAgain': 'Error has been occurred, please try again later',
   'strLoadMore': 'Load More',
-  'strUndo': 'Undo',
   'strCurrentLocation': 'Distance from current location',
   'strWhatISee': 'What do I see?',
 
@@ -30,7 +28,6 @@ final Map<String, String> resourcesEn = {
   'strSearchOnMap': 'You can get more articles on another place by long press on the other place',
 
   // Places
-  'strSearchPlace': 'Search Places',
   'strSearchSuccessfully': 'Searching for places in radius @radius @scale from @place was done successfully!',
   'strCurrentPlaceDetails': 'Places in radius @radius @scale from @place',
   'strWikipediaValuesInRadius': '@number Articles (@radius @scale)',
@@ -51,7 +48,6 @@ final Map<String, String> resourcesEn = {
   // Search Place Page
   'strChangeRadius': 'Search in distance',
   'strSearchPlaceAround': 'Search Settings',
-  'strPlace': 'Place:',
   'strCurrentPlace': 'Current Place',
   'strOtherPlace': 'Other Place',
   'strChooseOtherPlace': 'Choose Other Place',
@@ -59,7 +55,6 @@ final Map<String, String> resourcesEn = {
   // Filters
   'strCleanAllFilters': 'Clean All',
   'strEmptyFilter': 'Choose filter name for adding a filter',
-  'strFilters': 'Filters:',
   'strAddFilter': 'Add filter',
   'strResetFilters': 'Reset filters',
 

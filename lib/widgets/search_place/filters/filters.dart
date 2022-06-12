@@ -44,13 +44,7 @@ class _FiltersState extends State<Filters> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('strFilters'.tr),
-                  IconButton(onPressed: Get.back, icon: const Icon(GlobalConstants.closeIcon,)),
-                ],
-            ),
+            TextButton(onPressed: Get.back, child: Text('strClose'.tr)),
             Row(
               children: [
                 Expanded(
