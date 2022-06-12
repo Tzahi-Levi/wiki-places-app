@@ -6,8 +6,6 @@ final Map<String, String> resourcesEn = {
   'strLanguageName': 'English',
   'strLanguageCode': 'en',
   'strAppName': ProjectConfig.projectName,
-  'strFirstLetterAscii': "65",
-  'strLastLetterAscii': "122",
   'strKm': 'Km',
   'strError': 'Error',
   'strClose': 'Close',
@@ -16,7 +14,6 @@ final Map<String, String> resourcesEn = {
   'strLocationPermissionDenied': 'This feature has to use location permission, please allow it in the device settings.',
   'strTryAgain': 'Error has been occurred, please try again later',
   'strLoadMore': 'Load More',
-  'strUndo': 'Undo',
   'strCurrentLocation': 'Distance from current location',
   'strWhatISee': 'What do I see?',
 
@@ -31,7 +28,6 @@ final Map<String, String> resourcesEn = {
   'strSearchOnMap': 'You can get more articles on another place by long press on the other place',
 
   // Places
-  'strSearchPlace': 'Search Places',
   'strSearchSuccessfully': 'Searching for places in radius @radius @scale from @place was done successfully!',
   'strCurrentPlaceDetails': 'Places in radius @radius @scale from @place',
   'strWikipediaValuesInRadius': '@number Articles (@radius @scale)',
