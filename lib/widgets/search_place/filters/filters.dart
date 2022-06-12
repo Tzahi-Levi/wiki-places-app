@@ -56,6 +56,7 @@ class _FiltersState extends State<Filters> {
                   child: Form(
                     key: _formKey,
                     child: TextFormField(
+                      style: Get.textTheme.headline6,
                       controller: _filterController,
                       validator: _checkEmptyFilter,
                       decoration: InputDecoration(
