@@ -1,5 +1,6 @@
 // ================= AppBar Widgets =================
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:wiki_places/controllers/store_controller.dart';
 import 'package:wiki_places/global/constants.dart';
@@ -30,16 +31,16 @@ class DetailsAndFiltersAppbar extends StatelessWidget implements PreferredSizeWi
       actions: [
         Visibility(
           visible: showAppbarDetails,
-          child: IconButton(
+          child: const IconButton(
             onPressed: displayCurrentPlaceDetails,
-            icon: Icon(GlobalConstants.infoIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
+            icon: Icon(GlobalConstants.infoIcon, size: 25, color: Colors.white),
           ),
         ),
         Visibility(
           visible: showAppbarFilters,
           child: IconButton(
             onPressed: _openFilters,
-            icon: Icon(GlobalConstants.filtersIcon, size: 25, color: Get.isDarkMode ? Colors.white : const Color(0xff393F36)),
+            icon: const Icon(GlobalConstants.filtersIcon, size: 25, color:Colors.white),
           ),
         ),
       ],
@@ -96,13 +97,21 @@ class WikiPlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return GetX<StoreController>(
         builder: (store) => AppBar(
-      title: Text(_getAppBarTitle, style: Get.textTheme.headline1),
-      centerTitle: true,
-      actions: actions,
-      leading: leadingAction,
+          title: Text(_getAppBarTitle, style: Get.textTheme.headline1),
+          centerTitle: true,
+          actions: actions,
+          leading: leadingAction,
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
+          gradient: LinearGradient(
+            begin: Alignment.bottomRight,
+            end: Alignment.topLeft,
+            stops: const [0.1, 0.9],
+            colors: [
+              Get.theme.primaryColor,
+              Get.theme.primaryColorDark,
+            ],
+          ),
           borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20),
@@ -127,7 +136,15 @@ class MinorAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
+          gradient: LinearGradient(
+            begin: Alignment.bottomRight,
+            end: Alignment.topLeft,
+            stops: const [0.1, 0.9],
+            colors: [
+              Get.theme.primaryColor,
+              Get.theme.primaryColorDark,
+            ],
+          ),
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20),

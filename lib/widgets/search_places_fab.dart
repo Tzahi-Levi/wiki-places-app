@@ -19,7 +19,7 @@ class SearchPlacesFAB extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 20.0),
       child: FloatingActionButton.extended(
         label: Text('strSearch'.tr, style: Theme.of(context).textTheme.headline3),
-        icon: const Icon(GlobalConstants.searchIcon),
+        icon: const Icon(GlobalConstants.searchIcon, color: Colors.white,),
         onPressed: _openSearchPlacePage,
       ),
     );

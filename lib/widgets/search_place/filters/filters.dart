@@ -48,7 +48,7 @@ class _FiltersState extends State<Filters> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('strFilters'.tr),
-                  IconButton(onPressed: Get.back, icon: const Icon(GlobalConstants.closeIcon)),
+                  IconButton(onPressed: Get.back, icon: const Icon(GlobalConstants.closeIcon,)),
                 ],
             ),
             Row(
@@ -65,7 +65,7 @@ class _FiltersState extends State<Filters> {
                     ),
                   ),
                 ),
-                IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon)),
+                IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon), color: Get.theme.primaryColor,),
               ],
             ),
             TextButton(

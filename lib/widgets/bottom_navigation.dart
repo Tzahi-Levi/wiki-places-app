@@ -23,7 +23,7 @@ class BottomNavigation extends StatelessWidget {
       elevation: 10,
       color: Theme.of(context).unselectedWidgetColor,
       activeColor: Theme.of(context).highlightColor,
-      backgroundColor: Theme.of(context).primaryColorDark,
+      backgroundColor: Theme.of(context).bottomAppBarColor,
       style: TabStyle.react,
       items: [
         TabItem(title: 'strFavoritesPageName'.tr, icon: GlobalConstants.favoriteIcon),

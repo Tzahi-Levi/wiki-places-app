@@ -111,20 +111,20 @@ class _CardContentState extends State<CardContent> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [Container(
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                            color: Colors.white70
+                        decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                            color: Get.theme.primaryColor
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(widget.model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff37536D))),
-                              Text(" " + 'strKm'.tr, style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff37536D))),
+                              Text(widget.model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white)),
+                              Text(" " + 'strKm'.tr, style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white)),
                               Visibility(
                                 visible: widget.isCurrentLocation,
-                                child: Text(" " + 'strCurrentLocation'.tr, style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff37536D))),
+                                child: Text(" " + 'strCurrentLocation'.tr, style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color:Colors.white)),
                               ),
                             ],
                           ),
@@ -179,20 +179,20 @@ class _CardContentState extends State<CardContent> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [Container(
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                            color: Colors.white70
+                        decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                            color: Get.theme.primaryColor
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(widget.model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff37536D))),
-                              Text(" " + 'strKm'.tr, style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff37536D))),
+                              Text(widget.model.distance.toPrecisionString(), style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white)),
+                              Text(" " + 'strKm'.tr, style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white)),
                               Visibility(
                                 visible: widget.isCurrentLocation,
-                                child: Text(" " + 'strCurrentLocation'.tr, style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color: const Color(0xff37536D))),
+                                child: Text(" " + 'strCurrentLocation'.tr, style: GoogleFonts.openSans(fontSize: 15, fontWeight: FontWeight.normal, color:Colors.white)),
                               ),
                             ],
                           ),
