@@ -6,17 +6,14 @@ final Map<String, String> resourcesHe = {
   'strLanguageName': 'עברית',
   'strLanguageCode': 'he',
   'strAppName': ProjectConfig.projectName,
-  'strFirstLetterAscii': "1488",
-  'strLastLetterAscii': "1514",
   'strKm': 'ק״מ',
   'strError': 'שגיאה',
   'strClose': 'סגור',
-  'strSearch': 'חפש',
+  'strSearch': 'חפשו',
   'strNewSearch': 'חיפוש חדש',
   'strLocationPermissionDenied': 'הפעולה עושה שימוש בהרשאות המיקום, יש לאפשר לאפליקציה לגשת למיקום דרך הגדרות המכשיר.',
   'strTryAgain': 'שגיאה התרחשה בעת הפעולה, יש לנסות שנית מאוחר יותר',
-  'strLoadMore': 'טען עוד',
-  'strUndo': 'בטל',
+  'strLoadMore': 'טענו עוד',
   'strCurrentLocation': 'ממיקומך הנוכחי',
   'strWhatISee': 'מה אני רואה?',
 
@@ -28,10 +25,9 @@ final Map<String, String> resourcesHe = {
 
   // Map
   'strYourChosenPlace': 'מיקומך הנוכחי',
-  'strSearchOnMap': 'ניתן לקבל ערכים קרובים למיקום אחר על המפה בלחיצה ארוכה על המיקום המבוקש',
+  'strSearchOnMap': 'לחצו לחיצה ארוכה על המפה כדי לשנות את המיקום סביבו מחפשים',
 
   // Places
-  'strSearchPlace': 'חפש ערכים',
   'strSearchSuccessfully': 'חיפוש ערכים במרחק @radius @scale מ@place בוצע בהצלחה!',
   'strCurrentPlaceDetails': 'ערכים במרחק @radius @scale מ@place',
   'strWikipediaValuesInRadius': '@number ערכים (@radius @scale)',
@@ -40,19 +36,19 @@ final Map<String, String> resourcesHe = {
   'strReadMore': 'לערך המלא',
   'strRadiusMustBePositive': 'המרחק חייב להיות מספר חיובי',
   'strCantIncreaseRadius':'לא ניתן להגדיל את המרחק מעבר ל-@maxRadius ק״מ',
-  'strNoPlacesAvailable': "אין ערכים זמינים. על מנת לחפש ערכים, יש ללחוץ על כפתור החיפוש.",
-  'strEmptyPlaceName': "על מנת לבצע חיפוש, יש לבחור מיקום",
-  'strPlaceNotExist': "המיקום המבוקש לא נמצא, יש לנסות לחפש מיקום אחר",
+  'strNoPlacesAvailable': "אין ערכים זמינים. על מנת לחפש ערכים, לחצו על כפתור החיפוש.",
+  'strEmptyPlaceName': "על מנת לבצע חיפוש, בחרו מיקום",
+  'strPlaceNotExist': "המיקום המבוקש לא נמצא, נסו לחפש מיקום אחר",
 
   // Favorites
   'strFavorites': 'מועדפים-',
   'strFavoritesNumber': '@number ערכים מועדפים',
   'strFavoriteNumber': 'ערך מועדף יחיד',
   'strEmptyFavoriteNumber': 'אין ערכים מועדפים',
-  'strNoSelectedFavorites': 'לא נבחרו מועדפים. על מנת להוסיף ערך לרשימת המועדפים, יש ללחוץ על ה-@ ברשימת הערכים.',
+  'strNoSelectedFavorites': 'לא נבחרו מועדפים. לחצו על ה-@ ברשימת הערכים על מנת להוסיף ערך לרשימת המועדפים.',
 
   // Search Place Page
-  'strChangeRadius': 'חפש במרחק',
+  'strChangeRadius': 'חפשו במרחק',
   'strSearchPlaceAround': 'הגדרות החיפוש',
   'strCurrentPlace': 'המיקום הנוכחי',
   'strOtherPlace': 'מיקום אחר',
@@ -60,26 +56,26 @@ final Map<String, String> resourcesHe = {
 
   // Filters
   'strCleanAllFilters': 'נקה הכל',
-  'strEmptyFilter': 'על מנת להוסיף מסנן, יש לציין את שמו',
-  'strAddFilter': 'הוסף מסנן',
-  'strResetFilters': 'אפס מסננים',
+  'strEmptyFilter': 'ציינו את שם המסנן על מנת להוסיפו.',
+  'strAddFilter': 'הוסיפו מסנן',
+  'strResetFilters': 'אפסו מסננים',
 
   // Settings
   'strSettings': 'הגדרות',
   'strDarkMode': 'מצב כהה',
-  'strInviteFriend': 'הזמן חבר',
-  'strInviteFriendSubject': 'נסה את אפלקציית ויקי-פה',
+  'strInviteFriend': 'הזמינו חבר',
+  'strInviteFriendSubject': 'נסו את אפלקציית ויקי-פה',
   'strInviteFriendContent': 'אפליקציית ויקי-פה היא אפליקצייה המאפשרת לצפות בערכי ויקיפדיה לפי מיקום ברשימה ומפה, לשמור ערכים מועדפים ולקבל הוראות הגעה למיקומים שאהבתם. נסו אותנו: \n@googlePlayUrl',
-  'strRateUs': 'דרג אותנו',
-  'strRateUsExplanation': 'בחרו בכוכב כדי לדרג אותנו. אם תרצו, ניתן להוסיף פירוט נוסף',
-  'strSubmit': 'שלח',
+  'strRateUs': 'דרגו אותנו',
+  'strRateUsExplanation': 'בחרו בכוכב כדי לדרג אותנו. אם תרצו, ניתן להוסיף פירוט נוסף.',
+  'strSubmit': 'שלחו',
   'strCommentHint': 'כתבו את דעתכם כאן (אופציונלי)',
   'strVersion': 'גרסה',
 
   // Walkthrough
-  'strWatchWalkthrough': 'צפה בהדרכה',
-  'strSkip': 'דלג',
-  'strNext': 'המשך',
+  'strWatchWalkthrough': 'צפו בהדרכה',
+  'strSkip': 'דלגו',
+  'strNext': 'המשיכו',
   'strFinish': 'סיים',
   'strWelcomeTitle': 'ברוכים הבאים לויקי-פה!',
   'strWelcomeDescription': 'אפליקציה המאפשרת צפייה בערכי ויקיפדיה של מקומות הנמצאים בסביבתכם וכאלו שרחוקים ממכם. צפו בערכים על מפה, קבלו סקירה מהירה וויזואלית שלהם ברשימה ושמרו את הערכים המועדפים עליכם ברשימת המועדפים. קבלו הוראות הגעה וסננו ערכים לפי טקסט לבחירתכם.',
