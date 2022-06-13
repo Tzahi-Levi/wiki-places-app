@@ -90,7 +90,7 @@ final Map<String, String> resourcesEn = {
 
   // Errors
   'strSendReport': 'Report a problem',
-
+  'strReportRecorded': 'The report is recorded, thank you!',
 
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",

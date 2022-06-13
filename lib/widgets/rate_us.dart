@@ -14,7 +14,7 @@ class RateUs extends StatelessWidget {
   }
 
   void _onSubmit(RatingDialogResponse response) {
-    sendEmail(GlobalConstants.sendReviewsRecipients, "New Rate for WikiPo app has been recorded", "Rate: ${response.rating}\nComment: ${response.comment}");
+    sendEmail(subject: "New Rate for WikiPo app has been recorded", text: "Rate: ${response.rating}\nComment: ${response.comment}");
     GoogleAnalytics.instance.logRateUsSubmit();
   }
 
