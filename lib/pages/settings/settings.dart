@@ -37,12 +37,12 @@ class SettingsPage extends StatelessWidget {
       body: SingleChildScrollView(
           child: GenericList(
             items: [
-              [Text('strDarkMode'.tr, style: Get.textTheme.overline), const ThemeSwitcher()],
-              [Text('strInviteFriend'.tr, style: Get.textTheme.overline), SettingsListArrow(onPressed: _openInviteFriend)],
-              [Text('strWatchWalkthrough'.tr, style: Get.textTheme.overline), SettingsListArrow(onPressed: () => {navigateToPage(const Walkthrough())})],
-              [Text('strRateUs'.tr, style: Get.textTheme.overline), SettingsListArrow(onPressed: _openRateUs)],
-              [Text('strAboutTheApp'.tr, style: Get.textTheme.overline), const AboutTheApp()],
-              [Text('strVersion'.tr, style: Get.textTheme.overline), Text(ProjectConfig.projectVersion, style: Get.textTheme.overline)],
+              [Text('strDarkMode'.tr, style: Theme.of(context).textTheme.subtitle1), const ThemeSwitcher()],
+              [Text('strInviteFriend'.tr, style: Theme.of(context).textTheme.subtitle1), SettingsListArrow(onPressed: _openInviteFriend)],
+              [Text('strWatchWalkthrough'.tr, style: Theme.of(context).textTheme.subtitle1), SettingsListArrow(onPressed: () => {navigateToPage(const Walkthrough())})],
+              [Text('strRateUs'.tr, style: Theme.of(context).textTheme.subtitle1), SettingsListArrow(onPressed: _openRateUs)],
+              [Text('strAboutTheApp'.tr, style: Theme.of(context).textTheme.subtitle1), const AboutTheApp()],
+              [Text('strVersion'.tr, style: Theme.of(context).textTheme.subtitle1), Text(ProjectConfig.projectVersion, style: Theme.of(context).textTheme.subtitle1)],
             ],
           ),
       ),

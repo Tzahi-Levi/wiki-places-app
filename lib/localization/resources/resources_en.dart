@@ -34,7 +34,7 @@ final Map<String, String> resourcesEn = {
   'strReadMore': 'Full Article',
   'strRadiusMustBePositive': 'The radius must be a positive number',
   'strCantIncreaseRadius': "The radius can't be increased above @maxRadius km",
-  'strNoPlacesAvailable': "There are not articles available. For searching articles, please click on the search button.",
+  'strNoPlacesAvailable': "There are not articles available.\n For searching articles, please click on the search button.",
   'strEmptyPlaceName': "For searching places, please choose a place name",
   'strPlaceNotExist': "The chosen place is not found, please try to search another place",
 
@@ -43,7 +43,7 @@ final Map<String, String> resourcesEn = {
   'strFavoritesNumber': '@number Favorite Articles',
   'strFavoriteNumber': 'One Favorite Article',
   'strEmptyFavoriteNumber': 'No Favorite Articles',
-  'strNoSelectedFavorites': 'There are not favorite places. For adding places to the favorites, click on @ in the places page.',
+  'strNoSelectedFavorites': 'There are not favorite places.\n For adding places to the favorites, click on @ in the places page.',
 
   // Search Place Page
   'strChangeRadius': 'Search in distance',
