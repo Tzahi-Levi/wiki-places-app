@@ -94,5 +94,6 @@ final Map<String, String> resourcesEn = {
   'strErrorPageConnection': "Error Image",
   'strLocationPermissionPage': "Location Permission Image",
   'strBackgroundImage': "Background Image",
+  'strSplashImage': "Splash Image",
   'strAboutTheApp': "About the app",
 };

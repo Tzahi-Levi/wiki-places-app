@@ -96,5 +96,6 @@ final Map<String, String> resourcesHe = {
   'strErrorPageConnection': "תמונת שגיאה",
   'strLocationPermissionPage': "תמונת אין הרשאות מיקום",
   'strBackgroundImage': "תמונת רקע",
+  'strSplashImage': "תמונת פתיחה",
   'strAboutTheApp': "אודות האפליקציה",
 };

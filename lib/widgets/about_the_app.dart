@@ -53,7 +53,7 @@ class AboutTheApp extends StatelessWidget {
           leading: Image.asset(
             GlobalConstants.splashPageImage,
           ),
-          trailing: Text('strBackgroundImage'.tr),
+          trailing: Text('strSplashImage'.tr),
         ),
         Text(GlobalConstants.splashBackgroundLink, style: Get.textTheme.headline4),
       ],

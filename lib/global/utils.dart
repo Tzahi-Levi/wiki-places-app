@@ -80,6 +80,7 @@ void openModalBottomSheet({required Widget widget}) {
     SingleChildScrollView(
       child: widget
     ),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
     backgroundColor: Get.theme.canvasColor,
   );
 }
