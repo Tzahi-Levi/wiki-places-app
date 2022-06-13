@@ -90,6 +90,9 @@ final Map<String, String> resourcesHe = {
   'strWalkthroughSettingsPageTitle': 'הגדרות האפליקציה',
   'strWalkthroughSettingsPageDescription': 'במסך זה ניתן לשנות את הגדרות האפליקציה- לשנות את צבעי האפליקציה, להזמין חברים להשתמש באפליקציה וכן לדרג את האפליקציה. בכל רגע נתון ניתן לחזור ולצפות במדריך זה דרך מסך זה בלחיצה על הכפתור ״צפה בהדרכה״.',
 
+  // Errors
+  'strSendReport': 'דווח על בעיה',
+
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",
   'strLostConnectionImage': "תמונת בעיה ברשת",

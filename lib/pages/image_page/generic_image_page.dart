@@ -1,9 +1,13 @@
 // ================= Generic Image Page =================
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GenericImagePage extends StatelessWidget {
-  GenericImagePage({required this.image, Key? key}) : super(key: key);
+  GenericImagePage({required this.image, this.isResponsive = false, Key? key}) : super(key: key);
   String image;
+  bool isResponsive;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +34,21 @@ class GenericImagePage extends StatelessWidget {
               ),
             ),
           ),
+          Positioned(
+              bottom: Get.height * 0.1,
+              left: Get.width / 3,
+              child: Visibility(
+                  visible: isResponsive,
+                  child: TextButton(
+                    child: Text(
+                      'strSendReport'.tr,
+                      style: GoogleFonts.openSans(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Get.theme.primaryColor),
+                    ),
+                    onPressed: () => {},
+                  )))
         ],
       ),
     );

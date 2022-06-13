@@ -88,6 +88,10 @@ final Map<String, String> resourcesEn = {
   'strWalkthroughSettingsPageTitle': 'App Settings',
   'strWalkthroughSettingsPageDescription': 'Here you can change the app settings- change the theme, invite a friend to use the app, and rate the app. You can always return and watch this walkthrough again by clicking on "Watch walkthrough" in this page.',
 
+  // Errors
+  'strSendReport': 'Report a problem',
+
+
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",
   'strLostConnectionImage': "Lost Connection Image",
