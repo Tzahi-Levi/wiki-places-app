@@ -34,7 +34,7 @@ final Map<String, String> resourcesEn = {
   'strReadMore': 'Full Article',
   'strRadiusMustBePositive': 'The radius must be a positive number',
   'strCantIncreaseRadius': "The radius can't be increased above @maxRadius km",
-  'strNoPlacesAvailable': "There are not articles available. For searching articles, please click on the search button.",
+  'strNoPlacesAvailable': "There are not articles available.\n For searching articles, please click on the search button.",
   'strEmptyPlaceName': "For searching places, please choose a place name",
   'strPlaceNotExist': "The chosen place is not found, please try to search another place",
 
@@ -43,7 +43,7 @@ final Map<String, String> resourcesEn = {
   'strFavoritesNumber': '@number Favorite Articles',
   'strFavoriteNumber': 'One Favorite Article',
   'strEmptyFavoriteNumber': 'No Favorite Articles',
-  'strNoSelectedFavorites': 'There are not favorite places. For adding places to the favorites, click on @ in the places page.',
+  'strNoSelectedFavorites': 'There are not favorite places.\n For adding places to the favorites, click on @ in the places page.',
 
   // Search Place Page
   'strChangeRadius': 'Search in distance',
@@ -88,11 +88,16 @@ final Map<String, String> resourcesEn = {
   'strWalkthroughSettingsPageTitle': 'App Settings',
   'strWalkthroughSettingsPageDescription': 'Here you can change the app settings- change the theme, invite a friend to use the app, and rate the app. You can always return and watch this walkthrough again by clicking on "Watch walkthrough" in this page.',
 
+  // Errors
+  'strSendReport': 'Report a problem',
+
+
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",
   'strLostConnectionImage': "Lost Connection Image",
   'strErrorPageConnection': "Error Image",
   'strLocationPermissionPage': "Location Permission Image",
   'strBackgroundImage': "Background Image",
+  'strSplashImage': "Splash Image",
   'strAboutTheApp': "About the app",
 };

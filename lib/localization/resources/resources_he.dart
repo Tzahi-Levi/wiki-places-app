@@ -36,7 +36,7 @@ final Map<String, String> resourcesHe = {
   'strReadMore': 'לערך המלא',
   'strRadiusMustBePositive': 'המרחק חייב להיות מספר חיובי',
   'strCantIncreaseRadius':'לא ניתן להגדיל את המרחק מעבר ל-@maxRadius ק״מ',
-  'strNoPlacesAvailable': "אין ערכים זמינים. על מנת לחפש ערכים, לחצו על כפתור החיפוש.",
+  'strNoPlacesAvailable': "אין ערכים זמינים.\n על מנת לחפש ערכים, לחצו על כפתור החיפוש.",
   'strEmptyPlaceName': "על מנת לבצע חיפוש, בחרו מיקום",
   'strPlaceNotExist': "המיקום המבוקש לא נמצא, נסו לחפש מיקום אחר",
 
@@ -45,7 +45,7 @@ final Map<String, String> resourcesHe = {
   'strFavoritesNumber': '@number ערכים מועדפים',
   'strFavoriteNumber': 'ערך מועדף יחיד',
   'strEmptyFavoriteNumber': 'אין ערכים מועדפים',
-  'strNoSelectedFavorites': 'לא נבחרו מועדפים. לחצו על ה-@ ברשימת הערכים על מנת להוסיף ערך לרשימת המועדפים.',
+  'strNoSelectedFavorites': 'לא נבחרו מועדפים.\n לחצו על ה-@ ברשימת הערכים על מנת להוסיף ערך לרשימת המועדפים.',
 
   // Search Place Page
   'strChangeRadius': 'חפשו במרחק',
@@ -90,11 +90,15 @@ final Map<String, String> resourcesHe = {
   'strWalkthroughSettingsPageTitle': 'הגדרות האפליקציה',
   'strWalkthroughSettingsPageDescription': 'במסך זה ניתן לשנות את הגדרות האפליקציה- לשנות את צבעי האפליקציה, להזמין חברים להשתמש באפליקציה וכן לדרג את האפליקציה. בכל רגע נתון ניתן לחזור ולצפות במדריך זה דרך מסך זה בלחיצה על הכפתור ״צפה בהדרכה״.',
 
+  // Errors
+  'strSendReport': 'דווח על בעיה',
+
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",
   'strLostConnectionImage': "תמונת בעיה ברשת",
   'strErrorPageConnection': "תמונת שגיאה",
   'strLocationPermissionPage': "תמונת אין הרשאות מיקום",
   'strBackgroundImage': "תמונת רקע",
+  'strSplashImage': "תמונת פתיחה",
   'strAboutTheApp': "אודות האפליקציה",
 };

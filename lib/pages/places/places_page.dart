@@ -56,7 +56,7 @@ class _PlacesPageState extends State<PlacesPage> {
           bottomWidgets: [
             Padding(
               padding: EdgeInsets.only(left: Get.width * 0.33, right: Get.width * 0.33),
-              child: ElevatedButton(onPressed: _loadMore, child: Text('strLoadMore'.tr)),
+              child: ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Get.theme.primaryColorLight) ), onPressed: _loadMore, child: Text('strLoadMore'.tr, style: Get.textTheme.bodyText2,)),
             ),
           ],
         ),

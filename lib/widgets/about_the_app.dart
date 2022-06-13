@@ -49,6 +49,13 @@ class AboutTheApp extends StatelessWidget {
           trailing: Text('strBackgroundImage'.tr),
         ),
         Text(GlobalConstants.appBackgroundLink, style: Get.textTheme.headline4),
+        ListTile(
+          leading: Image.asset(
+            GlobalConstants.splashPageImage,
+          ),
+          trailing: Text('strSplashImage'.tr),
+        ),
+        Text(GlobalConstants.splashBackgroundLink, style: Get.textTheme.headline4),
       ],
     );
   }

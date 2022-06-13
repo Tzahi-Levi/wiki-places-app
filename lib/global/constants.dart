@@ -54,10 +54,11 @@ class GlobalConstants {
   static String appBackgroundImage({bool isDarkMode = false}) => "images/background_${isDarkMode ? "dark" : "light"}.png";
 
   //Links
-  static const String connectionLostLink = "https://raw.githubusercontent.com/abuanwar072/20-Error-States-Flutter/master/assets/images/1_No%20Connection.png";
+  static const String connectionLostLink = "https://raw.githubusercontent.com/abuanwar072/20-Error-States-Flutter/master/assets/images/10_Connection%20Lost.png";
   static const String errorPageLink = "https://github.com/abuanwar072/20-Error-States-Flutter";
   static const String locationPermissionPageLink = "https://github.com/abuanwar072/20-Error-States-Flutter";
-  static const String appBackgroundLink = "https://cdn.pixabay.com/photo/2021/09/04/13/47/flowers-6597862_960_720.png";
+  static const String appBackgroundLink = "https://pixabay.com/vectors/the-background-wallpaper-sea-blue-292720";
+  static const String splashBackgroundLink = "https://cdn.pixabay.com/photo/2021/09/04/13/47/flowers-6597862_960_720.png";
 
   // Slider
   static int radiusSliderDivisions = 10;

@@ -33,6 +33,7 @@ class _ChangeRadiusSliderState extends State<ChangeRadiusSlider> {
               max: GlobalConstants.maxRadius,
               divisions: GlobalConstants.radiusSliderDivisions,
               label: '${widget.controller.value} ${GlobalConstants.defaultScale}',
+              activeColor: Get.theme.primaryColor,
               onChanged: _updateSlider,
           ),
           Text('${widget.controller.value} ${GlobalConstants.defaultScale}'),

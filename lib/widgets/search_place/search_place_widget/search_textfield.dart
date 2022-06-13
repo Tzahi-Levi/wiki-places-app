@@ -26,7 +26,10 @@ class SearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TypeAheadField(
+      suggestionsBoxDecoration: SuggestionsBoxDecoration( borderRadius: BorderRadius.circular(20), color: Get.theme.canvasColor),
+      hideOnLoading: true,
       textFieldConfiguration: TextFieldConfiguration(
+        style: Get.textTheme.headline6,
         controller: placeNameController,
         onTap: _resetText,
         enabled: isEnabled,

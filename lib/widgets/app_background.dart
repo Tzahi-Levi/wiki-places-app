@@ -1,5 +1,7 @@
 // ================= App Background Widget =================
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:wiki_places/global/constants.dart';
 
 class AppBackground extends StatelessWidget {
@@ -12,6 +14,7 @@ class AppBackground extends StatelessWidget {
         image: DecorationImage(
           image: AssetImage(GlobalConstants.appBackgroundImage(isDarkMode: Theme.of(context).brightness == Brightness.dark)),
           fit: BoxFit.cover,
+          filterQuality: FilterQuality.high
         ),
       ),
     );
