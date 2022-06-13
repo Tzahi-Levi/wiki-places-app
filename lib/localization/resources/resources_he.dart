@@ -91,10 +91,12 @@ final Map<String, String> resourcesHe = {
   'strWalkthroughSettingsPageDescription': 'במסך זה ניתן לשנות את הגדרות האפליקציה- לשנות את צבעי האפליקציה, להזמין חברים להשתמש באפליקציה וכן לדרג את האפליקציה. בכל רגע נתון ניתן לחזור ולצפות במדריך זה דרך מסך זה בלחיצה על הכפתור ״צפה בהדרכה״.',
 
   // Errors
-  'strSendReport': 'דווח על בעיה',
+  'strSendReport': 'לדיווח על בעיה',
+  'strReportRecorded': 'הדיווח התקבל בהצלחה, תודה!',
 
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",
+  'strCredit': 'האפליקציה ויקי-פה פותחה על ידי רז לוי וצחי לוי במסגרת קורס לתואר ראשון בפקולטה למדעי המחשב בטכניון. הקורס ניתן במעבדה למידע וידע (TD&K) בהנחיית ד"ר אורן משלי.',
   'strLostConnectionImage': "תמונת בעיה ברשת",
   'strErrorPageConnection': "תמונת שגיאה",
   'strLocationPermissionPage': "תמונת אין הרשאות מיקום",

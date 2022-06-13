@@ -8,6 +8,6 @@ class ErrorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GenericImagePage(image: GlobalConstants.errorPageImage, isResponsive: true,);
+    return GenericImagePage(image: GlobalConstants.errorPageImage, reportError: true,);
   }
 }

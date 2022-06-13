@@ -135,7 +135,7 @@ void displayBanner({required String content}) async {
   );
 }
 
-void sendEmail(List<String> recipients, String subject, String text) async {
+void sendEmail({required String subject, required String text, List<String> recipients = GlobalConstants.sendReviewsRecipients}) async {
   SmtpServer smtpServer = gmail(ProjectConfig.appEmail, ProjectConfig.appEmailPassword);
   final message = mail.Message()
     ..from = const mail.Address(ProjectConfig.appEmail, ProjectConfig.projectName)
