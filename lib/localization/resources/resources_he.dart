@@ -95,6 +95,7 @@ final Map<String, String> resourcesHe = {
 
   // About The App
   'strLegalese': "כל החבילות והאייקונים בשימוש שייכים לבעליהם",
+  'strCredit': 'האפליקציה ויקי-פה פותחה על ידי רז לוי וצחי לוי במסגרת קורס לתואר ראשון בפקולטה למדעי המחשב בטכניון. הקורס ניתן במעבדה למידע וידע (TD&K) בהנחיית ד"ר אורן משלי.',
   'strLostConnectionImage': "תמונת בעיה ברשת",
   'strErrorPageConnection': "תמונת שגיאה",
   'strLocationPermissionPage': "תמונת אין הרשאות מיקום",

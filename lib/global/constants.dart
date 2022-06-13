@@ -51,6 +51,7 @@ class GlobalConstants {
   static const String errorPageImage = "images/error_page.png";
   static const String locationPermissionPageImage = "images/location_permission_page.png";
   static const String appIconImage = "images/app_icon.png";
+  static const String labIconImage = "images/lab_icon.jpeg";
   static String appBackgroundImage({bool isDarkMode = false}) => "images/background_${isDarkMode ? "dark" : "light"}.png";
 
   //Links

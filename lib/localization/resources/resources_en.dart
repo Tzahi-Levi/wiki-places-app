@@ -94,6 +94,7 @@ final Map<String, String> resourcesEn = {
 
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",
+  'strCredit': 'WikiPo app is developed by Raz Levi and Tzahi Levi in a course in the CS faculty in the Technion, Supervised by Dr. Oren Mishali In collaboration with TD&K - Technion Data & Knowledge Lab of the CS faculty.',
   'strLostConnectionImage': "Lost Connection Image",
   'strErrorPageConnection': "Error Image",
   'strLocationPermissionPage': "Location Permission Image",
