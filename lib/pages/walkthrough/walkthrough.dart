@@ -62,11 +62,6 @@ class Walkthrough extends StatelessWidget {
           title: 'strWalkthroughFavoritesPageTitle'.tr,
           description: 'strWalkthroughFavoritesPageDescription'.tr
       ),
-      _setWalkthroughScreen(
-          imagePath: 'images/walkthrough/${'strLanguageCode'.tr}/Settings.png',
-          title: 'strWalkthroughSettingsPageTitle'.tr,
-          description: 'strWalkthroughSettingsPageDescription'.tr
-      ),
     ];
   }
 
