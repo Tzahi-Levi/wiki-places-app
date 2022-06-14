@@ -25,7 +25,7 @@ final Map<String, String> resourcesHe = {
 
   // Map
   'strYourChosenPlace': 'מיקומך הנוכחי',
-  'strSearchOnMap': 'לחצו לחיצה ארוכה על המפה כדי לשנות את המיקום סביבו מחפשים',
+  'strSearchOnMap': 'לחצו לחיצה ארוכה כדי לשנות את המיקום סביבו מתבצע החיפוש.',
 
   // Places
   'strSearchSuccessfully': 'חיפוש ערכים במרחק @radius @scale מ@place בוצע בהצלחה!',
