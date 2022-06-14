@@ -15,7 +15,7 @@
 
 
 <p align="center">
-    <img src="/images/screenshots/lab_icon.jpeg"/>
+    <img src="/images/lab_icon.jpeg"/>
 </p>
 
 
