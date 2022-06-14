@@ -74,9 +74,9 @@ final Map<String, String> resourcesHe = {
 
   // Walkthrough
   'strWatchWalkthrough': 'צפו בהדרכה',
-  'strSkip': 'דלגו',
-  'strNext': 'המשיכו',
-  'strFinish': 'סיים',
+  'strSkip': 'סגירה',
+  'strNext': 'הבא',
+  'strFinish': 'סיום',
   'strWelcomeTitle': 'ברוכים הבאים לויקי-פה!',
   'strWelcomeDescription': 'אוהבים ידע? הגעתם למקום הנכון! גלו ערכי ויקיפדיה הנמצאים בקרבתכם, או בקרבת מקומות המעניינים אתכם.',
   'strWalkthroughMainPageTitle': 'המסך הראשי',

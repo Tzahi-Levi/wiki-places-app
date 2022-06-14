@@ -17,20 +17,20 @@ class Walkthrough extends StatelessWidget {
   PageViewModel _setWalkthroughScreen({required String imagePath, required String title, required String description}) {
     return PageViewModel(
       image: SizedBox(
-          width: Get.height/3,
-          height: Get.height/1.6,
-          child: Image.asset(imagePath),
+        width: Get.height / 3,
+        height: Get.height / 1.6,
+        child: Image.asset(imagePath),
       ),
       title: title,
       bodyWidget: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [Expanded(child: Text(description, style: Get.textTheme.bodyText2))]),
-      decoration: const PageDecoration(
-          pageColor: Colors.transparent,
-          imageFlex: 3,
-          imagePadding: EdgeInsets.all(8),
-          titlePadding: EdgeInsets.all(8),
-          bodyAlignment: Alignment.topLeft,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [Expanded(child: Text(description, style: Get.textTheme.bodyText2))]),
+      decoration: PageDecoration(
+        pageColor: Get.theme.primaryColor.withOpacity(0.2),
+        imageFlex: 3,
+        imagePadding: EdgeInsets.all(8),
+        titlePadding: EdgeInsets.all(8),
+        bodyAlignment: Alignment.topLeft,
       ),
     );
   }
@@ -38,27 +38,27 @@ class Walkthrough extends StatelessWidget {
   List<PageViewModel> get _getListOfWalkthroughScreens {
     return [
       _setWalkthroughScreen(
-          imagePath: GlobalConstants.appIconImage,
+          imagePath: '${GlobalConstants.walkthroughPathPrefix}${'strLanguageCode'.tr}/Welcome.png',
           title: 'strWelcomeTitle'.tr,
           description: 'strWelcomeDescription'.tr
       ),
       _setWalkthroughScreen(
-          imagePath: 'images/walkthrough/${'strLanguageCode'.tr}/List.png',
+          imagePath: '${GlobalConstants.walkthroughPathPrefix}${'strLanguageCode'.tr}/List.png',
           title: 'strWalkthroughMainPageTitle'.tr,
           description: 'strWalkthroughMainPageDescription'.tr
       ),
       _setWalkthroughScreen(
-          imagePath: 'images/walkthrough/${'strLanguageCode'.tr}/Search.png',
+          imagePath: '${GlobalConstants.walkthroughPathPrefix}${'strLanguageCode'.tr}/Search.png',
           title: 'strWalkthroughSearchPageTitle'.tr,
           description: 'strWalkthroughSearchPageDescription'.tr
       ),
       _setWalkthroughScreen(
-          imagePath: 'images/walkthrough/${'strLanguageCode'.tr}/Map.png',
+          imagePath: '${GlobalConstants.walkthroughPathPrefix}${'strLanguageCode'.tr}/Map.png',
           title: 'strWalkthroughMapPageTitle'.tr,
           description: 'strWalkthroughMapPageDescription'.tr
       ),
       _setWalkthroughScreen(
-          imagePath: 'images/walkthrough/${'strLanguageCode'.tr}/Favorites.png',
+          imagePath: '${GlobalConstants.walkthroughPathPrefix}${'strLanguageCode'.tr}/Favorites.png',
           title: 'strWalkthroughFavoritesPageTitle'.tr,
           description: 'strWalkthroughFavoritesPageDescription'.tr
       ),
@@ -85,14 +85,17 @@ class Walkthrough extends StatelessWidget {
         style: Get.textTheme.bodyText2,
       ),
       dotsFlex: 2,
-      skipStyle: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Get.theme.primaryColor),
+      nextStyle: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Get.theme.primaryColor.withOpacity(0.7)),
+      ),
+      doneStyle: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Get.theme.primaryColor.withOpacity(0.7)),
       ),
       controlsPadding: const EdgeInsets.fromLTRB(5, 16, 5, 16),
       dotsDecorator: DotsDecorator(
           size: const Size.square(7.5),
           activeSize: const Size(15, 7.5),
-          activeColor: Theme.of(context).toggleableActiveColor,
+          activeColor: Get.theme.primaryColor,
           color: Colors.black26,
           spacing: const EdgeInsets.symmetric(horizontal: 2.0),
           activeShape: RoundedRectangleBorder(
