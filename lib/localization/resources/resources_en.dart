@@ -85,8 +85,6 @@ final Map<String, String> resourcesEn = {
   'strWalkthroughMapPageDescription': 'Here you can see the articles related to your desired location over a map. Long click on the a specific point on the map will change the place that we are searching over.',
   'strWalkthroughFavoritesPageTitle': 'The Favorites',
   'strWalkthroughFavoritesPageDescription': 'Here you can see all the favorites articles you saved.',
-  'strWalkthroughSettingsPageTitle': 'App Settings',
-  'strWalkthroughSettingsPageDescription': 'Here you can change the app settings- change the theme, invite a friend to use the app, and rate the app. You can always return and watch this walkthrough again by clicking on "Watch walkthrough" in this page.',
 
   // Errors
   'strSendReport': 'Report a problem',

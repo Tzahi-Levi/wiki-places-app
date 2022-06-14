@@ -24,6 +24,10 @@ class GlobalConstants {
   static const double defaultInitialRating = 5;
   static const List<String> sendReviewsRecipients = ['razle102030@gmail.com', 'tazachil@gmail.com'];
 
+  // SearchTextField Default Values
+  static const int defaultMinCharsForSuggestions = 1;
+  static const int defaultMaxLines = 3;
+
   // Icons
   static const IconData mapPageSelectedIcon = Icons.map;
   static const IconData placesPageSelectedIcon = Icons.list;
@@ -52,6 +56,7 @@ class GlobalConstants {
   static const String locationPermissionPageImage = "images/location_permission_page.png";
   static const String appIconImage = "images/app_icon.png";
   static const String labIconImage = "images/lab_icon.jpeg";
+  static const String walkthroughPathPrefix = "images/walkthrough/";
   static String appBackgroundImage({bool isDarkMode = false}) => "images/background_${isDarkMode ? "dark" : "light"}.png";
 
   //Links

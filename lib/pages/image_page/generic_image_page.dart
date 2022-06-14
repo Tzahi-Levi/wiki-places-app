@@ -17,7 +17,7 @@ class _GenericImagePageState extends State<GenericImagePage> {
   bool _disabledReportError = false;
 
   void _reportError() {
-    sendEmail(subject: "WikiPo Report", text: "Error is occurred from Error page");
+    sendEmail(subject: "WikiPo Error", text: "A user reports that he can't open the app- maybe the server is down");
     displaySnackbar(content: "strReportRecorded".tr);
     setState(() {
       _disabledReportError = true;
