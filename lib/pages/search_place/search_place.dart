@@ -128,41 +128,54 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
 
   @override
   Widget build(BuildContext context) {
-    return LoadingOverlay(
-      isLoading: _isLoading,
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: MinorAppBar(title: 'strSearchPlaceAround'.tr),
-        body: Stack(
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      extendBodyBehindAppBar: true,
+      appBar: MinorAppBar(title: 'strSearchPlaceAround'.tr),
+      body: LoadingOverlay(
+        isLoading: _isLoading,
+        child: Stack(
           children: [
             const AppBackground(),
-            SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 120),
+              child: SingleChildScrollView(
               child: Column(
                 children: [
-                  SearchPlaceWidget(placeNameController: _placeNameController, placeModeController: _placeModeController),
-                  const Divider(),
-                  ChangeRadiusSlider(controller: _radiusController),
-                  const Divider(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('strResetFilters'.tr),
-                        Checkbox(value: _resetFilters, onChanged: _toggleResetCategory),
-                      ],
+                  Card(
+                    color: Get.theme.primaryColorLight.withOpacity(0.8),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          SearchPlaceWidget(placeNameController: _placeNameController, placeModeController: _placeModeController),
+                          const Divider(),
+                          ChangeRadiusSlider(controller: _radiusController),
+                          const Divider(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('strResetFilters'.tr),
+                              Checkbox(value: _resetFilters, onChanged: _toggleResetCategory),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  const Divider(),
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0),
                     child: SizedBox(
                       width: Get.width * 0.5,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: _searchPlace, 
+                        onPressed: _searchPlace,
                         child: Text('strSearch'.tr, style: Get.textTheme.headline2),
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) => Get.theme.primaryColor),
+                          backgroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) => Get.theme.focusColor),
                           elevation: MaterialStateProperty.resolveWith((states) => 10),
                           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
@@ -175,8 +188,8 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                   )
                 ],
               ),
-            ),
-          )],
+          ),
+            )],
         ),
       ),
     );

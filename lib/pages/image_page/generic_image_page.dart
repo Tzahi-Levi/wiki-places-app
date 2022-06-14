@@ -1,9 +1,28 @@
 // ================= Generic Image Page =================
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:wiki_places/global/utils.dart';
 
-class GenericImagePage extends StatelessWidget {
-  GenericImagePage({required this.image, Key? key}) : super(key: key);
-  String image;
+class GenericImagePage extends StatefulWidget {
+  GenericImagePage({required this.image, this.reportError = false, Key? key}) : super(key: key);
+  final String image;
+  final bool reportError;
+
+  @override
+  State<GenericImagePage> createState() => _GenericImagePageState();
+}
+
+class _GenericImagePageState extends State<GenericImagePage> {
+  bool _disabledReportError = false;
+
+  void _reportError() {
+    sendEmail(subject: "WikiPo Error", text: "A user reports that he can't open the app- maybe the server is down");
+    displaySnackbar(content: "strReportRecorded".tr);
+    setState(() {
+      _disabledReportError = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +31,7 @@ class GenericImagePage extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            image,
+            widget.image,
             fit: BoxFit.cover,
           ),
           Positioned(
@@ -28,6 +47,24 @@ class GenericImagePage extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+          ),
+          Visibility(
+            visible: widget.reportError,
+            child: Positioned(
+              bottom: Get.height * 0.1,
+              left: Get.width / 3,
+              child: TextButton(
+                    child: Text(
+                      'strSendReport'.tr,
+                      style: GoogleFonts.openSans(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: _disabledReportError ? Get.theme.disabledColor : Get.theme.primaryColor,
+                      ),
+                    ),
+                    onPressed: _disabledReportError ? null : _reportError,
+                  ),
             ),
           ),
         ],

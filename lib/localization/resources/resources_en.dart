@@ -6,16 +6,14 @@ final Map<String, String> resourcesEn = {
   'strLanguageName': 'English',
   'strLanguageCode': 'en',
   'strAppName': ProjectConfig.projectName,
-  'strFirstLetterAscii': "65",
-  'strLastLetterAscii': "122",
   'strKm': 'Km',
   'strError': 'Error',
   'strClose': 'Close',
-  'strSearch': 'New Search',
+  'strSearch': 'Search',
+  'strNewSearch': 'New Search',
   'strLocationPermissionDenied': 'This feature has to use location permission, please allow it in the device settings.',
   'strTryAgain': 'Error has been occurred, please try again later',
   'strLoadMore': 'Load More',
-  'strUndo': 'Undo',
   'strCurrentLocation': 'Distance from current location',
   'strWhatISee': 'What do I see?',
 
@@ -30,14 +28,13 @@ final Map<String, String> resourcesEn = {
   'strSearchOnMap': 'You can get more articles on another place by long press on the other place',
 
   // Places
-  'strSearchPlace': 'Search Places',
   'strSearchSuccessfully': 'Searching for places in radius @radius @scale from @place was done successfully!',
   'strCurrentPlaceDetails': 'Places in radius @radius @scale from @place',
   'strWikipediaValuesInRadius': '@number Articles (@radius @scale)',
   'strReadMore': 'Full Article',
   'strRadiusMustBePositive': 'The radius must be a positive number',
   'strCantIncreaseRadius': "The radius can't be increased above @maxRadius km",
-  'strNoPlacesAvailable': "There are not articles available. For searching articles, please click on the search button.",
+  'strNoPlacesAvailable': "There are not articles available.\n For searching articles, please click on the search button.",
   'strEmptyPlaceName': "For searching places, please choose a place name",
   'strPlaceNotExist': "The chosen place is not found, please try to search another place",
 
@@ -46,12 +43,11 @@ final Map<String, String> resourcesEn = {
   'strFavoritesNumber': '@number Favorite Articles',
   'strFavoriteNumber': 'One Favorite Article',
   'strEmptyFavoriteNumber': 'No Favorite Articles',
-  'strNoSelectedFavorites': 'There are not favorite places. For adding places to the favorites, click on @ in the places page.',
+  'strNoSelectedFavorites': 'There are not favorite places.\n For adding places to the favorites, click on @ in the places page.',
 
   // Search Place Page
   'strChangeRadius': 'Search in distance',
   'strSearchPlaceAround': 'Search Settings',
-  'strPlace': 'Place:',
   'strCurrentPlace': 'Current Place',
   'strOtherPlace': 'Other Place',
   'strChooseOtherPlace': 'Choose Other Place',
@@ -59,7 +55,6 @@ final Map<String, String> resourcesEn = {
   // Filters
   'strCleanAllFilters': 'Clean All',
   'strEmptyFilter': 'Choose filter name for adding a filter',
-  'strFilters': 'Filters:',
   'strAddFilter': 'Add filter',
   'strResetFilters': 'Reset filters',
 
@@ -90,14 +85,18 @@ final Map<String, String> resourcesEn = {
   'strWalkthroughMapPageDescription': 'Here you can see the articles related to your desired location over a map. Long click on the a specific point on the map will change the place that we are searching over.',
   'strWalkthroughFavoritesPageTitle': 'The Favorites',
   'strWalkthroughFavoritesPageDescription': 'Here you can see all the favorites articles you saved.',
-  'strWalkthroughSettingsPageTitle': 'App Settings',
-  'strWalkthroughSettingsPageDescription': 'Here you can change the app settings- change the theme, invite a friend to use the app, and rate the app. You can always return and watch this walkthrough again by clicking on "Watch walkthrough" in this page.',
+
+  // Errors
+  'strSendReport': 'Report a problem',
+  'strReportRecorded': 'The report is recorded, thank you!',
 
   // About The App
   'strLegalese': "All packages and icons used are properties of their respective owners",
+  'strCredit': 'WikiPo app is developed by Raz Levi and Tzahi Levi in a course in the CS faculty in the Technion, Supervised by Dr. Oren Mishali In collaboration with TD&K - Technion Data & Knowledge Lab of the CS faculty.',
   'strLostConnectionImage': "Lost Connection Image",
   'strErrorPageConnection': "Error Image",
   'strLocationPermissionPage': "Location Permission Image",
   'strBackgroundImage': "Background Image",
+  'strSplashImage': "Splash Image",
   'strAboutTheApp': "About the app",
 };

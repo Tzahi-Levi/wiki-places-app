@@ -24,6 +24,10 @@ class GlobalConstants {
   static const double defaultInitialRating = 5;
   static const List<String> sendReviewsRecipients = ['razle102030@gmail.com', 'tazachil@gmail.com'];
 
+  // SearchTextField Default Values
+  static const int defaultMinCharsForSuggestions = 1;
+  static const int defaultMaxLines = 3;
+
   // Icons
   static const IconData mapPageSelectedIcon = Icons.map;
   static const IconData placesPageSelectedIcon = Icons.list;
@@ -35,8 +39,6 @@ class GlobalConstants {
   static const IconData placeIcon = Icons.place;
   static const IconData favoriteIcon = Icons.favorite;
   static const IconData nonFavoriteIcon = Icons.favorite_border;
-  static const IconData closeIcon = Icons.close;
-  static const IconData showMapBannerIcon = Icons.message;
   static const IconData settingsListIcon = Icons.chevron_right;
 
   // Map
@@ -53,13 +55,16 @@ class GlobalConstants {
   static const String errorPageImage = "images/error_page.png";
   static const String locationPermissionPageImage = "images/location_permission_page.png";
   static const String appIconImage = "images/app_icon.png";
+  static const String labIconImage = "images/lab_icon.jpeg";
+  static const String walkthroughPathPrefix = "images/walkthrough/";
   static String appBackgroundImage({bool isDarkMode = false}) => "images/background_${isDarkMode ? "dark" : "light"}.png";
 
   //Links
-  static const String connectionLostLink = "https://raw.githubusercontent.com/abuanwar072/20-Error-States-Flutter/master/assets/images/1_No%20Connection.png";
+  static const String connectionLostLink = "https://raw.githubusercontent.com/abuanwar072/20-Error-States-Flutter/master/assets/images/10_Connection%20Lost.png";
   static const String errorPageLink = "https://github.com/abuanwar072/20-Error-States-Flutter";
   static const String locationPermissionPageLink = "https://github.com/abuanwar072/20-Error-States-Flutter";
-  static const String appBackgroundLink = "https://cdn.pixabay.com/photo/2021/09/04/13/47/flowers-6597862_960_720.png";
+  static const String appBackgroundLink = "https://pixabay.com/vectors/the-background-wallpaper-sea-blue-292720";
+  static const String splashBackgroundLink = "https://cdn.pixabay.com/photo/2021/09/04/13/47/flowers-6597862_960_720.png";
 
   // Slider
   static int radiusSliderDivisions = 10;

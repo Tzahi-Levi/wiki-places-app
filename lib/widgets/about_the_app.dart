@@ -20,35 +20,34 @@ class AboutTheApp extends StatelessWidget {
       ),
       applicationLegalese: 'strLegalese'.tr,
       children: [
+        Text('strCredit'.tr),
+        Center(child: Image.asset(GlobalConstants.labIconImage)),
         const Divider(),
         ListTile(
-          leading: Image.asset(
-            GlobalConstants.connectionLostImage,
-          ),
-          trailing: Text('strLostConnectionImage'.tr),
+          leading: Text('strLostConnectionImage'.tr),
+          trailing: Image.asset(GlobalConstants.connectionLostImage),
         ),
         Text(GlobalConstants.connectionLostLink, style: Get.textTheme.headline4),
         ListTile(
-          leading: Image.asset(
-            GlobalConstants.errorPageImage,
-          ),
-          trailing: Text('strErrorPageConnection'.tr),
+          leading: Text('strErrorPageConnection'.tr),
+          trailing: Image.asset(GlobalConstants.errorPageImage),
         ),
         Text(GlobalConstants.errorPageLink, style: Get.textTheme.headline4),
         ListTile(
-          leading: Image.asset(
-            GlobalConstants.locationPermissionPageImage,
-          ),
-          trailing: Text('strLocationPermissionPage'.tr),
+          leading: Text('strLocationPermissionPage'.tr),
+          trailing: Image.asset(GlobalConstants.locationPermissionPageImage),
         ),
         Text(GlobalConstants.locationPermissionPageLink, style: Get.textTheme.headline4),
         ListTile(
-          leading: Image.asset(
-            GlobalConstants.appBackgroundImage(),
-          ),
-          trailing: Text('strBackgroundImage'.tr),
+          leading: Text('strBackgroundImage'.tr),
+          trailing: Image.asset(GlobalConstants.appBackgroundImage()),
         ),
         Text(GlobalConstants.appBackgroundLink, style: Get.textTheme.headline4),
+        ListTile(
+          leading: Text('strSplashImage'.tr),
+          trailing: Image.asset(GlobalConstants.splashPageImage),
+        ),
+        Text(GlobalConstants.splashBackgroundLink, style: Get.textTheme.headline4),
       ],
     );
   }

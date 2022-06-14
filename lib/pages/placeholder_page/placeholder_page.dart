@@ -46,30 +46,41 @@ class PlaceholderPage extends StatelessWidget {
                   height: size.width * 0.7,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(size.width * 0.35),
-                    color: Get.theme.primaryColor,
+                    gradient: RadialGradient(
+                      tileMode: TileMode.mirror,
+                      stops: const [0, 1],
+                      colors: [
+                        Get.theme.primaryColorDark,
+                        Get.theme.primaryColor,
+
+                      ],
+                    ),
                     boxShadow: const [BoxShadow(color: Colors.black38, blurRadius: 5, offset: Offset(5, 5))]
                   ),
-                  child: Center(
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: _textToken[0],
-                          ),
-                          WidgetSpan(
-                            child: firstIcon == null ? Container() : Icon(firstIcon, color: Colors.white),
-                          ),
-                          TextSpan(
-                            text: _textToken.length > 1 ? _textToken[1] : "",
-                          ),
-                          WidgetSpan(
-                            child: secondIcon == null ? Container() : Icon(secondIcon, color: Colors.white),
-                          ),
-                          TextSpan(
-                            text: _textToken.length > 2 ?_textToken[2] : "",
-                          ),
-                        ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: _textToken[0],
+                            ),
+                            WidgetSpan(
+                              child: firstIcon == null ? Container() : Icon(firstIcon, color: Colors.white, size: 20,),
+                            ),
+                            TextSpan(
+                              text: _textToken.length > 1 ? _textToken[1] : "",
+                            ),
+                            WidgetSpan(
+                              child: secondIcon == null ? Container() : Icon(secondIcon, color: Colors.white),
+                            ),
+                            TextSpan(
+                              text: _textToken.length > 2 ?_textToken[2] : "",
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

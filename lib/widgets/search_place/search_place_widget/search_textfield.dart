@@ -26,7 +26,12 @@ class SearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TypeAheadField(
+      suggestionsBoxDecoration: SuggestionsBoxDecoration( borderRadius: BorderRadius.circular(20), color: Get.theme.canvasColor),
+      hideOnLoading: true,
       textFieldConfiguration: TextFieldConfiguration(
+        keyboardType: TextInputType.multiline,
+        maxLines: GlobalConstants.defaultMaxLines,
+        style: Get.textTheme.headline6,
         controller: placeNameController,
         onTap: _resetText,
         enabled: isEnabled,
@@ -37,7 +42,7 @@ class SearchTextField extends StatelessWidget {
           hintText: 'strChooseOtherPlace'.tr,
         ),
       ),
-      minCharsForSuggestions: 1,
+      minCharsForSuggestions: GlobalConstants.defaultMinCharsForSuggestions,
       hideOnEmpty: true,
       noItemsFoundBuilder: (context) => Container(),
       suggestionsCallback: _getSuggestions,

@@ -78,7 +78,7 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  Set<Marker> _getMarkers() {
+  Set<Marker> get _getMarkers {
     Set<Marker> places = {};
     for (PlaceModel place in _storeController.filteredPlacesCollection.value) {
       if (!FavoritesController.instance.checkIfFavorite(place)) {
@@ -137,9 +137,7 @@ class _MapPageState extends State<MapPage> {
     return GetX<StoreController>(
       builder: (store) => Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: DetailsAndFiltersAppbar(
-            leadingAction: IconButton(onPressed: _showChangeLocationOnMapBanner, icon: const Icon(GlobalConstants.showMapBannerIcon)),
-        ),
+        appBar: DetailsAndFiltersAppbar(),
         body: GoogleMap(
           padding: const EdgeInsets.only(top: 120, bottom: 50),
           onLongPress: _changePlace,
@@ -149,7 +147,7 @@ class _MapPageState extends State<MapPage> {
           ),
           onMapCreated: _onMapCreated,
           myLocationEnabled: true,
-          markers: _getMarkers(),
+          markers: _getMarkers,
           circles: {
             Circle(
               circleId: const CircleId('currentCircle'),

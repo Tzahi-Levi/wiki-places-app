@@ -43,7 +43,7 @@ class GoogleAnalytics {
   }
 
   void logPlacesCollection() {
-    _logEvent("PlacesCollection");
+    _logEvent("SearchPlaces");
   }
 
   void logRadiusChanged() {

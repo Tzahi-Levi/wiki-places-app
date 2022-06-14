@@ -2,7 +2,7 @@ name: wiki_places
 description: WikiPo app.
 
 publish_to: 'none'
-version: 1.3.0+1
+version: 2.0.0+1
 
 environment:
   sdk: ">=2.15.1 <3.0.0"
@@ -35,7 +35,7 @@ dependencies:
   introduction_screen: ^3.0.2
   rating_dialog: ^2.0.3
   share_plus: ^4.0.7
-  mailer: ^5.0.2
+  mailer: ^5.1.1
 
 flutter_native_splash:
   background_image: "images/start_app.png"

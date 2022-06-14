@@ -52,16 +52,20 @@ void displayCurrentPlaceDetails() {
         'radius': _storeController.radius.value,
         'scale': GlobalConstants.defaultScale,
         'place': _storeController.placeMode.value == EPlaceMode.current ? 'strCurrentPlace'.tr : _storeController.placeName.value,
-      })));
+      }), style: Get.textTheme.headline6,));
 }
 
 void displaySnackbar({required String content, String title = "", TextButton? mainButton}) {
   Get.snackbar(
     title,
     content,
+    backgroundColor: Get.theme.primaryColorLight,
     mainButton: mainButton,
-    titleText: Text(title, style: Get.textTheme.headline6),
-    messageText: Text(content, style: Get.textTheme.headline6),
+    titleText: Padding(
+      padding: const EdgeInsets.only(top: 15.0),
+      child: Center(child: Text(title, style: Get.textTheme.headline2)),
+    ),
+    messageText: Center(child: Text(content, style: Get.textTheme.headline6)),
     snackPosition: SnackPosition.BOTTOM,
     barBlur: 50,
     snackStyle: SnackStyle.FLOATING,
@@ -76,19 +80,28 @@ void openModalBottomSheet({required Widget widget}) {
     SingleChildScrollView(
       child: widget
     ),
-    backgroundColor: Get.theme.primaryColorLight,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+    backgroundColor: Get.theme.canvasColor,
   );
 }
 
 void displayAlertDialog({String title = "", required Widget content}) {
   Get.defaultDialog(
+    titlePadding: EdgeInsets.only(top: 25),
+      titleStyle: Get.textTheme.headline2,
       title: title,
       content: Column(
           children: [
-            content,
-            TextButton(
-              child: Text('strClose'.tr),
-              onPressed: navigateBack,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: content,
+            ),
+            SizedBox(
+              height: 35,
+              child: TextButton(
+                child: Text('strClose'.tr),
+                onPressed: navigateBack,
+              ),
             ),
           ],
       ),
@@ -122,7 +135,7 @@ void displayBanner({required String content}) async {
   );
 }
 
-void sendEmail(List<String> recipients, String subject, String text) async {
+void sendEmail({required String subject, required String text, List<String> recipients = GlobalConstants.sendReviewsRecipients}) async {
   SmtpServer smtpServer = gmail(ProjectConfig.appEmail, ProjectConfig.appEmailPassword);
   final message = mail.Message()
     ..from = const mail.Address(ProjectConfig.appEmail, ProjectConfig.projectName)

@@ -45,11 +45,10 @@ class _FiltersState extends State<Filters> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('strFilters'.tr),
-                  IconButton(onPressed: Get.back, icon: const Icon(GlobalConstants.closeIcon)),
-                ],
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(onPressed: Get.back, child: Text('strClose'.tr, style: Get.textTheme.headline5)),
+              ],
             ),
             Row(
               children: [
@@ -57,6 +56,7 @@ class _FiltersState extends State<Filters> {
                   child: Form(
                     key: _formKey,
                     child: TextFormField(
+                      style: Get.textTheme.headline6,
                       controller: _filterController,
                       validator: _checkEmptyFilter,
                       decoration: InputDecoration(
@@ -65,12 +65,12 @@ class _FiltersState extends State<Filters> {
                     ),
                   ),
                 ),
-                IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon)),
+                IconButton(onPressed: _addFilter, icon: const Icon(GlobalConstants.addIcon), color: Get.theme.primaryColor,),
               ],
             ),
             TextButton(
                 onPressed: _storeController.cleanAllFilters,
-                child: Text('strCleanAllFilters'.tr, style: Get.textTheme.headline6),
+                child: Text('strCleanAllFilters'.tr, style: Get.textTheme.headline5),
             ),
             SizedBox(
                 height: Get.height / 4.9,

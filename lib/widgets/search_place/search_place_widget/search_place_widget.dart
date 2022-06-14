@@ -34,7 +34,6 @@ class _SearchPlaceWidgetState extends State<SearchPlaceWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('strPlace'.tr),
         RadioButtons(
           options: [
             {'value': EPlaceMode.current, 'name': 'strCurrentPlace'.tr},
