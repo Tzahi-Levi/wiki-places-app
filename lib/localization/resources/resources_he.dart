@@ -9,11 +9,11 @@ final Map<String, String> resourcesHe = {
   'strKm': 'ק״מ',
   'strError': 'שגיאה',
   'strClose': 'סגור',
-  'strSearch': 'חפשו',
+  'strSearch': 'חיפוש',
   'strNewSearch': 'חיפוש חדש',
   'strLocationPermissionDenied': 'הפעולה עושה שימוש בהרשאות המיקום, יש לאפשר לאפליקציה לגשת למיקום דרך הגדרות המכשיר.',
   'strTryAgain': 'שגיאה התרחשה בעת הפעולה, יש לנסות שנית מאוחר יותר',
-  'strLoadMore': 'טענו עוד',
+  'strLoadMore': 'טעינת עוד',
   'strCurrentLocation': 'ממיקומך הנוכחי',
   'strWhatISee': 'מה אני רואה?',
 
@@ -48,7 +48,7 @@ final Map<String, String> resourcesHe = {
   'strNoSelectedFavorites': 'לא נבחרו מועדפים.\n לחצו על ה-@ ברשימת הערכים על מנת להוסיף ערך לרשימת המועדפים.',
 
   // Search Place Page
-  'strChangeRadius': 'חפשו במרחק',
+  'strChangeRadius': 'חיפוש במרחק',
   'strSearchPlaceAround': 'הגדרות החיפוש',
   'strCurrentPlace': 'המיקום הנוכחי',
   'strOtherPlace': 'מיקום אחר',
@@ -58,7 +58,7 @@ final Map<String, String> resourcesHe = {
   'strCleanAllFilters': 'נקה הכל',
   'strEmptyFilter': 'ציינו את שם המסנן על מנת להוסיפו.',
   'strAddFilter': 'הוסיפו מסנן',
-  'strResetFilters': 'אפסו מסננים',
+  'strResetFilters': 'איפוס מסננים',
 
   // Settings
   'strSettings': 'הגדרות',

@@ -6,7 +6,7 @@ class ProjectConfig {
 
   // Project Config
   static const String projectName = "WikiPo";
-  static const String projectVersion = "v2.0.0";
+  static const String projectVersion = "v2.0.1";
   static const String googlePlayUrl = "https://play.google.com/store/apps/details?id=com.technion.android.wikiplaces.wiki_places";
   static const String appEmail = "appbalanceme@gmail.com";
   static const String appEmailPassword = "uruevumwrgrkkjhb";
