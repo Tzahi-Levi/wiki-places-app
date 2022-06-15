@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:wiki_places/controllers/theme_controller.dart';
+import 'package:wiki_places/global/constants.dart';
 import 'package:wiki_places/metrics/google_analytics.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:wiki_places/metrics/sentry_controller.dart';
@@ -48,6 +49,7 @@ class WikiPlacesApp extends StatelessWidget {
       ],
       theme: ThemeController.lightMode,
       darkTheme: ThemeController.darkMode,
+      themeMode: GlobalConstants.defaultInitialThemeMode,
       debugShowCheckedModeBanner: false,
       home: ConnectivityBuilder(
         builder: (context, isConnected, status) {
