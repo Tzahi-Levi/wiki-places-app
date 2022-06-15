@@ -99,18 +99,16 @@ class ThemeController {
       radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all(_primaryColor_dark)),
       checkboxTheme: CheckboxThemeData(fillColor: MaterialStateProperty.all(_primaryColor_dark)),
       switchTheme: SwitchThemeData(thumbColor: MaterialStateProperty.all(Colors.white), trackColor: MaterialStateProperty.all(Colors.white70)),
-      canvasColor: _primaryColorLight_dark
+      canvasColor: _primaryColorLight_dark,
   );
 
   static void setTheme({required bool isDarkMode}) {
-    Get.changeTheme(
-        isDarkMode ? ThemeController.darkMode : ThemeController.lightMode);
+    Get.changeTheme(isDarkMode ? ThemeController.darkMode : ThemeController.lightMode);
     PreferencesController.instance.setIsDarkMode(isDarkMode: isDarkMode);
   }
 
   static void changeTheme() {
-    Get.changeTheme(
-        Get.isDarkMode ? ThemeController.lightMode : ThemeController.darkMode);
+    Get.changeTheme(Get.isDarkMode ? ThemeController.lightMode : ThemeController.darkMode);
     PreferencesController.instance.setIsDarkMode(isDarkMode: !Get.isDarkMode);
   }
 }

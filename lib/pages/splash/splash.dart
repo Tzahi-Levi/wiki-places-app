@@ -20,7 +20,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  final _storeController = Get.put(StoreController());
+  final StoreController _storeController = Get.put(StoreController());
 
   @override
   void initState() {

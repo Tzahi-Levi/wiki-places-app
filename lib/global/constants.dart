@@ -23,6 +23,7 @@ class GlobalConstants {
   static const int defaultWordsInPlaceName = 3;
   static const double defaultInitialRating = 5;
   static const List<String> sendReviewsRecipients = ['razle102030@gmail.com', 'tazachil@gmail.com'];
+  static const ThemeMode defaultInitialThemeMode = ThemeMode.light;
 
   // SearchTextField Default Values
   static const int defaultMinCharsForSuggestions = 1;
