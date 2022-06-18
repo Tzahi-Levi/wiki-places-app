@@ -22,6 +22,7 @@
 ## Introduction:
 * This project was done in the TDK - Technion Data & Knowledge Lab of the CS faculty By Tzahi Levi and Raz Levi under the supervision of Dr. Oren Mishali.
 * This project's final product is an app for presenting information about places.
+* [App Poster.](https://github.com/TechnionTDK/wiki-places-app/blob/docs/poster.pdf)
 
 
 ## Prerequisite:
@@ -76,6 +77,8 @@
 ### Comments:
 * The theme of the app (light and dark mode) are controlled in the theme_controller in lib/controllers/theme_controller.dart file.
 * The app supports localization, but currently this is not in used since the place's data is arrived in Hebrew from the server. If you want to use the English, uncomment the resourcesEn in lib/localization/resources/resources.dart file(marked as TODO). For adding new language, add a translation as new file in the resources directory and include it in the lib/localization/resources/resources.dart file. You can use the languages_drop_down widget for changing the language.
+* The branches develop, master, and all the branches started in release/ are protected- it means that you can't push commits without a pull request. For modify the rules (protected branches name) you can visit the branches section under the Settings label (in GitHub website).
+* Only the code owners can approve pull requests in this repository- you can't merge pull request without at least one approval. The code owners is declared in docs/CODEOWNERS file- you can edit this file for adding new code owners (add @gitNickname).
 
 
 ## Disclaimer
