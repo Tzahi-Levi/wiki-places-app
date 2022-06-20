@@ -52,7 +52,7 @@ class ClientRequests extends GetConnect {
   }
 
   Future<SortedList<Suggestion>> getSuggestions({required String pattern}) async {
-    Response response = await get('http://${ProjectConfig.serverAddress}/get_suggestions?name=${pattern.replaceAll(" ", "_")}');
+    Response response = await get('http://${ProjectConfig.serverAddress}/get_suggestions?name=$pattern');
     SortedList<Suggestion> suggestions = getSuggestionsList;
 
     if (_isResponseSuccess(response)) {

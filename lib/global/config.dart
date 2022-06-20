@@ -6,11 +6,11 @@ class ProjectConfig {
 
   // Project Config
   static const String projectName = "WikiPo";
-  static const String projectVersion = "v2.0.1";
+  static const String projectVersion = "v2.0.2";
   static const String googlePlayUrl = "https://play.google.com/store/apps/details?id=com.technion.android.wikiplaces.wiki_places";
   static const String appEmail = "appbalanceme@gmail.com";
   static const String appEmailPassword = "uruevumwrgrkkjhb";
 
   // Backend Config
-  static const String serverAddress = "132.69.8.15:80";
+  static const String serverAddress = "wikipo.cs.technion.ac.il";
 }
